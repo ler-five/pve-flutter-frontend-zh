@@ -114,6 +114,8 @@ class MyApp extends StatelessWidget {
             background: ProxmoxColors.supportGreyTint75,
             onBackground: Colors.black,
           ),
+          toggleableActiveColor: ProxmoxColors.supportBlue,
+          indicatorColor: ProxmoxColors.orange,
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(primary: ProxmoxColors.grey),
           ),
@@ -145,6 +147,8 @@ class MyApp extends StatelessWidget {
             background: ProxmoxColors.grey,
             onBackground: ProxmoxColors.supportGreyTint75,
           ),
+          toggleableActiveColor: ProxmoxColors.blue500,
+          indicatorColor: ProxmoxColors.orange,
           // flutter has a weird logic where it pulls colors from different
           // scheme properties depending on light/dark mode, avoid that...
           appBarTheme: AppBarTheme(
