@@ -36,10 +36,12 @@ class PveWelcomePageLast extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: RaisedButton(
+                        child: ElevatedButton(
                           onPressed: () => {onDone!()},
-                          color: ProxmoxColors.orange,
-                          textColor: Colors.white,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: ProxmoxColors.orange,
+                            foregroundColor: Colors.white,
+                          ),
                           child: Text("Start"),
                         ),
                       ),
