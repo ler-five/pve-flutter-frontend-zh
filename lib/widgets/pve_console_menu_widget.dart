@@ -83,7 +83,7 @@ class PveConsoleMenu extends StatelessWidget {
                               title: Text('Got Exception'),
                               content: Text(e.message!),
                               actions: [
-                                FlatButton(
+                                TextButton(
                                     onPressed: () =>
                                         Navigator.of(context).pop(),
                                     child: Text('Close'))
@@ -154,7 +154,7 @@ class PveConsoleMenu extends StatelessWidget {
         title: Text(title),
         content: Text(content),
         actions: [
-          FlatButton(
+          TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: Text('Close'))
         ],

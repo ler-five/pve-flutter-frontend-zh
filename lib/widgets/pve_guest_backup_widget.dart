@@ -302,14 +302,14 @@ class PveGuestBackupContent extends StatelessWidget {
         title: Text(title),
         content: Text(body),
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: () => Navigator.of(context).pop(false),
             child: Text(
               'Cancel',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          FlatButton(
+          TextButton(
             onPressed: () => Navigator.of(context).pop(true),
             child: Text(
               'Confirm',
@@ -371,7 +371,7 @@ class _PveConfigurationDialogState extends State<PveConfigurationDialog> {
                 child: CircularProgressIndicator(),
               ),
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: () => Navigator.of(context).pop(true),
             child: Text(
               'Close',

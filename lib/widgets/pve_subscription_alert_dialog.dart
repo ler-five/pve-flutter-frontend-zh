@@ -11,7 +11,7 @@ class PveSubscriptionAlertDialog extends StatelessWidget {
           ' software and getting stable updates and security enhancements,'
           ' as well as quick enterprise support.\n\nPlease consider to buy a subscription.'),
       actions: [
-        FlatButton(
+        TextButton(
             onPressed: () async {
               final url = 'https://www.proxmox.com/proxmox-ve/pricing';
               if (await canLaunch(url)) {

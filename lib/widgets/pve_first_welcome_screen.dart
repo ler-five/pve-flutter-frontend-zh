@@ -67,9 +67,11 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
 
   Widget nextDoneButton() {
     if (_isLast) {
-      return FlatButton(
-        textColor: _buttonTextColor,
-        disabledTextColor: _buttonDisabledTextColor,
+      return TextButton(
+        style: TextButton.styleFrom(
+          foregroundColor: _buttonTextColor,
+          disabledForegroundColor: _buttonDisabledTextColor,
+        ),
         child: Text(
           "Done",
         ),
@@ -78,10 +80,12 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
         },
       );
     } else {
-      return FlatButton(
+      return TextButton(
         child: Text("Next"),
-        textColor: _buttonTextColor,
-        disabledTextColor: _buttonDisabledTextColor,
+        style: TextButton.styleFrom(
+          foregroundColor: _buttonTextColor,
+          disabledForegroundColor: _buttonDisabledTextColor,
+        ),
         onPressed: () {
           _controller!
               .nextPage(duration: _pageChangeDuration, curve: _pageChangeCurve);
@@ -92,9 +96,11 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
 
   Widget skipPrevButton() {
     if (_isFirst) {
-      return FlatButton(
-        textColor: _buttonTextColor,
-        disabledTextColor: _buttonDisabledTextColor,
+      return TextButton(
+        style: TextButton.styleFrom(
+          foregroundColor: _buttonTextColor,
+          disabledForegroundColor: _buttonDisabledTextColor,
+        ),
         onPressed: () {
           skipDone();
         },
@@ -103,9 +109,11 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
         ),
       );
     } else {
-      return FlatButton(
-        textColor: _buttonTextColor,
-        disabledTextColor: _buttonDisabledTextColor,
+      return TextButton(
+        style: TextButton.styleFrom(
+          foregroundColor: _buttonTextColor,
+          disabledForegroundColor: _buttonDisabledTextColor,
+        ),
         child: Text(
           "Prev",
         ),

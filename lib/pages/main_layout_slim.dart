@@ -853,7 +853,7 @@ class _MobileResourceFilterSheet extends StatelessWidget {
                     'Filter Results',
                   ),
                   trailing: rBloc.isFiltered
-                      ? FlatButton(
+                      ? TextButton(
                           onPressed: () => rBloc.events.add(ResetFilter()),
                           child: Text(
                             'Reset',
