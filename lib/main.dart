@@ -39,12 +39,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final authBloc = PveAuthenticationBloc();
   try {
-    final loginStorage = await (ProxmoxLoginStorage.fromLocalStorage()
-        as FutureOr<ProxmoxLoginStorage?>);
+    final loginStorage = await (ProxmoxLoginStorage.fromLocalStorage());
     final apiClient = await loginStorage!.recoverLatestSession();
     authBloc.events.add(LoggedIn(apiClient));
   } catch (e) {
-    print(e);
+    if (kDebugMode) {
+      print(e);
+    }
     authBloc.events.add(LoggedOut());
   }
 
@@ -125,7 +126,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           fontFamily: "Open Sans",
-          primaryTextTheme: TextTheme(
+          primaryTextTheme: const TextTheme(
             headline6:
                 TextStyle(fontFamily: "Open Sans", fontWeight: FontWeight.w700),
           ),
@@ -164,7 +165,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           fontFamily: "Open Sans",
-          primaryTextTheme: TextTheme(
+          primaryTextTheme: const TextTheme(
             headline6:
                 TextStyle(fontFamily: "Open Sans", fontWeight: FontWeight.w700),
           ),
@@ -189,7 +190,7 @@ class MyApp extends StatelessWidget {
                                 24.0, 12.0, 24.0, 16.0),
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
+                              children: const <Widget>[
                                 Text('Error'),
                                 Icon(Icons.warning),
                               ],
