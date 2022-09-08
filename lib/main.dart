@@ -117,6 +117,11 @@ class MyApp extends StatelessWidget {
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(primary: ProxmoxColors.grey),
           ),
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.black,
+            ),
+          ),
           fontFamily: "Open Sans",
           primaryTextTheme: TextTheme(
             headline6:
@@ -148,6 +153,11 @@ class MyApp extends StatelessWidget {
           ),
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(primary: ProxmoxColors.greyTint80),
+          ),
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.white,
+            ),
           ),
           fontFamily: "Open Sans",
           primaryTextTheme: TextTheme(
