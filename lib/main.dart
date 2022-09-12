@@ -134,6 +134,11 @@ class MyApp extends StatelessWidget {
             backgroundColor: ProxmoxColors.supportBlue, // primary
             foregroundColor: Colors.white, // onPrimary
           ),
+          textSelectionTheme: TextSelectionThemeData(
+            selectionColor: ProxmoxColors.orange.withOpacity(0.4),
+            selectionHandleColor: ProxmoxColors.orange,
+            cursorColor: ProxmoxColors.orange,
+          ),
         ),
         darkTheme: ThemeData(
           colorScheme: ColorScheme.dark(
@@ -170,6 +175,11 @@ class MyApp extends StatelessWidget {
                 TextStyle(fontFamily: "Open Sans", fontWeight: FontWeight.w700),
           ),
           scaffoldBackgroundColor: ProxmoxColors.grey,
+          textSelectionTheme: TextSelectionThemeData(
+            selectionColor: ProxmoxColors.orange.withOpacity(0.4),
+            selectionHandleColor: ProxmoxColors.orange,
+            cursorColor: ProxmoxColors.orange,
+          ),
         ),
         builder: (context, child) {
           return StreamListener(
