@@ -7,7 +7,7 @@ import androidx.core.view.WindowCompat;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.splashscreen.SplashScreenViewProvider
-import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 import androidx.core.content.FileProvider
@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-class MainActivity: FlutterActivity() {
+class MainActivity: FlutterFragmentActivity() {
 
     private val CHANNEL = "com.proxmox.app.pve_flutter_frontend/filesharing"
 
