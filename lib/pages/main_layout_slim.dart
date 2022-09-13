@@ -593,7 +593,8 @@ class MobileResourceOverview extends StatelessWidget {
           onTap: () {
             FocusScope.of(context).unfocus();
           },
-          child: Scaffold(
+          child: SafeArea(
+              child: Scaffold(
             endDrawer: _MobileResourceFilterSheet(),
             appBar: AppBar(
               automaticallyImplyLeading: false,
@@ -657,7 +658,7 @@ class MobileResourceOverview extends StatelessWidget {
               },
             ),
             bottomNavigationBar: PveMobileBottomNavigationbar(),
-          ),
+          )),
         );
       },
     );
