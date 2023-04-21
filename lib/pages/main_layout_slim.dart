@@ -377,7 +377,7 @@ class MobileDashboard extends StatelessWidget {
                     ...cState.nodes.map((node) {
                       return PveNodeListTile(
                         name: node.name,
-                        online: node.online,
+                        online: node.online ?? false,
                         type: node.type,
                         level: node.level,
                         ip: node.ip,
@@ -548,14 +548,14 @@ class MobileDashboard extends StatelessWidget {
 
 class PveNodeListTile extends StatelessWidget {
   final String name;
-  final bool? online;
+  final bool online;
   final String type;
   final String? level;
   final String? ip;
   const PveNodeListTile(
       {Key? key,
       required this.name,
-      @required this.online = false,
+      required this.online,
       required this.type,
       this.level,
       this.ip = ''})
@@ -567,8 +567,8 @@ class PveNodeListTile extends StatelessWidget {
         Renderers.getDefaultResourceIcon(type),
       ),
       title: Text(name),
-      subtitle: Text(getNodeTileSubtitle(online!, level, ip)),
-      trailing: Icon(Icons.power, color: online! ? Colors.green : Colors.grey),
+      subtitle: Text(getNodeTileSubtitle(online, level, ip)),
+      trailing: Icon(Icons.power, color: online ? Colors.green : Colors.grey),
       onTap: () => Navigator.pushNamed(context, '/nodes/$name'),
     );
   }
