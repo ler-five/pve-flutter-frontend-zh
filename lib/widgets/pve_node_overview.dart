@@ -90,12 +90,12 @@ class PveNodeOverview extends StatelessWidget {
                                   Expanded(
                                     child: PveRRDChart(
                                       title:
-                                          'CPU (${state.status?.cpuinfo?.cpus ?? '-'})',
+                                          'CPU (${state.status?.cpuinfo.cpus ?? '-'})',
                                       subtitle: last_cpu_text,
                                       data: rrd.where((e) => e.cpu != null).map(
                                           (e) => Point(
                                               e.time!.millisecondsSinceEpoch,
-                                              e.cpu! * 100.0)),
+                                              (e.cpu ?? 0) * 100.0)),
                                       icon: Icon(Icons.memory),
                                       bottomRight: pageIndicator,
                                       dataRenderer: (data) =>
@@ -110,7 +110,7 @@ class PveNodeOverview extends StatelessWidget {
                                           rrd.last.memused ?? 0),
                                       data: rrd.map((e) => Point(
                                           e.time!.millisecondsSinceEpoch,
-                                          e.memused!)),
+                                          e.memused ?? 0)),
                                       icon: Icon(FontAwesomeIcons.memory),
                                       bottomRight: pageIndicator,
                                       dataRenderer: (data) =>
@@ -142,7 +142,7 @@ class PveNodeOverview extends StatelessWidget {
                                           '0',
                                       data: rrd.map((e) => Point(
                                           e.time!.millisecondsSinceEpoch,
-                                          e.loadavg!)),
+                                          e.loadavg ?? 0)),
                                       icon: Icon(Icons.show_chart),
                                       bottomRight: pageIndicator,
                                       dataRenderer: (data) =>
@@ -158,8 +158,7 @@ class PveNodeOverview extends StatelessWidget {
                   ProxmoxStreamBuilder<PveTaskLogBloc, PveTaskLogState>(
                     bloc: tBloc,
                     builder: (context, taskState) {
-                      if (taskState.tasks != null &&
-                          taskState.tasks.isNotEmpty) {
+                      if (taskState.tasks.isNotEmpty) {
                         return Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: PveTaskExpansionTile(
@@ -226,10 +225,10 @@ class PveNodeOverview extends StatelessWidget {
                           subtitle: Text(
                               'CPU Information (Socket: ${status.cpuinfo.sockets})'),
                         ),
-                      if (status?.ksm?.shared ?? false)
+                      if (status?.ksm.shared ?? false)
                         CheckboxListTile(
                           dense: true,
-                          value: status?.ksm?.shared ?? false,
+                          value: status?.ksm.shared ?? false,
                           title: Text('Kernel same-page merging (KSM)',
                               style: TextStyle(color: Colors.black)),
                           onChanged: null,
@@ -333,7 +332,7 @@ class PveNodeOverview extends StatelessWidget {
                                   contentPadding: EdgeInsets.all(24),
                                   children: <Widget>[
                                     Text(
-                                      s.description!,
+                                      s.description ?? '',
                                       style: TextStyle(fontSize: 12),
                                     )
                                   ],
