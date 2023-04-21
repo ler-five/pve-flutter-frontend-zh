@@ -180,8 +180,8 @@ class _MigrateTargetSelector extends StatelessWidget {
                         trailing:
                             Icon(Icons.offline_bolt, color: Colors.green[500]),
                         title: Text(item.nodeName),
-                        subtitle:
-                            Text('CPU: ${item.renderMemoryUsagePercent()}'),
+                        subtitle: Text(
+                            'CPU: ${item.renderCpuUsage()}\nMemory: ${item.renderMemoryUsagePercent()}'),
                       ),
                       value: item.nodeName,
                     ))
