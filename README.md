@@ -164,3 +164,56 @@ size the logo / icon accordingly.
 
 ## Screenshots Android
 adb shell settings put global sysui_demo_allowed 1
+
+## Build tooling upgrades
+
+In general, updates should be done in the order of:
+
+* Android Studio
+* Flutter
+* Plugins
+
+and then select a gradle and android gradle plugin version which are compatible
+with each other and the other parts.
+
+To do this correctly, it's necessary to check the respective release notes
+and compatibility tables/matrices.
+
+### Flutter
+
+to upgrade flutter itself, just run
+
+ flutter upgrade
+
+check https://docs.flutter.dev/release/release-notes for breaking changes
+and migration information
+
+### Android Studio
+
+Depends on the method you installed, on Linux with tarballs, normally
+the new version is downloaded/extracted again, and it will automatically
+detect & migrate old settings and configuration files on first start.
+
+The Android Studio version determines which Gradle/AGP version you can use.
+Check the respective release notes for Gradle/AGP versions:
+https://developer.android.com/studio/releases
+
+### Gradle/Android Gradle Plugin (AGP)
+
+Compatibility depends on the Android Studio, Flutter and plugins.
+Can be changed in Android Studio under
+File -> Project Structure -> Project
+
+When selected, Android Studio will automatically download/build them, and
+change the entries in the android/build.gradle file.
+
+See https://developer.android.com/build/releases/gradle-plugin for
+AGP/Gradle compatibility.
+
+### Kotlin
+
+Compatibility depends on Flutter plugins and Gradle, check
+https://docs.gradle.org/current/userguide/compatibility.html
+
+To change the used kotlin version, edit it in the android/build.gradle file
+manually.
