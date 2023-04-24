@@ -210,39 +210,37 @@ class PVEWebConsole extends StatefulWidget {
 }
 
 class PVEWebConsoleState extends State<PVEWebConsole> {
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
-
   @override
   Widget build(BuildContext context) {
     final ticket = widget.apiClient.credentials.ticket!;
     final baseUrl = widget.apiClient.credentials.apiBaseUrl;
 
-    var consoleUrl = "${baseUrl}/?novnc=1&node=${widget.node}&isFullscreen=true&resize=scale";
+    var consoleUrl =
+        "$baseUrl/?novnc=1&node=${widget.node}&isFullscreen=true&resize=scale";
     if (widget.guestID != null) {
       final consoleType = widget.type == 'lxc' ? 'lxc' : 'kvm';
-      consoleUrl += "&console=${consoleType}&vmid=${widget.guestID}";
+      consoleUrl += "&console=$consoleType&vmid=${widget.guestID}";
     } else {
       consoleUrl += "&console=shell";
     }
-    //debugPrint("url: ${consoleUrl}, ticket: $ticket");
 
-    return SafeArea(
-      child: WebView(
-        javascriptMode: JavascriptMode.unrestricted,
-        backgroundColor: Theme.of(context).colorScheme.background,
-        initialCookies: <WebViewCookie>[
-          WebViewCookie(
-            name: 'PVEAuthCookie',
-            value: ticket,
-            domain: baseUrl.origin,
-          )
-        ],
-        onWebViewCreated: (WebViewController webViewController) {
-          _controller.complete(webViewController);
-          webViewController.loadUrl(consoleUrl);
-        },
-      ),
-    );
+    final controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(Theme.of(context).colorScheme.background)
+      ..loadRequest(Uri.parse(consoleUrl));
+
+    return FutureBuilder(
+        future: WebViewCookieManager().setCookie(WebViewCookie(
+          name: 'PVEAuthCookie',
+          value: ticket,
+          domain: baseUrl.origin,
+        )),
+        builder: (context, snapshot) {
+          return SafeArea(
+            child: WebViewWidget(
+              controller: controller,
+            ),
+          );
+        });
   }
 }

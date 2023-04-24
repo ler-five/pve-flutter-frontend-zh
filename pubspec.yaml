@@ -34,7 +34,7 @@ dependencies:
   intl: ^0.17.0
   package_info_plus: ^1.4.0
   path_provider: ^2.0.8
-  webview_flutter: ^3.0.0
+  webview_flutter: ^4.2.0
   proxmox_dart_api_client:
     path: ../proxmox_dart_api_client
   proxmox_login_manager:
