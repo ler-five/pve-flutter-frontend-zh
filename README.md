@@ -169,9 +169,9 @@ adb shell settings put global sysui_demo_allowed 1
 
 In general, updates should be done in the order of:
 
-* Android Studio
-* Flutter
-* Plugins
+1. Android Studio
+2. Flutter
+3. Plugins
 
 and then select a gradle and android gradle plugin version which are compatible
 with each other and the other parts.
@@ -179,7 +179,7 @@ with each other and the other parts.
 To do this correctly, it's necessary to check the respective release notes
 and compatibility tables/matrices.
 
-### Flutter
+### Upgrade Flutter
 
 to upgrade flutter itself, just run
 
@@ -188,7 +188,7 @@ to upgrade flutter itself, just run
 check https://docs.flutter.dev/release/release-notes for breaking changes
 and migration information
 
-### Android Studio
+### Upgrade Android Studio
 
 Depends on the method you installed, on Linux with tarballs, normally
 the new version is downloaded/extracted again, and it will automatically
@@ -210,7 +210,7 @@ change the entries in the android/build.gradle file.
 See https://developer.android.com/build/releases/gradle-plugin for
 AGP/Gradle compatibility.
 
-### Kotlin
+### Upgrade Kotlin
 
 Compatibility depends on Flutter plugins and Gradle, check
 https://docs.gradle.org/current/userguide/compatibility.html
