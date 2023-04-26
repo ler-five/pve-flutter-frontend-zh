@@ -40,6 +40,10 @@ built the generated (data) model code for each.
 
 ## Linux native
 
+Due to the biometric secret integration you also need libsecret-1:
+
+ apt install libsecret-1-dev
+
 With the dependencies setup you should cd back into this directory
 (pve_flutter_frontend repository root) and also generate the model code once:
 
