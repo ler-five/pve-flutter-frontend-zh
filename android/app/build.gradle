@@ -31,6 +31,21 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
+def getSecretFromCommand(String command) {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'sh', '-c', command
+        standardOutput = stdout
+    }
+    stdout.toString().trim()
+}
+
+
+// simply duplicate this if ever required to have different password for key and keystore
+def keystoreSecret = System.getenv('PROXMOX_APP_KEYSTORE_SECRET')
+    ?: keystoreProperties['keyPasswordCommand'] ? getSecretFromCommand(keystoreProperties['keyPasswordCommand'])
+     : keystoreProperties['keyPassword']
+
 android {
     compileSdkVersion 33
 
@@ -51,9 +66,9 @@ android {
     signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
+            keyPassword keystoreSecret
             storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-            storePassword keystoreProperties['storePassword']
+            storePassword keystoreSecret
         }
     }
 
