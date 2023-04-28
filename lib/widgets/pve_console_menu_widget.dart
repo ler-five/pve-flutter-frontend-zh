@@ -226,8 +226,7 @@ class PVEWebConsoleState extends State<PVEWebConsole> {
 
     final controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(Theme.of(context).colorScheme.background)
-      ..loadRequest(Uri.parse(consoleUrl));
+      ..setBackgroundColor(Theme.of(context).colorScheme.background);
 
     return FutureBuilder(
         future: WebViewCookieManager().setCookie(WebViewCookie(
@@ -236,6 +235,7 @@ class PVEWebConsoleState extends State<PVEWebConsole> {
           domain: baseUrl.origin,
         )),
         builder: (context, snapshot) {
+          controller.loadRequest(Uri.parse(consoleUrl));
           return SafeArea(
             child: WebViewWidget(
               controller: controller,
