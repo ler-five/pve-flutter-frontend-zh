@@ -43,8 +43,7 @@ class PveLxcOverviewBloc
           current: true);
       yield latestState.rebuild((b) => b..config.replace(config!));
 
-      final rrdData = (await apiClient.getNodeQemuRRDdata(
-          latestState.nodeID, guestID, PveRRDTimeframeType.hour));
+      final rrdData = await _preProcessRRDdata();
       yield latestState.rebuild((b) => b..rrdData.replace(rrdData));
     }
     if (event is PerformLxcAction) {
@@ -89,6 +88,16 @@ class PveLxcOverviewBloc
         yield latestState.rebuild((b) => b..errorMessage = '');
       }
     }
+  }
+
+  Future<List<PveGuestRRDdataModel>> _preProcessRRDdata() async {
+    final rrddata = (await apiClient.getNodeQemuRRDdata(
+            latestState.nodeID, guestID, PveRRDTimeframeType.hour))
+        .map((element) => element.cpu != null
+            ? element.rebuild((e) => e..cpu = e.cpu! * 100)
+            : element)
+        .toList();
+    return rrddata;
   }
 }
 
