@@ -235,7 +235,7 @@ class MobileDashboard extends StatelessWidget {
                       if (cState.missingSubscription)
                         ActionChip(
                           backgroundColor:
-                              Theme.of(context).colorScheme.primaryVariant,
+                              Theme.of(context).colorScheme.primaryContainer,
                           avatar: Icon(Icons.report, color: Colors.red),
                           label: Text(
                             'Subscription',
@@ -254,7 +254,7 @@ class MobileDashboard extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               vertical: 4.0, horizontal: 8.0),
                           backgroundColor:
-                              Theme.of(context).colorScheme.primaryVariant,
+                              Theme.of(context).colorScheme.primaryContainer,
                           avatar: Icon(
                             Renderers.getDefaultResourceIcon('qemu'),
                             color: Theme.of(context).colorScheme.onPrimary,
@@ -284,7 +284,7 @@ class MobileDashboard extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               vertical: 4.0, horizontal: 8.0),
                           backgroundColor:
-                              Theme.of(context).colorScheme.primaryVariant,
+                              Theme.of(context).colorScheme.primaryContainer,
                           avatar: Icon(
                             Renderers.getDefaultResourceIcon('lxc'),
                             color: Theme.of(context).colorScheme.onPrimary,

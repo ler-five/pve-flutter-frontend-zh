@@ -107,9 +107,9 @@ class MyApp extends StatelessWidget {
             brightness: Brightness.light,
             primary: ProxmoxColors.supportBlue,
             onPrimary: Colors.white,
-            primaryVariant: ProxmoxColors.blue900,
+            primaryContainer: ProxmoxColors.blue900,
             secondary: ProxmoxColors.orange,
-            secondaryVariant: ProxmoxColors.supportLightOrange,
+            secondaryContainer: ProxmoxColors.supportLightOrange,
             surface: ProxmoxColors.supportGreyTint50,
             onSurface: Colors.black,
             background: ProxmoxColors.supportGreyTint75,
@@ -118,7 +118,7 @@ class MyApp extends StatelessWidget {
           toggleableActiveColor: ProxmoxColors.supportBlue,
           indicatorColor: ProxmoxColors.orange,
           textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(primary: ProxmoxColors.grey),
+            style: TextButton.styleFrom(foregroundColor: ProxmoxColors.grey),
           ),
           outlinedButtonTheme: OutlinedButtonThemeData(
             style: OutlinedButton.styleFrom(
@@ -145,11 +145,11 @@ class MyApp extends StatelessWidget {
             brightness: Brightness.dark,
             primary: ProxmoxColors.supportBlue,
             onPrimary: Colors.white,
-            primaryVariant: ProxmoxColors.blue800,
+            primaryContainer: ProxmoxColors.blue800,
             surface: ProxmoxColors.greyTint20,
             onSurface: Colors.white,
             secondary: ProxmoxColors.orange,
-            secondaryVariant: ProxmoxColors.supportLightOrange,
+            secondaryContainer: ProxmoxColors.supportLightOrange,
             background: ProxmoxColors.grey,
             onBackground: ProxmoxColors.supportGreyTint75,
           ),
@@ -162,7 +162,8 @@ class MyApp extends StatelessWidget {
             foregroundColor: Colors.white, // onPrimary
           ),
           textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(primary: ProxmoxColors.greyTint80),
+            style:
+                TextButton.styleFrom(foregroundColor: ProxmoxColors.greyTint80),
           ),
           outlinedButtonTheme: OutlinedButtonThemeData(
             style: OutlinedButton.styleFrom(
