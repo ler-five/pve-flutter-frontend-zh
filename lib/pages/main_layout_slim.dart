@@ -1043,28 +1043,32 @@ class MobileAccessManagement extends StatelessWidget {
           //backgroundColor: Colors.transparent,
           elevation: 0.0,
           automaticallyImplyLeading: false,
-          bottom: TabBar(isScrollable: true, tabs: [
-            Tab(
-              text: 'Users',
-              icon: Icon(Icons.person),
-            ),
-            Tab(
-              text: 'API Tokens',
-              icon: Icon(Icons.person_outline),
-            ),
-            Tab(
-              text: 'Groups',
-              icon: Icon(Icons.group),
-            ),
-            Tab(
-              text: 'Roles',
-              icon: Icon(Icons.lock_open),
-            ),
-            Tab(
-              text: 'Domains',
-              icon: Icon(Icons.domain),
-            )
-          ]),
+          bottom: TabBar(
+              isScrollable: true,
+              labelStyle:
+                  TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              tabs: [
+                Tab(
+                  text: 'Users',
+                  icon: Icon(Icons.person),
+                ),
+                Tab(
+                  text: 'API Tokens',
+                  icon: Icon(Icons.person_outline),
+                ),
+                Tab(
+                  text: 'Groups',
+                  icon: Icon(Icons.group),
+                ),
+                Tab(
+                  text: 'Roles',
+                  icon: Icon(Icons.lock_open),
+                ),
+                Tab(
+                  text: 'Domains',
+                  icon: Icon(Icons.domain),
+                )
+              ]),
         ),
         body: ProxmoxStreamBuilder<PveAccessManagementBloc,
                 PveAccessManagementState>(
