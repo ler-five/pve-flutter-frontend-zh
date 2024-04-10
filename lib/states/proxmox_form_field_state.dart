@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 
 class PveFormFieldState<T> {
   final T value;

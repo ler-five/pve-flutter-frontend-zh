@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
 
 class PveResourceDataCardWidget extends StatelessWidget {
   final bool showTitleTrailing;

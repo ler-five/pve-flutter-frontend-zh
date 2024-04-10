@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +32,6 @@ import 'package:pve_flutter_frontend/widgets/pve_qemu_overview.dart';
 import 'package:pve_flutter_frontend/widgets/pve_splash_screen.dart';
 import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
 
-import 'package:rxdart/streams.dart' show ValueStreamExtensions;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

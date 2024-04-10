@@ -6,7 +6,6 @@ import 'package:pve_flutter_frontend/bloc/pve_node_overview_bloc.dart';
 import 'package:pve_flutter_frontend/bloc/pve_task_log_bloc.dart';
 import 'package:pve_flutter_frontend/states/pve_node_overview_state.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_state.dart';
-import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
 import 'package:pve_flutter_frontend/utils/renderers.dart';
 import 'package:pve_flutter_frontend/utils/utils.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_capacity_indicator.dart';

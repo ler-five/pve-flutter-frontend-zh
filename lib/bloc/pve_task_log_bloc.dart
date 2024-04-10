@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:pve_flutter_frontend/bloc/proxmox_base_bloc.dart';
 import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_state.dart';
