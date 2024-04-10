@@ -119,19 +119,19 @@ class PveMobileBottomNavigationbar extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
         backgroundColor: light ? Colors.white : ProxmoxColors.greyShade40,
         items: [
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.dashboard),
             label: "Dashboard",
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.developer_board),
             label: "Resources",
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.supervised_user_circle),
             label: "Access",
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.logout),
             label: "Sites",
           ),
@@ -157,7 +157,7 @@ class MobileDashboard extends StatelessWidget {
     final rBloc = Provider.of<PveResourceBloc>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Column(
+        title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
@@ -175,7 +175,7 @@ class MobileDashboard extends StatelessWidget {
           ],
         ),
         elevation: 0.0,
-        leading: Icon(
+        leading: const Icon(
           ProxmoxIcons.proxmox,
           size: 36,
         ),
@@ -201,7 +201,7 @@ class MobileDashboard extends StatelessWidget {
               return ListView(children: <Widget>[
                 if (cState.cluster != null) ...[
                   ListTile(
-                    title: Text(
+                    title: const Text(
                       "Status",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -210,7 +210,7 @@ class MobileDashboard extends StatelessWidget {
                     ),
                     subtitle: Text(
                       cState.cluster?.name ?? "Datacenter",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                       ),
                     ),
@@ -228,7 +228,7 @@ class MobileDashboard extends StatelessWidget {
                 Container(
                   height: 80,
                   child: ListView(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     children: [
@@ -236,8 +236,8 @@ class MobileDashboard extends StatelessWidget {
                         ActionChip(
                           backgroundColor:
                               Theme.of(context).colorScheme.primaryContainer,
-                          avatar: Icon(Icons.report, color: Colors.red),
-                          label: Text(
+                          avatar: const Icon(Icons.report, color: Colors.red),
+                          label: const Text(
                             'Subscription',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -251,7 +251,7 @@ class MobileDashboard extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: ActionChip(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 4.0, horizontal: 8.0),
                           backgroundColor:
                               Theme.of(context).colorScheme.primaryContainer,
@@ -260,7 +260,7 @@ class MobileDashboard extends StatelessWidget {
                             color: Theme.of(context).colorScheme.onPrimary,
                             size: 20,
                           ),
-                          label: Text(
+                          label: const Text(
                             'Virtual Machines',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -281,7 +281,7 @@ class MobileDashboard extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: ActionChip(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 4.0, horizontal: 8.0),
                           backgroundColor:
                               Theme.of(context).colorScheme.primaryContainer,
@@ -290,7 +290,7 @@ class MobileDashboard extends StatelessWidget {
                             color: Theme.of(context).colorScheme.onPrimary,
                             size: 20,
                           ),
-                          label: Text(
+                          label: const Text(
                             'Linux Containers',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -331,19 +331,19 @@ class MobileDashboard extends StatelessWidget {
                       final memUsagePercent =
                           ((aggrMemUsage / aggrMem) * 100).toStringAsFixed(2);
                       return PveResourceDataCardWidget(
-                        title: Text(
+                        title: const Text(
                           'Analytics',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                           ),
                         ),
-                        subtitle: Text('Usage across all online nodes'),
+                        subtitle: const Text('Usage across all online nodes'),
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 16.0),
                             child: ProxmoxGaugeChartListTile(
-                              title: Text('CPU'),
+                              title: const Text('CPU'),
                               subtitle:
                                   Text('$aggrCpus Cores ${nodes.length} Nodes'),
                               legend: Text('$cpuUsagePercent %'),
@@ -354,7 +354,7 @@ class MobileDashboard extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 16.0),
                             child: ProxmoxGaugeChartListTile(
-                              title: Text('Memory'),
+                              title: const Text('Memory'),
                               subtitle: Text(
                                   '${Renderers.formatSize(aggrMemUsage)} of ${Renderers.formatSize(aggrMem)}'),
                               legend: Text('$memUsagePercent %'),
@@ -366,7 +366,7 @@ class MobileDashboard extends StatelessWidget {
                       );
                     }),
                 PveResourceDataCardWidget(
-                  title: Text(
+                  title: const Text(
                     'Nodes',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -397,7 +397,7 @@ class MobileDashboard extends StatelessWidget {
                       final totalCTs = rState.container.length;
                       final offCTs = totalCTs - onlineCTs.length;
                       return PveResourceDataCardWidget(
-                        title: Text(
+                        title: const Text(
                           'Guests',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -406,7 +406,7 @@ class MobileDashboard extends StatelessWidget {
                         ),
                         children: <Widget>[
                           ListTile(
-                            title: Text("Virtual Machines"),
+                            title: const Text("Virtual Machines"),
                             trailing: Text(totalVMs.toString()),
                             leading:
                                 Icon(Renderers.getDefaultResourceIcon('qemu')),
@@ -424,11 +424,11 @@ class MobileDashboard extends StatelessWidget {
                           ),
                           ListTile(
                               dense: true,
-                              title: Text(
+                              title: const Text(
                                 "Online",
                                 style: TextStyle(fontSize: 14),
                               ),
-                              leading: Icon(Icons.play_circle_outline,
+                              leading: const Icon(Icons.play_circle_outline,
                                   color: Colors.green),
                               trailing: Text(onlineVMs.length.toString()),
                               onTap: () {
@@ -446,13 +446,13 @@ class MobileDashboard extends StatelessWidget {
                               }),
                           ListTile(
                             dense: true,
-                            title: Text(
+                            title: const Text(
                               "Offline",
                               style: TextStyle(
                                 fontSize: 14,
                               ),
                             ),
-                            leading: Icon(Icons.stop),
+                            leading: const Icon(Icons.stop),
                             trailing: Text(offVMs.toString()),
                             onTap: () {
                               Provider.of<BehaviorSubject<int>>(context,
@@ -468,11 +468,11 @@ class MobileDashboard extends StatelessWidget {
                                   ));
                             },
                           ),
-                          Divider(
+                          const Divider(
                             indent: 10,
                           ),
                           ListTile(
-                            title: Text("LXC Container"),
+                            title: const Text("LXC Container"),
                             trailing: Text(totalCTs.toString()),
                             leading:
                                 Icon(Renderers.getDefaultResourceIcon('lxc')),
@@ -490,11 +490,11 @@ class MobileDashboard extends StatelessWidget {
                           ),
                           ListTile(
                             dense: true,
-                            title: Text(
+                            title: const Text(
                               "Online",
                               style: TextStyle(fontSize: 14),
                             ),
-                            leading: Icon(Icons.play_circle_outline,
+                            leading: const Icon(Icons.play_circle_outline,
                                 color: Colors.green),
                             trailing: Text(onlineCTs.length.toString()),
                             onTap: () {
@@ -513,13 +513,13 @@ class MobileDashboard extends StatelessWidget {
                           ),
                           ListTile(
                             dense: true,
-                            title: Text(
+                            title: const Text(
                               "Offline",
                               style: TextStyle(
                                 fontSize: 14,
                               ),
                             ),
-                            leading: Icon(Icons.stop),
+                            leading: const Icon(Icons.stop),
                             trailing: Text(offCTs.toString()),
                             onTap: () {
                               Provider.of<BehaviorSubject<int>>(context,
@@ -608,7 +608,7 @@ class MobileResourceOverview extends StatelessWidget {
             ),
             body: ListView.separated(
               itemCount: fResources.length,
-              separatorBuilder: (context, index) => Divider(),
+              separatorBuilder: (context, index) => const Divider(),
               itemBuilder: (context, index) {
                 final resource = fResources[index];
                 var listWidget;
@@ -638,7 +638,7 @@ class MobileResourceOverview extends StatelessWidget {
                           padding: const EdgeInsets.all(12.0),
                           child: Text(
                             resource.type.toUpperCase(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
@@ -652,7 +652,7 @@ class MobileResourceOverview extends StatelessWidget {
                   }
                 }
 
-                return ListTile(
+                return const ListTile(
                   title: Text('Unkown resource type'),
                 );
               },
@@ -818,17 +818,17 @@ class _AppbarSearchTextFieldState extends State<AppbarSearchTextField> {
                 },
               )
             : null,
-        contentPadding: EdgeInsets.fromLTRB(20, 5, 8, 5),
-        prefixIconConstraints: BoxConstraints(minHeight: 32, minWidth: 32),
-        suffixIconConstraints: BoxConstraints(maxHeight: 32, maxWidth: 32),
+        contentPadding: const EdgeInsets.fromLTRB(20, 5, 8, 5),
+        prefixIconConstraints: const BoxConstraints(minHeight: 32, minWidth: 32),
+        suffixIconConstraints: const BoxConstraints(maxHeight: 32, maxWidth: 32),
         //fillColor: Color(0xFFF1F2F4),
         fillColor: Theme.of(context).colorScheme.surface,
         filled: true,
         isDense: true,
         enabledBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+            const OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
       ),
-      style: TextStyle(fontSize: 20),
+      style: const TextStyle(fontSize: 20),
       onChanged: (value) => widget.onChanged!(value),
       controller: _controller,
     );
@@ -850,7 +850,7 @@ class _MobileResourceFilterSheet extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0),
                 child: ListTile(
-                  title: Text(
+                  title: const Text(
                     'Filter Results',
                   ),
                   trailing: rBloc.isFiltered
@@ -866,7 +866,7 @@ class _MobileResourceFilterSheet extends StatelessWidget {
                       : null,
                 ),
               ),
-              Divider(
+              const Divider(
                 indent: 0,
                 endIndent: 0,
               ),
@@ -874,7 +874,7 @@ class _MobileResourceFilterSheet extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
                 child: Column(
                   children: [
-                    ListTile(
+                    const ListTile(
                       title: Text(
                         'Type',
                         style: TextStyle(fontWeight: FontWeight.bold),
@@ -948,7 +948,7 @@ class _MobileResourceFilterSheet extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
                 child: Column(
                   children: [
-                    ListTile(
+                    const ListTile(
                       title: Text(
                         'Status',
                         style: TextStyle(fontWeight: FontWeight.bold),
@@ -1017,11 +1017,11 @@ class AppBarFilterIconButton extends StatelessWidget {
         builder: (context, state) {
           return IconButton(
             icon: rBloc.isFiltered
-                ? Icon(
+                ? const Icon(
                     FontAwesomeIcons.filter,
                     color: Colors.black,
                   )
-                : Icon(
+                : const Icon(
                     FontAwesomeIcons.filter,
                     color: Colors.grey,
                   ),
@@ -1039,7 +1039,7 @@ class MobileAccessManagement extends StatelessWidget {
       length: 5,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Permissions'),
+          title: const Text('Permissions'),
           //backgroundColor: Colors.transparent,
           elevation: 0.0,
           automaticallyImplyLeading: false,
@@ -1048,23 +1048,23 @@ class MobileAccessManagement extends StatelessWidget {
               labelStyle:
                   TextStyle(color: Theme.of(context).colorScheme.onPrimary),
               tabs: [
-                Tab(
+                const Tab(
                   text: 'Users',
                   icon: Icon(Icons.person),
                 ),
-                Tab(
+                const Tab(
                   text: 'API Tokens',
                   icon: Icon(Icons.person_outline),
                 ),
-                Tab(
+                const Tab(
                   text: 'Groups',
                   icon: Icon(Icons.group),
                 ),
-                Tab(
+                const Tab(
                   text: 'Roles',
                   icon: Icon(Icons.lock_open),
                 ),
-                Tab(
+                const Tab(
                   text: 'Domains',
                   icon: Icon(Icons.domain),
                 )
@@ -1083,7 +1083,7 @@ class MobileAccessManagement extends StatelessWidget {
                         title: Text(user.userid),
                         subtitle: Text(user.email ?? ''),
                         trailing: aState.apiUser == user.userid
-                            ? Icon(Icons.person_pin_circle)
+                            ? const Icon(Icons.person_pin_circle)
                             : null,
                       );
                     }),
@@ -1111,9 +1111,9 @@ class MobileAccessManagement extends StatelessWidget {
                       return ListTile(
                         title: Text(group.groupid),
                         subtitle: Text(group.comment ?? ''),
-                        trailing: Icon(Icons.arrow_right),
+                        trailing: const Icon(Icons.arrow_right),
                         onTap: () => showModalBottomSheet(
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.vertical(
                                   top: Radius.circular(10))),
                           context: context,
@@ -1124,7 +1124,7 @@ class MobileAccessManagement extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                                     child: Align(
                                       alignment: Alignment.topCenter,
                                       child: Container(
@@ -1138,7 +1138,7 @@ class MobileAccessManagement extends StatelessWidget {
                                     title:
                                         Text('Group members (${users.length})'),
                                   ),
-                                  Divider(),
+                                  const Divider(),
                                   Expanded(
                                     child: Padding(
                                       padding: const EdgeInsets.all(14.0),
@@ -1168,9 +1168,9 @@ class MobileAccessManagement extends StatelessWidget {
                         subtitle: Text((role.special ?? false)
                             ? 'Built in Role'
                             : 'Custom'),
-                        trailing: Icon(Icons.arrow_right),
+                        trailing: const Icon(Icons.arrow_right),
                         onTap: () => showModalBottomSheet(
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.vertical(
                                   top: Radius.circular(10))),
                           context: context,
@@ -1181,7 +1181,7 @@ class MobileAccessManagement extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                                     child: Align(
                                       alignment: Alignment.topCenter,
                                       child: Container(
@@ -1194,7 +1194,7 @@ class MobileAccessManagement extends StatelessWidget {
                                   ListTile(
                                     title: Text('Privileges (${perms.length})'),
                                   ),
-                                  Divider(),
+                                  const Divider(),
                                   Expanded(
                                     child: Padding(
                                       padding: const EdgeInsets.all(14.0),
@@ -1222,7 +1222,7 @@ class MobileAccessManagement extends StatelessWidget {
                         title: Text(domain.realm),
                         subtitle: Text(domain.comment ?? ''),
                         trailing: domain.tfa?.isNotEmpty ?? false
-                            ? Icon(Icons.looks_two)
+                            ? const Icon(Icons.looks_two)
                             : null,
                       );
                     }),

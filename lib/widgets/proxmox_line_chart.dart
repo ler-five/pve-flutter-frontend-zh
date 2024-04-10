@@ -64,13 +64,13 @@ class ProxmoxLineChart extends CustomPainter {
         globalMaxima > size.height ? size.height : globalMaxima;
     paint.shader = ui.Gradient.linear(
         Offset(size.width, 0),
-        Offset(0, 0),
+        const Offset(0, 0),
         [shadeColorBottom, shadeColorTop],
         [0.25, 1.0],
         TileMode.clamp,
-        GradientRotation(pi / 2)
+        const GradientRotation(pi / 2)
             .transform(Rect.fromPoints(
-                Offset(size.width, shaderHeight.toDouble()), Offset(0, 0)))
+                Offset(size.width, shaderHeight.toDouble()), const Offset(0, 0)))
             .storage);
     paint.style = PaintingStyle.fill;
     canvas.drawPath(path, paint);

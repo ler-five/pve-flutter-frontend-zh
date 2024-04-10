@@ -34,7 +34,7 @@ class _PveFileSelectorState extends State<PveFileSelector> {
       builder: (context, layout) => Scaffold(
         appBar: AppBar(
           elevation: 0,
-          title: Text("Storage"),
+          title: const Text("Storage"),
         ),
         body: PveFileSelectorWidget(
           isSelector: widget.isSelector,
@@ -83,7 +83,7 @@ class PveFileSelectorWidget extends StatelessWidget {
                   bloc: sBloc,
                   builder: (context, state) {
                     if (state.isLoading) {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     }
@@ -122,7 +122,7 @@ class PveFileSelectorWidget extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.9,
                       );
                     }
-                    return Center(
+                    return const Center(
                       child: Text('No storage available'),
                     );
                   }),
@@ -151,7 +151,7 @@ class PveFileSelectorWidget extends StatelessWidget {
                                     color: Theme.of(context)
                                         .colorScheme
                                         .onBackground,
-                                    icon: Icon(Icons.search),
+                                    icon: const Icon(Icons.search),
                                     onPressed: () =>
                                         fBloc!.events.add(ToggleSearch()),
                                   ),
@@ -173,7 +173,7 @@ class PveFileSelectorWidget extends StatelessWidget {
                           ),
                           if (state.search)
                             TextField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Search',
                               ),
@@ -191,7 +191,7 @@ class PveFileSelectorWidget extends StatelessWidget {
                         ],
                       );
                     }
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }),
@@ -339,19 +339,19 @@ class FileSelectorContentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (content == null) {
-      return Center(
+      return const Center(
         child: CircularProgressIndicator(),
       );
     }
 
     if (content!.isEmpty && storageSelected) {
-      return Center(
+      return const Center(
         child: Text("Nothing found"),
       );
     }
 
     if (content!.isEmpty && !storageSelected) {
-      return Center(
+      return const Center(
         child: Text("Please select a storage"),
       );
     }

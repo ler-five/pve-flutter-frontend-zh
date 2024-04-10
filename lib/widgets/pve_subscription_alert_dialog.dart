@@ -5,8 +5,8 @@ class PveSubscriptionAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Subscription'),
-      content: Text('One or more nodes do not have a valid subscription.\n\n'
+      title: const Text('Subscription'),
+      content: const Text('One or more nodes do not have a valid subscription.\n\n'
           'The Proxmox team works very hard to make sure you are running the best'
           ' software and getting stable updates and security enhancements,'
           ' as well as quick enterprise support.\n\nPlease consider to buy a subscription.'),
@@ -20,7 +20,7 @@ class PveSubscriptionAlertDialog extends StatelessWidget {
                 throw 'Could not launch $url';
               }
             },
-            child: Text('Get subscription'))
+            child: const Text('Get subscription'))
       ],
     );
   }

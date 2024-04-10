@@ -22,7 +22,7 @@ class PveMainNavigationDrawer extends StatelessWidget {
         length: 2,
         child: Column(
           children: <Widget>[
-            TabBar(
+            const TabBar(
               tabs: <Widget>[
                 Tab(
                   child: Text(
@@ -83,16 +83,16 @@ class PveMainNavigationDrawer extends StatelessWidget {
                     children: <Widget>[
                       DrawerHeader(
                         child: ListTile(
-                          leading: Icon(Icons.cloud),
-                          title: Text("Datacenter"),
+                          leading: const Icon(Icons.cloud),
+                          title: const Text("Datacenter"),
                           trailing: PopupMenuButton(
-                            icon: Icon(Icons.settings),
+                            icon: const Icon(Icons.settings),
                             itemBuilder: (BuildContext context) =>
                                 <PopupMenuEntry>[
                               PopupMenuItem(
                                 value: 1,
                                 child: ListTile(
-                                  title: Text('Settings'),
+                                  title: const Text('Settings'),
                                   onTap: () {
                                     Navigator.pushNamed(context, '/settings');
                                   },
@@ -131,53 +131,53 @@ class PveMainNavigationDrawer extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           OutlinedButton(
-                            child: Text("new VM"),
+                            child: const Text("new VM"),
                             onPressed: () {
                               Navigator.pushNamed(context, '/qemu/create');
                             },
                           ),
                           // TODO General new button or distinct ones??
-                          OutlinedButton(
+                          const OutlinedButton(
                             child: Text("new CT"),
                             onPressed: null,
                           )
                         ],
                       ),
-                      ListTile(
+                      const ListTile(
                         leading: Icon(Icons.home),
                         title: Text("Overview"),
                       ),
-                      ListTile(
+                      const ListTile(
                         leading: Icon(Icons.timeline),
                         title: Text("Performance"),
                       ),
-                      ListTile(
+                      const ListTile(
                         leading: Icon(Icons.storage),
                         title: Text("Storage"),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 8.0),
                         child: ListTile(
                           leading: Icon(Icons.line_style),
                           title: Text("Ceph"),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 8.0),
                         child: ListTile(
                           leading: Icon(Icons.content_copy),
                           title: Text("Replication"),
                         ),
                       ),
-                      ListTile(
+                      const ListTile(
                         leading: Icon(Icons.save),
                         title: Text("Backup"),
                       ),
-                      ListTile(
+                      const ListTile(
                         leading: Icon(Icons.security),
                         title: Text("Firewall"),
                       ),
-                      ListTile(
+                      const ListTile(
                         leading: Icon(Icons.help),
                         title: Text("Support"),
                       )

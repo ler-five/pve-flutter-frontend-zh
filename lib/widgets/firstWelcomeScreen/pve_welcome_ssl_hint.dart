@@ -14,10 +14,10 @@ class PveWelcomePageSSLValidation extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PveQuestion(
+          const PveQuestion(
             text: "Are you using a self signed certificate?",
           ),
-          PveAnswer(
+          const PveAnswer(
               text: "Disable SSL Validation in the Login Manager settings."),
           Column(
             children: [

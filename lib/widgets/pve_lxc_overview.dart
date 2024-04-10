@@ -182,7 +182,7 @@ class PveLxcOverview extends StatelessWidget {
                       ),
                       if (config != null) ...[
                         PveResourceDataCardWidget(
-                          title: Text(
+                          title: const Text(
                             'Resources',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -191,32 +191,32 @@ class PveLxcOverview extends StatelessWidget {
                           ),
                           children: <Widget>[
                             ListTile(
-                              leading: Icon(FontAwesomeIcons.memory),
+                              leading: const Icon(FontAwesomeIcons.memory),
                               title: Text('${config.memory}'),
-                              subtitle: Text('Memory'),
+                              subtitle: const Text('Memory'),
                               dense: true,
                             ),
                             ListTile(
-                              leading: Icon(Icons.cached),
+                              leading: const Icon(Icons.cached),
                               title: Text('${config.swap}'),
-                              subtitle: Text('Swap'),
+                              subtitle: const Text('Swap'),
                               dense: true,
                             ),
                             ListTile(
-                              leading: Icon(Icons.memory),
+                              leading: const Icon(Icons.memory),
                               title: Text('${config.cores ?? 'unlimited'}'),
-                              subtitle: Text('Cores'),
+                              subtitle: const Text('Cores'),
                               dense: true,
                             ),
                             ListTile(
-                              leading: Icon(FontAwesomeIcons.hdd),
+                              leading: const Icon(FontAwesomeIcons.hdd),
                               dense: true,
                               title: Text('${config.rootfs}'),
                             ),
                           ],
                         ),
                         PveResourceDataCardWidget(
-                            title: Text(
+                            title: const Text(
                               'Network',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -226,13 +226,13 @@ class PveLxcOverview extends StatelessWidget {
                             children: <Widget>[
                               for (var net in config.net!)
                                 ListTile(
-                                  leading: Icon(FontAwesomeIcons.ethernet),
+                                  leading: const Icon(FontAwesomeIcons.ethernet),
                                   dense: true,
                                   title: Text('$net'),
                                 ),
                             ]),
                         PveResourceDataCardWidget(
-                            title: Text(
+                            title: const Text(
                               'DNS',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -241,18 +241,18 @@ class PveLxcOverview extends StatelessWidget {
                             ),
                             children: <Widget>[
                               ListTile(
-                                leading: Icon(FontAwesomeIcons.globe),
+                                leading: const Icon(FontAwesomeIcons.globe),
                                 dense: true,
                                 title: Text(
                                     config.searchdomain ?? 'Use host settings'),
-                                subtitle: Text('DNS Domain'),
+                                subtitle: const Text('DNS Domain'),
                               ),
                               ListTile(
-                                leading: Icon(FontAwesomeIcons.search),
+                                leading: const Icon(FontAwesomeIcons.search),
                                 dense: true,
                                 title: Text(
                                     config.nameserver ?? 'Use host settings'),
-                                subtitle: Text('DNS Server'),
+                                subtitle: const Text('DNS Server'),
                               ),
                             ]),
                       ]
@@ -336,7 +336,7 @@ class PveLxcOverview extends StatelessWidget {
   Future<T?> showPowerMenuBottomSheet<T>(
       BuildContext context, PveLxcOverviewBloc lxcBloc) async {
     return showModalBottomSheet(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
       context: context,
       builder: (context) => PveLxcPowerSettings(

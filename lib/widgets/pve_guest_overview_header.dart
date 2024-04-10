@@ -170,7 +170,7 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
     if (widget.rrdData == null || widget.rrdData!.isEmpty) {
       return Container(
         height: 200,
-        child: Center(
+        child: const Center(
           child: Text('no rrd data'),
         ),
       );
@@ -197,7 +197,7 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
               if (item == 0)
                 Expanded(
                   child: PveRRDChart(
-                    titlePadding: EdgeInsets.only(bottom: 80),
+                    titlePadding: const EdgeInsets.only(bottom: 80),
                     titleWidth: 150,
                     titleAlginment: CrossAxisAlignment.end,
                     title: 'CPU (${rrdData.last.maxcpu ?? '-'})',
@@ -212,7 +212,7 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
               if (item == 1)
                 Expanded(
                   child: PveRRDChart(
-                    titlePadding: EdgeInsets.only(bottom: 80),
+                    titlePadding: const EdgeInsets.only(bottom: 80),
                     titleWidth: 200,
                     titleAlginment: CrossAxisAlignment.end,
                     title: 'Memory',

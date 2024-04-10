@@ -45,7 +45,7 @@ class PveGuestBackupWidget extends StatelessWidget {
                   bloc: sBloc,
                   builder: (context, state) {
                     if (state.isLoading) {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     }
@@ -84,7 +84,7 @@ class PveGuestBackupWidget extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.9,
                       );
                     }
-                    return Center(
+                    return const Center(
                       child: Text('No storage available'),
                     );
                   }),
@@ -116,7 +116,7 @@ class PveGuestBackupWidget extends StatelessWidget {
                                 IconButton(
                                   color:
                                       Theme.of(context).colorScheme.onSurface,
-                                  icon: Icon(Icons.search),
+                                  icon: const Icon(Icons.search),
                                   onPressed: () =>
                                       fBloc.events.add(ToggleSearch()),
                                 ),
@@ -126,7 +126,7 @@ class PveGuestBackupWidget extends StatelessWidget {
                         ),
                         if (state.search)
                           TextField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Search',
                             ),
@@ -143,7 +143,7 @@ class PveGuestBackupWidget extends StatelessWidget {
                       ],
                     );
                   }
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }),
@@ -151,13 +151,13 @@ class PveGuestBackupWidget extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.save),
+        icon: const Icon(Icons.save),
         onPressed: () async {
           await Navigator.of(context)
               .push(_createBackupNowRoute(sBloc, guestID));
           fBloc.events.add(LoadStorageContent());
         },
-        label: Text("Backup now"),
+        label: const Text("Backup now"),
       ),
     );
   }
@@ -185,19 +185,19 @@ class PveGuestBackupContent extends StatelessWidget {
     final fBloc = Provider.of<PveFileSelectorBloc>(context);
 
     if (content == null) {
-      return Center(
+      return const Center(
         child: CircularProgressIndicator(),
       );
     }
 
     if (content!.isEmpty && storageSelected!) {
-      return Center(
+      return const Center(
         child: Text("No existing backup file for guest found"),
       );
     }
 
     if (content!.isEmpty && !storageSelected!) {
-      return Center(
+      return const Center(
         child: Text("Please select a target storage"),
       );
     }
@@ -218,7 +218,7 @@ class PveGuestBackupContent extends StatelessWidget {
           subtitle: Row(
             children: [Text(Renderers.formatSize(content![index].size))],
           ),
-          trailing: Icon(Icons.more_vert),
+          trailing: const Icon(Icons.more_vert),
           onTap: () => _createBackupOptionsSheet(
               context, content![index].volid, content![index].size, fBloc),
         ),
@@ -229,7 +229,7 @@ class PveGuestBackupContent extends StatelessWidget {
   Future<T?> _createBackupOptionsSheet<T>(BuildContext context, String? volid,
       int? filesize, PveFileSelectorBloc fBloc) async {
     return await showModalBottomSheet(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
       context: context,
       builder: (context) {
@@ -239,7 +239,7 @@ class PveGuestBackupContent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Container(
@@ -250,7 +250,7 @@ class PveGuestBackupContent extends StatelessWidget {
                 ),
               ),
               ListTile(
-                title: Text("Selection:"),
+                title: const Text("Selection:"),
                 subtitle: Text(volid!),
                 trailing: Text(Renderers.formatSize(filesize)),
               ),
@@ -260,8 +260,8 @@ class PveGuestBackupContent extends StatelessWidget {
                   child: ListView(children: [
                     OutlinedButton.icon(
                       onPressed: null,
-                      icon: Icon(Icons.restore),
-                      label: Text("Restore"),
+                      icon: const Icon(Icons.restore),
+                      label: const Text("Restore"),
                     ),
                     OutlinedButton.icon(
                       onPressed: () async {
@@ -275,14 +275,14 @@ class PveGuestBackupContent extends StatelessWidget {
                           Navigator.of(context).pop();
                         }
                       },
-                      icon: Icon(Icons.delete),
-                      label: Text("Remove"),
+                      icon: const Icon(Icons.delete),
+                      label: const Text("Remove"),
                     ),
                     OutlinedButton.icon(
                       onPressed: () =>
                           _showConfigurationDialog(context, fBloc, volid),
-                      icon: Icon(Icons.featured_play_list),
-                      label: Text("Show Configuration"),
+                      icon: const Icon(Icons.featured_play_list),
+                      label: const Text("Show Configuration"),
                     ),
                   ]),
                 ),
@@ -304,14 +304,14 @@ class PveGuestBackupContent extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text(
+            child: const Text(
               'Cancel',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: Text(
+            child: const Text(
               'Confirm',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -363,17 +363,17 @@ class _PveConfigurationDialogState extends State<PveConfigurationDialog> {
     return FutureBuilder(
       future: configuration,
       builder: (context, snapshot) => AlertDialog(
-        insetPadding: EdgeInsets.all(4),
-        title: Text("Configuration"),
+        insetPadding: const EdgeInsets.all(4),
+        title: const Text("Configuration"),
         content: snapshot.hasData
             ? SingleChildScrollView(child: Text(snapshot.data as String))
-            : Center(
+            : const Center(
                 child: CircularProgressIndicator(),
               ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: Text(
+            child: const Text(
               'Close',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -421,16 +421,16 @@ class _PveBackupFormState extends State<PveBackupForm> {
       key: _scaffoldKey,
       child: Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: const IconThemeData(color: Colors.black),
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Text(
+          title: const Text(
             "Schedule backup",
             style: TextStyle(color: Colors.black),
           ),
         ),
         body: SingleChildScrollView(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: Form(
               key: _formKey,
               onChanged: () {
@@ -449,7 +449,7 @@ class _PveBackupFormState extends State<PveBackupForm> {
                   _createModeDropdown(),
                   _createCompressionDropdown(),
                   TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Email to',
                       helperText: ' ',
                     ),
@@ -484,8 +484,8 @@ class _PveBackupFormState extends State<PveBackupForm> {
                               );
                             }
                           : null,
-                      icon: Icon(Icons.save),
-                      label: Text('Start backup now'))
+                      icon: const Icon(Icons.save),
+                      label: const Text('Start backup now'))
                 ],
               ),
             )),
@@ -510,7 +510,7 @@ class _PveBackupFormState extends State<PveBackupForm> {
           mailTo: mailTo))!;
 
       await showTaskLogBottomSheet(context, apiClient, node, jobId,
-          icon: Icon(Icons.save), jobTitle: Text('Backup $guestId'));
+          icon: const Icon(Icons.save), jobTitle: Text('Backup $guestId'));
       Navigator.of(context).pop();
     } on ProxmoxApiException catch (e) {
       _scaffoldKey.currentState!.showSnackBar(SnackBar(
@@ -535,7 +535,7 @@ class _PveBackupFormState extends State<PveBackupForm> {
 
   Widget _createModeDropdown() {
     return DropdownButtonFormField(
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Mode',
         helperText: ' ',
       ),
@@ -556,7 +556,7 @@ class _PveBackupFormState extends State<PveBackupForm> {
 
   Widget _createCompressionDropdown() {
     return DropdownButtonFormField(
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Compression',
         helperText: ' ',
       ),

@@ -23,7 +23,7 @@ class PveWelcomePageLogo extends StatelessWidget {
                     children: [
                       ConstrainedBox(
                         constraints:
-                            BoxConstraints(maxWidth: 160, maxHeight: 180),
+                            const BoxConstraints(maxWidth: 160, maxHeight: 180),
                         child: Padding(
                           padding:
                               const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 30.0),
@@ -33,9 +33,9 @@ class PveWelcomePageLogo extends StatelessWidget {
                           ),
                         ),
                       ),
-                      FittedBox(
+                      const FittedBox(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             'Proxmox Virtual Environment',
                             style: TextStyle(fontSize: 26),

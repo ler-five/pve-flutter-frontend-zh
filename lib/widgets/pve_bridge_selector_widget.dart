@@ -31,9 +31,9 @@ class PveBridgeSelector extends StatelessWidget {
                   child: Row(
                     children: <Widget>[
                       Text(bridge.iface ?? ''),
-                      VerticalDivider(),
+                      const VerticalDivider(),
                       Text(bridge.active?.toString() ?? ''),
-                      VerticalDivider(),
+                      const VerticalDivider(),
                       Text(bridge.comment ?? '')
                     ],
                   ),

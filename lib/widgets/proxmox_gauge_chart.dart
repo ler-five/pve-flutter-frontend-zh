@@ -84,7 +84,7 @@ class _ProxmoxGaugeChartState extends State<ProxmoxGaugeChart>
 
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
     );
     _rotationTween = Tween(begin: 0, end: widget.value);
 

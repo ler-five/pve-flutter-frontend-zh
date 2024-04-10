@@ -53,7 +53,7 @@ class PveNodeOverview extends StatelessWidget {
               elevation: 0,
               title: Text(
                 "Node ${nodeID}",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -75,7 +75,7 @@ class PveNodeOverview extends StatelessWidget {
                             final page = item + 1;
                             final pageIndicator = Text(
                               '$page of 4',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white54,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -96,7 +96,7 @@ class PveNodeOverview extends StatelessWidget {
                                           (e) => Point(
                                               e.time!.millisecondsSinceEpoch,
                                               (e.cpu ?? 0) * 100.0)),
-                                      icon: Icon(Icons.memory),
+                                      icon: const Icon(Icons.memory),
                                       bottomRight: pageIndicator,
                                       dataRenderer: (data) =>
                                           '${data.toStringAsFixed(2)} %',
@@ -111,7 +111,7 @@ class PveNodeOverview extends StatelessWidget {
                                       data: rrd.map((e) => Point(
                                           e.time!.millisecondsSinceEpoch,
                                           e.memused ?? 0)),
-                                      icon: Icon(FontAwesomeIcons.memory),
+                                      icon: const Icon(FontAwesomeIcons.memory),
                                       bottomRight: pageIndicator,
                                       dataRenderer: (data) =>
                                           Renderers.formatSize(data),
@@ -127,7 +127,7 @@ class PveNodeOverview extends StatelessWidget {
                                       data: rrd.map((e) => Point(
                                           e.time!.millisecondsSinceEpoch,
                                           e.iowait ?? 0)),
-                                      icon: Icon(Icons.timer),
+                                      icon: const Icon(Icons.timer),
                                       bottomRight: pageIndicator,
                                       dataRenderer: (data) =>
                                           data.toStringAsFixed(3),
@@ -143,7 +143,7 @@ class PveNodeOverview extends StatelessWidget {
                                       data: rrd.map((e) => Point(
                                           e.time!.millisecondsSinceEpoch,
                                           e.loadavg ?? 0)),
-                                      icon: Icon(Icons.show_chart),
+                                      icon: const Icon(Icons.show_chart),
                                       bottomRight: pageIndicator,
                                       dataRenderer: (data) =>
                                           data.toStringAsFixed(2),
@@ -185,7 +185,7 @@ class PveNodeOverview extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           ActionCard(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.queue_play_next,
                               size: 55,
                               color: Colors.white24,
@@ -201,7 +201,7 @@ class PveNodeOverview extends StatelessWidget {
                   PveResourceDataCardWidget(
                     expandable: false,
                     showTitleTrailing: true,
-                    title: Text(
+                    title: const Text(
                       'Summary',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -215,7 +215,7 @@ class PveNodeOverview extends StatelessWidget {
                       ListTile(
                         dense: true,
                         title: Text(status?.kversion ?? 'unkown'),
-                        subtitle: Text('Kernel'),
+                        subtitle: const Text('Kernel'),
                       ),
                       if (status?.cpuinfo != null)
                         ListTile(
@@ -229,19 +229,19 @@ class PveNodeOverview extends StatelessWidget {
                         CheckboxListTile(
                           dense: true,
                           value: status?.ksm.shared ?? false,
-                          title: Text('Kernel same-page merging (KSM)',
+                          title: const Text('Kernel same-page merging (KSM)',
                               style: TextStyle(color: Colors.black)),
                           onChanged: null,
                         ),
                       if (status?.rootfs != null) ...[
-                        Divider(
+                        const Divider(
                           indent: 10,
                           endIndent: 10,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: ListTile(
-                            title: Text('HD space (root)'),
+                            title: const Text('HD space (root)'),
                             subtitle: ProxmoxCapacityIndicator(
                               icon: Icon(
                                 FontAwesomeIcons.solidHdd,
@@ -262,8 +262,8 @@ class PveNodeOverview extends StatelessWidget {
                   PveResourceDataCardWidget(
                     expandable: true,
                     showTitleTrailing: !state.allServicesRunning,
-                    titleTrailing: Icon(Icons.warning),
-                    title: Text(
+                    titleTrailing: const Icon(Icons.warning),
+                    title: const Text(
                       'Services',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -273,10 +273,10 @@ class PveNodeOverview extends StatelessWidget {
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        if (state.allServicesRunning) Text('All running'),
+                        if (state.allServicesRunning) const Text('All running'),
                         if (!state.allServicesRunning)
-                          Text('One or more not running'),
-                        Divider(),
+                          const Text('One or more not running'),
+                        const Divider(),
                       ],
                     ),
                     children: state.services
@@ -296,8 +296,8 @@ class PveNodeOverview extends StatelessWidget {
                   PveResourceDataCardWidget(
                     expandable: true,
                     showTitleTrailing: state.updates.isNotEmpty,
-                    titleTrailing: Icon(Icons.info_outline),
-                    title: Text(
+                    titleTrailing: const Icon(Icons.info_outline),
+                    title: const Text(
                       'Updates',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -307,11 +307,11 @@ class PveNodeOverview extends StatelessWidget {
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        if (state.updates.isEmpty) Text('No updates available'),
+                        if (state.updates.isEmpty) const Text('No updates available'),
                         if (state.updates.isNotEmpty)
                           Text(
                               '${state.updates.length} packages are ready to update'),
-                        Divider(),
+                        const Divider(),
                       ],
                     ),
                     children: state.updates
@@ -322,18 +322,18 @@ class PveNodeOverview extends StatelessWidget {
                             subtitle: Text(
                                 '${s.package}: ${s.oldVersion ?? ''} -> ${s.version}'),
                             trailing: IconButton(
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.info,
                               ),
                               onPressed: () => showDialog(
                                 context: context,
                                 builder: (context) => SimpleDialog(
-                                  title: Text('Description'),
-                                  contentPadding: EdgeInsets.all(24),
+                                  title: const Text('Description'),
+                                  contentPadding: const EdgeInsets.all(24),
                                   children: <Widget>[
                                     Text(
                                       s.description ?? '',
-                                      style: TextStyle(fontSize: 12),
+                                      style: const TextStyle(fontSize: 12),
                                     )
                                   ],
                                 ),
@@ -348,7 +348,7 @@ class PveNodeOverview extends StatelessWidget {
                   ),
                   PveResourceDataCardWidget(
                     expandable: false,
-                    title: Text(
+                    title: const Text(
                       'Disks',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -356,10 +356,10 @@ class PveNodeOverview extends StatelessWidget {
                       ),
                     ),
                     showTitleTrailing: !state.allDisksHealthy,
-                    titleTrailing: Icon(Icons.warning),
+                    titleTrailing: const Icon(Icons.warning),
                     subtitle: state.allDisksHealthy
-                        ? Text('No health issues')
-                        : Text('Check disks, health error indicated!'),
+                        ? const Text('No health issues')
+                        : const Text('Check disks, health error indicated!'),
                     children: state.disks
                         .map(
                           (d) => ListTile(
@@ -373,45 +373,45 @@ class PveNodeOverview extends StatelessWidget {
                             subtitle: Text(
                                 'Usage: ${d.used} ${Renderers.formatSize(d.size ?? 0)}'),
                             trailing: IconButton(
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.info,
                               ),
                               onPressed: () => showDialog(
                                 context: context,
                                 builder: (context) => SimpleDialog(
-                                  title: Text('Details'),
-                                  contentPadding: EdgeInsets.all(24),
+                                  title: const Text('Details'),
+                                  contentPadding: const EdgeInsets.all(24),
                                   children: <Widget>[
                                     ListTile(
-                                      title: Text("Device"),
+                                      title: const Text("Device"),
                                       subtitle: Text(d.devPath!),
                                     ),
                                     ListTile(
-                                      title: Text("Type"),
+                                      title: const Text("Type"),
                                       subtitle: Text(d.type!),
                                     ),
                                     ListTile(
-                                      title: Text("Usage"),
+                                      title: const Text("Usage"),
                                       subtitle: Text(d.used!),
                                     ),
                                     ListTile(
-                                      title: Text("GPT"),
+                                      title: const Text("GPT"),
                                       subtitle: Text(d.gpt.toString()),
                                     ),
                                     ListTile(
-                                      title: Text("Model"),
+                                      title: const Text("Model"),
                                       subtitle: Text(d.model!),
                                     ),
                                     ListTile(
-                                      title: Text("Serial"),
+                                      title: const Text("Serial"),
                                       subtitle: Text(d.serial!),
                                     ),
                                     ListTile(
-                                      title: Text("S.M.A.R.T"),
+                                      title: const Text("S.M.A.R.T"),
                                       subtitle: Text(d.health!),
                                     ),
                                     ListTile(
-                                      title: Text("Wearout"),
+                                      title: const Text("Wearout"),
                                       subtitle: Text(d.wearoutPercentage),
                                     )
                                   ],

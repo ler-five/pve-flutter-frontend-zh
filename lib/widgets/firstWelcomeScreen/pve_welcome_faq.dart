@@ -16,13 +16,13 @@ class PveWelcomePageFAQ extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PveQuestion(
+          const PveQuestion(
               text:
                   "How do I connect if I am not using the default port 8006?"),
-          PveAnswer(
+          const PveAnswer(
               text:
                   "Add the port at the end, separated by a colon. For the default https port add 443."),
-          PveAnswer(
+          const PveAnswer(
             text: "For example: 192.168.1.10",
             spans: [
               TextSpan(
@@ -31,14 +31,14 @@ class PveWelcomePageFAQ extends StatelessWidget {
                       fontWeight: FontWeight.bold, fontStyle: FontStyle.italic))
             ],
           ),
-          PveQuestion(
+          const PveQuestion(
             text: "What about remote consoles?",
           ),
-          PveAnswer(
+          const PveAnswer(
               text:
                   "Spice is currently supported. We plan to integrate VNC in the future."),
-          PveQuestion(text: "Which Spice client works?"),
-          PveAnswer(
+          const PveQuestion(text: "Which Spice client works?"),
+          const PveAnswer(
               text:
                   'Currently only the following 3rd party Spice client works:'),
           Center(
@@ -47,7 +47,7 @@ class PveWelcomePageFAQ extends StatelessWidget {
                 launch(
                     'https://play.google.com/store/apps/details?id=com.undatech.opaque')
               },
-              child: Text('Opaque'),
+              child: const Text('Opaque'),
               style: OutlinedButton.styleFrom(
                 side: BorderSide(color: ProxmoxColors.supportGrey),
                 foregroundColor: Colors.white,

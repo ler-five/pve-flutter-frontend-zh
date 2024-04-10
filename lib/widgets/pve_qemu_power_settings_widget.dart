@@ -29,12 +29,12 @@ class PveQemuPowerSettings extends StatelessWidget {
                     if (qemuStatus == PveResourceStatusType.stopped &&
                         !(state.currentStatus!.template ?? false))
                       ListTile(
-                        leading: Icon(Icons.play_arrow),
-                        title: Text(
+                        leading: const Icon(Icons.play_arrow),
+                        title: const Text(
                           "Start",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        subtitle: Text("Turn on QEMU virtual machine"),
+                        subtitle: const Text("Turn on QEMU virtual machine"),
                         onTap: () => action(
                             context, PveClusterResourceAction.start, bloc),
                       ),
@@ -44,73 +44,73 @@ class PveQemuPowerSettings extends StatelessWidget {
                         ].contains(qemuStatus) &&
                         !(state.currentStatus!.template ?? false))
                       ListTile(
-                        leading: Icon(Icons.play_arrow),
-                        title: Text(
+                        leading: const Icon(Icons.play_arrow),
+                        title: const Text(
                           "Resume",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        subtitle: Text("Resume QEMU virtual machine"),
+                        subtitle: const Text("Resume QEMU virtual machine"),
                         onTap: () => action(
                             context, PveClusterResourceAction.resume, bloc),
                       ),
                     if (!disableShutdown) ...[
                       ListTile(
-                        leading: Icon(Icons.power_settings_new),
-                        title: Text(
+                        leading: const Icon(Icons.power_settings_new),
+                        title: const Text(
                           "Shutdown",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        subtitle: Text("Shutdown QEMU virtual machine"),
+                        subtitle: const Text("Shutdown QEMU virtual machine"),
                         onTap: () => action(
                             context, PveClusterResourceAction.shutdown, bloc),
                       ),
                       ListTile(
-                        leading: Icon(Icons.autorenew),
-                        title: Text(
+                        leading: const Icon(Icons.autorenew),
+                        title: const Text(
                           "Reboot",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        subtitle: Text("Reboot QEMU virtual machine"),
+                        subtitle: const Text("Reboot QEMU virtual machine"),
                         onTap: () => action(
                             context, PveClusterResourceAction.reboot, bloc),
                       ),
                       ListTile(
-                        leading: Icon(Icons.pause),
-                        title: Text(
+                        leading: const Icon(Icons.pause),
+                        title: const Text(
                           "Pause",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        subtitle: Text("Pause QEMU virtual machine"),
+                        subtitle: const Text("Pause QEMU virtual machine"),
                         onTap: () => action(
                             context, PveClusterResourceAction.suspend, bloc),
                       ),
                       ListTile(
-                        leading: Icon(FontAwesomeIcons.download),
-                        title: Text(
+                        leading: const Icon(FontAwesomeIcons.download),
+                        title: const Text(
                           "Hibernate",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        subtitle: Text("Hibernate QEMU virtual machine"),
+                        subtitle: const Text("Hibernate QEMU virtual machine"),
                         onTap: () => action(
                             context, PveClusterResourceAction.hibernate, bloc),
                       ),
                       ListTile(
-                        leading: Icon(Icons.stop),
-                        title: Text(
+                        leading: const Icon(Icons.stop),
+                        title: const Text(
                           "Stop",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        subtitle: Text("Stop QEMU virtual machine"),
+                        subtitle: const Text("Stop QEMU virtual machine"),
                         onTap: () => action(
                             context, PveClusterResourceAction.stop, bloc),
                       ),
                       ListTile(
-                        leading: Icon(FontAwesomeIcons.bolt),
-                        title: Text(
+                        leading: const Icon(FontAwesomeIcons.bolt),
+                        title: const Text(
                           "Reset",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        subtitle: Text("Reset QEMU virtual machine"),
+                        subtitle: const Text("Reset QEMU virtual machine"),
                         onTap: () => action(
                             context, PveClusterResourceAction.reset, bloc),
                       ),

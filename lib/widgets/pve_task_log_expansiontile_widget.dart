@@ -80,30 +80,30 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
       ),
       children: <Widget>[
         ListTile(
-          leading: Icon(Icons.person),
+          leading: const Icon(Icons.person),
           title: Text(widget.task.user),
-          subtitle: Text('User'),
+          subtitle: const Text('User'),
         ),
         ListTile(
-          leading: Icon(Icons.timer),
+          leading: const Icon(Icons.timer),
           title: Text(
             DateFormat.Md().add_Hms().format(widget.task.startTime),
           ),
-          subtitle: Text('Start time'),
+          subtitle: const Text('Start time'),
         ),
         if (duration != null)
           ListTile(
-            leading: Icon(Icons.timelapse),
+            leading: const Icon(Icons.timelapse),
             title: Text(
               Renderers.renderDuration(duration),
             ),
-            subtitle: Text('Duration'),
+            subtitle: const Text('Duration'),
           ),
         ListTile(
-          leading: Icon(Icons.description),
+          leading: const Icon(Icons.description),
           title: Text("${widget.task.status}"),
           dense: true,
-          subtitle: Text('Shortlog'),
+          subtitle: const Text('Shortlog'),
         ),
         ButtonBar(
           children: <Widget>[
@@ -111,14 +111,14 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
               OutlinedButton.icon(
                 onPressed: () => Navigator.of(context).push(
                     _createTaskLogRoute(taskLogBloc, widget.showMorePage)),
-                icon: Icon(Icons.format_list_bulleted),
-                label: Text('More Tasks'),
+                icon: const Icon(Icons.format_list_bulleted),
+                label: const Text('More Tasks'),
               ),
             OutlinedButton.icon(
               onPressed: () => showTaskLogBottomSheet(context,
                   taskLogBloc.apiClient, widget.task.node, widget.task.upid),
-              icon: Icon(Icons.article),
-              label: Text(
+              icon: const Icon(Icons.article),
+              label: const Text(
                 'Full Log',
               ),
             )

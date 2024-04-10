@@ -24,7 +24,7 @@ Future<T?> showTaskLogBottomSheet<T>(BuildContext context,
     {Widget icon = const Icon(Icons.work),
     Widget jobTitle = const Text('Job')}) async {
   return showModalBottomSheet(
-    shape: RoundedRectangleBorder(
+    shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
     context: context,
     builder: (context) => Provider(
@@ -47,7 +47,7 @@ Future<T?> showConsoleMenuBottomSheet<T>(BuildContext context,
     ProxmoxApiClient apiClient, String? guestID, String node, String type,
     {bool? allowSpice}) async {
   return showModalBottomSheet(
-    shape: RoundedRectangleBorder(
+    shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
     ),
     context: context,

@@ -37,7 +37,7 @@ class PveConfigSwitchListTile extends StatelessWidget {
         children: [
           title!,
           Chip(
-            label: Text('pending'),
+            label: const Text('pending'),
             backgroundColor: Colors.red,
             onDeleted: onDeleted,
           )

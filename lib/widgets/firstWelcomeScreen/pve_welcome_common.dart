@@ -11,10 +11,10 @@ class PveQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(10.0, 10.0, 5.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(10.0, 10.0, 5.0, 0.0),
       child: Text(
         text!,
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -35,7 +35,7 @@ class PveAnswer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(20.0, 5.0, 5.0, 5.0),
+      padding: const EdgeInsets.fromLTRB(20.0, 5.0, 5.0, 5.0),
       child: RichText(
         text: TextSpan(
           text: text,
@@ -59,9 +59,9 @@ class PveWelcomePageContent extends StatelessWidget {
     return Center(
       child: SingleChildScrollView(
           child: Padding(
-        padding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 0.0),
         child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 500), child: child),
+            constraints: const BoxConstraints(maxWidth: 500), child: child),
       )),
     );
   }

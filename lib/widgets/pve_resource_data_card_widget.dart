@@ -63,7 +63,7 @@ class PveResourceDataCardWidget extends StatelessWidget {
                     ),
                     subtitle: subtitle,
                   ),
-                  Divider(
+                  const Divider(
                     indent: 10,
                     endIndent: 10,
                   ),

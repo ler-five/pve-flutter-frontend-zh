@@ -16,7 +16,7 @@ class PveConsoleWidget extends StatelessWidget {
     if (kIsWeb) {
       registerConsoleIframe(nodeid);
       return Container(
-          child: HtmlElementView(
+          child: const HtmlElementView(
         viewType: 'console-html',
       ));
     } else {

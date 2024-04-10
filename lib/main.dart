@@ -199,9 +199,9 @@ class MyApp extends StatelessWidget {
                           return AlertDialog(
                             contentPadding: const EdgeInsets.fromLTRB(
                                 24.0, 12.0, 24.0, 16.0),
-                            title: Row(
+                            title: const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const <Widget>[
+                              children: <Widget>[
                                 Text('Error'),
                                 Icon(Icons.warning),
                               ],

@@ -86,7 +86,7 @@ class PveQemuOverview extends StatelessWidget {
                             ? PveGuestHeaderRRDPageView(
                                 rrdData: rrdData,
                               )
-                            : Center(
+                            : const Center(
                                 child: Text(
                                   "TEMPLATE",
                                   style: TextStyle(
@@ -181,7 +181,7 @@ class PveQemuOverview extends StatelessWidget {
                       if (config != null)
                         PveResourceDataCardWidget(
                             expandable: false,
-                            title: Text(
+                            title: const Text(
                               'Hardware',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -190,58 +190,58 @@ class PveQemuOverview extends StatelessWidget {
                             ),
                             children: [
                               ListTile(
-                                leading: Icon(FontAwesomeIcons.memory),
+                                leading: const Icon(FontAwesomeIcons.memory),
                                 title: Text('${config.memory}'),
-                                subtitle: Text('Memory'),
+                                subtitle: const Text('Memory'),
                                 dense: true,
                               ),
                               ListTile(
-                                leading: Icon(Icons.memory),
+                                leading: const Icon(Icons.memory),
                                 title: Text(
                                     '${config.cores} Cores ${config.sockets} Socket'),
-                                subtitle: Text('Processor'),
+                                subtitle: const Text('Processor'),
                                 dense: true,
                               ),
                               ListTile(
-                                leading: Icon(FontAwesomeIcons.microchip),
+                                leading: const Icon(FontAwesomeIcons.microchip),
                                 title: Text(
                                     config.bios?.name ?? 'Default (SeaBIOS)'),
-                                subtitle: Text('BIOS'),
+                                subtitle: const Text('BIOS'),
                                 dense: true,
                               ),
                               ListTile(
-                                leading: Icon(FontAwesomeIcons.cogs),
+                                leading: const Icon(FontAwesomeIcons.cogs),
                                 dense: true,
                                 title:
                                     Text(config.machine ?? 'Default (i440fx)'),
-                                subtitle: Text('Machine Type'),
+                                subtitle: const Text('Machine Type'),
                               ),
                               ListTile(
-                                leading: Icon(FontAwesomeIcons.database),
+                                leading: const Icon(FontAwesomeIcons.database),
                                 title: Text(
                                     config.scsihw?.name ?? 'Default (i440fx)'),
-                                subtitle: Text('SCSI Controller'),
+                                subtitle: const Text('SCSI Controller'),
                                 dense: true,
                               ),
                               for (var ide in config.ide!)
                                 ListTile(
-                                  leading: Icon(FontAwesomeIcons.compactDisc),
+                                  leading: const Icon(FontAwesomeIcons.compactDisc),
                                   title: Text(ide),
-                                  subtitle: Text('CD/DVD Drive'),
+                                  subtitle: const Text('CD/DVD Drive'),
                                   dense: true,
                                 ),
                               for (var scsi in config.scsi!)
                                 ListTile(
-                                  leading: Icon(FontAwesomeIcons.hdd),
+                                  leading: const Icon(FontAwesomeIcons.hdd),
                                   title: Text(scsi),
-                                  subtitle: Text('Hard Disk'),
+                                  subtitle: const Text('Hard Disk'),
                                   dense: true,
                                 ),
                               for (var net in config.net!)
                                 ListTile(
-                                  leading: Icon(FontAwesomeIcons.ethernet),
+                                  leading: const Icon(FontAwesomeIcons.ethernet),
                                   dense: true,
-                                  subtitle: Text('Network Device'),
+                                  subtitle: const Text('Network Device'),
                                   title: Text(net),
                                 )
                             ]),
@@ -365,12 +365,12 @@ class PveQemuOverview extends StatelessWidget {
   Future<T?> showPowerMenuBottomSheet<T>(
       BuildContext context, PveQemuOverviewBloc qemuBloc) async {
     return showModalBottomSheet(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
       context: context,
       builder: (context) => Provider.value(
         value: qemuBloc,
-        child: PveQemuPowerSettings(),
+        child: const PveQemuPowerSettings(),
       ),
     );
   }

@@ -48,7 +48,7 @@ class _PveRRDChartState extends State<PveRRDChart> {
   Point? touchpoint;
   @override
   Widget build(BuildContext context) {
-    final data = widget.data!.isNotEmpty ? widget.data! : [Point(0, 0)];
+    final data = widget.data!.isNotEmpty ? widget.data! : [const Point(0, 0)];
     final globalMaxima = data.map((e) => e.y).reduce((a, b) => max(a, b));
     final globalMaximaLabel =
         globalMaxima.toStringAsFixed(globalMaxima < 0.01 ? 3 : 2);

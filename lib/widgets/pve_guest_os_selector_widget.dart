@@ -14,7 +14,7 @@ class PveGuestOsSelector extends StatelessWidget {
         initialData: gBloc.state.value,
         builder: (context, snapshot) {
           return DropdownButtonFormField<OSType>(
-            decoration: InputDecoration(labelText: 'Guest OS'),
+            decoration: const InputDecoration(labelText: 'Guest OS'),
             items: gBloc.osChoices.keys
                 .map((choice) => DropdownMenuItem(
                       value: choice,
@@ -39,11 +39,11 @@ class PveGuestOsSelector extends StatelessWidget {
 
   Widget getIcon(String? osGroup) {
     if (osGroup == "Microsoft Windows") {
-      return Icon(FontAwesomeIcons.windows);
+      return const Icon(FontAwesomeIcons.windows);
     }
 
     if (osGroup == "Linux") {
-      return Icon(FontAwesomeIcons.linux);
+      return const Icon(FontAwesomeIcons.linux);
     }
 
     return Text(osGroup!);

@@ -42,12 +42,12 @@ class _PveTaskLogState extends State<PveTaskLog> {
                 key: _scaffoldKey,
                 appBar: AppBar(
                   leading: IconButton(
-                    icon: Icon(Icons.close),
+                    icon: const Icon(Icons.close),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                   actions: <Widget>[
                     IconButton(
-                      icon: Icon(Icons.more_vert),
+                      icon: const Icon(Icons.more_vert),
                       onPressed: () =>
                           _scaffoldKey.currentState?.openEndDrawer(),
                     )
@@ -63,11 +63,11 @@ class _PveTaskLogState extends State<PveTaskLog> {
                           'Filters',
                           style: Theme.of(context).textTheme.headline5,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         TextFormField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               labelText: 'by user',
                               filled: true,
                               prefixIcon: Icon(Icons.person)),
@@ -77,11 +77,11 @@ class _PveTaskLogState extends State<PveTaskLog> {
                           },
                           controller: _userFilterController,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         TextFormField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               labelText: 'by type',
                               filled: true,
                               prefixIcon: Icon(Icons.description)),
@@ -91,13 +91,13 @@ class _PveTaskLogState extends State<PveTaskLog> {
                           },
                           controller: _typeFilterController,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         DropdownButtonFormField<String>(
-                          decoration: InputDecoration(labelText: 'Source'),
+                          decoration: const InputDecoration(labelText: 'Source'),
                           value: state.source,
-                          icon: Icon(Icons.arrow_downward),
+                          icon: const Icon(Icons.arrow_downward),
                           iconSize: 24,
                           elevation: 16,
                           onChanged: (String? newValue) {
@@ -115,14 +115,14 @@ class _PveTaskLogState extends State<PveTaskLog> {
                             );
                           }).toList(),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         FormField(
                           builder: (FormFieldState<bool> formFieldState) => Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Text("Only errors"),
+                              const Text("Only errors"),
                               Checkbox(
                                 value: state.onlyErrors,
                                 onChanged: (value) {
@@ -155,7 +155,7 @@ class _PveTaskLogState extends State<PveTaskLog> {
                             task: state.tasks[index],
                           ),
                         )
-                      : Center(
+                      : const Center(
                           child: Text("No tasks found"),
                         ),
                 ),
@@ -215,16 +215,16 @@ class _PveTaskLogScrollViewState extends State<PveTaskLogScrollView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   if (state.isBlank)
-                    Align(
+                    const Align(
                       alignment: Alignment.center,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: Text("Loading log data.."),
                       ),
                     ),
                   if (!state.isBlank) ...[
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                      padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -253,7 +253,7 @@ class _PveTaskLogScrollViewState extends State<PveTaskLogScrollView> {
                           backgroundColor: statusChipColor,
                         ),
                       ),
-                    Divider(),
+                    const Divider(),
                     if (state.log != null)
                       Expanded(
                         child: Padding(
@@ -301,7 +301,7 @@ class _PveTaskLogScrollViewState extends State<PveTaskLogScrollView> {
   void _scrollToBottom() {
     if (_scrollController.hasClients) {
       _scrollController.animateTo(_scrollController.position.maxScrollExtent,
-          duration: Duration(milliseconds: 500), curve: Curves.easeOut);
+          duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
     }
   }
 }

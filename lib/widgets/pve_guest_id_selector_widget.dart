@@ -26,7 +26,7 @@ class PveGuestIdSelector extends StatelessWidget {
           return TextFormField(
             // make sure a new internal state is created if the
             // first build has no data
-            key: state.value != null ? null : ValueKey(1),
+            key: state.value != null ? null : const ValueKey(1),
             decoration: InputDecoration(labelText: labelText, helperText: ' '),
             initialValue: state?.value,
             keyboardType: TextInputType.number,

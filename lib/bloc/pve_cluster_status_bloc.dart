@@ -15,7 +15,7 @@ class PveClusterStatusBloc
   @override
   void doOnListen() {
     updateTimer = Timer.periodic(
-        Duration(seconds: 6), (timer) => events.add(UpdateClusterStatus()));
+        const Duration(seconds: 6), (timer) => events.add(UpdateClusterStatus()));
   }
 
   @override

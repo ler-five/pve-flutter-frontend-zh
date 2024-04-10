@@ -25,43 +25,43 @@ class PveLxcPowerSettings extends StatelessWidget {
               children: <Widget>[
                 if (disableShutdown && !(status?.template ?? false))
                   ListTile(
-                    leading: Icon(Icons.play_arrow),
-                    title: Text(
+                    leading: const Icon(Icons.play_arrow),
+                    title: const Text(
                       "Start",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    subtitle: Text("Turn on LXC container"),
+                    subtitle: const Text("Turn on LXC container"),
                     onTap: () => action(
                         context, PveClusterResourceAction.start, lxcBloc!),
                   ),
                 if (!disableShutdown) ...[
                   ListTile(
-                    leading: Icon(Icons.power_settings_new),
-                    title: Text(
+                    leading: const Icon(Icons.power_settings_new),
+                    title: const Text(
                       "Shutdown",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    subtitle: Text("Turn off LXC container"),
+                    subtitle: const Text("Turn off LXC container"),
                     onTap: () => action(
                         context, PveClusterResourceAction.shutdown, lxcBloc!),
                   ),
                   ListTile(
-                    leading: Icon(Icons.loop),
-                    title: Text(
+                    leading: const Icon(Icons.loop),
+                    title: const Text(
                       "Reboot",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    subtitle: Text("Reboot LXC container"),
+                    subtitle: const Text("Reboot LXC container"),
                     onTap: () => action(
                         context, PveClusterResourceAction.reboot, lxcBloc!),
                   ),
                   ListTile(
-                    leading: Icon(Icons.stop),
-                    title: Text(
+                    leading: const Icon(Icons.stop),
+                    title: const Text(
                       "Stop",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    subtitle: Text("Stop LXC container"),
+                    subtitle: const Text("Stop LXC container"),
                     onTap: () =>
                         action(context, PveClusterResourceAction.stop, lxcBloc!),
                   ),

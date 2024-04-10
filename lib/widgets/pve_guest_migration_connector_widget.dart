@@ -52,7 +52,7 @@ class PveMigrateStreamConnector extends StatelessWidget {
               Navigator.of(context).pop();
               showTaskLogBottomSheet(
                   context, mBloc.apiClient, state.nodeID, state.taskUPID!,
-                  icon: Icon(Icons.save),
+                  icon: const Icon(Icons.save),
                   jobTitle: Text('Migration ${mBloc.guestID}'));
             }
 

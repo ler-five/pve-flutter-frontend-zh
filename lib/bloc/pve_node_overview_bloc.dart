@@ -20,7 +20,7 @@ class PveNodeOverviewBloc
   @override
   void doOnListen() {
     sTimer = Timer.periodic(
-        Duration(seconds: 4), (timer) => events.add(UpdateNodeStatus()));
+        const Duration(seconds: 4), (timer) => events.add(UpdateNodeStatus()));
   }
 
   @override

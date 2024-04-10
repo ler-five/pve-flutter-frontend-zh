@@ -15,7 +15,7 @@ class PveHelpIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.help),
+      icon: const Icon(Icons.help),
       tooltip: "Documentation",
       onPressed: () {
         try {

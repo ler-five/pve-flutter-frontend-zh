@@ -21,13 +21,13 @@ class PveWelcomePageLast extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Spacer(flex: 3),
+                  const Spacer(flex: 3),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Enjoy the app"),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Text("Enjoy the app"),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Icon(
                           Icons.emoji_people_rounded,
                           color: Colors.white,
@@ -42,17 +42,17 @@ class PveWelcomePageLast extends StatelessWidget {
                             backgroundColor: ProxmoxColors.orange,
                             foregroundColor: Colors.white,
                           ),
-                          child: Text("Start"),
+                          child: const Text("Start"),
                         ),
                       ),
                     ],
                   ),
-                  Spacer(flex: 1),
+                  const Spacer(flex: 1),
                   ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: 500),
+                    constraints: const BoxConstraints(maxWidth: 500),
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           'If you have suggestions or experience any problems, please contact us via',
                           textAlign: TextAlign.center,
                         ),
@@ -62,7 +62,7 @@ class PveWelcomePageLast extends StatelessWidget {
                             OutlinedButton(
                               onPressed: () =>
                                   {launch('https://forum.proxmox.com')},
-                              child: Text('Forum'),
+                              child: const Text('Forum'),
                               style: OutlinedButton.styleFrom(
                                 side: BorderSide(color: ProxmoxColors.supportGrey),
                                 foregroundColor: Colors.white,
@@ -73,7 +73,7 @@ class PveWelcomePageLast extends StatelessWidget {
                                 launch(
                                     'https://lists.proxmox.com/cgi-bin/mailman/listinfo/pve-user')
                               },
-                              child: Text('User Mailing List'),
+                              child: const Text('User Mailing List'),
                               style: OutlinedButton.styleFrom(
                                 side: BorderSide(color: ProxmoxColors.supportGrey),
                                 foregroundColor: Colors.white,
@@ -84,7 +84,7 @@ class PveWelcomePageLast extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Spacer(
+                  const Spacer(
                     flex: 2,
                   )
                 ],

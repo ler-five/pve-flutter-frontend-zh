@@ -20,9 +20,9 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
   late SharedPreferences _sharedPreferences;
 
   final List<Widget> _pages = [
-    PveWelcomePageLogo(),
-    PveWelcomePageSSLValidation(),
-    PveWelcomePageFAQ(),
+    const PveWelcomePageLogo(),
+    const PveWelcomePageSSLValidation(),
+    const PveWelcomePageFAQ(),
   ];
 
   static const Duration _pageChangeDuration = Duration(milliseconds: 150);
@@ -72,7 +72,7 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
           foregroundColor: _buttonTextColor,
           disabledForegroundColor: _buttonDisabledTextColor,
         ),
-        child: Text(
+        child: const Text(
           "Done",
         ),
         onPressed: () {
@@ -81,7 +81,7 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
       );
     } else {
       return TextButton(
-        child: Text("Next"),
+        child: const Text("Next"),
         style: TextButton.styleFrom(
           foregroundColor: _buttonTextColor,
           disabledForegroundColor: _buttonDisabledTextColor,
@@ -104,7 +104,7 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
         onPressed: () {
           skipDone();
         },
-        child: Text(
+        child: const Text(
           'Skip',
         ),
       );
@@ -114,7 +114,7 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
           foregroundColor: _buttonTextColor,
           disabledForegroundColor: _buttonDisabledTextColor,
         ),
-        child: Text(
+        child: const Text(
           "Prev",
         ),
         onPressed: () {
@@ -130,7 +130,7 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: ProxmoxColors.supportBlue,
       body: DefaultTextStyle(
-        style: TextStyle(color: Colors.white, fontSize: 18),
+        style: const TextStyle(color: Colors.white, fontSize: 18),
         child: FutureBuilder<void>(
           future: _prefs,
           builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -167,7 +167,7 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
                 ),
               );
             } else {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.white70),
                 ),

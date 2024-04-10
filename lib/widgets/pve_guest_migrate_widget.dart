@@ -24,14 +24,14 @@ class PveGuestMigrate extends StatelessWidget {
       builder: (context, migrateState) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(
+            title: const Text(
               "Migration",
               style: TextStyle(color: Colors.white, fontSize: 25),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
             leading: IconButton(
-              icon: Icon(Icons.close),
+              icon: const Icon(Icons.close),
               onPressed: () => Navigator.of(context).pop(),
             ),
             elevation: 0.0,
@@ -55,7 +55,7 @@ class PveGuestMigrate extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ListTile(
-                          leading: Icon(FontAwesomeIcons.globe),
+                          leading: const Icon(FontAwesomeIcons.globe),
                           title: Text(
                             'Mode',
                             style: TextStyle(color: colorScheme.onPrimary),
@@ -67,7 +67,7 @@ class PveGuestMigrate extends StatelessWidget {
                           ),
                         ),
                         ListTile(
-                          leading: Icon(FontAwesomeIcons.mapPin),
+                          leading: const Icon(FontAwesomeIcons.mapPin),
                           title: Text(
                             'Source',
                             style: TextStyle(color: colorScheme.onPrimary),
@@ -90,7 +90,7 @@ class PveGuestMigrate extends StatelessWidget {
                         )
                       ]),
                 ),
-                if (migrateState.inProgress) LinearProgressIndicator(),
+                if (migrateState.inProgress) const LinearProgressIndicator(),
                 if (migrateState.preconditions != null)
                   Expanded(
                     child: ListView(
@@ -102,7 +102,7 @@ class PveGuestMigrate extends StatelessWidget {
                                     Icons.error,
                                     color: colorScheme.error,
                                   )
-                                : Icon(
+                                : const Icon(
                                     Icons.warning,
                                     color: Colors.orange,
                                   ),
@@ -121,10 +121,10 @@ class PveGuestMigrate extends StatelessWidget {
                     migrateBloc.events.add(StartMigration());
                     nodeSelectorbloc.events.add(ResetNodeSelector());
                   },
-                  label: migrateState.inProgress ? Text('') : Text('Start'),
+                  label: migrateState.inProgress ? const Text('') : const Text('Start'),
                   icon: migrateState.inProgress
-                      ? Icon(Icons.more_horiz)
-                      : Icon(Icons.send)),
+                      ? const Icon(Icons.more_horiz)
+                      : const Icon(Icons.send)),
         );
       },
     );
@@ -160,7 +160,7 @@ class _MigrateTargetSelector extends StatelessWidget {
       bloc: Provider.of<PveNodeSelectorBloc>(context),
       builder: (context, state) {
         return ListTile(
-          leading: Icon(Icons.fiber_new),
+          leading: const Icon(Icons.fiber_new),
           title: Text(
             'Target',
             style: TextStyle(color: titleColor),
@@ -174,7 +174,7 @@ class _MigrateTargetSelector extends StatelessWidget {
             items: state.availableNodes
                 .map((item) => DropdownMenuItem(
                       child: ListTile(
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.storage,
                         ),
                         trailing:
@@ -219,6 +219,6 @@ class _MigrateTargetSelector extends StatelessWidget {
                 )
               ]))
           .toList();
-    return [Text('')];
+    return [const Text('')];
   }
 }

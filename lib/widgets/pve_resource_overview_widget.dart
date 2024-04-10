@@ -16,16 +16,16 @@ class PveResourceOverview extends StatelessWidget {
         builder: (context, snapshot) => SingleChildScrollView(
               child: DataTable(
                 columns: [
-                  DataColumn(
+                  const DataColumn(
                     label: Text("Type"),
                   ),
-                  DataColumn(
+                  const DataColumn(
                     label: Text("Description"),
                   ),
-                  DataColumn(
+                  const DataColumn(
                     label: Text("Node"),
                   ),
-                  DataColumn(
+                  const DataColumn(
                     label: Text("Action"),
                   ),
                 ],
@@ -54,7 +54,7 @@ class PveResourceOverview extends StatelessWidget {
         if (resource.status == "online") {
           return [
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.power_settings_new,
                 color: Colors.red,
               ),
@@ -63,7 +63,7 @@ class PveResourceOverview extends StatelessWidget {
                   PveClusterResourceAction.shutdown, resource)),
             ),
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.autorenew,
               ),
               tooltip: "Reboot",
@@ -78,7 +78,7 @@ class PveResourceOverview extends StatelessWidget {
         if (resource.status == "running") {
           return [
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.power_settings_new,
                 color: Colors.red,
               ),
@@ -87,7 +87,7 @@ class PveResourceOverview extends StatelessWidget {
               tooltip: "Shutdown",
             ),
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.power,
                 color: Colors.red,
               ),
@@ -99,7 +99,7 @@ class PveResourceOverview extends StatelessWidget {
         }
         return [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.power_settings_new,
               color: Colors.green,
             ),
@@ -113,7 +113,7 @@ class PveResourceOverview extends StatelessWidget {
         if (resource.status == "running") {
           return [
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.power_settings_new,
                 color: Colors.red,
               ),
@@ -122,7 +122,7 @@ class PveResourceOverview extends StatelessWidget {
               tooltip: "Shutdown",
             ),
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.power,
                 color: Colors.red,
               ),
@@ -134,7 +134,7 @@ class PveResourceOverview extends StatelessWidget {
         }
         return [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.power_settings_new,
               color: Colors.green,
             ),

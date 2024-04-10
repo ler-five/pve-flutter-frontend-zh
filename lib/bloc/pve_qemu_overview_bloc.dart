@@ -23,7 +23,7 @@ class PveQemuOverviewBloc
   @override
   void doOnListen() {
     updateTimer = Timer.periodic(
-        Duration(seconds: 4), (timer) => events.add(UpdateQemuStatus()));
+        const Duration(seconds: 4), (timer) => events.add(UpdateQemuStatus()));
   }
 
   @override

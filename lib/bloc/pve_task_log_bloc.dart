@@ -18,7 +18,7 @@ class PveTaskLogBloc extends ProxmoxBaseBloc<PVETaskLogEvent, PveTaskLogState> {
 
   @override
   void doOnListen() {
-    updateTasks = Timer.periodic(Duration(seconds: 4), (timer) {
+    updateTasks = Timer.periodic(const Duration(seconds: 4), (timer) {
       events.add(UpdateTasks());
     });
   }

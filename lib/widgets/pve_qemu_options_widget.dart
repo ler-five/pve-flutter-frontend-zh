@@ -22,7 +22,7 @@ class PveQemuOptions extends StatelessWidget {
               child: Scaffold(
                 appBar: AppBar(
                   leading: IconButton(
-                    icon: Icon(Icons.close),
+                    icon: const Icon(Icons.close),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ),
@@ -33,11 +33,11 @@ class PveQemuOptions extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         ListTile(
-                          title: Text("Name"),
+                          title: const Text("Name"),
                           subtitle: Text(config.name ?? 'VM$guestID'),
                         ),
                         PveConfigSwitchListTile(
-                          title: Text("Start on boot"),
+                          title: const Text("Start on boot"),
                           value: config.onboot,
                           defaultValue: false,
                           pending: config.getPending('onboot'),
@@ -47,11 +47,11 @@ class PveQemuOptions extends StatelessWidget {
                               .add(RevertPendingQemuConfig('onboot')),
                         ),
                         ListTile(
-                          title: Text("Start/Shutdown order"),
+                          title: const Text("Start/Shutdown order"),
                           subtitle: Text(config.startup ?? "Default (any)"),
                         ),
                         ListTile(
-                          title: Text("OS Type"),
+                          title: const Text("OS Type"),
                           subtitle: Text(
                             config.ostype != null ?
                               "${config.ostype!.type} ${config.ostype!.description}" :
@@ -60,11 +60,11 @@ class PveQemuOptions extends StatelessWidget {
                         ),
                         //TODO add better ui component e.g. collapseable
                         ListTile(
-                          title: Text("Boot Device"),
+                          title: const Text("Boot Device"),
                           subtitle: Text(config.boot ?? 'Disk, Network, USB'),
                         ),
                         PveConfigSwitchListTile(
-                          title: Text("Use tablet for pointer"),
+                          title: const Text("Use tablet for pointer"),
                           value: config.tablet,
                           defaultValue: true,
                           pending: config.getPending('tablet'),
@@ -74,11 +74,11 @@ class PveQemuOptions extends StatelessWidget {
                               .add(RevertPendingQemuConfig('tablet')),
                         ),
                         ListTile(
-                          title: Text("Hotplug"),
+                          title: const Text("Hotplug"),
                           subtitle: Text(config.hotplug ?? 'disk,network,usb'),
                         ),
                         PveConfigSwitchListTile(
-                          title: Text("ACPI support"),
+                          title: const Text("ACPI support"),
                           value: config.acpi,
                           defaultValue: true,
                           pending: config.getPending('acpi'),
@@ -88,7 +88,7 @@ class PveQemuOptions extends StatelessWidget {
                               bloc.events.add(RevertPendingQemuConfig('acpi')),
                         ),
                         PveConfigSwitchListTile(
-                          title: Text("KVM hardware virtualization"),
+                          title: const Text("KVM hardware virtualization"),
                           value: config.kvm,
                           defaultValue: true,
                           pending: config.getPending('kvm'),
@@ -98,7 +98,7 @@ class PveQemuOptions extends StatelessWidget {
                               bloc.events.add(RevertPendingQemuConfig('kvm')),
                         ),
                         PveConfigSwitchListTile(
-                          title: Text("Freeze CPU on startup"),
+                          title: const Text("Freeze CPU on startup"),
                           value: config.freeze,
                           defaultValue: false,
                           pending: config.getPending('freeze'),
@@ -108,7 +108,7 @@ class PveQemuOptions extends StatelessWidget {
                               .add(RevertPendingQemuConfig('freeze')),
                         ),
                         PveConfigSwitchListTile(
-                          title: Text("Use local time for RTC"),
+                          title: const Text("Use local time for RTC"),
                           value: config.localtime,
                           defaultValue: false,
                           pending: config.getPending('localtime'),
@@ -118,20 +118,20 @@ class PveQemuOptions extends StatelessWidget {
                               .add(RevertPendingQemuConfig('localtime')),
                         ),
                         ListTile(
-                          title: Text("RTC start date"),
+                          title: const Text("RTC start date"),
                           subtitle: Text(config.startdate ?? 'now'),
                         ),
                         ListTile(
-                          title: Text("SMBIOS settings (type1)"),
+                          title: const Text("SMBIOS settings (type1)"),
                           subtitle: Text(config.smbios1 ?? ''),
                         ),
                         //Todo enhance UI
                         ListTile(
-                          title: Text("QEMU Guest Agent"),
+                          title: const Text("QEMU Guest Agent"),
                           subtitle: Text(config.agent ?? 'Default (disabled)'),
                         ),
                         PveConfigSwitchListTile(
-                          title: Text("Protection"),
+                          title: const Text("Protection"),
                           value: config.protection,
                           defaultValue: false,
                           pending: config.getPending('protection'),
@@ -141,12 +141,12 @@ class PveQemuOptions extends StatelessWidget {
                               .add(RevertPendingQemuConfig('protection')),
                         ),
                         ListTile(
-                          title: Text("Spice Enhancements"),
+                          title: const Text("Spice Enhancements"),
                           subtitle: Text(
                               config.spiceEnhancements ?? 'No enhancements'),
                         ),
                         ListTile(
-                          title: Text("VM State Storage"),
+                          title: const Text("VM State Storage"),
                           subtitle: Text(config.vmstatestorage ?? 'Automatic'),
                         ),
                       ],
@@ -156,7 +156,7 @@ class PveQemuOptions extends StatelessWidget {
               ),
             );
           }
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         });

@@ -22,11 +22,11 @@ class PveLxcOptions extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       ListTile(
-                        title: Text("Name"),
+                        title: const Text("Name"),
                         subtitle: Text(config.hostname ?? 'undefined'),
                       ),
                       PveConfigSwitchListTile(
-                        title: Text("Start on boot"),
+                        title: const Text("Start on boot"),
                         value: config.onboot,
                         defaultValue: false,
                         pending: config.getPending('onboot'),
@@ -36,19 +36,19 @@ class PveLxcOptions extends StatelessWidget {
                             .add(RevertPendingLxcConfig('onboot')),
                       ),
                       ListTile(
-                        title: Text("Start/Shutdown order"),
+                        title: const Text("Start/Shutdown order"),
                         subtitle: Text(config.startup ?? "Default (any)"),
                       ),
                       ListTile(
-                        title: Text("OS Type"),
+                        title: const Text("OS Type"),
                         subtitle: Text("${config.ostype}"),
                       ),
                       ListTile(
-                        title: Text("Architecture"),
+                        title: const Text("Architecture"),
                         subtitle: Text("${config.arch}"),
                       ),
                       PveConfigSwitchListTile(
-                        title: Text("/dev/console"),
+                        title: const Text("/dev/console"),
                         value: config.console,
                         defaultValue: true,
                         pending: config.getPending('console'),
@@ -58,15 +58,15 @@ class PveLxcOptions extends StatelessWidget {
                             .add(RevertPendingLxcConfig('console')),
                       ),
                       ListTile(
-                        title: Text("TTY Count"),
+                        title: const Text("TTY Count"),
                         subtitle: Text("${config.tty ?? 2}"),
                       ),
                       ListTile(
-                        title: Text("Console Mode"),
+                        title: const Text("Console Mode"),
                         subtitle: Text(config.cmode?.name ?? 'tty'),
                       ),
                       PveConfigSwitchListTile(
-                        title: Text("Protection"),
+                        title: const Text("Protection"),
                         value: config.protection,
                         defaultValue: false,
                         pending: config.getPending('protection'),
@@ -76,12 +76,12 @@ class PveLxcOptions extends StatelessWidget {
                             .add(RevertPendingLxcConfig('protection')),
                       ),
                       ListTile(
-                        title: Text("Unprivileged"),
+                        title: const Text("Unprivileged"),
                         subtitle:
                             Text(config.unprivileged ?? false ? 'Yes' : 'No'),
                       ),
                       ListTile(
-                        title: Text("Features"),
+                        title: const Text("Features"),
                         subtitle: Text(config.features?.toString() ?? 'none'),
                       ),
                     ],
@@ -90,7 +90,7 @@ class PveLxcOptions extends StatelessWidget {
               ),
             );
           }
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         });

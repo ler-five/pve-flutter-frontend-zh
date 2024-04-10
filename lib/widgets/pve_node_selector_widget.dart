@@ -26,9 +26,9 @@ class PveNodeSelector extends StatelessWidget {
                       child: Row(
                         children: <Widget>[
                           Text(item.nodeName),
-                          VerticalDivider(),
+                          const VerticalDivider(),
                           Text(item.renderMemoryUsagePercent()),
-                          VerticalDivider(),
+                          const VerticalDivider(),
                           Text(item.renderCpuUsage())
                         ],
                       ),

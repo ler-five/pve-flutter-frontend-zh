@@ -19,7 +19,7 @@ class PveTaskLogViewerBloc
 
   @override
   void doOnListen() {
-    updateStatus = Timer.periodic(Duration(seconds: 1), (timer) {
+    updateStatus = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (latestState.upid != null) {
         events.add(UpdateStatus());
         if (latestState.status?.status == PveTaskLogStatusType.stopped) {
@@ -28,7 +28,7 @@ class PveTaskLogViewerBloc
       }
     });
 
-    updateLog = Timer.periodic(Duration(seconds: 1), (timer) {
+    updateLog = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (latestState.upid != null) {
         events.add(UpdateLog());
         if (latestState.status?.status == PveTaskLogStatusType.stopped) {

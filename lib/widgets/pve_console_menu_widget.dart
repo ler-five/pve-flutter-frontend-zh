@@ -39,11 +39,11 @@ class PveConsoleMenu extends StatelessWidget {
           children: [
             if (Platform.isAndroid && _allowSpice)
               ListTile(
-                title: Text(
+                title: const Text(
                   "SPICE",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                subtitle: Text("Open SPICE connection file with external App"),
+                subtitle: const Text("Open SPICE connection file with external App"),
                 onTap: () async {
                   if (Platform.isAndroid) {
                     final tempDir = await getExternalCacheDirectories();
@@ -80,13 +80,13 @@ class PveConsoleMenu extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: Text('Got Exception'),
+                              title: const Text('Got Exception'),
                               content: Text(e.message!),
                               actions: [
                                 TextButton(
                                     onPressed: () =>
                                         Navigator.of(context).pop(),
-                                    child: Text('Close'))
+                                    child: const Text('Close'))
                               ],
                             ),
                           );
@@ -100,12 +100,12 @@ class PveConsoleMenu extends StatelessWidget {
               ),
             if (Platform.isAndroid) // web_view is only available for mobile :(
               ListTile(
-                title: Text(
+                title: const Text(
                   //type == "qemu" ? "noVNC Console" : "xterm.js Console",
                   "noVNC Console", // xterm.js doesn't work that well on mobile
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                subtitle: Text(
+                subtitle: const Text(
                     "Open console view (requires trusted SSL certificate)"),
                 onTap: () async {
                   if (Platform.isAndroid) {
@@ -156,7 +156,7 @@ class PveConsoleMenu extends StatelessWidget {
         actions: [
           TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('Close'))
+              child: const Text('Close'))
         ],
       ),
     );

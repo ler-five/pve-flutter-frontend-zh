@@ -23,7 +23,7 @@ class PveLxcOverviewBloc
   @override
   void doOnListen() {
     updateTimer = Timer.periodic(
-        Duration(seconds: 4), (timer) => events.add(UpdateLxcStatus()));
+        const Duration(seconds: 4), (timer) => events.add(UpdateLxcStatus()));
   }
 
   @override

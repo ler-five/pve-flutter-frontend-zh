@@ -43,7 +43,7 @@ class Dot extends StatelessWidget {
                   color: Colors.white.withOpacity(0.72),
                   blurRadius: shadowBlurRadius!,
                   spreadRadius: shadowSpreadRadius!,
-                  offset: Offset(0.0, 0.0))
+                  offset: const Offset(0.0, 0.0))
             ],
           ),
         ),

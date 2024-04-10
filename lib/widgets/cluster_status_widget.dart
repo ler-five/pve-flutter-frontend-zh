@@ -35,7 +35,7 @@ class ClusterStatus extends StatelessWidget {
           )
         ],
       ),
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       child: Center(
         child: Text(version ?? ""),
       ),

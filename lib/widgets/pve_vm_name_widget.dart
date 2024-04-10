@@ -17,7 +17,7 @@ class PveVmNameWidget extends StatelessWidget {
           final state = snapshot.data;
 
           return TextFormField(
-            key: state?.value != null ? null : ValueKey(1),
+            key: state?.value != null ? null : const ValueKey(1),
             decoration: InputDecoration(
               labelText: labelText,
               helperText: ' ',
