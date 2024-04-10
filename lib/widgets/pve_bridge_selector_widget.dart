@@ -7,7 +7,7 @@ import 'package:pve_flutter_frontend/bloc/pve_bridge_selector_bloc.dart';
 class PveBridgeSelector extends StatelessWidget {
   final String? labelText;
 
-  const PveBridgeSelector({Key? key, this.labelText}) : super(key: key);
+  const PveBridgeSelector({super.key, this.labelText});
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +26,9 @@ class PveBridgeSelector extends StatelessWidget {
               helperText: ' ',
             ),
             items: <DropdownMenuItem<PveNodeNetworkModel>>[
-              for (var bridge in state?.bridges!)
+              for (var bridge in state.bridges!)
                 DropdownMenuItem(
+                  value: bridge,
                   child: Row(
                     children: <Widget>[
                       Text(bridge.iface ?? ''),
@@ -37,7 +38,6 @@ class PveBridgeSelector extends StatelessWidget {
                       Text(bridge.comment ?? '')
                     ],
                   ),
-                  value: bridge,
                 )
             ],
             onChanged: (PveNodeNetworkModel? selection) =>
@@ -45,7 +45,7 @@ class PveBridgeSelector extends StatelessWidget {
             value: state.value,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (dynamic _) {
-              return state?.errorText;
+              return state.errorText;
             },
           );
         }

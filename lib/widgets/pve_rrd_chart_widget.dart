@@ -22,7 +22,7 @@ class PveRRDChart extends StatefulWidget {
   final DataRenderer? dataRenderer;
 
   const PveRRDChart({
-    Key? key,
+    super.key,
     this.title,
     this.subtitle,
     this.data,
@@ -38,7 +38,7 @@ class PveRRDChart extends StatefulWidget {
     this.showDuration = true,
     this.bottomRight,
     this.dataRenderer,
-  }) : super(key: key);
+  });
 
   @override
   _PveRRDChartState createState() => _PveRRDChartState();
@@ -81,7 +81,7 @@ class _PveRRDChartState extends State<PveRRDChart> {
             children: [
               Text(
                 widget.dataRenderer != null
-                    ? 'max ' + widget.dataRenderer!(globalMaxima)
+                    ? 'max ${widget.dataRenderer!(globalMaxima)}'
                     : 'max $globalMaximaLabel',
                 style: TextStyle(color: fgColor, fontSize: 11),
               ),
@@ -120,7 +120,7 @@ class _PveRRDChartState extends State<PveRRDChart> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('past ' + Renderers.renderDuration(timeWindow),
+            Text('past ${Renderers.renderDuration(timeWindow)}',
                 style: TextStyle(color: fgColor, fontSize: 11)),
             if (widget.bottomRight != null) widget.bottomRight!,
           ],

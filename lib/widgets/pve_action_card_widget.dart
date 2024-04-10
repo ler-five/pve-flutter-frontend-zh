@@ -7,12 +7,12 @@ class ActionCard extends StatelessWidget {
   final Color? color;
 
   const ActionCard({
-    Key? key,
+    super.key,
     this.onTap,
     this.title,
     this.icon,
     this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ import 'package:pve_flutter_frontend/states/pve_node_selector_state.dart';
 class PveNodeSelector extends StatelessWidget {
   final String? labelText;
 
-  const PveNodeSelector({Key? key, this.labelText}) : super(key: key);
+  const PveNodeSelector({super.key, this.labelText});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,7 @@ class PveNodeSelector extends StatelessWidget {
           return DropdownButton(
             items: state.availableNodes
                 .map((item) => DropdownMenuItem(
+                      value: item.nodeName,
                       child: Row(
                         children: <Widget>[
                           Text(item.nodeName),
@@ -32,7 +33,6 @@ class PveNodeSelector extends StatelessWidget {
                           Text(item.renderCpuUsage())
                         ],
                       ),
-                      value: item.nodeName,
                     ))
                 .toList(),
             selectedItemBuilder: (context) => state.availableNodes

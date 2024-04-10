@@ -9,7 +9,7 @@ import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
 import 'package:pve_flutter_frontend/widgets/pve_task_log_expansiontile_widget.dart';
 
 class PveTaskLog extends StatefulWidget {
-  PveTaskLog({Key? key}) : super(key: key);
+  const PveTaskLog({super.key});
 
   @override
   _PveTaskLogState createState() => _PveTaskLogState();
@@ -174,16 +174,16 @@ class PveTaskLogScrollView extends StatefulWidget {
   final Widget jobTitle;
 
   const PveTaskLogScrollView({
-    Key? key,
+    super.key,
     required this.icon,
     required this.jobTitle,
-  }) : super(key: key);
+  });
   @override
   _PveTaskLogScrollViewState createState() => _PveTaskLogScrollViewState();
 }
 
 class _PveTaskLogScrollViewState extends State<PveTaskLogScrollView> {
-  ScrollController _scrollController = new ScrollController();
+  ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     super.initState();

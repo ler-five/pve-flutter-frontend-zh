@@ -11,8 +11,8 @@ import 'package:pve_flutter_frontend/widgets/proxmox_tree_widget.dart';
 
 class PveMainNavigationDrawer extends StatelessWidget {
   const PveMainNavigationDrawer({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -138,8 +138,8 @@ class PveMainNavigationDrawer extends StatelessWidget {
                           ),
                           // TODO General new button or distinct ones??
                           const OutlinedButton(
-                            child: Text("new CT"),
                             onPressed: null,
+                            child: Text("new CT"),
                           )
                         ],
                       ),

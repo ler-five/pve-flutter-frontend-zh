@@ -51,8 +51,9 @@ class PveNodeSelectorBloc
 
   Future<List<PveNodesModel>> getNodes(bool onlyOnline) async {
     var nodes = await apiClient.getNodes();
-    if (onlyOnline)
+    if (onlyOnline) {
       nodes = nodes.where((node) => node.status == "online").toList();
+    }
     nodes.sort((a, b) => a.nodeName.compareTo(b.nodeName));
     return nodes;
   }

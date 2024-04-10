@@ -11,8 +11,7 @@ abstract class ProxmoxBaseStreamBuilder<B extends ProxmoxBaseBloc<dynamic, S>,
     S extends PveBaseState?> extends StatefulWidget {
   final B? bloc;
   final bool? errorHandler;
-  const ProxmoxBaseStreamBuilder({Key? key, this.bloc, this.errorHandler})
-      : super(key: key);
+  const ProxmoxBaseStreamBuilder({super.key, this.bloc, this.errorHandler});
 
   Widget build(BuildContext context, S state);
 
@@ -28,7 +27,7 @@ class _ProxmoxBaseStreamBuilderState<B extends ProxmoxBaseBloc<dynamic, S>,
     return StreamListener<S>(
       stream: widget.bloc!.state,
       onStateChange: (newState) {
-        if (newState.isFailure && widget.errorHandler!)
+        if (newState.isFailure && widget.errorHandler!) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -38,6 +37,7 @@ class _ProxmoxBaseStreamBuilderState<B extends ProxmoxBaseBloc<dynamic, S>,
               backgroundColor: ThemeData.dark().colorScheme.error,
             ),
           );
+        }
       },
       child: StreamBuilder<S>(
           stream: widget.bloc!.state,
@@ -57,12 +57,11 @@ class ProxmoxStreamBuilder<B extends ProxmoxBaseBloc<dynamic, S>,
   final AsyncWidgetBuilder<S> builder;
 
   const ProxmoxStreamBuilder({
-    Key? key,
+    super.key,
     required this.builder,
-    B? bloc,
-    bool errorHandler = true,
-  })  : assert(builder != null),
-        super(key: key, bloc: bloc, errorHandler: errorHandler);
+    super.bloc,
+    bool super.errorHandler = true,
+  }) : assert(builder != null);
 
   @override
   Widget build(BuildContext context, S state) => builder(context, state);

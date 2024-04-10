@@ -12,13 +12,13 @@ class PveTaskExpansionTile extends StatefulWidget {
   final Color? headerColorExpanded;
   final Widget? showMorePage;
   const PveTaskExpansionTile({
-    Key? key,
+    super.key,
     required this.task,
     this.showMorePage,
     this.errorColor,
     this.headerColor,
     this.headerColorExpanded,
-  }) : super(key: key);
+  });
 
   final PveClusterTasksModel task;
 
@@ -101,7 +101,7 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
           ),
         ListTile(
           leading: const Icon(Icons.description),
-          title: Text("${widget.task.status}"),
+          title: Text(widget.task.status),
           dense: true,
           subtitle: const Text('Shortlog'),
         ),

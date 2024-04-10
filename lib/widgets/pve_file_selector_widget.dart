@@ -18,11 +18,11 @@ class PveFileSelector extends StatefulWidget {
   final bool isSelector;
 
   const PveFileSelector({
-    Key? key,
+    super.key,
     this.fBloc,
     this.sBloc,
     this.isSelector = false,
-  }) : super(key: key);
+  });
   @override
   _PveFileSelectorState createState() => _PveFileSelectorState();
 }
@@ -59,11 +59,11 @@ class PveFileSelectorWidget extends StatelessWidget {
   final bool isSelector;
 
   const PveFileSelectorWidget({
-    Key? key,
+    super.key,
     required this.fBloc,
     required this.sBloc,
     this.isSelector = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -207,8 +207,7 @@ class PveStorageCardIcon extends StatelessWidget {
   final bool selected;
   final IconData? icon;
 
-  const PveStorageCardIcon({Key? key, this.selected = false, this.icon})
-      : super(key: key);
+  const PveStorageCardIcon({super.key, this.selected = false, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -226,13 +225,13 @@ class PveStorageCardIcon extends StatelessWidget {
 
 class PveStorageCard extends StatelessWidget {
   const PveStorageCard({
-    Key? key,
+    super.key,
     required this.isSelected,
     required this.sBloc,
     required this.storage,
     required this.storageIcon,
     this.width = 300,
-  }) : super(key: key);
+  });
 
   final bool isSelected;
   final PveStorageSelectorBloc? sBloc;
@@ -330,12 +329,12 @@ class FileSelectorContentView extends StatelessWidget {
   final bool storageSelected;
 
   const FileSelectorContentView({
-    Key? key,
+    super.key,
     this.gridView,
     this.content,
     this.isSelector = false,
     this.storageSelected = false,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     if (content == null) {

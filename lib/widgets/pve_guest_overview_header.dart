@@ -14,7 +14,7 @@ import 'package:pve_flutter_frontend/utils/utils.dart';
 
 class PveGuestOverviewHeader extends StatelessWidget {
   const PveGuestOverviewHeader({
-    Key? key,
+    super.key,
     required this.width,
     required this.guestID,
     required this.guestStatus,
@@ -24,8 +24,7 @@ class PveGuestOverviewHeader extends StatelessWidget {
     required this.template,
     required this.ha,
     this.background,
-  })  : assert(guestName != null),
-        super(key: key);
+  }) : assert(guestName != null);
 
   final double width;
   final String guestID;
@@ -150,7 +149,7 @@ class PveGuestOverviewHeader extends StatelessWidget {
 class PveGuestHeaderRRDPageView extends StatefulWidget {
   final BuiltList<PveGuestRRDdataModel>? rrdData;
 
-  PveGuestHeaderRRDPageView({Key? key, this.rrdData}) : super(key: key);
+  const PveGuestHeaderRRDPageView({super.key, this.rrdData});
 
   @override
   _PveGuestHeaderRRDPageViewState createState() =>
@@ -201,7 +200,7 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
                     titleWidth: 150,
                     titleAlginment: CrossAxisAlignment.end,
                     title: 'CPU (${rrdData.last.maxcpu ?? '-'})',
-                    subtitle: (rrdData.last.cpu ?? 0).toStringAsFixed(2) + "%",
+                    subtitle: "${(rrdData.last.cpu ?? 0).toStringAsFixed(2)}%",
                     data: rrdData.where((e) => e.cpu != null).map(
                         (e) => Point(e.time!.millisecondsSinceEpoch, e.cpu!)),
                     icon: Icon(Icons.memory, color: fgColor),

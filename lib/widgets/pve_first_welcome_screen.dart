@@ -11,6 +11,8 @@ import 'package:pve_flutter_frontend/widgets/firstWelcomeScreen/pve_welcome_ssl_
 import 'package:pve_flutter_frontend/widgets/firstWelcomeScreen/pve_welcome_last.dart';
 
 class PveWelcome extends StatefulWidget {
+  const PveWelcome({super.key});
+
   @override
   _PveWelcomeState createState() => _PveWelcomeState();
 }
@@ -81,7 +83,6 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
       );
     } else {
       return TextButton(
-        child: const Text("Next"),
         style: TextButton.styleFrom(
           foregroundColor: _buttonTextColor,
           disabledForegroundColor: _buttonDisabledTextColor,
@@ -90,6 +91,7 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
           _controller!
               .nextPage(duration: _pageChangeDuration, curve: _pageChangeCurve);
         },
+        child: const Text("Next"),
       );
     }
   }

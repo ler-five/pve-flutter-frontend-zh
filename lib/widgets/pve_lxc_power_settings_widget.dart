@@ -7,7 +7,7 @@ import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart'
 class PveLxcPowerSettings extends StatelessWidget {
   final PveLxcOverviewBloc? lxcBloc;
 
-  const PveLxcPowerSettings({Key? key, this.lxcBloc}) : super(key: key);
+  const PveLxcPowerSettings({super.key, this.lxcBloc});
   @override
   Widget build(BuildContext context) {
     return ProxmoxStreamBuilder<PveLxcOverviewBloc, PveLxcOverviewState>(

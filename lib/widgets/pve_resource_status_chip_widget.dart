@@ -10,14 +10,14 @@ class StatusChip extends StatelessWidget {
 
   final Color onlineColor;
   const StatusChip({
-    Key? key,
+    super.key,
     this.status,
     this.fontzsize = 12,
     this.fontWeight = FontWeight.normal,
     this.offlineColor = Colors.grey,
     this.onlineColor = const Color(0xFF21bf4b),
     this.intermediateColor = Colors.orange,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

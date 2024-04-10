@@ -79,9 +79,8 @@ class MyApp extends StatelessWidget {
   final SharedPreferences sharedPreferences;
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  MyApp({Key? key, this.authbloc, required this.sharedPreferences})
-      : assert(sharedPreferences != null),
-        super(key: key);
+  MyApp({super.key, this.authbloc, required this.sharedPreferences})
+      : assert(sharedPreferences != null);
 
   @override
   Widget build(BuildContext context) {

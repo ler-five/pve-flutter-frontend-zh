@@ -9,11 +9,11 @@ class ProxmoxHeartbeatIndicator extends StatelessWidget {
   final Color? warningColor;
 
   const ProxmoxHeartbeatIndicator({
-    Key? key,
+    super.key,
     required this.isHealthy,
     this.healthyColor,
     this.warningColor,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     return CustomPaint(

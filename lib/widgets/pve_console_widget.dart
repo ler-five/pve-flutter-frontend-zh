@@ -7,8 +7,7 @@ class PveConsoleWidget extends StatelessWidget {
   static const routeName = '/console';
   final String? vmid;
   final String nodeid;
-  const PveConsoleWidget({Key? key, this.vmid, required this.nodeid})
-      : super(key: key);
+  const PveConsoleWidget({super.key, this.vmid, required this.nodeid});
 
   @override
   Widget build(BuildContext context) {

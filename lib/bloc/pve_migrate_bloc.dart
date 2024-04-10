@@ -115,7 +115,7 @@ class PveMigrateBloc extends ProxmoxBaseBloc<PveMigrateEvent, PveMigrateState> {
     qPreconditions.localDisks!.forEach((d) {
       var disk = d.asMap;
       if (disk['cdrom'] == 1) {
-        if (disk['volid'].contains('vm-' + guestID + '-cloudinit')) {
+        if (disk['volid'].contains('vm-$guestID-cloudinit')) {
           if (qPreconditions.running!) {
             preconditions.add(PveMigrateCondition((b) => b
               ..severity = PveMigrateSeverity.error
@@ -132,8 +132,8 @@ class PveMigrateBloc extends ProxmoxBaseBloc<PveMigrateEvent, PveMigrateState> {
       } else {
         preconditions.add(PveMigrateCondition((b) => b
           ..severity = PveMigrateSeverity.warning
-          ..message = "Migration with local disk might take long: " +
-              Renderers.formatSize(disk['size'])));
+          ..message =
+              "Migration with local disk might take long: ${Renderers.formatSize(disk['size'])}"));
       }
     });
 

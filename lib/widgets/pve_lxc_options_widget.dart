@@ -7,7 +7,7 @@ import 'package:pve_flutter_frontend/widgets/pve_config_switch_list_tile.dart';
 class PveLxcOptions extends StatelessWidget {
   final PveLxcOverviewBloc? lxcBloc;
 
-  const PveLxcOptions({Key? key, this.lxcBloc}) : super(key: key);
+  const PveLxcOptions({super.key, this.lxcBloc});
   @override
   Widget build(BuildContext context) {
     return ProxmoxStreamBuilder<PveLxcOverviewBloc, PveLxcOverviewState>(

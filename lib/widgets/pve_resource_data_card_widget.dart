@@ -11,7 +11,7 @@ class PveResourceDataCardWidget extends StatelessWidget {
   final List<Widget> children;
 
   const PveResourceDataCardWidget({
-    Key? key,
+    super.key,
     this.showTitleTrailing = false,
     required this.title,
     this.titleTrailing,
@@ -19,7 +19,7 @@ class PveResourceDataCardWidget extends StatelessWidget {
     required this.children,
     this.padding = const EdgeInsets.all(8.0),
     this.expandable = false,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);

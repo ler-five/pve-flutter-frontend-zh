@@ -11,7 +11,7 @@ class ProxmoxCapacityIndicator extends StatelessWidget {
   final bool selected;
 
   const ProxmoxCapacityIndicator(
-      {Key? key,
+      {super.key,
       this.icon,
       required this.totalValue,
       required this.usedValue,
@@ -19,8 +19,7 @@ class ProxmoxCapacityIndicator extends StatelessWidget {
       this.selected = false,
       this.indicatorBackgroundColor,
       this.textColor,
-      this.valueColor})
-      : super(key: key);
+      this.valueColor});
 
   @override
   Widget build(BuildContext context) {

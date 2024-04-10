@@ -68,6 +68,5 @@ class OnChanged extends PveGuestIdSelectorEvent {
 }
 
 class GuestIdSelectorState extends PveFormFieldState<String?> {
-  GuestIdSelectorState({String? value, String? errorText})
-      : super(value: value, errorText: errorText);
+  GuestIdSelectorState({super.value, super.errorText});
 }

@@ -26,6 +26,5 @@ class OnChange extends PveVmNameEvent {
 }
 
 class PveVmNameState extends PveFormFieldState<String?> {
-  PveVmNameState({String? value, String? errorText})
-      : super(value: value, errorText: errorText);
+  PveVmNameState({super.value, super.errorText});
 }

@@ -8,7 +8,7 @@ import 'package:pve_flutter_frontend/widgets/pve_config_switch_list_tile.dart';
 class PveQemuOptions extends StatelessWidget {
   final String guestID;
   final _formKey = GlobalKey<FormState>();
-  PveQemuOptions({Key? key, required this.guestID}) : super(key: key);
+  PveQemuOptions({super.key, required this.guestID});
 
   @override
   Widget build(BuildContext context) {

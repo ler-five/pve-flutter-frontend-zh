@@ -14,7 +14,7 @@ import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
 class PveMigrateStreamConnector extends StatelessWidget {
   final Widget? child;
 
-  const PveMigrateStreamConnector({Key? key, this.child}) : super(key: key);
+  const PveMigrateStreamConnector({super.key, this.child});
   @override
   Widget build(BuildContext context) {
     final mBloc = Provider.of<PveMigrateBloc>(context);

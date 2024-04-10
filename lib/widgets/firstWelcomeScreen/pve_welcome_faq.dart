@@ -6,8 +6,8 @@ import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
 // FAQ
 class PveWelcomePageFAQ extends StatelessWidget {
   const PveWelcomePageFAQ({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +47,11 @@ class PveWelcomePageFAQ extends StatelessWidget {
                 launch(
                     'https://play.google.com/store/apps/details?id=com.undatech.opaque')
               },
-              child: const Text('Opaque'),
               style: OutlinedButton.styleFrom(
                 side: BorderSide(color: ProxmoxColors.supportGrey),
                 foregroundColor: Colors.white,
               ),
+              child: const Text('Opaque'),
             ),
           ),
         ],

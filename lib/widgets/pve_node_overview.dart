@@ -24,9 +24,9 @@ class PveNodeOverview extends StatelessWidget {
   final String nodeID;
 
   Icon getServiceStateIcon(BuildContext context, PveNodeServicesModel s) {
-    if (s.state == 'running')
+    if (s.state == 'running') {
       return Icon(Icons.play_arrow, color: Colors.green[400]);
-    else if (s.unitState == 'masked' || s.unitState == 'not-found')
+    } else if (s.unitState == 'masked' || s.unitState == 'not-found')
       return Icon(
         Icons.play_disabled,
         color: IconTheme.of(context).color!.withOpacity(0.75),
@@ -35,7 +35,7 @@ class PveNodeOverview extends StatelessWidget {
       return Icon(Icons.stop, color: Theme.of(context).colorScheme.error);
   }
 
-  const PveNodeOverview({Key? key, required this.nodeID}) : super(key: key);
+  const PveNodeOverview({super.key, required this.nodeID});
   @override
   Widget build(BuildContext context) {
     final nBloc = Provider.of<PveNodeOverviewBloc>(context);
@@ -52,7 +52,7 @@ class PveNodeOverview extends StatelessWidget {
               //backgroundColor: Colors.transparent,
               elevation: 0,
               title: Text(
-                "Node ${nodeID}",
+                "Node $nodeID",
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 maxLines: 2,
@@ -284,8 +284,8 @@ class PveNodeOverview extends StatelessWidget {
                         .map(
                           (s) => ListTile(
                             dense: true,
-                            title: Text('${s.name}'),
-                            subtitle: Text('${s.desc}'),
+                            title: Text(s.name),
+                            subtitle: Text(s.desc),
                             trailing: getServiceStateIcon(context, s),
                           ),
                         )
@@ -320,7 +320,7 @@ class PveNodeOverview extends StatelessWidget {
                         .map(
                           (s) => ListTile(
                             dense: true,
-                            title: Text('${s.title}'),
+                            title: Text(s.title),
                             subtitle: Text(
                                 '${s.package}: ${s.oldVersion ?? ''} -> ${s.version}'),
                             trailing: IconButton(

@@ -4,7 +4,7 @@ import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
 
 // goodbye
 class PveWelcomePageLast extends StatelessWidget {
-  const PveWelcomePageLast({Key? key, this.onDone}) : super(key: key);
+  const PveWelcomePageLast({super.key, this.onDone});
 
   final VoidCallback? onDone;
 
@@ -62,24 +62,24 @@ class PveWelcomePageLast extends StatelessWidget {
                             OutlinedButton(
                               onPressed: () =>
                                   {launch('https://forum.proxmox.com')},
-                              child: const Text('Forum'),
                               style: OutlinedButton.styleFrom(
                                 side: BorderSide(
                                     color: ProxmoxColors.supportGrey),
                                 foregroundColor: Colors.white,
                               ),
+                              child: const Text('Forum'),
                             ),
                             OutlinedButton(
                               onPressed: () => {
                                 launch(
                                     'https://lists.proxmox.com/cgi-bin/mailman/listinfo/pve-user')
                               },
-                              child: const Text('User Mailing List'),
                               style: OutlinedButton.styleFrom(
                                 side: BorderSide(
                                     color: ProxmoxColors.supportGrey),
                                 foregroundColor: Colors.white,
                               ),
+                              child: const Text('User Mailing List'),
                             ),
                           ],
                         ),

@@ -7,6 +7,8 @@ import 'package:pve_flutter_frontend/states/pve_resource_state.dart';
 import 'package:pve_flutter_frontend/utils/renderers.dart';
 
 class PveResourceOverview extends StatelessWidget {
+  const PveResourceOverview({super.key});
+
   @override
   Widget build(BuildContext context) {
     final rbloc = Provider.of<PveResourceBloc>(context);

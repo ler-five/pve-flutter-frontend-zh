@@ -12,7 +12,7 @@ import 'package:pve_flutter_frontend/widgets/pve_guest_migration_connector_widge
 import 'package:pve_flutter_frontend/widgets/pve_help_icon_button_widget.dart';
 
 class PveGuestMigrate extends StatelessWidget {
-  PveGuestMigrate({Key? key}) : super(key: key);
+  const PveGuestMigrate({super.key});
   @override
   Widget build(BuildContext context) {
     final migrateBloc = Provider.of<PveMigrateBloc>(context);
@@ -142,13 +142,13 @@ class PveGuestMigrate extends StatelessWidget {
 
 class _MigrateTargetSelector extends StatelessWidget {
   const _MigrateTargetSelector({
-    Key? key,
+    super.key,
     required this.nodeSelectorbloc,
     required this.migrateBloc,
     required this.disabled,
     required this.titleColor,
     required this.iconEnabledColor,
-  }) : super(key: key);
+  });
 
   final PveNodeSelectorBloc nodeSelectorbloc;
   final PveMigrateBloc migrateBloc;
@@ -175,6 +175,7 @@ class _MigrateTargetSelector extends StatelessWidget {
             iconEnabledColor: iconEnabledColor,
             items: state.availableNodes
                 .map((item) => DropdownMenuItem(
+                      value: item.nodeName,
                       child: ListTile(
                         leading: const Icon(
                           Icons.storage,
@@ -185,7 +186,6 @@ class _MigrateTargetSelector extends StatelessWidget {
                         subtitle: Text(
                             'CPU: ${item.renderCpuUsage()}\nMemory: ${item.renderMemoryUsagePercent()}'),
                       ),
-                      value: item.nodeName,
                     ))
                 .toList(),
             selectedItemBuilder: (context) =>
@@ -209,7 +209,7 @@ class _MigrateTargetSelector extends StatelessWidget {
 
   // you ask why? if not, the height of the dropdown isn't constant
   List<Widget> getSelectedItem(List<PveNodesModel> nodes) {
-    if (nodes.isNotEmpty)
+    if (nodes.isNotEmpty) {
       return nodes
           .map((item) => Row(children: [
                 Text(
@@ -221,6 +221,7 @@ class _MigrateTargetSelector extends StatelessWidget {
                 )
               ]))
           .toList();
+    }
     return [const Text('')];
   }
 }

@@ -12,11 +12,11 @@ class PveStorageSelectorDropdown extends StatelessWidget {
   final PveStorageSelectorBloc? sBloc;
   final bool allowBlank;
   const PveStorageSelectorDropdown({
-    Key? key,
+    super.key,
     this.labelText,
     this.sBloc,
     this.allowBlank = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +34,7 @@ class PveStorageSelectorDropdown extends StatelessWidget {
           items: <DropdownMenuItem<PveNodesStorageModel>>[
             for (var storage in state.storages)
               DropdownMenuItem(
+                value: storage,
                 child: ListTile(
                   title: Text(storage.id),
                   leading: Container(
@@ -58,7 +59,6 @@ class PveStorageSelectorDropdown extends StatelessWidget {
                     selected: false,
                   ),
                 ),
-                value: storage,
               )
           ],
           onChanged: (PveNodesStorageModel? selectedStorage) =>

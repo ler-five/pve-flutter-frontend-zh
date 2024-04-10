@@ -38,8 +38,7 @@ class PveGuestOsSelectorBloc
 }
 
 class PveGuestOsSelectorState extends PveFormFieldState<OSType?> {
-  PveGuestOsSelectorState({OSType? value, String? errorText})
-      : super(value: value, errorText: errorText);
+  PveGuestOsSelectorState({super.value, super.errorText});
 
   PveGuestOsSelectorState copyWith(
       {String? os, OSType? value, String? errorText}) {

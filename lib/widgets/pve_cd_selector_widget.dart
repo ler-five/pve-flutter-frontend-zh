@@ -10,6 +10,8 @@ import 'package:pve_flutter_frontend/widgets/pve_file_selector_widget.dart';
 import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
 
 class PveCdSelector extends StatelessWidget {
+  const PveCdSelector({super.key});
+
   @override
   Widget build(BuildContext context) {
     final client = Provider.of<ProxmoxApiClient>(context);

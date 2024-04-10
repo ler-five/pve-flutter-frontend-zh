@@ -22,10 +22,7 @@ class Renderers {
       converted = converted / 1024;
     }
 
-    return converted.toStringAsFixed((num > 0) ? 2 : 0) +
-        " " +
-        units[num] +
-        "B";
+    return "${converted.toStringAsFixed((num > 0) ? 2 : 0)} ${units[num]}B";
   }
 
   static String renderStorageContent(PveNodesStorageContentModel content) {

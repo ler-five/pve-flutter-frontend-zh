@@ -6,6 +6,8 @@ import 'package:pve_flutter_frontend/bloc/pve_guest_os_selector_bloc.dart';
 import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
 
 class PveGuestOsSelector extends StatelessWidget {
+  const PveGuestOsSelector({super.key});
+
   @override
   Widget build(BuildContext context) {
     final gBloc = Provider.of<PveGuestOsSelectorBloc>(context);

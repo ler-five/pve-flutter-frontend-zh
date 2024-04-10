@@ -9,14 +9,14 @@ class PveConfigSwitchListTile extends StatelessWidget {
   final VoidCallback? onDeleted;
 
   const PveConfigSwitchListTile({
-    Key? key,
+    super.key,
     this.value,
     this.pending,
     this.defaultValue,
     this.title,
     this.onChanged,
     this.onDeleted,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     var pBool;

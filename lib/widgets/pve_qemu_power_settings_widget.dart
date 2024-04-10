@@ -8,8 +8,8 @@ import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart'
 
 class PveQemuPowerSettings extends StatelessWidget {
   const PveQemuPowerSettings({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<PveQemuOverviewBloc>(context);

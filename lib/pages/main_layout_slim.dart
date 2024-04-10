@@ -32,6 +32,8 @@ import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MainLayoutSlim extends StatefulWidget {
+  const MainLayoutSlim({super.key});
+
   @override
   _MainLayoutSlimState createState() => _MainLayoutSlimState();
 }
@@ -111,6 +113,8 @@ class _MainLayoutSlimState extends State<MainLayoutSlim> {
 }
 
 class PveMobileBottomNavigationbar extends StatelessWidget {
+  const PveMobileBottomNavigationbar({super.key});
+
   @override
   Widget build(BuildContext context) {
     final pageSelector = Provider.of<BehaviorSubject<int>>(context);
@@ -151,6 +155,8 @@ class PveMobileBottomNavigationbar extends StatelessWidget {
 }
 
 class MobileDashboard extends StatelessWidget {
+  const MobileDashboard({super.key});
+
   @override
   Widget build(BuildContext context) {
     final cBloc = Provider.of<PveClusterStatusBloc>(context);
@@ -185,7 +191,7 @@ class MobileDashboard extends StatelessWidget {
               baseUrl: (Provider.of<PveResourceBloc>(context)
                       .apiClient
                       ?.credentials
-                      ?.apiBaseUrl) ??
+                      .apiBaseUrl) ??
                   Uri.parse('https://pve.proxmox.com'),
               docPath: 'index.html'),
         ],
@@ -553,13 +559,12 @@ class PveNodeListTile extends StatelessWidget {
   final String? level;
   final String? ip;
   const PveNodeListTile(
-      {Key? key,
+      {super.key,
       required this.name,
       required this.online,
       required this.type,
       this.level,
-      this.ip = ''})
-      : super(key: key);
+      this.ip = ''});
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -575,13 +580,15 @@ class PveNodeListTile extends StatelessWidget {
 
   String getNodeTileSubtitle(bool online, String? level, String? ip) {
     if (online) {
-      return '$ip - ' + Renderers.renderSupportLevel(level);
+      return '$ip - ${Renderers.renderSupportLevel(level)}';
     }
     return 'offline';
   }
 }
 
 class MobileResourceOverview extends StatelessWidget {
+  const MobileResourceOverview({super.key});
+
   @override
   Widget build(BuildContext context) {
     final rBloc = Provider.of<PveResourceBloc>(context);
@@ -676,9 +683,9 @@ class MobileResourceOverview extends StatelessWidget {
 
 class PveGuestListTile extends StatelessWidget {
   const PveGuestListTile({
-    Key? key,
+    super.key,
     required this.resource,
-  }) : super(key: key);
+  });
 
   final PveClusterResourcesModel resource;
 
@@ -715,9 +722,9 @@ class PveGuestListTile extends StatelessWidget {
 
 class PveStorageListeTile extends StatelessWidget {
   const PveStorageListeTile({
-    Key? key,
+    super.key,
     required this.resource,
-  }) : super(key: key);
+  });
 
   final PveClusterResourcesModel resource;
 
@@ -776,7 +783,7 @@ class PveStorageListeTile extends StatelessWidget {
 class AppbarSearchTextField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
 
-  const AppbarSearchTextField({Key? key, this.onChanged}) : super(key: key);
+  const AppbarSearchTextField({super.key, this.onChanged});
   @override
   _AppbarSearchTextFieldState createState() => _AppbarSearchTextFieldState();
 }
@@ -1010,6 +1017,8 @@ class _MobileResourceFilterSheet extends StatelessWidget {
 }
 
 class AppBarFilterIconButton extends StatelessWidget {
+  const AppBarFilterIconButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     final rBloc = Provider.of<PveResourceBloc>(context);
@@ -1034,6 +1043,8 @@ class AppBarFilterIconButton extends StatelessWidget {
 }
 
 class MobileAccessManagement extends StatelessWidget {
+  const MobileAccessManagement({super.key});
+
   @override
   Widget build(BuildContext context) {
     final aBloc = Provider.of<PveAccessManagementBloc>(context);

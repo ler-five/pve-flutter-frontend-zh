@@ -13,7 +13,7 @@ class Dot extends StatelessWidget {
   final void Function(int? index)? onTap;
 
   const Dot({
-    Key? key,
+    super.key,
     this.dotSpacing,
     this.dotSize,
     this.zoom,
@@ -22,7 +22,7 @@ class Dot extends StatelessWidget {
     this.color,
     this.index,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +32,6 @@ class Dot extends StatelessWidget {
         child: Container(
           width: dotSize! * zoom!,
           height: dotSize! * zoom!,
-          child: GestureDetector(
-            onTap: () => onTap!(index),
-          ),
           decoration: BoxDecoration(
             color: color,
             shape: BoxShape.circle,
@@ -46,6 +43,9 @@ class Dot extends StatelessWidget {
                   offset: const Offset(0.0, 0.0))
             ],
           ),
+          child: GestureDetector(
+            onTap: () => onTap!(index),
+          ),
         ),
       ),
     );
@@ -53,7 +53,8 @@ class Dot extends StatelessWidget {
 }
 
 class DotIndicator extends AnimatedWidget {
-  DotIndicator({
+  const DotIndicator({
+    super.key,
     required this.controller,
     this.itemCount,
     this.onPageSelected,
@@ -85,7 +86,7 @@ class DotIndicator extends AnimatedWidget {
     double zoom = 1.0 + (_maxZoom - 1.0) * selectedness;
     double shadowBlurRadius = 4.0 * selectedness;
     double shadowSpreadRadius = 1.0 * selectedness;
-    return new Dot(
+    return Dot(
       color: color,
       shadowBlurRadius: shadowBlurRadius,
       shadowSpreadRadius: shadowSpreadRadius,

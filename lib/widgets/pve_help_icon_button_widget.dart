@@ -7,10 +7,10 @@ class PveHelpIconButton extends StatelessWidget {
   final Uri baseUrl;
 
   const PveHelpIconButton({
-    Key? key,
+    super.key,
     required this.baseUrl,
     this.docPath,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

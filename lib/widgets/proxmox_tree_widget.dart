@@ -28,9 +28,9 @@ class ProxmoxTreeItem {
 class ProxmoxTreeWidget extends StatefulWidget {
   final List<ProxmoxTreeItem>? data;
   const ProxmoxTreeWidget({
-    Key? key,
+    super.key,
     this.data,
-  }) : super(key: key);
+  });
 
   @override
   _ProxmoxTreeWidgetState createState() => _ProxmoxTreeWidgetState();
@@ -41,7 +41,7 @@ class _ProxmoxTreeWidgetState extends State<ProxmoxTreeWidget> {
 
   Widget _buildTiles(ProxmoxTreeItem root) {
     assert(root != null);
-    if (root.children.isEmpty)
+    if (root.children.isEmpty) {
       return Padding(
         padding: const EdgeInsets.only(left: 8),
         child: ListTile(
@@ -58,16 +58,17 @@ class _ProxmoxTreeWidgetState extends State<ProxmoxTreeWidget> {
             onTap:
                 root.callback != null ? () => root.callback!(root.id) : null),
       );
+    }
     return Padding(
       padding: const EdgeInsets.only(left: 8),
       child: ExpansionTile(
         key: PageStorageKey<String?>(root.id),
         title: Text(root.headerValue!),
         leading: root.icon,
-        children: root.children.map<Widget>(_buildTiles).toList(),
         onExpansionChanged: root.callback != null
             ? (isExpaned) => root.callback!(root.id)
             : null,
+        children: root.children.map<Widget>(_buildTiles).toList(),
       ),
     );
   }

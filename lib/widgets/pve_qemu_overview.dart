@@ -35,7 +35,7 @@ class PveQemuOverview extends StatelessWidget {
   static final routeName = RegExp(r"\/nodes\/(\S+)\/qemu\/(\d+)");
   final String guestID;
 
-  const PveQemuOverview({Key? key, required this.guestID}) : super(key: key);
+  const PveQemuOverview({super.key, required this.guestID});
 
   ActionCard createActionCard(String title, IconData icon, Function onTap) {
     return ActionCard(

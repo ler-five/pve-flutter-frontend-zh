@@ -47,7 +47,7 @@ class PveLxcOverview extends StatelessWidget {
     );
   }
 
-  const PveLxcOverview({Key? key, required this.guestID}) : super(key: key);
+  const PveLxcOverview({super.key, required this.guestID});
   @override
   Widget build(BuildContext context) {
     final lxcBloc = Provider.of<PveLxcOverviewBloc>(context);
@@ -229,7 +229,7 @@ class PveLxcOverview extends StatelessWidget {
                                   leading:
                                       const Icon(FontAwesomeIcons.ethernet),
                                   dense: true,
-                                  title: Text('$net'),
+                                  title: Text(net),
                                 ),
                             ]),
                         PveResourceDataCardWidget(

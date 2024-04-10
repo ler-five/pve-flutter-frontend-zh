@@ -19,13 +19,13 @@ class PveConsoleMenu extends StatelessWidget {
   final String type;
 
   const PveConsoleMenu({
-    Key? key,
+    super.key,
     required this.apiClient,
     this.guestID,
     required this.node,
     required this.type,
     this.allowSpice = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -199,12 +199,12 @@ class PVEWebConsole extends StatefulWidget {
   final String? type;
 
   const PVEWebConsole({
-    Key? key,
+    super.key,
     required this.apiClient,
     required this.node,
     this.guestID,
     this.type,
-  }) : super(key: key);
+  });
 
   @override
   PVEWebConsoleState createState() => PVEWebConsoleState();

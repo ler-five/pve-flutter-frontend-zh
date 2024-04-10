@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 
 class ClusterStatus extends StatelessWidget {
   const ClusterStatus(
-      {Key? key,
+      {super.key,
       required this.isHealthy,
       this.healthyColor = Colors.greenAccent,
       this.warningColor = Colors.orangeAccent,
       this.backgroundColor = Colors.transparent,
-      this.version})
-      : super(key: key);
+      this.version});
 
   final bool isHealthy;
   final String? version;
@@ -21,7 +20,7 @@ class ClusterStatus extends StatelessWidget {
     return AnimatedContainer(
       width: 150.0,
       height: 150.0,
-      decoration: new BoxDecoration(
+      decoration: BoxDecoration(
         color: backgroundColor,
         shape: BoxShape.circle,
         border: Border.all(

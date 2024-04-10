@@ -18,8 +18,7 @@ import 'package:pve_flutter_frontend/widgets/pve_storage_selector_widget.dart';
 class PveGuestBackupWidget extends StatelessWidget {
   final String guestID;
 
-  const PveGuestBackupWidget({Key? key, required this.guestID})
-      : super(key: key);
+  const PveGuestBackupWidget({super.key, required this.guestID});
 
   @override
   Widget build(BuildContext context) {
@@ -176,10 +175,10 @@ class PveGuestBackupContent extends StatelessWidget {
   final bool? storageSelected;
 
   const PveGuestBackupContent({
-    Key? key,
+    super.key,
     this.content,
     this.storageSelected,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     final fBloc = Provider.of<PveFileSelectorBloc>(context);
@@ -339,11 +338,11 @@ class PveConfigurationDialog extends StatefulWidget {
   final String? volume;
 
   const PveConfigurationDialog({
-    Key? key,
+    super.key,
     required this.apiClient,
     required this.targetNode,
     required this.volume,
-  }) : super(key: key);
+  });
   @override
   _PveConfigurationDialogState createState() => _PveConfigurationDialogState();
 }
@@ -387,8 +386,7 @@ class PveBackupForm extends StatefulWidget {
   final PveStorageSelectorBloc sBloc;
   final String guestID;
 
-  const PveBackupForm({Key? key, required this.sBloc, required this.guestID})
-      : super(key: key);
+  const PveBackupForm({super.key, required this.sBloc, required this.guestID});
 
   @override
   _PveBackupFormState createState() => _PveBackupFormState();
@@ -539,8 +537,8 @@ class _PveBackupFormState extends State<PveBackupForm> {
       items: <DropdownMenuItem<PveVZDumpModeType>>[
         for (var mode in PveVZDumpModeType.values)
           DropdownMenuItem(
-            child: Text(mode.name.toUpperCase()),
             value: mode,
+            child: Text(mode.name.toUpperCase()),
           )
       ],
       onChanged: (PveVZDumpModeType? selection) => setState(() {
@@ -560,8 +558,8 @@ class _PveBackupFormState extends State<PveBackupForm> {
       items: <DropdownMenuItem<PveVZDumpCompressionType>>[
         for (var comp in compTypes)
           DropdownMenuItem(
-            child: Text(comp['name'] as String),
             value: comp['type'] as PveVZDumpCompressionType?,
+            child: Text(comp['name'] as String),
           )
       ],
       onChanged: (PveVZDumpCompressionType? selection) => setState(() {

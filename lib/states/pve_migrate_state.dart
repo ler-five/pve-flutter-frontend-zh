@@ -71,7 +71,7 @@ class PveMigrationMode extends EnumClass {
   static const PveMigrationMode offline = _$offline;
   static const PveMigrationMode restart = _$restart;
 
-  const PveMigrationMode._(String name) : super(name);
+  const PveMigrationMode._(super.name);
 
   static BuiltSet<PveMigrationMode> get values => _$values;
   static PveMigrationMode valueOf(String name) => _$valueOf(name);
@@ -92,7 +92,7 @@ class PveMigrateSeverity extends EnumClass {
   static const PveMigrateSeverity warning = _$warning;
   static const PveMigrateSeverity error = _$error;
 
-  const PveMigrateSeverity._(String name) : super(name);
+  const PveMigrateSeverity._(super.name);
 
   static BuiltSet<PveMigrateSeverity> get values => _$sValues;
   static PveMigrateSeverity valueOf(String name) => _$sValueOf(name);

@@ -59,7 +59,7 @@ class ProxmoxGaugeChart extends StatefulWidget {
   final Color backgroundGroundColor;
 
   const ProxmoxGaugeChart({
-    Key? key,
+    super.key,
     this.value,
     this.maxValue,
     this.padding = const EdgeInsets.all(6.0),
@@ -67,7 +67,7 @@ class ProxmoxGaugeChart extends StatefulWidget {
     this.strokeWidth = 6,
     this.foreGroundColor = Colors.blue,
     this.backgroundGroundColor = Colors.black12,
-  }) : super(key: key);
+  });
   @override
   _ProxmoxGaugeChartState createState() => _ProxmoxGaugeChartState();
 }
@@ -156,13 +156,13 @@ class ProxmoxGaugeChartListTile extends StatelessWidget {
   final num? maxValue;
 
   const ProxmoxGaugeChartListTile({
-    Key? key,
+    super.key,
     this.title,
     this.subtitle,
     this.legend,
     this.value,
     this.maxValue,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     return Padding(

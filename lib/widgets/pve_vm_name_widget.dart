@@ -6,7 +6,7 @@ import 'package:pve_flutter_frontend/bloc/pve_vm_name_bloc.dart';
 class PveVmNameWidget extends StatelessWidget {
   final String labelText;
 
-  const PveVmNameWidget({Key? key, this.labelText = 'Name'}) : super(key: key);
+  const PveVmNameWidget({super.key, this.labelText = 'Name'});
   @override
   Widget build(BuildContext context) {
     final vBloc = Provider.of<PveVmNameBloc>(context);

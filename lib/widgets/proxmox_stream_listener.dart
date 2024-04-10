@@ -9,7 +9,7 @@ class StreamListener<T> extends StatefulWidget {
   final Stream<T> stream;
 
   const StreamListener({
-    Key? key,
+    super.key,
     required this.stream,
     required this.child,
     required this.onStateChange,

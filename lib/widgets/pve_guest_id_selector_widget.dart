@@ -8,10 +8,10 @@ import 'package:pve_flutter_frontend/states/proxmox_form_field_state.dart';
 class PveGuestIdSelector extends StatelessWidget {
   final String? labelText;
 
-  PveGuestIdSelector({
-    Key? key,
+  const PveGuestIdSelector({
+    super.key,
     this.labelText,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class PveGuestIdSelector extends StatelessWidget {
             // first build has no data
             key: state.value != null ? null : const ValueKey(1),
             decoration: InputDecoration(labelText: labelText, helperText: ' '),
-            initialValue: state?.value,
+            initialValue: state.value,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -36,7 +36,7 @@ class PveGuestIdSelector extends StatelessWidget {
               _pveGuestIdSelectorBloc.events.add(OnChanged(text));
             },
             validator: (_) {
-              return state?.errorText;
+              return state.errorText;
             },
           );
         });

@@ -6,8 +6,7 @@ class PveNetworkInterfaceModelSelector extends StatefulWidget {
   final String? initialSelection;
 
   const PveNetworkInterfaceModelSelector(
-      {Key? key, this.labelText, this.onChange, this.initialSelection})
-      : super(key: key);
+      {super.key, this.labelText, this.onChange, this.initialSelection});
   @override
   _PveNetworkInterfaceModelSelectorState createState() =>
       _PveNetworkInterfaceModelSelectorState();
@@ -31,14 +30,14 @@ class _PveNetworkInterfaceModelSelectorState
       ),
       items: models.keys
           .map((f) => DropdownMenuItem(
-                child: Text(models[f]!),
                 value: f,
+                child: Text(models[f]!),
               ))
           .toList(),
       selectedItemBuilder: (context) => models.keys
           .map((f) => DropdownMenuItem(
-                child: Text(models[f]!),
                 value: f,
+                child: Text(models[f]!),
               ))
           .toList(),
       onChanged: (String? selection) {

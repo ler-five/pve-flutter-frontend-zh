@@ -4,9 +4,9 @@ class PveQuestion extends StatelessWidget {
   final String? text;
 
   const PveQuestion({
-    Key? key,
+    super.key,
     this.text,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +27,10 @@ class PveAnswer extends StatelessWidget {
   final List<TextSpan>? spans;
 
   const PveAnswer({
-    Key? key,
+    super.key,
     required this.text,
     this.spans,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +50,9 @@ class PveAnswer extends StatelessWidget {
 class PveWelcomePageContent extends StatelessWidget {
   final Widget? child;
   const PveWelcomePageContent({
-    Key? key,
+    super.key,
     this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

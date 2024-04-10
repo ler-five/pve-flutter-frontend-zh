@@ -33,7 +33,7 @@ class PveBridgeSelectorBloc
           await apiClient.getNodeNetwork(targetNode, type: bridgeType);
       yield PveBridgeSelectorState(
           bridges: bridges,
-          selectedBridge: bridges?.first,
+          selectedBridge: bridges.first,
           error: bridges.isEmpty ? "No bridges available" : null);
     }
 

@@ -10,13 +10,13 @@ class PveGuestIcon extends StatelessWidget {
   final Color templateColor;
 
   const PveGuestIcon({
-    Key? key,
+    super.key,
     required this.type,
     this.template = false,
     required this.status,
     this.color = Colors.grey,
     this.templateColor = Colors.black,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
