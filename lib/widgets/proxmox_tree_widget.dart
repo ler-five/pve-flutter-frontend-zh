@@ -40,7 +40,6 @@ class _ProxmoxTreeWidgetState extends State<ProxmoxTreeWidget> {
   late List<ProxmoxTreeItem> _data;
 
   Widget _buildTiles(ProxmoxTreeItem root) {
-    assert(root != null);
     if (root.children.isEmpty) {
       return Padding(
         padding: const EdgeInsets.only(left: 8),

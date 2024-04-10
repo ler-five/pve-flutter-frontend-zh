@@ -61,7 +61,7 @@ class ProxmoxStreamBuilder<B extends ProxmoxBaseBloc<dynamic, S>,
     required this.builder,
     super.bloc,
     bool super.errorHandler = true,
-  }) : assert(builder != null);
+  });
 
   @override
   Widget build(BuildContext context, S state) => builder(context, state);

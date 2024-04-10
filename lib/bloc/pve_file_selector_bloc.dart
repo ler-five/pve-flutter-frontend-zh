@@ -14,7 +14,7 @@ class PveFileSelectorBloc
   @override
   Stream<PveFileSelectorState> processEvents(event) async* {
     if (event is LoadStorageContent) {
-      if (latestState.nodeID != null && latestState.storageID != null) {
+      if (latestState.storageID != null) {
         final content = await loadStorageContent(latestState);
         yield latestState.rebuild((b) => b..content.replace(content));
       }

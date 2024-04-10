@@ -32,7 +32,6 @@ import 'package:pve_flutter_frontend/widgets/pve_qemu_overview.dart';
 import 'package:pve_flutter_frontend/widgets/pve_splash_screen.dart';
 import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final authBloc = PveAuthenticationBloc();
@@ -77,8 +76,7 @@ class MyApp extends StatelessWidget {
   final SharedPreferences sharedPreferences;
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  MyApp({super.key, this.authbloc, required this.sharedPreferences})
-      : assert(sharedPreferences != null);
+  MyApp({super.key, this.authbloc, required this.sharedPreferences});
 
   @override
   Widget build(BuildContext context) {

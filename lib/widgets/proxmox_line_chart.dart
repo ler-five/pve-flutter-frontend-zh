@@ -126,7 +126,6 @@ class ProxmoxLineChart extends CustomPainter {
 
     final List<Point> converted = [];
     data.asMap().forEach((i, e) {
-      if (e.y == null) return;
       final y = bottomY - (e.y / maxima * (bottomY));
       converted.add(Point(xDiff * i, y));
     });

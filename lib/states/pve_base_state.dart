@@ -4,5 +4,5 @@ mixin PveBaseState {
   bool get isBlank;
   bool get isSuccess;
 
-  bool get isFailure => errorMessage != null && errorMessage.isNotEmpty;
+  bool get isFailure => errorMessage.isNotEmpty;
 }

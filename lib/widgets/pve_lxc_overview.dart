@@ -106,8 +106,7 @@ class PveLxcOverview extends StatelessWidget {
                       ProxmoxStreamBuilder<PveTaskLogBloc, PveTaskLogState>(
                         bloc: taskBloc,
                         builder: (context, taskState) {
-                          if (taskState.tasks != null &&
-                              taskState.tasks.isNotEmpty) {
+                          if (taskState.tasks.isNotEmpty) {
                             return PveTaskExpansionTile(
                               task: taskState.tasks.first,
                               showMorePage: Provider<PveTaskLogBloc>(

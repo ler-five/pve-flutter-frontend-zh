@@ -15,7 +15,7 @@ class ProxmoxLayoutBuilder extends StatelessWidget {
   const ProxmoxLayoutBuilder({
     required this.builder,
     super.key,
-  }) : assert(builder != null);
+  });
 
   /// Builds the widgets below this widget given this widget's layout width.
   final ProxmoxLayoutLayoutWidgetBuilder builder;

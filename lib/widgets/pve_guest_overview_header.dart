@@ -23,7 +23,7 @@ class PveGuestOverviewHeader extends StatelessWidget {
     required this.template,
     required this.ha,
     this.background,
-  }) : assert(guestName != null);
+  });
 
   final double width;
   final String guestID;
