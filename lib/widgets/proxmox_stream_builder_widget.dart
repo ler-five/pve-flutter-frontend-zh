@@ -33,9 +33,9 @@ class _ProxmoxBaseStreamBuilderState<B extends ProxmoxBaseBloc<dynamic, S>,
             SnackBar(
               content: Text(
                 newState.errorMessage,
-                style: ThemeData.dark().textTheme.button,
+                style: ThemeData.dark().textTheme.labelLarge,
               ),
-              backgroundColor: ThemeData.dark().errorColor,
+              backgroundColor: ThemeData.dark().colorScheme.error,
             ),
           );
       },

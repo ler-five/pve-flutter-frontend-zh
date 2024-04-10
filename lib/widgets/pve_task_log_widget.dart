@@ -61,7 +61,7 @@ class _PveTaskLogState extends State<PveTaskLog> {
                       children: <Widget>[
                         Text(
                           'Filters',
-                          style: Theme.of(context).textTheme.headline5,
+                          style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         const SizedBox(
                           height: 20,
@@ -241,7 +241,7 @@ class _PveTaskLogScrollViewState extends State<PveTaskLogScrollView> {
                         title: AnimatedDefaultTextStyle(
                           style: Theme.of(context)
                               .textTheme
-                              .subtitle1!
+                              .titleMedium!
                               .copyWith(fontWeight: FontWeight.bold),
                           duration: kThemeChangeDuration,
                           child: widget.jobTitle,

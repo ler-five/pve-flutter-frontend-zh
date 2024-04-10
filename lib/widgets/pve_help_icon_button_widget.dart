@@ -24,9 +24,9 @@ class PveHelpIconButton extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
               "Could not open Docs",
-              style: ThemeData.dark().textTheme.button,
+              style: ThemeData.dark().textTheme.labelLarge,
             ),
-            backgroundColor: ThemeData.dark().errorColor,
+            backgroundColor: ThemeData.dark().colorScheme.error,
             behavior: SnackBarBehavior.floating,
           ));
         }

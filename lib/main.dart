@@ -115,7 +115,6 @@ class MyApp extends StatelessWidget {
             background: ProxmoxColors.supportGreyTint75,
             onBackground: Colors.black,
           ),
-          toggleableActiveColor: ProxmoxColors.supportBlue,
           indicatorColor: ProxmoxColors.orange,
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(foregroundColor: ProxmoxColors.grey),
@@ -127,7 +126,7 @@ class MyApp extends StatelessWidget {
           ),
           fontFamily: "Open Sans",
           primaryTextTheme: const TextTheme(
-            headline6:
+            titleLarge:
                 TextStyle(fontFamily: "Open Sans", fontWeight: FontWeight.w700),
           ),
           appBarTheme: AppBarTheme(
@@ -138,6 +137,52 @@ class MyApp extends StatelessWidget {
             selectionColor: ProxmoxColors.orange.withOpacity(0.4),
             selectionHandleColor: ProxmoxColors.orange,
             cursorColor: ProxmoxColors.orange,
+          ),
+          checkboxTheme: CheckboxThemeData(
+            fillColor: MaterialStateProperty.resolveWith<Color?>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.disabled)) {
+                return null;
+              }
+              if (states.contains(MaterialState.selected)) {
+                return ProxmoxColors.supportBlue;
+              }
+              return null;
+            }),
+          ),
+          radioTheme: RadioThemeData(
+            fillColor: MaterialStateProperty.resolveWith<Color?>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.disabled)) {
+                return null;
+              }
+              if (states.contains(MaterialState.selected)) {
+                return ProxmoxColors.supportBlue;
+              }
+              return null;
+            }),
+          ),
+          switchTheme: SwitchThemeData(
+            thumbColor: MaterialStateProperty.resolveWith<Color?>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.disabled)) {
+                return null;
+              }
+              if (states.contains(MaterialState.selected)) {
+                return ProxmoxColors.supportBlue;
+              }
+              return null;
+            }),
+            trackColor: MaterialStateProperty.resolveWith<Color?>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.disabled)) {
+                return null;
+              }
+              if (states.contains(MaterialState.selected)) {
+                return ProxmoxColors.supportBlue;
+              }
+              return null;
+            }),
           ),
         ),
         darkTheme: ThemeData(
@@ -153,7 +198,6 @@ class MyApp extends StatelessWidget {
             background: ProxmoxColors.grey,
             onBackground: ProxmoxColors.supportGreyTint75,
           ),
-          toggleableActiveColor: ProxmoxColors.blue500,
           indicatorColor: ProxmoxColors.orange,
           // flutter has a weird logic where it pulls colors from different
           // scheme properties depending on light/dark mode, avoid that...
@@ -172,7 +216,7 @@ class MyApp extends StatelessWidget {
           ),
           fontFamily: "Open Sans",
           primaryTextTheme: const TextTheme(
-            headline6:
+            titleLarge:
                 TextStyle(fontFamily: "Open Sans", fontWeight: FontWeight.w700),
           ),
           scaffoldBackgroundColor: ProxmoxColors.grey,
@@ -180,6 +224,52 @@ class MyApp extends StatelessWidget {
             selectionColor: ProxmoxColors.orange.withOpacity(0.4),
             selectionHandleColor: ProxmoxColors.orange,
             cursorColor: ProxmoxColors.orange,
+          ),
+          checkboxTheme: CheckboxThemeData(
+            fillColor: MaterialStateProperty.resolveWith<Color?>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.disabled)) {
+                return null;
+              }
+              if (states.contains(MaterialState.selected)) {
+                return ProxmoxColors.blue500;
+              }
+              return null;
+            }),
+          ),
+          radioTheme: RadioThemeData(
+            fillColor: MaterialStateProperty.resolveWith<Color?>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.disabled)) {
+                return null;
+              }
+              if (states.contains(MaterialState.selected)) {
+                return ProxmoxColors.blue500;
+              }
+              return null;
+            }),
+          ),
+          switchTheme: SwitchThemeData(
+            thumbColor: MaterialStateProperty.resolveWith<Color?>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.disabled)) {
+                return null;
+              }
+              if (states.contains(MaterialState.selected)) {
+                return ProxmoxColors.blue500;
+              }
+              return null;
+            }),
+            trackColor: MaterialStateProperty.resolveWith<Color?>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.disabled)) {
+                return null;
+              }
+              if (states.contains(MaterialState.selected)) {
+                return ProxmoxColors.blue500;
+              }
+              return null;
+            }),
           ),
         ),
         builder: (context, child) {

@@ -131,7 +131,7 @@ class _ProxmoxGaugeChartState extends State<ProxmoxGaugeChart>
           child: Align(
             alignment: Alignment.bottomCenter,
             child: AnimatedDefaultTextStyle(
-              style: Theme.of(context).textTheme.caption!,
+              style: Theme.of(context).textTheme.bodySmall!,
               duration: kThemeChangeDuration,
               child: widget.info!,
             ),
@@ -179,12 +179,12 @@ class ProxmoxGaugeChartListTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 AnimatedDefaultTextStyle(
-                  style: Theme.of(context).textTheme.subtitle1!,
+                  style: Theme.of(context).textTheme.titleMedium!,
                   duration: kThemeChangeDuration,
                   child: title ?? const SizedBox(),
                 ),
                 AnimatedDefaultTextStyle(
-                  style: Theme.of(context).textTheme.caption!,
+                  style: Theme.of(context).textTheme.bodySmall!,
                   duration: kThemeChangeDuration,
                   child: subtitle ?? const SizedBox(),
                 ),

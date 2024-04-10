@@ -513,18 +513,18 @@ class _PveBackupFormState extends State<PveBackupForm> {
       _scaffoldKey.currentState!.showSnackBar(SnackBar(
         content: Text(
           e.message,
-          style: ThemeData.dark().textTheme.button,
+          style: ThemeData.dark().textTheme.labelLarge,
         ),
-        backgroundColor: ThemeData.dark().errorColor,
+        backgroundColor: ThemeData.dark().colorScheme.error,
       ));
     } catch (e) {
       _scaffoldKey.currentState!.showSnackBar(
         SnackBar(
           content: Text(
             "Error: Could not start backup",
-            style: ThemeData.dark().textTheme.button,
+            style: ThemeData.dark().textTheme.labelLarge,
           ),
-          backgroundColor: ThemeData.dark().errorColor,
+          backgroundColor: ThemeData.dark().colorScheme.error,
         ),
       );
     }
