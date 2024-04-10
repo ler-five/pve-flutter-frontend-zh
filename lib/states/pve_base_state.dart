@@ -1,4 +1,4 @@
-abstract class PveBaseState {
+mixin PveBaseState {
   String get errorMessage;
   bool get isLoading;
   bool get isBlank;
