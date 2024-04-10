@@ -70,7 +70,8 @@ class ProxmoxLineChart extends CustomPainter {
         TileMode.clamp,
         const GradientRotation(pi / 2)
             .transform(Rect.fromPoints(
-                Offset(size.width, shaderHeight.toDouble()), const Offset(0, 0)))
+                Offset(size.width, shaderHeight.toDouble()),
+                const Offset(0, 0)))
             .storage);
     paint.style = PaintingStyle.fill;
     canvas.drawPath(path, paint);

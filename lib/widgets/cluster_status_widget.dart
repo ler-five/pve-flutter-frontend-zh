@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ClusterStatus extends StatelessWidget {
-  const ClusterStatus({
-    Key? key,
-    required this.isHealthy,
-    this.healthyColor = Colors.greenAccent,
-    this.warningColor = Colors.orangeAccent,
-    this.backgroundColor = Colors.transparent,
-    this.version
-  }) : super(key: key);
+  const ClusterStatus(
+      {Key? key,
+      required this.isHealthy,
+      this.healthyColor = Colors.greenAccent,
+      this.warningColor = Colors.orangeAccent,
+      this.backgroundColor = Colors.transparent,
+      this.version})
+      : super(key: key);
 
   final bool isHealthy;
   final String? version;
   final Color healthyColor;
   final Color warningColor;
   final Color backgroundColor;
-
 
   @override
   Widget build(BuildContext context) {

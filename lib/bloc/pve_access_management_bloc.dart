@@ -10,8 +10,7 @@ class PveAccessManagementBloc extends ProxmoxBaseBloc<PveAccessManagementEvent,
   late final ProxmoxApiClient apiClient;
   late final PveAccessManagementState init;
 
-  PveAccessManagementBloc(
-      {required this.apiClient, required this.init});
+  PveAccessManagementBloc({required this.apiClient, required this.init});
   @override
   PveAccessManagementState get initialState => init;
 
@@ -34,7 +33,7 @@ class PveAccessManagementBloc extends ProxmoxBaseBloc<PveAccessManagementEvent,
   }
 
   BuiltList<PveAccessUserTokenModel> getTokensFromUserList(
-      List<PveAccessUserModel > users) {
+      List<PveAccessUserModel> users) {
     final tokens = [];
     users.forEach((user) {
       if (user.tokens?.isNotEmpty ?? false) {

@@ -43,7 +43,8 @@ class PveConsoleMenu extends StatelessWidget {
                   "SPICE",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                subtitle: const Text("Open SPICE connection file with external App"),
+                subtitle:
+                    const Text("Open SPICE connection file with external App"),
                 onTap: () async {
                   if (Platform.isAndroid) {
                     final tempDir = await getExternalCacheDirectories();

@@ -95,7 +95,8 @@ class _PveTaskLogState extends State<PveTaskLog> {
                           height: 20,
                         ),
                         DropdownButtonFormField<String>(
-                          decoration: const InputDecoration(labelText: 'Source'),
+                          decoration:
+                              const InputDecoration(labelText: 'Source'),
                           value: state.source,
                           icon: const Icon(Icons.arrow_downward),
                           iconSize: 24,

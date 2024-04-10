@@ -225,7 +225,8 @@ class PveQemuOverview extends StatelessWidget {
                               ),
                               for (var ide in config.ide!)
                                 ListTile(
-                                  leading: const Icon(FontAwesomeIcons.compactDisc),
+                                  leading:
+                                      const Icon(FontAwesomeIcons.compactDisc),
                                   title: Text(ide),
                                   subtitle: const Text('CD/DVD Drive'),
                                   dense: true,
@@ -239,7 +240,8 @@ class PveQemuOverview extends StatelessWidget {
                                 ),
                               for (var net in config.net!)
                                 ListTile(
-                                  leading: const Icon(FontAwesomeIcons.ethernet),
+                                  leading:
+                                      const Icon(FontAwesomeIcons.ethernet),
                                   dense: true,
                                   subtitle: const Text('Network Device'),
                                   title: Text(net),

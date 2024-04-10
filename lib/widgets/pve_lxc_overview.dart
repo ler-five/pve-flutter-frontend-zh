@@ -226,7 +226,8 @@ class PveLxcOverview extends StatelessWidget {
                             children: <Widget>[
                               for (var net in config.net!)
                                 ListTile(
-                                  leading: const Icon(FontAwesomeIcons.ethernet),
+                                  leading:
+                                      const Icon(FontAwesomeIcons.ethernet),
                                   dense: true,
                                   title: Text('$net'),
                                 ),

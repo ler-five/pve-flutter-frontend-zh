@@ -819,14 +819,16 @@ class _AppbarSearchTextFieldState extends State<AppbarSearchTextField> {
               )
             : null,
         contentPadding: const EdgeInsets.fromLTRB(20, 5, 8, 5),
-        prefixIconConstraints: const BoxConstraints(minHeight: 32, minWidth: 32),
-        suffixIconConstraints: const BoxConstraints(maxHeight: 32, maxWidth: 32),
+        prefixIconConstraints:
+            const BoxConstraints(minHeight: 32, minWidth: 32),
+        suffixIconConstraints:
+            const BoxConstraints(maxHeight: 32, maxWidth: 32),
         //fillColor: Color(0xFFF1F2F4),
         fillColor: Theme.of(context).colorScheme.surface,
         filled: true,
         isDense: true,
-        enabledBorder:
-            const OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+        enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white)),
       ),
       style: const TextStyle(fontSize: 20),
       onChanged: (value) => widget.onChanged!(value),
@@ -1124,7 +1126,8 @@ class MobileAccessManagement extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
                                     child: Align(
                                       alignment: Alignment.topCenter,
                                       child: Container(
@@ -1181,7 +1184,8 @@ class MobileAccessManagement extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
                                     child: Align(
                                       alignment: Alignment.topCenter,
                                       child: Container(

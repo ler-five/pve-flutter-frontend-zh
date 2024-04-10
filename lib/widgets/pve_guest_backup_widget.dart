@@ -266,10 +266,9 @@ class PveGuestBackupContent extends StatelessWidget {
                     OutlinedButton.icon(
                       onPressed: () async {
                         final guard = (await _showConfirmDialog(
-                                context,
-                                'Attention',
-                                'Do you really want to delete this backup?')
-                           )!;
+                            context,
+                            'Attention',
+                            'Do you really want to delete this backup?'))!;
                         if (guard) {
                           fBloc.events.add(DeleteFile(volid));
                           Navigator.of(context).pop();
@@ -418,79 +417,79 @@ class _PveBackupFormState extends State<PveBackupForm> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldMessenger(
-      key: _scaffoldKey,
-      child: Scaffold(
-        appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.black),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: const Text(
-            "Schedule backup",
-            style: TextStyle(color: Colors.black),
+        key: _scaffoldKey,
+        child: Scaffold(
+          appBar: AppBar(
+            iconTheme: const IconThemeData(color: Colors.black),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            title: const Text(
+              "Schedule backup",
+              style: TextStyle(color: Colors.black),
+            ),
           ),
-        ),
-        body: SingleChildScrollView(
-            padding: const EdgeInsets.all(8),
-            child: Form(
-              key: _formKey,
-              onChanged: () {
-                final isValid = _formKey.currentState!.validate();
-                setState(() {
-                  enableSubmitButton = isValid;
-                });
-              },
-              child: Column(
-                children: [
-                  PveStorageSelectorDropdown(
-                    labelText: 'Storage',
-                    sBloc: widget.sBloc,
-                    allowBlank: false,
-                  ),
-                  _createModeDropdown(),
-                  _createCompressionDropdown(),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Email to',
-                      helperText: ' ',
+          body: SingleChildScrollView(
+              padding: const EdgeInsets.all(8),
+              child: Form(
+                key: _formKey,
+                onChanged: () {
+                  final isValid = _formKey.currentState!.validate();
+                  setState(() {
+                    enableSubmitButton = isValid;
+                  });
+                },
+                child: Column(
+                  children: [
+                    PveStorageSelectorDropdown(
+                      labelText: 'Storage',
+                      sBloc: widget.sBloc,
+                      allowBlank: false,
                     ),
-                    controller: emailToController,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (value) {
-                      if (value!.isNotEmpty && !Validators.isValidEmail(value)) {
-                        return 'Please enter valid email address';
-                      }
-                      return null;
-                    },
-                  ),
-                  OutlinedButton.icon(
-                      onPressed: enableSubmitButton
-                          ? () {
-                              //TODO remove when async validation is implemented
-                              if (!_formKey.currentState!.validate()) {
-                                setState(() {
-                                  enableSubmitButton = false;
-                                });
-                                return;
-                              }
+                    _createModeDropdown(),
+                    _createCompressionDropdown(),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Email to',
+                        helperText: ' ',
+                      ),
+                      controller: emailToController,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value!.isNotEmpty &&
+                            !Validators.isValidEmail(value)) {
+                          return 'Please enter valid email address';
+                        }
+                        return null;
+                      },
+                    ),
+                    OutlinedButton.icon(
+                        onPressed: enableSubmitButton
+                            ? () {
+                                //TODO remove when async validation is implemented
+                                if (!_formKey.currentState!.validate()) {
+                                  setState(() {
+                                    enableSubmitButton = false;
+                                  });
+                                  return;
+                                }
 
-                              startBackup(
-                                widget.sBloc.apiClient,
-                                widget.sBloc.latestState.nodeID,
-                                widget.sBloc.latestState.selected!.id,
-                                widget.guestID,
-                                compression,
-                                mode!,
-                                mailTo: emailToController!.text,
-                              );
-                            }
-                          : null,
-                      icon: const Icon(Icons.save),
-                      label: const Text('Start backup now'))
-                ],
-              ),
-            )),
-      )
-    );
+                                startBackup(
+                                  widget.sBloc.apiClient,
+                                  widget.sBloc.latestState.nodeID,
+                                  widget.sBloc.latestState.selected!.id,
+                                  widget.guestID,
+                                  compression,
+                                  mode!,
+                                  mailTo: emailToController!.text,
+                                );
+                              }
+                            : null,
+                        icon: const Icon(Icons.save),
+                        label: const Text('Start backup now'))
+                  ],
+                ),
+              )),
+        ));
   }
 
   Future<void> startBackup(
@@ -505,9 +504,7 @@ class _PveBackupFormState extends State<PveBackupForm> {
     try {
       final jobId = (await apiClient.nodesVZDumpCreateBackup(
           node, storage, guestId,
-          compressionType: compression,
-          mode: mode,
-          mailTo: mailTo))!;
+          compressionType: compression, mode: mode, mailTo: mailTo))!;
 
       await showTaskLogBottomSheet(context, apiClient, node, jobId,
           icon: const Icon(Icons.save), jobTitle: Text('Backup $guestId'));

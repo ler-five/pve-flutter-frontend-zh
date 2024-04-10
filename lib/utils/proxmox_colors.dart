@@ -10,7 +10,8 @@ class ProxmoxColors {
   // generated from material colors spec
   static final Color blue900 = const Color(0xFF003951);
   static final Color blue800 = const Color(0xFF004e69);
-  static final Color blue700 = const Color(0xFF00617F); // actual proxmox support blue
+  static final Color blue700 =
+      const Color(0xFF00617F); // actual proxmox support blue
   static final Color blue600 = const Color(0xFF1b7696);
   static final Color blue500 = const Color(0xFF2c85a8);
   static final Color blue400 = const Color(0xFF4e98b9);

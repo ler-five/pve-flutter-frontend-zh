@@ -27,14 +27,12 @@ class PveGuestOsSelectorBloc
   @override
   Stream<PveGuestOsSelectorState> processEvents(
       PveGuestOsSelectorEvent event) async* {
-
     if (event is ChangeOsType) {
       if (event.type == null && fieldRequired) {
         yield latestState.copyWith(value: event.type, errorText: "Required");
       } else {
         yield latestState.copyWith(value: event.type, errorText: null);
       }
-
     }
   }
 }

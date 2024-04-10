@@ -5,7 +5,8 @@ class PveNetworkInterfaceModelSelector extends StatefulWidget {
   final Function? onChange;
   final String? initialSelection;
 
-  const PveNetworkInterfaceModelSelector({Key? key, this.labelText, this.onChange, this.initialSelection})
+  const PveNetworkInterfaceModelSelector(
+      {Key? key, this.labelText, this.onChange, this.initialSelection})
       : super(key: key);
   @override
   _PveNetworkInterfaceModelSelectorState createState() =>

@@ -31,7 +31,8 @@ class PveNodeSelectorBloc
     }
 
     if (event is ExcludeOfflineNodes) {
-      yield latestState.rebuild((b) => b..onlineValidator = !b.onlineValidator!);
+      yield latestState
+          .rebuild((b) => b..onlineValidator = !b.onlineValidator!);
     }
 
     if (event is UpdateAllowedNodes) {

@@ -53,7 +53,8 @@ class PveNodeOverview extends StatelessWidget {
               elevation: 0,
               title: Text(
                 "Node ${nodeID}",
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -307,7 +308,8 @@ class PveNodeOverview extends StatelessWidget {
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        if (state.updates.isEmpty) const Text('No updates available'),
+                        if (state.updates.isEmpty)
+                          const Text('No updates available'),
                         if (state.updates.isNotEmpty)
                           Text(
                               '${state.updates.length} packages are ready to update'),

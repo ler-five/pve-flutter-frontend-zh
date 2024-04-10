@@ -21,7 +21,9 @@ class PveGuestIdSelectorBloc
     PublishSubject<PveGuestIdSelectorEvent> events,
     Stream<GuestIdSelectorState> pipeInto(PveGuestIdSelectorEvent event),
   ) {
-    return events.debounceTime(const Duration(milliseconds: 150)).switchMap(pipeInto);
+    return events
+        .debounceTime(const Duration(milliseconds: 150))
+        .switchMap(pipeInto);
   }
 
   @override

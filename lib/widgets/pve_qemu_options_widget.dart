@@ -52,11 +52,9 @@ class PveQemuOptions extends StatelessWidget {
                         ),
                         ListTile(
                           title: const Text("OS Type"),
-                          subtitle: Text(
-                            config.ostype != null ?
-                              "${config.ostype!.type} ${config.ostype!.description}" :
-                              "Other"
-                          ),
+                          subtitle: Text(config.ostype != null
+                              ? "${config.ostype!.type} ${config.ostype!.description}"
+                              : "Other"),
                         ),
                         //TODO add better ui component e.g. collapseable
                         ListTile(

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/widgets.dart';
+
 typedef StreamStateChange<T> = void Function(T newState);
 
 class StreamListener<T> extends StatefulWidget {

@@ -64,7 +64,8 @@ class PveWelcomePageLast extends StatelessWidget {
                                   {launch('https://forum.proxmox.com')},
                               child: const Text('Forum'),
                               style: OutlinedButton.styleFrom(
-                                side: BorderSide(color: ProxmoxColors.supportGrey),
+                                side: BorderSide(
+                                    color: ProxmoxColors.supportGrey),
                                 foregroundColor: Colors.white,
                               ),
                             ),
@@ -75,7 +76,8 @@ class PveWelcomePageLast extends StatelessWidget {
                               },
                               child: const Text('User Mailing List'),
                               style: OutlinedButton.styleFrom(
-                                side: BorderSide(color: ProxmoxColors.supportGrey),
+                                side: BorderSide(
+                                    color: ProxmoxColors.supportGrey),
                                 foregroundColor: Colors.white,
                               ),
                             ),

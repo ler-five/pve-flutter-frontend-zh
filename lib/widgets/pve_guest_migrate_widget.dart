@@ -121,7 +121,9 @@ class PveGuestMigrate extends StatelessWidget {
                     migrateBloc.events.add(StartMigration());
                     nodeSelectorbloc.events.add(ResetNodeSelector());
                   },
-                  label: migrateState.inProgress ? const Text('') : const Text('Start'),
+                  label: migrateState.inProgress
+                      ? const Text('')
+                      : const Text('Start'),
                   icon: migrateState.inProgress
                       ? const Icon(Icons.more_horiz)
                       : const Icon(Icons.send)),

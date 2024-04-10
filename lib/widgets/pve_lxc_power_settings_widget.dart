@@ -62,8 +62,8 @@ class PveLxcPowerSettings extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: const Text("Stop LXC container"),
-                    onTap: () =>
-                        action(context, PveClusterResourceAction.stop, lxcBloc!),
+                    onTap: () => action(
+                        context, PveClusterResourceAction.stop, lxcBloc!),
                   ),
                 ]
               ],
