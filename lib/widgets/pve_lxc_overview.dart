@@ -171,7 +171,7 @@ class PveLxcOverview extends StatelessWidget {
                                             resourceBloc.apiClient!))),
                               createActionCard(
                                   'Backup',
-                                  FontAwesomeIcons.save,
+                                  FontAwesomeIcons.floppyDisk,
                                   () => Navigator.of(context).push(
                                       _createBackupRoute(guestID, state.nodeID,
                                           resourceBloc.apiClient!))),
@@ -208,7 +208,7 @@ class PveLxcOverview extends StatelessWidget {
                               dense: true,
                             ),
                             ListTile(
-                              leading: const Icon(FontAwesomeIcons.hdd),
+                              leading: const Icon(FontAwesomeIcons.hardDrive),
                               dense: true,
                               title: Text('${config.rootfs}'),
                             ),
@@ -248,7 +248,8 @@ class PveLxcOverview extends StatelessWidget {
                                 subtitle: const Text('DNS Domain'),
                               ),
                               ListTile(
-                                leading: const Icon(FontAwesomeIcons.search),
+                                leading: const Icon(
+                                    FontAwesomeIcons.magnifyingGlass),
                                 dense: true,
                                 title: Text(
                                     config.nameserver ?? 'Use host settings'),

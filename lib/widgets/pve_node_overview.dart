@@ -244,7 +244,7 @@ class PveNodeOverview extends StatelessWidget {
                             title: const Text('HD space (root)'),
                             subtitle: ProxmoxCapacityIndicator(
                               icon: Icon(
-                                FontAwesomeIcons.solidHdd,
+                                FontAwesomeIcons.solidHardDrive,
                                 color: Colors.blueGrey[300],
                               ),
                               usedValue:
@@ -365,7 +365,7 @@ class PveNodeOverview extends StatelessWidget {
                         .map(
                           (d) => ListTile(
                             dense: true,
-                            leading: Icon(FontAwesomeIcons.solidHdd,
+                            leading: Icon(FontAwesomeIcons.solidHardDrive,
                                 color: state.isDiskHealthy(d)
                                     ? Colors.grey
                                     : Colors.red),

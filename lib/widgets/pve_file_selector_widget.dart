@@ -423,16 +423,16 @@ class FileSelectorContentView extends StatelessWidget {
         return FontAwesomeIcons.cube;
         break;
       case PveStorageContentType.images:
-        return FontAwesomeIcons.hdd;
+        return FontAwesomeIcons.hardDrive;
         break;
       case PveStorageContentType.rootdir:
-        return FontAwesomeIcons.solidHdd;
+        return FontAwesomeIcons.solidHardDrive;
         break;
       case PveStorageContentType.backup:
-        return FontAwesomeIcons.save;
+        return FontAwesomeIcons.floppyDisk;
         break;
       default:
-        return FontAwesomeIcons.questionCircle;
+        return FontAwesomeIcons.circleQuestion;
     }
   }
 }

@@ -122,7 +122,7 @@ class PveGuestOverviewHeader extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Icon(
-                          FontAwesomeIcons.heartbeat,
+                          FontAwesomeIcons.heartPulse,
                           color: haError ? Colors.red : Colors.green[400],
                         ),
                         Padding(

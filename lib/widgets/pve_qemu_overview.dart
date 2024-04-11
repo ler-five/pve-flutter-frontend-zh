@@ -169,7 +169,7 @@ class PveQemuOverview extends StatelessWidget {
                                             state.nodeID, bloc.apiClient))),
                               createActionCard(
                                   'Backup',
-                                  FontAwesomeIcons.save,
+                                  FontAwesomeIcons.floppyDisk,
                                   () => Navigator.of(context).push(
                                       _createBackupRoute(guestID, state.nodeID,
                                           bloc.apiClient))),
@@ -209,7 +209,7 @@ class PveQemuOverview extends StatelessWidget {
                                 dense: true,
                               ),
                               ListTile(
-                                leading: const Icon(FontAwesomeIcons.cogs),
+                                leading: const Icon(FontAwesomeIcons.gears),
                                 dense: true,
                                 title:
                                     Text(config.machine ?? 'Default (i440fx)'),
@@ -232,7 +232,8 @@ class PveQemuOverview extends StatelessWidget {
                                 ),
                               for (var scsi in config.scsi!)
                                 ListTile(
-                                  leading: const Icon(FontAwesomeIcons.hdd),
+                                  leading:
+                                      const Icon(FontAwesomeIcons.hardDrive),
                                   title: Text(scsi),
                                   subtitle: const Text('Hard Disk'),
                                   dense: true,
