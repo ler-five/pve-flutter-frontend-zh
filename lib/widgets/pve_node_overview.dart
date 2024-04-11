@@ -25,13 +25,14 @@ class PveNodeOverview extends StatelessWidget {
   Icon getServiceStateIcon(BuildContext context, PveNodeServicesModel s) {
     if (s.state == 'running') {
       return Icon(Icons.play_arrow, color: Colors.green[400]);
-    } else if (s.unitState == 'masked' || s.unitState == 'not-found')
+    } else if (s.unitState == 'masked' || s.unitState == 'not-found') {
       return Icon(
         Icons.play_disabled,
         color: IconTheme.of(context).color!.withOpacity(0.75),
       );
-    else
+    } else {
       return Icon(Icons.stop, color: Theme.of(context).colorScheme.error);
+    }
   }
 
   const PveNodeOverview({super.key, required this.nodeID});
