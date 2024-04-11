@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:pve_flutter_frontend/utils/links.dart';
 
 class PveSubscriptionAlertDialog extends StatelessWidget {
   const PveSubscriptionAlertDialog({super.key});
@@ -16,12 +16,7 @@ class PveSubscriptionAlertDialog extends StatelessWidget {
       actions: [
         TextButton(
             onPressed: () async {
-              const url = 'https://www.proxmox.com/proxmox-ve/pricing';
-              if (await canLaunch(url)) {
-                await launch(url);
-              } else {
-                throw 'Could not launch $url';
-              }
+              await tryLaunchUrl(Links.pvePricing);
             },
             child: const Text('Get subscription'))
       ],

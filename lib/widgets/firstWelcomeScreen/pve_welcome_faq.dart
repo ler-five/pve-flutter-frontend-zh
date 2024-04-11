@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:pve_flutter_frontend/widgets/firstWelcomeScreen/pve_welcome_common.dart';
 import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
+import 'package:pve_flutter_frontend/utils/links.dart';
 
 // FAQ
 class PveWelcomePageFAQ extends StatelessWidget {
@@ -43,10 +44,7 @@ class PveWelcomePageFAQ extends StatelessWidget {
                   'Currently only the following 3rd party Spice client works:'),
           Center(
             child: OutlinedButton(
-              onPressed: () => {
-                launch(
-                    'https://play.google.com/store/apps/details?id=com.undatech.opaque')
-              },
+              onPressed: () => {launchUrl(Links.opaqueApp)},
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: ProxmoxColors.supportGrey),
                 foregroundColor: Colors.white,

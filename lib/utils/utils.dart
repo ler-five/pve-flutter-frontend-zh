@@ -7,17 +7,8 @@ import 'package:pve_flutter_frontend/bloc/pve_task_log_viewer_bloc.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_viewer_state.dart';
 import 'package:pve_flutter_frontend/widgets/pve_console_menu_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_task_log_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 void registerConsoleIframe(String nodeid) => throw UnimplementedError();
-
-Future<bool> launchDocURL(String url) async {
-  if (await canLaunch(url)) {
-    return await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
-}
 
 Future<T?> showTaskLogBottomSheet<T>(BuildContext context,
     ProxmoxApiClient apiClient, String targetNode, String upid,

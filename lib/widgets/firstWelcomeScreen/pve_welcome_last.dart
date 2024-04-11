@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
+import 'package:pve_flutter_frontend/utils/links.dart';
 
 // goodbye
 class PveWelcomePageLast extends StatelessWidget {
@@ -60,8 +61,7 @@ class PveWelcomePageLast extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             OutlinedButton(
-                              onPressed: () =>
-                                  {launch('https://forum.proxmox.com')},
+                              onPressed: () => {launchUrl(Links.proxmoxForum)},
                               style: OutlinedButton.styleFrom(
                                 side: const BorderSide(
                                     color: ProxmoxColors.supportGrey),
@@ -70,10 +70,7 @@ class PveWelcomePageLast extends StatelessWidget {
                               child: const Text('Forum'),
                             ),
                             OutlinedButton(
-                              onPressed: () => {
-                                launch(
-                                    'https://lists.proxmox.com/cgi-bin/mailman/listinfo/pve-user')
-                              },
+                              onPressed: () => {launchUrl(Links.pveUserList)},
                               style: OutlinedButton.styleFrom(
                                 side: const BorderSide(
                                     color: ProxmoxColors.supportGrey),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pve_flutter_frontend/utils/utils.dart';
+import 'package:pve_flutter_frontend/utils/links.dart';
 
 class PveHelpIconButton extends StatelessWidget {
   final String? docPath;
@@ -19,7 +19,7 @@ class PveHelpIconButton extends StatelessWidget {
       tooltip: "Documentation",
       onPressed: () {
         try {
-          launchDocURL(baseUrl.replace(path: '/pve-docs/$docPath').toString());
+          tryLaunchUrl(baseUrl.replace(path: '/pve-docs/$docPath'));
         } catch (e) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
