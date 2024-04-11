@@ -98,7 +98,7 @@ class DotIndicator extends AnimatedWidget {
   }
 
   @override
-  Widget build(BuildContext contect) {
+  Widget build(BuildContext context) {
     return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List<Widget>.generate(
