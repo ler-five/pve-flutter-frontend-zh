@@ -40,6 +40,7 @@ dependencies:
     path: ../proxmox_login_manager
   collection: ^1.15.0-nullsafety.4
 
+  shared_preferences: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
