@@ -132,52 +132,6 @@ class MyApp extends StatelessWidget {
             selectionHandleColor: ProxmoxColors.orange,
             cursorColor: ProxmoxColors.orange,
           ),
-          checkboxTheme: CheckboxThemeData(
-            fillColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) {
-              if (states.contains(MaterialState.disabled)) {
-                return null;
-              }
-              if (states.contains(MaterialState.selected)) {
-                return ProxmoxColors.supportBlue;
-              }
-              return null;
-            }),
-          ),
-          radioTheme: RadioThemeData(
-            fillColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) {
-              if (states.contains(MaterialState.disabled)) {
-                return null;
-              }
-              if (states.contains(MaterialState.selected)) {
-                return ProxmoxColors.supportBlue;
-              }
-              return null;
-            }),
-          ),
-          switchTheme: SwitchThemeData(
-            thumbColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) {
-              if (states.contains(MaterialState.disabled)) {
-                return null;
-              }
-              if (states.contains(MaterialState.selected)) {
-                return ProxmoxColors.supportBlue;
-              }
-              return null;
-            }),
-            trackColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) {
-              if (states.contains(MaterialState.disabled)) {
-                return null;
-              }
-              if (states.contains(MaterialState.selected)) {
-                return ProxmoxColors.supportBlue;
-              }
-              return null;
-            }),
-          ),
         ),
         darkTheme: ThemeData(
           colorScheme: const ColorScheme.dark(
@@ -218,52 +172,6 @@ class MyApp extends StatelessWidget {
             selectionColor: ProxmoxColors.orange.withOpacity(0.4),
             selectionHandleColor: ProxmoxColors.orange,
             cursorColor: ProxmoxColors.orange,
-          ),
-          checkboxTheme: CheckboxThemeData(
-            fillColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) {
-              if (states.contains(MaterialState.disabled)) {
-                return null;
-              }
-              if (states.contains(MaterialState.selected)) {
-                return ProxmoxColors.blue500;
-              }
-              return null;
-            }),
-          ),
-          radioTheme: RadioThemeData(
-            fillColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) {
-              if (states.contains(MaterialState.disabled)) {
-                return null;
-              }
-              if (states.contains(MaterialState.selected)) {
-                return ProxmoxColors.blue500;
-              }
-              return null;
-            }),
-          ),
-          switchTheme: SwitchThemeData(
-            thumbColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) {
-              if (states.contains(MaterialState.disabled)) {
-                return null;
-              }
-              if (states.contains(MaterialState.selected)) {
-                return ProxmoxColors.blue500;
-              }
-              return null;
-            }),
-            trackColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) {
-              if (states.contains(MaterialState.disabled)) {
-                return null;
-              }
-              if (states.contains(MaterialState.selected)) {
-                return ProxmoxColors.blue500;
-              }
-              return null;
-            }),
           ),
         ),
         builder: (context, child) {
