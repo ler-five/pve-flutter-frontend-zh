@@ -20,11 +20,11 @@ class PveStorageSelectorDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _pveStorageSelectorBloc =
+    final pveStorageSelectorBloc =
         sBloc ?? Provider.of<PveStorageSelectorBloc>(context);
     return ProxmoxStreamBuilder<PveStorageSelectorBloc,
         PveStorageSelectorState>(
-      bloc: _pveStorageSelectorBloc,
+      bloc: pveStorageSelectorBloc,
       builder: (BuildContext context, state) {
         return DropdownButtonFormField(
           decoration: InputDecoration(
@@ -62,7 +62,7 @@ class PveStorageSelectorDropdown extends StatelessWidget {
               )
           ],
           onChanged: (PveNodesStorageModel? selectedStorage) =>
-              _pveStorageSelectorBloc.events
+              pveStorageSelectorBloc.events
                   .add(StorageSelectedEvent(storage: selectedStorage)),
           selectedItemBuilder: (context) =>
               state.storages.map((item) => Text(item.id)).toList(),

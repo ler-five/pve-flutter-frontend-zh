@@ -142,7 +142,6 @@ class PveGuestMigrate extends StatelessWidget {
 
 class _MigrateTargetSelector extends StatelessWidget {
   const _MigrateTargetSelector({
-    super.key,
     required this.nodeSelectorbloc,
     required this.migrateBloc,
     required this.disabled,

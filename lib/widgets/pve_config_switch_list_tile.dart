@@ -19,7 +19,7 @@ class PveConfigSwitchListTile extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    var pBool;
+    bool? pBool;
     if (pending != null) {
       pBool = pending == 0 ? false : true;
     }

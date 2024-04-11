@@ -36,7 +36,7 @@ abstract class ProxmoxBaseBloc<E, S> {
 
   Stream<S> eventPipe(
     PublishSubject<E> events,
-    Stream<S> pipeInto(E event),
+    Stream<S> Function(E event) pipeInto,
   ) {
     return events.asyncExpand(pipeInto);
   }

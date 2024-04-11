@@ -80,9 +80,9 @@ class PveNodeOverview extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                               ),
                             );
-                            double? last_cpu = rrd.last.cpu;
-                            String last_cpu_text = last_cpu != null
-                                ? "${(last_cpu * 100.0).toStringAsFixed(2)} %"
+                            double? lastCpu = rrd.last.cpu;
+                            String lastCpuText = lastCpu != null
+                                ? "${(lastCpu * 100.0).toStringAsFixed(2)} %"
                                 : "";
                             return Column(
                               children: [
@@ -91,7 +91,7 @@ class PveNodeOverview extends StatelessWidget {
                                     child: PveRRDChart(
                                       title:
                                           'CPU (${state.status?.cpuinfo.cpus ?? '-'})',
-                                      subtitle: last_cpu_text,
+                                      subtitle: lastCpuText,
                                       data: rrd.where((e) => e.cpu != null).map(
                                           (e) => Point(
                                               e.time!.millisecondsSinceEpoch,

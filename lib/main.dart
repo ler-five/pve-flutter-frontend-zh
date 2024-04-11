@@ -89,8 +89,7 @@ class MyApp extends StatelessWidget {
             ..events.add(PollResources());
         }
         if (state is Unauthenticated) {
-          Provider.of<PveResourceBloc>(context, listen: false)
-            ..apiClient = null;
+          Provider.of<PveResourceBloc>(context, listen: false).apiClient = null;
         }
       },
       child: MaterialApp(

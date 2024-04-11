@@ -97,21 +97,21 @@ class PveMigrateBloc extends ProxmoxBaseBloc<PveMigrateEvent, PveMigrateState> {
   }
 
   Stream<PveMigrateState> checkQemuPreconditons() async* {
-    final _qPreconditions = await (apiClient.getMigratePreconditions(
+    final qPreconditions0 = await (apiClient.getMigratePreconditions(
       latestState.nodeID,
       guestID,
       migrationTarget: latestState.targetNodeID,
     ) as FutureOr<PveNodesQemuMigrate?>);
 
     var preconditions = <PveMigrateCondition>[];
-    if (_qPreconditions == null) {
+    if (qPreconditions0 == null) {
       preconditions.add(PveMigrateCondition((b) => b
         ..severity = PveMigrateSeverity.warning
         ..message = "Couldn't get migration preconditions from API!"));
       yield latestState.rebuild((b) => b..preconditions.replace(preconditions));
     }
-    final qPreconditions = _qPreconditions!;
-    qPreconditions.localDisks!.forEach((d) {
+    final qPreconditions = qPreconditions0!;
+    for (var d in qPreconditions.localDisks!) {
       var disk = d.asMap;
       if (disk['cdrom'] == 1) {
         if (disk['volid'].contains('vm-$guestID-cloudinit')) {
@@ -121,7 +121,7 @@ class PveMigrateBloc extends ProxmoxBaseBloc<PveMigrateEvent, PveMigrateState> {
               ..message =
                   "Can't live migrate VM with local cloudinit disk, use shared storage instead"));
           } else {
-            return;
+            continue;
           }
         } else {
           preconditions.add(PveMigrateCondition((b) => b
@@ -134,7 +134,7 @@ class PveMigrateBloc extends ProxmoxBaseBloc<PveMigrateEvent, PveMigrateState> {
           ..message =
               "Migration with local disk might take long: ${Renderers.formatSize(disk['size'])}"));
       }
-    });
+    }
 
     preconditions.sort((a, b) => a.severity.name.compareTo(b.severity.name));
 

@@ -37,7 +37,7 @@ class ProxmoxClusterVisualizer extends CustomPainter {
 
   @override
   bool shouldRepaint(ProxmoxClusterVisualizer oldDelegate) {
-    return oldDelegate.seeds != this.seeds;
+    return oldDelegate.seeds != seeds;
   }
 
   void drawSeed(Canvas canvas, num x, num y) {

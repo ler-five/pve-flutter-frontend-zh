@@ -10,10 +10,10 @@ class PveBridgeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _bBloc = Provider.of<PveBridgeSelectorBloc>(context);
+    final bBloc = Provider.of<PveBridgeSelectorBloc>(context);
     return StreamBuilder<PveBridgeSelectorState>(
-      stream: _bBloc.state,
-      initialData: _bBloc.state.value,
+      stream: bBloc.state,
+      initialData: bBloc.state.value,
       builder: (BuildContext context,
           AsyncSnapshot<PveBridgeSelectorState> snapshot) {
         if (snapshot.hasData) {
@@ -40,7 +40,7 @@ class PveBridgeSelector extends StatelessWidget {
                 )
             ],
             onChanged: (PveNodeNetworkModel? selection) =>
-                _bBloc.events.add(BridgeSelectedEvent(selection)),
+                bBloc.events.add(BridgeSelectedEvent(selection)),
             value: state.value,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (dynamic _) {

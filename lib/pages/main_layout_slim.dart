@@ -1,6 +1,5 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -122,20 +121,20 @@ class PveMobileBottomNavigationbar extends StatelessWidget {
     return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: light ? Colors.white : ProxmoxColors.greyShade40,
-        items: [
-          const BottomNavigationBarItem(
+        items: const [
+          BottomNavigationBarItem(
             icon: Icon(Icons.dashboard),
             label: "Dashboard",
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.developer_board),
             label: "Resources",
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.supervised_user_circle),
             label: "Access",
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.logout),
             label: "Sites",
           ),
@@ -325,13 +324,13 @@ class MobileDashboard extends StatelessWidget {
                       var aggrCpuUsage = 0.0;
                       var aggrMemUsage = 0.0;
                       var aggrMem = 0.0;
-                      nodes.forEach((element) {
+                      for (var element in nodes) {
                         aggrCpuUsage +=
                             (element.cpu ?? 0) * (element.maxcpu ?? 0);
                         aggrCpus += element.maxcpu ?? 0;
                         aggrMemUsage += element.mem ?? 0;
                         aggrMem += element.maxmem ?? 0;
-                      });
+                      }
                       final cpuUsagePercent =
                           ((aggrCpuUsage / aggrCpus) * 100).toStringAsFixed(2);
                       final memUsagePercent =
@@ -611,7 +610,7 @@ class MobileResourceOverview extends StatelessWidget {
                 onChanged: (filter) =>
                     rBloc.events.add(FilterResources(nameFilter: filter)),
               ),
-              actions: <Widget>[const AppBarFilterIconButton()],
+              actions: const <Widget>[AppBarFilterIconButton()],
             ),
             body: ListView.separated(
               itemCount: fResources.length,
@@ -638,32 +637,26 @@ class MobileResourceOverview extends StatelessWidget {
                     resource: resource,
                   );
                 }
-                if (listWidget != null) {
-                  if (otherCategory(fResources, index)) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Text(
-                            resource.type.toUpperCase(),
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
+                if (otherCategory(fResources, index)) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(
+                          resource.type.toUpperCase(),
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        listWidget,
-                      ],
-                    );
-                  } else {
-                    return listWidget;
-                  }
+                      ),
+                      listWidget,
+                    ],
+                  );
+                } else {
+                  return listWidget;
                 }
-
-                return const ListTile(
-                  title: Text('Unkown resource type'),
-                );
               },
             ),
             bottomNavigationBar: const PveMobileBottomNavigationbar(),
@@ -674,12 +667,12 @@ class MobileResourceOverview extends StatelessWidget {
   }
 
   bool otherCategory(List<PveClusterResourcesModel> fResources, index) {
-    var previous;
+    PveClusterResourcesModel? previous;
     if (index > 0) {
       previous = fResources[index - 1];
     }
     final current = fResources[index];
-    return previous == null || previous.type != current.type;
+    return previous?.type != current.type;
   }
 }
 
@@ -793,11 +786,13 @@ class AppbarSearchTextField extends StatefulWidget {
 class _AppbarSearchTextFieldState extends State<AppbarSearchTextField> {
   late TextEditingController _controller;
 
+  @override
   void initState() {
     super.initState();
     _controller = TextEditingController();
   }
 
+  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
@@ -1062,24 +1057,24 @@ class MobileAccessManagement extends StatelessWidget {
               isScrollable: true,
               labelStyle:
                   TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-              tabs: [
-                const Tab(
+              tabs: const [
+                Tab(
                   text: 'Users',
                   icon: Icon(Icons.person),
                 ),
-                const Tab(
+                Tab(
                   text: 'API Tokens',
                   icon: Icon(Icons.person_outline),
                 ),
-                const Tab(
+                Tab(
                   text: 'Groups',
                   icon: Icon(Icons.group),
                 ),
-                const Tab(
+                Tab(
                   text: 'Roles',
                   icon: Icon(Icons.lock_open),
                 ),
-                const Tab(
+                Tab(
                   text: 'Domains',
                   icon: Icon(Icons.domain),
                 )

@@ -93,14 +93,13 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
           ),
           subtitle: const Text('Start time'),
         ),
-        if (duration != null)
-          ListTile(
-            leading: const Icon(Icons.timelapse),
-            title: Text(
-              Renderers.renderDuration(duration),
-            ),
-            subtitle: const Text('Duration'),
+        ListTile(
+          leading: const Icon(Icons.timelapse),
+          title: Text(
+            Renderers.renderDuration(duration),
           ),
+          subtitle: const Text('Duration'),
+        ),
         ListTile(
           leading: const Icon(Icons.description),
           title: Text(widget.task.status),

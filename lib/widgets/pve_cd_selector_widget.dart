@@ -55,7 +55,7 @@ class PveCdSelector extends StatelessWidget {
                                         b..content = PveStorageContentType.iso),
                               )..events.add(LoadStoragesEvent()),
                             ));
-                    if (file != null && file is PveNodesStorageContentModel) {
+                    if (file != null) {
                       cdBloc.events.add(FileSelected(file.volid));
                     }
                   },

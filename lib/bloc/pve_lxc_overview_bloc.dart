@@ -11,6 +11,7 @@ class PveLxcOverviewBloc
   final PveLxcOverviewState init;
   Timer? updateTimer;
 
+  @override
   PveLxcOverviewState get initialState => init;
 
   PveLxcOverviewBloc({
@@ -32,6 +33,7 @@ class PveLxcOverviewBloc
     }
   }
 
+  @override
   Stream<PveLxcOverviewState> processEvents(PveLxcOverviewEvent event) async* {
     if (event is UpdateLxcStatus) {
       final status =

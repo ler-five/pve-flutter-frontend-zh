@@ -179,7 +179,7 @@ class PveTaskLogScrollView extends StatefulWidget {
 }
 
 class _PveTaskLogScrollViewState extends State<PveTaskLogScrollView> {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     super.initState();

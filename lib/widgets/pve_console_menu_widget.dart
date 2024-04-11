@@ -6,12 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
-import 'package:flutter/foundation.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PveConsoleMenu extends StatelessWidget {
   static const platform =
-      const MethodChannel('com.proxmox.app.pve_flutter_frontend/filesharing');
+      MethodChannel('com.proxmox.app.pve_flutter_frontend/filesharing');
   final ProxmoxApiClient apiClient;
   final String? guestID;
   final bool? allowSpice;
@@ -29,7 +28,6 @@ class PveConsoleMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _allowSpice = allowSpice ?? true;
     return SingleChildScrollView(
       child: Container(
         constraints:
@@ -37,7 +35,7 @@ class PveConsoleMenu extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (Platform.isAndroid && _allowSpice)
+            if (Platform.isAndroid && (allowSpice ?? true))
               ListTile(
                 title: const Text(
                   "SPICE",
@@ -49,7 +47,7 @@ class PveConsoleMenu extends StatelessWidget {
                   if (Platform.isAndroid) {
                     final tempDir = await getExternalCacheDirectories();
 
-                    var apiPath;
+                    String apiPath;
                     if (['qemu', 'lxc'].contains(type)) {
                       apiPath = '/nodes/$node/$type/$guestID/spiceproxy';
                     } else if (type == 'node') {

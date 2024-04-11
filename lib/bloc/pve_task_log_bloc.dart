@@ -35,7 +35,7 @@ class PveTaskLogBloc extends ProxmoxBaseBloc<PVETaskLogEvent, PveTaskLogState> {
     yield latestState.rebuild((b) => b..isBlank = false);
 
     if (event is LoadTasks) {
-      var nodeTaskResponse;
+      NodeTasksResponse nodeTaskResponse;
       yield latestState.rebuild((b) => b..isLoading = true);
 
       nodeTaskResponse = await getNodeTasks(latestState);

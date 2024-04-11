@@ -35,13 +35,13 @@ class PveAccessManagementBloc extends ProxmoxBaseBloc<PveAccessManagementEvent,
   BuiltList<PveAccessUserTokenModel> getTokensFromUserList(
       List<PveAccessUserModel> users) {
     final tokens = [];
-    users.forEach((user) {
+    for (var user in users) {
       if (user.tokens?.isNotEmpty ?? false) {
-        user.tokens!.forEach((t) {
+        for (var t in user.tokens!) {
           tokens.add(t.rebuild((tb) => tb..userid = user.userid));
-        });
+        }
       }
-    });
+    }
     return BuiltList.from(tokens);
   }
 }

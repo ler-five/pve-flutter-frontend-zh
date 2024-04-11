@@ -5,5 +5,5 @@ class ProxmoxIcons {
 
   static const _kFontFam = 'ProxmoxIcons';
 
-  static const IconData proxmox = const IconData(0xf101, fontFamily: _kFontFam);
+  static const IconData proxmox = IconData(0xf101, fontFamily: _kFontFam);
 }

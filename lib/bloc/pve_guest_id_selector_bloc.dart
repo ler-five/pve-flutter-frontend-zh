@@ -17,7 +17,8 @@ class PveGuestIdSelectorBloc
   @override
   Stream<GuestIdSelectorState> eventPipe(
     PublishSubject<PveGuestIdSelectorEvent> events,
-    Stream<GuestIdSelectorState> pipeInto(PveGuestIdSelectorEvent event),
+    Stream<GuestIdSelectorState> Function(PveGuestIdSelectorEvent event)
+        pipeInto,
   ) {
     return events
         .debounceTime(const Duration(milliseconds: 150))

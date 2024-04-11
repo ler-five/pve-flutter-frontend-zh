@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pve_flutter_frontend/utils/dot_indicator.dart';
 import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';

@@ -14,11 +14,10 @@ class PveGuestIdSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _pveGuestIdSelectorBloc =
-        Provider.of<PveGuestIdSelectorBloc>(context);
+    final pveGuestIdSelectorBloc = Provider.of<PveGuestIdSelectorBloc>(context);
     return StreamBuilder<PveFormFieldState>(
-        stream: _pveGuestIdSelectorBloc.state,
-        initialData: _pveGuestIdSelectorBloc.state.value,
+        stream: pveGuestIdSelectorBloc.state,
+        initialData: pveGuestIdSelectorBloc.state.value,
         builder: (context, snapshot) {
           final state = snapshot.data!;
 
@@ -32,7 +31,7 @@ class PveGuestIdSelector extends StatelessWidget {
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             autovalidateMode: AutovalidateMode.onUserInteraction,
             onChanged: (text) {
-              _pveGuestIdSelectorBloc.events.add(OnChanged(text));
+              pveGuestIdSelectorBloc.events.add(OnChanged(text));
             },
             validator: (_) {
               return state.errorText;

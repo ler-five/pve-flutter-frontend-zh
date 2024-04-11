@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -98,6 +97,7 @@ class DotIndicator extends AnimatedWidget {
     );
   }
 
+  @override
   Widget build(BuildContext contect) {
     return Row(
         mainAxisAlignment: MainAxisAlignment.center,

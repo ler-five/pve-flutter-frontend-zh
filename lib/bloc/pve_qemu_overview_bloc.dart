@@ -11,6 +11,7 @@ class PveQemuOverviewBloc
   final PveQemuOverviewState init;
   Timer? updateTimer;
 
+  @override
   PveQemuOverviewState get initialState => init;
 
   PveQemuOverviewBloc({
@@ -32,6 +33,7 @@ class PveQemuOverviewBloc
     }
   }
 
+  @override
   Stream<PveQemuOverviewState> processEvents(
       PveQemuOverviewEvent event) async* {
     if (event is UpdateQemuStatus) {

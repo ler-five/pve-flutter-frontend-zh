@@ -66,11 +66,6 @@ class PveBridgeSelectorBloc
       }
     }
   }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 }
 
 //EVENTS

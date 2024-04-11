@@ -10,10 +10,10 @@ class PveNodeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _pveNodeSelectorBloc = Provider.of<PveNodeSelectorBloc>(context);
+    final pveNodeSelectorBloc = Provider.of<PveNodeSelectorBloc>(context);
     return StreamBuilder<PveNodeSelectorState>(
-      stream: _pveNodeSelectorBloc.state,
-      initialData: _pveNodeSelectorBloc.state.value,
+      stream: pveNodeSelectorBloc.state,
+      initialData: pveNodeSelectorBloc.state.value,
       builder:
           (BuildContext context, AsyncSnapshot<PveNodeSelectorState> snapshot) {
         if (snapshot.hasData && snapshot.data!.availableNodes.isNotEmpty) {
@@ -37,8 +37,8 @@ class PveNodeSelector extends StatelessWidget {
             selectedItemBuilder: (context) => state.availableNodes
                 .map((item) => Text(item.nodeName))
                 .toList(),
-            onChanged: (String? selectedNode) => _pveNodeSelectorBloc.events
-                .add(NodeSelectedEvent(selectedNode)),
+            onChanged: (String? selectedNode) =>
+                pveNodeSelectorBloc.events.add(NodeSelectedEvent(selectedNode)),
             value: state.selectedNode!.nodeName,
           );
         }

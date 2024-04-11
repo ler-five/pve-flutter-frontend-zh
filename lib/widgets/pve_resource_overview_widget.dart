@@ -16,17 +16,17 @@ class PveResourceOverview extends StatelessWidget {
         initialData: rbloc.state.value,
         builder: (context, snapshot) => SingleChildScrollView(
               child: DataTable(
-                columns: [
-                  const DataColumn(
+                columns: const [
+                  DataColumn(
                     label: Text("Type"),
                   ),
-                  const DataColumn(
+                  DataColumn(
                     label: Text("Description"),
                   ),
-                  const DataColumn(
+                  DataColumn(
                     label: Text("Node"),
                   ),
-                  const DataColumn(
+                  DataColumn(
                     label: Text("Action"),
                   ),
                 ],
