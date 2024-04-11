@@ -24,12 +24,10 @@ abstract class PveMigrateState
         return qemuPreconditions?.running ?? false
             ? PveMigrationMode.online
             : PveMigrationMode.offline;
-        break;
       case 'lxc':
         return lxcPreconditions?.running ?? false
             ? PveMigrationMode.restart
             : PveMigrationMode.offline;
-        break;
       default:
         return PveMigrationMode.offline;
     }

@@ -418,19 +418,14 @@ class FileSelectorContentView extends StatelessWidget {
     switch (content) {
       case PveStorageContentType.iso:
         return FontAwesomeIcons.compactDisc;
-        break;
       case PveStorageContentType.vztmpl:
         return FontAwesomeIcons.cube;
-        break;
       case PveStorageContentType.images:
         return FontAwesomeIcons.hardDrive;
-        break;
       case PveStorageContentType.rootdir:
         return FontAwesomeIcons.solidHardDrive;
-        break;
       case PveStorageContentType.backup:
         return FontAwesomeIcons.floppyDisk;
-        break;
       default:
         return FontAwesomeIcons.circleQuestion;
     }

@@ -84,17 +84,13 @@ class _MainLayoutSlimState extends State<MainLayoutSlim> {
               switch (snapshot.data) {
                 case 0:
                   return const MobileDashboard();
-                  break;
                 case 1:
                   return const MobileResourceOverview();
-                  break;
                 case 2:
                   Provider.of<PveAccessManagementBloc>(context)
                       .events
                       .add(LoadUsers());
                   return const MobileAccessManagement();
-
-                  break;
                 default:
               }
             }

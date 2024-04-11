@@ -159,8 +159,6 @@ class _PveTaskLogState extends State<PveTaskLog> {
               ),
             ),
           );
-
-          return Container();
         });
   }
 }

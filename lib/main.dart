@@ -376,7 +376,6 @@ class MyApp extends StatelessWidget {
                     ),
                   ),
                 );
-                break;
               default:
                 return MaterialPageRoute(
                   settings: context,
