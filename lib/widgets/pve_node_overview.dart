@@ -169,7 +169,7 @@ class PveNodeOverview extends StatelessWidget {
                                 init: PveTaskLogState.init(nodeID),
                               )..events.add(LoadTasks()),
                               dispose: (context, bloc) => bloc.dispose(),
-                              child: PveTaskLog(),
+                              child: const PveTaskLog(),
                             ),
                           ),
                         );

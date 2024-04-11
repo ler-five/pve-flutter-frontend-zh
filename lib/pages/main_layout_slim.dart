@@ -83,16 +83,16 @@ class _MainLayoutSlimState extends State<MainLayoutSlim> {
             if (snapshot.hasData) {
               switch (snapshot.data) {
                 case 0:
-                  return MobileDashboard();
+                  return const MobileDashboard();
                   break;
                 case 1:
-                  return MobileResourceOverview();
+                  return const MobileResourceOverview();
                   break;
                 case 2:
                   Provider.of<PveAccessManagementBloc>(context)
                       .events
                       .add(LoadUsers());
-                  return MobileAccessManagement();
+                  return const MobileAccessManagement();
 
                   break;
                 default:
@@ -251,7 +251,7 @@ class MobileDashboard extends StatelessWidget {
                           ),
                           onPressed: () => showDialog(
                             context: context,
-                            builder: (c) => PveSubscriptionAlertDialog(),
+                            builder: (c) => const PveSubscriptionAlertDialog(),
                           ),
                         ),
                       Padding(
@@ -547,7 +547,7 @@ class MobileDashboard extends StatelessWidget {
               ]);
             }),
       ]),
-      bottomNavigationBar: PveMobileBottomNavigationbar(),
+      bottomNavigationBar: const PveMobileBottomNavigationbar(),
     );
   }
 }
@@ -611,7 +611,7 @@ class MobileResourceOverview extends StatelessWidget {
                 onChanged: (filter) =>
                     rBloc.events.add(FilterResources(nameFilter: filter)),
               ),
-              actions: <Widget>[AppBarFilterIconButton()],
+              actions: <Widget>[const AppBarFilterIconButton()],
             ),
             body: ListView.separated(
               itemCount: fResources.length,
@@ -664,7 +664,7 @@ class MobileResourceOverview extends StatelessWidget {
                 );
               },
             ),
-            bottomNavigationBar: PveMobileBottomNavigationbar(),
+            bottomNavigationBar: const PveMobileBottomNavigationbar(),
           )),
         );
       },
@@ -1243,7 +1243,7 @@ class MobileAccessManagement extends StatelessWidget {
                     }),
               ]);
             }),
-        bottomNavigationBar: PveMobileBottomNavigationbar(),
+        bottomNavigationBar: const PveMobileBottomNavigationbar(),
       ),
     );
   }

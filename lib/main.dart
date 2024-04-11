@@ -307,12 +307,12 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (context) {
           if (authbloc!.state.value is Uninitialized) {
             return MaterialPageRoute(
-              builder: (context) => PveSplashScreen(),
+              builder: (context) => const PveSplashScreen(),
             );
           }
           if (sharedPreferences.getBool('showWelcomeScreen') ?? true) {
             return MaterialPageRoute(
-              builder: (context) => PveWelcome(),
+              builder: (context) => const PveWelcome(),
             );
           }
 
@@ -464,8 +464,8 @@ class MyApp extends StatelessWidget {
                     //TODO add a wide layout option here when it's ready
                     child: ProxmoxLayoutBuilder(
                       builder: (context, layout) => layout != ProxmoxLayout.slim
-                          ? MainLayoutSlim()
-                          : MainLayoutSlim(),
+                          ? const MainLayoutSlim()
+                          : const MainLayoutSlim(),
                     ),
                   ),
                 );
@@ -474,7 +474,7 @@ class MyApp extends StatelessWidget {
                 return MaterialPageRoute(
                   settings: context,
                   builder: (context) {
-                    return NotFoundPage();
+                    return const NotFoundPage();
                   },
                 );
             }
@@ -482,7 +482,7 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(
             settings: context,
             builder: (context) {
-              return NotFoundPage();
+              return const NotFoundPage();
             },
           );
         },

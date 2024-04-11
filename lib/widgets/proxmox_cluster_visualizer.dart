@@ -46,7 +46,7 @@ class ProxmoxClusterVisualizer extends CustomPainter {
     //   ..style = PaintingStyle.fill
     //   ..color = Colors.green;
     // canvas.drawCircle(Offset(x, y), seedRadius, paint);
-    final icon = Icons.storage;
+    const icon = Icons.storage;
     var builder = ui.ParagraphBuilder(
         ui.ParagraphStyle(fontFamily: icon.fontFamily, fontSize: 60))
       ..addText(String.fromCharCode(icon.codePoint));

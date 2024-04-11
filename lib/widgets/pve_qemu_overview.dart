@@ -123,7 +123,7 @@ class PveQemuOverview extends StatelessWidget {
                                   )
                                   ..events.add(LoadTasks()),
                                 dispose: (context, bloc) => bloc.dispose(),
-                                child: PveTaskLog(),
+                                child: const PveTaskLog(),
                               ),
                             );
                           }
@@ -311,7 +311,7 @@ class PveQemuOverview extends StatelessWidget {
           ),
           dispose: (context, PveTaskLogViewerBloc bloc) => bloc.dispose(),
         )
-      ], child: PveGuestMigrate()),
+      ], child: const PveGuestMigrate()),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return ScaleTransition(
           scale: Tween<double>(

@@ -60,8 +60,8 @@ class _PveRRDChartState extends State<PveRRDChart> {
       crossAxisAlignment: widget.titleAlginment,
       children: <Widget>[
         Container(
-          width: widget.titleWidth ?? null,
-          padding: widget.titlePadding ?? null,
+          width: widget.titleWidth,
+          padding: widget.titlePadding,
           child: ListTile(
             leading: widget.icon,
             title: Text(
