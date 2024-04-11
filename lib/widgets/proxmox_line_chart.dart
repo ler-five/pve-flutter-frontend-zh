@@ -101,9 +101,7 @@ class ProxmoxLineChart extends CustomPainter {
       if (!touchX.isNaN && !touchY.isNaN) {
         // prevent right/left overflow
         final labelX = tp.width <= touchX ? touchX - tp.width : touchX;
-        var labelY = true || tp.height < touchY + paint.strokeWidth
-            ? touchY - tp.height - paint.strokeWidth
-            : touchY;
+        var labelY = touchY - tp.height - paint.strokeWidth;
 
         tp.paint(canvas, Offset(labelX, labelY));
         canvas.drawCircle(Offset(touchX, touchY), 4, paint);
