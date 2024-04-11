@@ -40,9 +40,11 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
         widget.task.status != 'RUNNING' && widget.task.status != "OK";
     final isFinished = widget.task.endTime != null;
     final taskLogBloc = Provider.of<PveTaskLogBloc>(context);
-    var duration;
+    Duration duration;
     if (isFinished) {
       duration = widget.task.endTime!.difference(widget.task.startTime);
+    } else {
+      duration = DateTime.now().difference(widget.task.startTime);
     }
     final colorScheme = Theme.of(context).colorScheme;
     final errorColor = widget.errorColor ?? colorScheme.error;
