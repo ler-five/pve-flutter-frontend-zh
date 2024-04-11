@@ -12,7 +12,7 @@ class PveTaskLog extends StatefulWidget {
   const PveTaskLog({super.key});
 
   @override
-  State<PveTaskLog> createState() => _PveTaskLogState();
+  _PveTaskLogState createState() => _PveTaskLogState();
 }
 
 class _PveTaskLogState extends State<PveTaskLog> {
@@ -175,7 +175,7 @@ class PveTaskLogScrollView extends StatefulWidget {
     required this.jobTitle,
   });
   @override
-  State<PveTaskLogScrollView> createState() => _PveTaskLogScrollViewState();
+  _PveTaskLogScrollViewState createState() => _PveTaskLogScrollViewState();
 }
 
 class _PveTaskLogScrollViewState extends State<PveTaskLogScrollView> {

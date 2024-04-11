@@ -14,7 +14,7 @@ class PveWelcome extends StatefulWidget {
   const PveWelcome({super.key});
 
   @override
-  State<PveWelcome> createState() => _PveWelcomeState();
+  _PveWelcomeState createState() => _PveWelcomeState();
 }
 
 class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {

@@ -23,7 +23,7 @@ class PveTaskExpansionTile extends StatefulWidget {
   final PveClusterTasksModel task;
 
   @override
-  State<PveTaskExpansionTile> createState() => _PveTaskExpansionTileState();
+  _PveTaskExpansionTileState createState() => _PveTaskExpansionTileState();
 }
 
 class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {

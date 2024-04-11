@@ -69,7 +69,7 @@ class ProxmoxGaugeChart extends StatefulWidget {
     this.backgroundGroundColor = Colors.black12,
   });
   @override
-  State<ProxmoxGaugeChart> createState() => _ProxmoxGaugeChartState();
+  _ProxmoxGaugeChartState createState() => _ProxmoxGaugeChartState();
 }
 
 class _ProxmoxGaugeChartState extends State<ProxmoxGaugeChart>

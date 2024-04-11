@@ -24,7 +24,7 @@ class PveFileSelector extends StatefulWidget {
     this.isSelector = false,
   });
   @override
-  State<PveFileSelector> createState() => _PveFileSelectorState();
+  _PveFileSelectorState createState() => _PveFileSelectorState();
 }
 
 class _PveFileSelectorState extends State<PveFileSelector> {
