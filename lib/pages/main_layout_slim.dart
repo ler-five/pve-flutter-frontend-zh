@@ -67,13 +67,14 @@ class _MainLayoutSlimState extends State<MainLayoutSlim> {
           dispose: (context, bloc) => bloc.dispose(),
         )
       ],
-      child: WillPopScope(
-        onWillPop: () async {
-          if (pageSelector.value != 0) {
-            pageSelector.add(0);
-            return false;
+      child: PopScope(
+        canPop: false,
+        onPopInvoked: (didPop) async {
+          if (didPop || pageSelector.value != 0) {
+            if (pageSelector.value != 0) pageSelector.add(0);
+            return;
           }
-          return true;
+          if (mounted) Navigator.of(context).pop();
         },
         child: StreamBuilder<int>(
           stream: pageSelector.stream,
