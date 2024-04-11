@@ -76,7 +76,7 @@ class PveFileSelectorWidget extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
-            Container(
+            SizedBox(
               height: 170,
               child: ProxmoxStreamBuilder<PveStorageSelectorBloc,
                       PveStorageSelectorState>(
@@ -211,7 +211,7 @@ class PveStorageCardIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 50,
       width: 50,
       child: Card(
@@ -241,7 +241,7 @@ class PveStorageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width,
       child: Padding(
         padding: const EdgeInsets.all(8.0),

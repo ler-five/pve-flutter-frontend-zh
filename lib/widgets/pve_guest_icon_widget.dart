@@ -21,7 +21,7 @@ class PveGuestIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (template!) {
-      return Container(
+      return SizedBox(
         height: 24,
         width: 36,
         child: Stack(

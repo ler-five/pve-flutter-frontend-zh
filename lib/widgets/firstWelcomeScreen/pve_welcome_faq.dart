@@ -48,7 +48,7 @@ class PveWelcomePageFAQ extends StatelessWidget {
                     'https://play.google.com/store/apps/details?id=com.undatech.opaque')
               },
               style: OutlinedButton.styleFrom(
-                side: BorderSide(color: ProxmoxColors.supportGrey),
+                side: const BorderSide(color: ProxmoxColors.supportGrey),
                 foregroundColor: Colors.white,
               ),
               child: const Text('Opaque'),

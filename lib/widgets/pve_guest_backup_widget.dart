@@ -37,7 +37,7 @@ class PveGuestBackupWidget extends StatelessWidget {
               fBloc.events
                   .add(ChangeStorage(storageSelectorState.selected?.id));
             },
-            child: Container(
+            child: SizedBox(
               height: 170,
               child: ProxmoxStreamBuilder<PveStorageSelectorBloc,
                       PveStorageSelectorState>(
@@ -232,7 +232,7 @@ class PveGuestBackupContent extends StatelessWidget {
           borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
       context: context,
       builder: (context) {
-        return Container(
+        return SizedBox(
           height: MediaQuery.of(context).size.height * 0.4,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

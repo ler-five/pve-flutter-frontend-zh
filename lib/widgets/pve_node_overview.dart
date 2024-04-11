@@ -177,7 +177,7 @@ class PveNodeOverview extends StatelessWidget {
                       return Container();
                     },
                   ),
-                  Container(
+                  SizedBox(
                     height: 130,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,

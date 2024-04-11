@@ -206,7 +206,7 @@ class _PveTaskLogScrollViewState extends State<PveTaskLogScrollView> {
               indicatorColor = Colors.red;
               statusChipColor = Colors.red.shade100;
             }
-            return Container(
+            return SizedBox(
               height: MediaQuery.of(context).size.height * 0.5,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -63,7 +63,7 @@ class PveWelcomePageLast extends StatelessWidget {
                               onPressed: () =>
                                   {launch('https://forum.proxmox.com')},
                               style: OutlinedButton.styleFrom(
-                                side: BorderSide(
+                                side: const BorderSide(
                                     color: ProxmoxColors.supportGrey),
                                 foregroundColor: Colors.white,
                               ),
@@ -75,7 +75,7 @@ class PveWelcomePageLast extends StatelessWidget {
                                     'https://lists.proxmox.com/cgi-bin/mailman/listinfo/pve-user')
                               },
                               style: OutlinedButton.styleFrom(
-                                side: BorderSide(
+                                side: const BorderSide(
                                     color: ProxmoxColors.supportGrey),
                                 foregroundColor: Colors.white,
                               ),

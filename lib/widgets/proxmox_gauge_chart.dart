@@ -191,7 +191,7 @@ class ProxmoxGaugeChartListTile extends StatelessWidget {
               ],
             ),
           ),
-          Container(
+          SizedBox(
             width: 100,
             height: 50,
             child: ProxmoxGaugeChart(

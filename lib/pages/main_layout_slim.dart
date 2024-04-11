@@ -220,7 +220,7 @@ class MobileDashboard extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    trailing: Container(
+                    trailing: SizedBox(
                       width: 96,
                       height: 48,
                       child: ProxmoxHeartbeatIndicator(
@@ -231,7 +231,7 @@ class MobileDashboard extends StatelessWidget {
                     ),
                   ),
                 ],
-                Container(
+                SizedBox(
                   height: 80,
                   child: ListView(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -1131,7 +1131,7 @@ class MobileAccessManagement extends StatelessWidget {
                                   top: Radius.circular(10))),
                           context: context,
                           builder: (context) {
-                            return Container(
+                            return SizedBox(
                               height: MediaQuery.of(context).size.height * 0.5,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1189,7 +1189,7 @@ class MobileAccessManagement extends StatelessWidget {
                                   top: Radius.circular(10))),
                           context: context,
                           builder: (context) {
-                            return Container(
+                            return SizedBox(
                               height: MediaQuery.of(context).size.height * 0.5,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,

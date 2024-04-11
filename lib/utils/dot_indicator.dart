@@ -26,7 +26,7 @@ class Dot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: dotSpacing,
       child: Center(
         child: Container(

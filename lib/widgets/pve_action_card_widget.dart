@@ -23,7 +23,7 @@ class ActionCard extends StatelessWidget {
         onTap: onTap as void Function()?,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
+          child: SizedBox(
             width: 80,
             child: Stack(children: [
               Center(

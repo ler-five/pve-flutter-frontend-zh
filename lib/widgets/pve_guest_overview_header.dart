@@ -166,9 +166,9 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
   @override
   Widget build(BuildContext context) {
     if (widget.rrdData == null || widget.rrdData!.isEmpty) {
-      return Container(
+      return const SizedBox(
         height: 200,
-        child: const Center(
+        child: Center(
           child: Text('no rrd data'),
         ),
       );

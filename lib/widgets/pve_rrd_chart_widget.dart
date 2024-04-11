@@ -88,7 +88,7 @@ class _PveRRDChartState extends State<PveRRDChart> {
             ],
           ),
         Expanded(
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: GestureDetector(
               onPanDown: (details) {

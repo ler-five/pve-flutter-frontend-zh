@@ -98,7 +98,7 @@ class MyApp extends StatelessWidget {
         title: 'Proxmox',
         //themeMode: ThemeMode.dark, // comment in/out to test
         theme: ThemeData(
-          colorScheme: ColorScheme.light(
+          colorScheme: const ColorScheme.light(
             brightness: Brightness.light,
             primary: ProxmoxColors.supportBlue,
             onPrimary: Colors.white,
@@ -124,7 +124,7 @@ class MyApp extends StatelessWidget {
             titleLarge:
                 TextStyle(fontFamily: "Open Sans", fontWeight: FontWeight.w700),
           ),
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             backgroundColor: ProxmoxColors.supportBlue, // primary
             foregroundColor: Colors.white, // onPrimary
           ),
@@ -181,7 +181,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         darkTheme: ThemeData(
-          colorScheme: ColorScheme.dark(
+          colorScheme: const ColorScheme.dark(
             brightness: Brightness.dark,
             primary: ProxmoxColors.supportBlue,
             onPrimary: Colors.white,
@@ -196,7 +196,7 @@ class MyApp extends StatelessWidget {
           indicatorColor: ProxmoxColors.orange,
           // flutter has a weird logic where it pulls colors from different
           // scheme properties depending on light/dark mode, avoid that...
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             backgroundColor: ProxmoxColors.supportBlue, // primary
             foregroundColor: Colors.white, // onPrimary
           ),
