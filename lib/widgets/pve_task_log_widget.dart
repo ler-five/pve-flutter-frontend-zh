@@ -198,6 +198,7 @@ class _PveTaskLogScrollViewState extends State<PveTaskLogScrollView> {
       child: ProxmoxStreamBuilder<PveTaskLogViewerBloc, PveTaskLogViewerState>(
           bloc: Provider.of<PveTaskLogViewerBloc>(context),
           builder: (context, state) {
+            // TODO: fix color (for dark theme) and better handle warnings
             var indicatorColor = Colors.teal.shade500;
             var statusChipColor = Colors.teal.shade100;
             if (state.status?.failed ?? false) {
@@ -276,7 +277,9 @@ class _PveTaskLogScrollViewState extends State<PveTaskLogScrollView> {
                                     style: TextStyle(
                                       color: isLast || errorLine
                                           ? Colors.white
-                                          : Colors.black,
+                                          : warningLine
+                                              ? Colors.orange.shade800
+                                              : Colors.black,
                                     ),
                                   ),
                                 ),
