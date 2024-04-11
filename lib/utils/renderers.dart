@@ -79,7 +79,6 @@ class Renderers {
   }
 
   static String renderSupportLevel(String? level) {
-    var lvl = level ?? 'none';
-    return supportLevelMap[level!] ?? 'no support';
+    return supportLevelMap[level ?? 'none'] ?? 'no support';
   }
 }
