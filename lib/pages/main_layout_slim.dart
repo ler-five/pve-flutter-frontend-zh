@@ -618,7 +618,9 @@ class MobileResourceOverview extends StatelessWidget {
               separatorBuilder: (context, index) => const Divider(),
               itemBuilder: (context, index) {
                 final resource = fResources[index];
-                var listWidget;
+                StatelessWidget listWidget = const ListTile(
+                  title: Text('Unkown resource type'),
+                );
                 if (const ['lxc', 'qemu'].contains(resource.type)) {
                   listWidget = PveGuestListTile(resource: resource);
                 }
