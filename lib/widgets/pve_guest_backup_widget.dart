@@ -344,7 +344,7 @@ class PveConfigurationDialog extends StatefulWidget {
     required this.volume,
   });
   @override
-  _PveConfigurationDialogState createState() => _PveConfigurationDialogState();
+  State<PveConfigurationDialog> createState() => _PveConfigurationDialogState();
 }
 
 class _PveConfigurationDialogState extends State<PveConfigurationDialog> {
@@ -389,7 +389,7 @@ class PveBackupForm extends StatefulWidget {
   const PveBackupForm({super.key, required this.sBloc, required this.guestID});
 
   @override
-  _PveBackupFormState createState() => _PveBackupFormState();
+  State<PveBackupForm> createState() => _PveBackupFormState();
 }
 
 class _PveBackupFormState extends State<PveBackupForm> {

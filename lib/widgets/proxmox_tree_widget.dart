@@ -33,7 +33,7 @@ class ProxmoxTreeWidget extends StatefulWidget {
   });
 
   @override
-  _ProxmoxTreeWidgetState createState() => _ProxmoxTreeWidgetState();
+  State<ProxmoxTreeWidget> createState() => _ProxmoxTreeWidgetState();
 }
 
 class _ProxmoxTreeWidgetState extends State<ProxmoxTreeWidget> {

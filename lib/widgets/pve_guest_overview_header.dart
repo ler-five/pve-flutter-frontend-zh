@@ -151,7 +151,7 @@ class PveGuestHeaderRRDPageView extends StatefulWidget {
   const PveGuestHeaderRRDPageView({super.key, this.rrdData});
 
   @override
-  _PveGuestHeaderRRDPageViewState createState() =>
+  State<PveGuestHeaderRRDPageView> createState() =>
       _PveGuestHeaderRRDPageViewState();
 }
 

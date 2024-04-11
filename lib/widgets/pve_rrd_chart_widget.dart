@@ -41,7 +41,7 @@ class PveRRDChart extends StatefulWidget {
   });
 
   @override
-  _PveRRDChartState createState() => _PveRRDChartState();
+  State<PveRRDChart> createState() => _PveRRDChartState();
 }
 
 class _PveRRDChartState extends State<PveRRDChart> {

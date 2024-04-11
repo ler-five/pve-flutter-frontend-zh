@@ -16,7 +16,7 @@ abstract class ProxmoxBaseStreamBuilder<B extends ProxmoxBaseBloc<dynamic, S>,
   Widget build(BuildContext context, S state);
 
   @override
-  _ProxmoxBaseStreamBuilderState createState() =>
+  State<ProxmoxBaseStreamBuilder> createState() =>
       _ProxmoxBaseStreamBuilderState();
 }
 
