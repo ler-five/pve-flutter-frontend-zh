@@ -67,7 +67,11 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
       collapsedBackgroundColor: Theme.of(context).colorScheme.background,
       key: PageStorageKey<PveClusterTasksModel>(widget.task),
       leading: Icon(
-        hasError || hasWarnings ? Icons.warning : Icons.info,
+        hasError
+            ? Icons.warning
+            : hasWarnings
+                ? Icons.warning_rounded
+                : Icons.info,
         color: hasError
             ? errorColor
             : hasWarnings
