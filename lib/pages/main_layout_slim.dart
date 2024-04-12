@@ -80,21 +80,12 @@ class _MainLayoutSlimState extends State<MainLayoutSlim> {
           stream: pageSelector.stream,
           initialData: pageSelector.value,
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              switch (snapshot.data) {
-                case 0:
-                  return const MobileDashboard();
-                case 1:
-                  return const MobileResourceOverview();
-                case 2:
-                  Provider.of<PveAccessManagementBloc>(context)
-                      .events
-                      .add(LoadUsers());
-                  return const MobileAccessManagement();
-                default:
-              }
-            }
-            return Container();
+            return Scaffold(
+              body: getMainContent(snapshot, context),
+              // it cannot be const, but depends only on context
+              // ignore: prefer_const_constructors
+              bottomNavigationBar: PveMobileBottomNavigationbar(),
+            );
           },
         ),
       ),
@@ -108,6 +99,22 @@ class _MainLayoutSlimState extends State<MainLayoutSlim> {
   }
 }
 
+Widget getMainContent(snapshot, context) {
+  if (snapshot.hasData) {
+    switch (snapshot.data) {
+      case 0:
+        return const MobileDashboard();
+      case 1:
+        return const MobileResourceOverview();
+      case 2:
+        Provider.of<PveAccessManagementBloc>(context).events.add(LoadUsers());
+        return const MobileAccessManagement();
+      default:
+    }
+  }
+  return Container();
+}
+
 class PveMobileBottomNavigationbar extends StatelessWidget {
   const PveMobileBottomNavigationbar({super.key});
 
@@ -115,29 +122,28 @@ class PveMobileBottomNavigationbar extends StatelessWidget {
   Widget build(BuildContext context) {
     final pageSelector = Provider.of<BehaviorSubject<int>>(context);
     final light = Theme.of(context).colorScheme.brightness == Brightness.light;
-    return BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
+    return NavigationBar(
         backgroundColor: light ? Colors.white : ProxmoxColors.greyShade40,
-        items: const [
-          BottomNavigationBarItem(
+        destinations: const <Widget>[
+          NavigationDestination(
             icon: Icon(Icons.dashboard),
             label: "Dashboard",
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: Icon(Icons.developer_board),
             label: "Resources",
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: Icon(Icons.supervised_user_circle),
             label: "Access",
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: Icon(Icons.logout),
             label: "Sites",
           ),
         ],
-        currentIndex: pageSelector.value,
-        onTap: (index) {
+        selectedIndex: pageSelector.value,
+        onDestinationSelected: (int index) {
           if (index == 3) {
             Provider.of<PveAuthenticationBloc>(context, listen: false)
                 .events
@@ -543,7 +549,6 @@ class MobileDashboard extends StatelessWidget {
               ]);
             }),
       ]),
-      bottomNavigationBar: const PveMobileBottomNavigationbar(),
     );
   }
 }
@@ -656,7 +661,6 @@ class MobileResourceOverview extends StatelessWidget {
                 }
               },
             ),
-            bottomNavigationBar: const PveMobileBottomNavigationbar(),
           )),
         );
       },
@@ -1237,7 +1241,6 @@ class MobileAccessManagement extends StatelessWidget {
                     }),
               ]);
             }),
-        bottomNavigationBar: const PveMobileBottomNavigationbar(),
       ),
     );
   }
