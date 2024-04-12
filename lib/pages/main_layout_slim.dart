@@ -1056,8 +1056,11 @@ class MobileAccessManagement extends StatelessWidget {
           automaticallyImplyLeading: false,
           bottom: TabBar(
               isScrollable: true,
-              labelStyle:
+              unselectedLabelStyle:
                   TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              labelStyle:
+                  TextStyle(color: Theme.of(context).colorScheme.secondary),
+              indicatorColor: Theme.of(context).colorScheme.secondary,
               tabs: const [
                 Tab(
                   text: 'Users',
