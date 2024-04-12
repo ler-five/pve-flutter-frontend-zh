@@ -97,11 +97,13 @@ class MyApp extends StatelessWidget {
         title: 'Proxmox',
         //themeMode: ThemeMode.dark, // comment in/out to test
         theme: ThemeData(
-          colorScheme: const ColorScheme.light(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: ProxmoxColors.supportBlue,
             brightness: Brightness.light,
             primary: ProxmoxColors.supportBlue,
             onPrimary: Colors.white,
             primaryContainer: ProxmoxColors.blue900,
+            onPrimaryContainer: ProxmoxColors.blue50,
             secondary: ProxmoxColors.orange,
             secondaryContainer: ProxmoxColors.supportLightOrange,
             surface: ProxmoxColors.supportGreyTint50,
@@ -134,11 +136,13 @@ class MyApp extends StatelessWidget {
           ),
         ),
         darkTheme: ThemeData(
-          colorScheme: const ColorScheme.dark(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: ProxmoxColors.supportBlue,
             brightness: Brightness.dark,
             primary: ProxmoxColors.supportBlue,
             onPrimary: Colors.white,
             primaryContainer: ProxmoxColors.blue800,
+            onPrimaryContainer: ProxmoxColors.blue50,
             surface: ProxmoxColors.greyTint20,
             onSurface: Colors.white,
             secondary: ProxmoxColors.orange,
