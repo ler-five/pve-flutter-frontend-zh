@@ -33,10 +33,12 @@ class PveResourceDataCardWidget extends StatelessWidget {
         ),
         child: Card(
           color: Theme.of(context).colorScheme.surface,
+          clipBehavior: Clip.antiAlias,
           child: Builder(
             builder: (context) {
               if (expandable) {
                 return ExpansionTile(
+                  shape: const RoundedRectangleBorder(),
                   textColor: theme.colorScheme.onSurface,
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
