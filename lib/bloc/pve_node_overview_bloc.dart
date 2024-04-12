@@ -40,8 +40,15 @@ class PveNodeOverviewBloc
       yield latestState.rebuild((b) => b..rrdData.replace(rrdData));
       final services = await apiClient.getNodeServices(nodeID);
       yield latestState.rebuild((b) => b..services.replace(services));
-      final updates = await apiClient.getNodeAptUpdate(nodeID);
-      yield latestState.rebuild((b) => b..updates.replace(updates));
+      try {
+        final updates = await apiClient.getNodeAptUpdate(nodeID);
+        yield latestState.rebuild((b) => b..updates.replace(updates));
+      } on ProxmoxApiException catch (e) {
+        // only throw on non permission related errors
+        if (e.statusCode != 403) {
+          rethrow;
+        }
+      }
       final disks = await apiClient.getNodeDisksList(nodeID);
       yield latestState.rebuild((b) => b..disks.replace(disks));
     }
