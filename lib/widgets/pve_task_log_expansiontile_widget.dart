@@ -36,8 +36,10 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
 
   @override
   Widget build(BuildContext context) {
-    final hasError =
-        widget.task.status != 'RUNNING' && widget.task.status != "OK";
+    final hasWarnings = widget.task.status.startsWith('WARNINGS:');
+    final hasError = widget.task.status != 'RUNNING' &&
+        widget.task.status != "OK" &&
+        !hasWarnings;
     final isFinished = widget.task.endTime != null;
     final taskLogBloc = Provider.of<PveTaskLogBloc>(context);
     Duration duration;
@@ -48,6 +50,7 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
     }
     final colorScheme = Theme.of(context).colorScheme;
     final errorColor = widget.errorColor ?? colorScheme.error;
+    final warningColor = Colors.orange.shade200;
     final headerColor = isExpanded
         ? (widget.headerColorExpanded ?? colorScheme.onSurface)
         : (widget.headerColor ?? colorScheme.onBackground);
@@ -64,8 +67,12 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
       collapsedBackgroundColor: Theme.of(context).colorScheme.background,
       key: PageStorageKey<PveClusterTasksModel>(widget.task),
       leading: Icon(
-        hasError ? Icons.warning : Icons.info,
-        color: hasError ? errorColor : headerColor,
+        hasError || hasWarnings ? Icons.warning : Icons.info,
+        color: hasError
+            ? errorColor
+            : hasWarnings
+                ? warningColor
+                : headerColor,
       ),
       title: Text(
         '$taskText: ${widget.task.type}',
