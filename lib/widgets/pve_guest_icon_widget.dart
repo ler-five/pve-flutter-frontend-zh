@@ -15,7 +15,7 @@ class PveGuestIcon extends StatelessWidget {
     this.template = false,
     required this.status,
     this.color = Colors.grey,
-    this.templateColor = Colors.black,
+    this.templateColor = Colors.grey,
   });
 
   @override
