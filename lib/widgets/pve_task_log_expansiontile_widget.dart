@@ -52,6 +52,8 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
         ? (widget.headerColorExpanded ?? colorScheme.onSurface)
         : (widget.headerColor ?? colorScheme.onBackground);
 
+    final taskText = widget.showMorePage != null ? 'Last Task' : 'Task';
+
     return ExpansionTile(
       onExpansionChanged: (value) {
         setState(() {
@@ -66,7 +68,7 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
         color: hasError ? errorColor : headerColor,
       ),
       title: Text(
-        'Last Task: ${widget.task.type}',
+        '$taskText: ${widget.task.type}',
         style: TextStyle(color: headerColor),
       ),
       subtitle: isFinished
