@@ -1,5 +1,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -74,7 +75,8 @@ class _MainLayoutSlimState extends State<MainLayoutSlim> {
             if (pageSelector.value != 0) pageSelector.add(0);
             return;
           }
-          if (mounted) Navigator.of(context).pop();
+          // minimize/return from the app
+          SystemNavigator.pop();
         },
         child: StreamBuilder<int>(
           stream: pageSelector.stream,
