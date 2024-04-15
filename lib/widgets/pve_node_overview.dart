@@ -46,6 +46,8 @@ class PveNodeOverview extends StatelessWidget {
       builder: (context, state) {
         final status = state.status;
         final rrd = state.rrdData.where((e) => e.time != null);
+        final fgColor =
+            Theme.of(context).colorScheme.onPrimary.withOpacity(0.75);
         return SafeArea(
           child: Scaffold(
             appBar: AppBar(
@@ -97,7 +99,7 @@ class PveNodeOverview extends StatelessWidget {
                                           (e) => Point(
                                               e.time!.millisecondsSinceEpoch,
                                               (e.cpu ?? 0) * 100.0)),
-                                      icon: const Icon(Icons.memory),
+                                      icon: Icon(Icons.memory, color: fgColor),
                                       bottomRight: pageIndicator,
                                       dataRenderer: (data) =>
                                           '${data.toStringAsFixed(2)} %',
@@ -112,7 +114,8 @@ class PveNodeOverview extends StatelessWidget {
                                       data: rrd.map((e) => Point(
                                           e.time!.millisecondsSinceEpoch,
                                           e.memused ?? 0)),
-                                      icon: const Icon(FontAwesomeIcons.memory),
+                                      icon: Icon(FontAwesomeIcons.memory,
+                                          color: fgColor),
                                       bottomRight: pageIndicator,
                                       dataRenderer: (data) =>
                                           Renderers.formatSize(data),
@@ -128,7 +131,7 @@ class PveNodeOverview extends StatelessWidget {
                                       data: rrd.map((e) => Point(
                                           e.time!.millisecondsSinceEpoch,
                                           e.iowait ?? 0)),
-                                      icon: const Icon(Icons.timer),
+                                      icon: Icon(Icons.timer, color: fgColor),
                                       bottomRight: pageIndicator,
                                       dataRenderer: (data) =>
                                           data.toStringAsFixed(3),
@@ -144,7 +147,8 @@ class PveNodeOverview extends StatelessWidget {
                                       data: rrd.map((e) => Point(
                                           e.time!.millisecondsSinceEpoch,
                                           e.loadavg ?? 0)),
-                                      icon: const Icon(Icons.show_chart),
+                                      icon: Icon(Icons.show_chart,
+                                          color: fgColor),
                                       bottomRight: pageIndicator,
                                       dataRenderer: (data) =>
                                           data.toStringAsFixed(2),
