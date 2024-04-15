@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:proxmox_login_manager/proxmox_general_settings_model.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:crypto/crypto.dart';
 
 class PveConsoleMenu extends StatelessWidget {
   static const platform =
@@ -104,8 +106,7 @@ class PveConsoleMenu extends StatelessWidget {
                   "noVNC Console", // xterm.js doesn't work that well on mobile
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                subtitle: const Text(
-                    "Open console view (requires trusted SSL certificate)"),
+                subtitle: const Text("Open console view"),
                 onTap: () async {
                   if (Platform.isAndroid) {
                     if (['qemu', 'lxc'].contains(type)) {
@@ -209,6 +210,8 @@ class PVEWebConsole extends StatefulWidget {
 }
 
 class PVEWebConsoleState extends State<PVEWebConsole> {
+  InAppWebViewController? webViewController;
+
   @override
   Widget build(BuildContext context) {
     final ticket = widget.apiClient.credentials.ticket!;
@@ -222,23 +225,122 @@ class PVEWebConsoleState extends State<PVEWebConsole> {
     } else {
       consoleUrl += "&console=shell";
     }
-
-    final controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(Theme.of(context).colorScheme.background);
+    WidgetsFlutterBinding.ensureInitialized();
 
     return FutureBuilder(
-        future: WebViewCookieManager().setCookie(WebViewCookie(
+        future: CookieManager.instance().setCookie(
+          url: Uri.parse(consoleUrl),
           name: 'PVEAuthCookie',
           value: ticket,
-          domain: baseUrl.origin,
-        )),
+        ),
         builder: (context, snapshot) {
-          controller.loadRequest(Uri.parse(consoleUrl));
           return SafeArea(
-            child: WebViewWidget(
-              controller: controller,
+            child: InAppWebView(
+              onReceivedServerTrustAuthRequest: (controller, challenge) async {
+                final cert = challenge.protectionSpace.sslCertificate;
+                final certBytes = cert?.x509Certificate?.encoded;
+                final sslError = challenge.protectionSpace.sslError?.message;
+
+                String? issuedTo = cert?.issuedTo?.CName.toString();
+                String? hash = certBytes != null
+                    ? sha256.convert(certBytes).toString()
+                    : null;
+
+                final settings =
+                    await ProxmoxGeneralSettingsModel.fromLocalStorage();
+
+                bool trust = false;
+                if (hash != null && settings.trustedFingerprints != null) {
+                  trust = settings.trustedFingerprints!.contains(hash);
+                }
+
+                if (!trust) {
+                  // format hash to '01:23:...' format
+                  String? formattedHash = hash?.toUpperCase().replaceAllMapped(
+                      RegExp(r"[a-zA-Z0-9]{2}"),
+                      (match) => "${match.group(0)}:");
+                  formattedHash = formattedHash?.substring(
+                      0, formattedHash.length - 1); // remove last ':'
+
+                  if (context.mounted) {
+                    trust = await showTLSWarning(
+                        context,
+                        sslError ?? 'An unknown TLS error has occurred',
+                        issuedTo ?? 'unknown',
+                        formattedHash ?? 'unknown');
+                  }
+                }
+
+                // save Fingerprint
+                if (trust && hash != null) {
+                  await settings
+                      .rebuild((b) => b..trustedFingerprints.add(hash))
+                      .toLocalStorage();
+                  print(settings.toJson());
+                }
+
+                final action = trust
+                    ? ServerTrustAuthResponseAction.PROCEED
+                    : ServerTrustAuthResponseAction.CANCEL;
+                return ServerTrustAuthResponse(action: action);
+              },
+              onWebViewCreated: (controller) {
+                webViewController = controller;
+                controller.loadUrl(
+                    urlRequest: URLRequest(url: Uri.parse(consoleUrl)));
+              },
             ),
+          );
+        });
+  }
+
+  Future<bool> showTLSWarning(BuildContext context, String sslError,
+      String issuedTo, String hash) async {
+    return await showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return PopScope(
+            // prevent back button from canceling this callback
+            canPop: false,
+            child: AlertDialog(
+                title: const Text('An TLS error has occurred:'),
+                content: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ListTile(
+                      title: const Text('Error Message:'),
+                      subtitle: Text(sslError),
+                    ),
+                    const ListTile(
+                      title: Text('Certificate Information:'),
+                    ),
+                    ListTile(
+                      title: const Text('Issued to:'),
+                      subtitle: Text(issuedTo),
+                    ),
+                    ListTile(
+                      title: const Text('Fingerprint:'),
+                      subtitle: Text(hash),
+                    ),
+                    const Text(''), // spacer
+                    const Text('Do you want to continue?'),
+                  ],
+                ),
+                actions: <Widget>[
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(false);
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('No')),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(true);
+                      },
+                      child: const Text('Yes'))
+                ]),
           );
         });
   }
