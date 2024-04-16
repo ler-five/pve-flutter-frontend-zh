@@ -295,7 +295,7 @@ class PveNodeOverview extends StatelessWidget {
                           .compareTo((b.title as Text).data!)),
                   ),
                   PveResourceDataCardWidget(
-                    expandable: true,
+                    expandable: !state.updatesQueryPermissionFailure,
                     showTitleTrailing: state.updates.isNotEmpty,
                     titleTrailing: const Icon(Icons.info_outline),
                     title: const Text(
@@ -308,12 +308,16 @@ class PveNodeOverview extends StatelessWidget {
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        if (state.updates.isEmpty)
+                        if (state.updatesQueryPermissionFailure)
+                          const Text('Lacking permission to query updates'),
+                        if (state.updates.isEmpty &&
+                            !state.updatesQueryPermissionFailure)
                           const Text('No updates available'),
                         if (state.updates.isNotEmpty)
                           Text(
                               '${state.updates.length} packages are ready to update'),
-                        const Divider(),
+                        if (!state.updatesQueryPermissionFailure)
+                          const Divider(),
                       ],
                     ),
                     children: state.updates

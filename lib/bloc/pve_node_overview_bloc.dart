@@ -43,10 +43,15 @@ class PveNodeOverviewBloc
       try {
         final updates = await apiClient.getNodeAptUpdate(nodeID);
         yield latestState.rebuild((b) => b..updates.replace(updates));
+        yield latestState
+            .rebuild((b) => b..updatesQueryPermissionFailure = false);
       } on ProxmoxApiException catch (e) {
         // only throw on non permission related errors
         if (e.statusCode != 403) {
           rethrow;
+        } else {
+          yield latestState
+              .rebuild((b) => b..updatesQueryPermissionFailure = true);
         }
       }
       final disks = await apiClient.getNodeDisksList(nodeID);

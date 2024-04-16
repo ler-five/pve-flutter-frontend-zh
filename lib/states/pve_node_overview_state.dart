@@ -16,11 +16,13 @@ abstract class PveNodeOverviewState
   BuiltList<PveNodeRRDDataModel> get rrdData;
   BuiltList<PveNodeServicesModel> get services;
   BuiltList<PveNodesAptUpdateModel> get updates;
+  bool get updatesQueryPermissionFailure;
   BuiltList<PveNodesDisksListModel> get disks;
   bool get standalone;
 
   bool get allServicesRunning => !services.any((s) {
         if (s.name == 'corosync' && standalone) return false;
+        // TODO: only one NTP provider will be active
         return (s.state != 'running' &&
             !(s.unitState == 'masked' || s.unitState == 'not-found'));
       });
@@ -39,7 +41,8 @@ abstract class PveNodeOverviewState
         ..isLoading = false
         ..isSuccess = false
         //class
-        ..standalone = standalone);
+        ..standalone = standalone
+        ..updatesQueryPermissionFailure = false);
 
   bool isDiskHealthy(PveNodesDisksListModel disk) {
     return ['OK', 'PASSED'].contains(disk.health);
