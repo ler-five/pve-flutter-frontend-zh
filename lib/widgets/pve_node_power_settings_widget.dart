@@ -60,15 +60,15 @@ class PveNodePowerSettings extends StatelessWidget {
         builder: (context) {
           return AlertDialog(
             contentPadding: const EdgeInsets.fromLTRB(24.0, 12.0, 24.0, 16.0),
-            title: const Row(
+            title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('Confirm'),
-                Icon(Icons.warning),
+                Text('$capitalizedActionText node?'),
+                const Icon(Icons.warning),
               ],
             ),
             content: Text(
-                "Are you sure you want to do action '$actionText' on node '${bloc.nodeID}'?"),
+                "A $actionText of '${bloc.nodeID}' might render the node and all its virtual guests unavailable for a prolonged period."),
             actions: [
               TextButton(
                   onPressed: () => Navigator.of(context).pop(false),
