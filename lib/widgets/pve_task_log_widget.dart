@@ -4,6 +4,7 @@ import 'package:pve_flutter_frontend/bloc/pve_task_log_bloc.dart';
 import 'package:pve_flutter_frontend/bloc/pve_task_log_viewer_bloc.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_state.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_viewer_state.dart';
+import 'package:pve_flutter_frontend/widgets/colored_safe_area.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
 import 'package:pve_flutter_frontend/widgets/pve_task_log_expansiontile_widget.dart';
@@ -36,7 +37,7 @@ class _PveTaskLogState extends State<PveTaskLog> {
     return ProxmoxStreamBuilder<PveTaskLogBloc, PveTaskLogState>(
         bloc: bloc,
         builder: (context, state) {
-          return SafeArea(
+          return ColoredSafeArea(
             child: Scaffold(
               key: _scaffoldKey,
               appBar: AppBar(

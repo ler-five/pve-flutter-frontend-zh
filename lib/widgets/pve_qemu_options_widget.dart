@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pve_flutter_frontend/bloc/pve_qemu_overview_bloc.dart';
 import 'package:pve_flutter_frontend/states/pve_qemu_overview_state.dart';
+import 'package:pve_flutter_frontend/widgets/colored_safe_area.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_config_switch_list_tile.dart';
 
@@ -18,7 +19,7 @@ class PveQemuOptions extends StatelessWidget {
         builder: (context, state) {
           if (state.config != null) {
             final config = state.config!;
-            return SafeArea(
+            return ColoredSafeArea(
               child: Scaffold(
                 appBar: AppBar(
                   leading: IconButton(

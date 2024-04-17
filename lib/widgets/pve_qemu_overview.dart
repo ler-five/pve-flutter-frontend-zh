@@ -19,6 +19,7 @@ import 'package:pve_flutter_frontend/states/pve_storage_selector_state.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_state.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_viewer_state.dart';
 import 'package:pve_flutter_frontend/utils/utils.dart';
+import 'package:pve_flutter_frontend/widgets/colored_safe_area.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
 import 'package:pve_flutter_frontend/widgets/pve_action_card_widget.dart';
@@ -70,7 +71,7 @@ class PveQemuOverview extends StatelessWidget {
             final config = state.config;
             final rrdData = state.rrdData;
 
-            return SafeArea(
+            return ColoredSafeArea(
               child: Scaffold(
                   appBar: AppBar(
                     //backgroundColor: Colors.transparent,

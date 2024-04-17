@@ -8,6 +8,7 @@ import 'package:pve_flutter_frontend/states/pve_node_overview_state.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_state.dart';
 import 'package:pve_flutter_frontend/utils/renderers.dart';
 import 'package:pve_flutter_frontend/utils/utils.dart';
+import 'package:pve_flutter_frontend/widgets/colored_safe_area.dart';
 import 'package:pve_flutter_frontend/widgets/pve_node_power_settings_widget.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_capacity_indicator.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
@@ -49,7 +50,7 @@ class PveNodeOverview extends StatelessWidget {
         final rrd = state.rrdData.where((e) => e.time != null);
         final fgColor =
             Theme.of(context).colorScheme.onPrimary.withOpacity(0.75);
-        return SafeArea(
+        return ColoredSafeArea(
           child: Scaffold(
             appBar: AppBar(
               //backgroundColor: Colors.transparent,
