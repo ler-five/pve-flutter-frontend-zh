@@ -53,6 +53,8 @@ class PveNodePowerSettings extends StatelessWidget {
 
   void confirmedAction(BuildContext context, PveClusterResourceAction action,
       PveNodeOverviewBloc bloc, String actionText) async {
+    String capitalizedActionText =
+        actionText[0].toUpperCase() + actionText.substring(1);
     bool confirmed = await showDialog(
         context: context,
         builder: (context) {
@@ -66,14 +68,14 @@ class PveNodePowerSettings extends StatelessWidget {
               ],
             ),
             content: Text(
-                "Are you sure you want to $actionText node '${bloc.nodeID}'?"),
+                "Are you sure you want to do action '$actionText' on node '${bloc.nodeID}'?"),
             actions: [
               TextButton(
-                  onPressed: () => Navigator.of(context).pop(true),
-                  child: const Text("Yes")),
-              TextButton(
                   onPressed: () => Navigator.of(context).pop(false),
-                  child: const Text("No"))
+                  child: const Text("Cancel")),
+              TextButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: Text(capitalizedActionText))
             ],
           );
         });
