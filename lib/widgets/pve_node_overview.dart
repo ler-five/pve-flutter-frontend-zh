@@ -8,6 +8,7 @@ import 'package:pve_flutter_frontend/states/pve_node_overview_state.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_state.dart';
 import 'package:pve_flutter_frontend/utils/renderers.dart';
 import 'package:pve_flutter_frontend/utils/utils.dart';
+import 'package:pve_flutter_frontend/widgets/pve_node_power_settings_widget.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_capacity_indicator.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_action_card_widget.dart';
@@ -189,6 +190,16 @@ class PveNodeOverview extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
+                          ActionCard(
+                            icon: const Icon(
+                              Icons.power_settings_new,
+                              size: 55,
+                              color: Colors.white24,
+                            ),
+                            title: 'Power Settings',
+                            onTap: () =>
+                                showPowerMenuBottomSheet(context, nBloc),
+                          ),
                           ActionCard(
                             icon: const Icon(
                               Icons.queue_play_next,
@@ -441,6 +452,19 @@ class PveNodeOverview extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  Future<T?> showPowerMenuBottomSheet<T>(
+      BuildContext context, PveNodeOverviewBloc nodeBloc) async {
+    return showModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
+      context: context,
+      builder: (context) => Provider.value(
+        value: nodeBloc,
+        child: const PveNodePowerSettings(),
+      ),
     );
   }
 }

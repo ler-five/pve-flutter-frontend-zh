@@ -57,9 +57,20 @@ class PveNodeOverviewBloc
       final disks = await apiClient.getNodeDisksList(nodeID);
       yield latestState.rebuild((b) => b..disks.replace(disks));
     }
+    if (event is PerformNodeAction) {
+      await apiClient.doResourceAction(nodeID, '', 'node', event.action,
+          parameters: <String, String>{});
+      yield latestState;
+    }
   }
 }
 
 abstract class PveNodeOverviewEvent {}
 
 class UpdateNodeStatus extends PveNodeOverviewEvent {}
+
+class PerformNodeAction extends PveNodeOverviewEvent {
+  final PveClusterResourceAction action;
+
+  PerformNodeAction(this.action);
+}
