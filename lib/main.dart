@@ -11,7 +11,7 @@ import 'package:pve_flutter_frontend/bloc/pve_node_overview_bloc.dart';
 import 'package:pve_flutter_frontend/bloc/pve_qemu_overview_bloc.dart';
 import 'package:pve_flutter_frontend/bloc/pve_resource_bloc.dart';
 import 'package:pve_flutter_frontend/bloc/pve_task_log_bloc.dart';
-import 'package:pve_flutter_frontend/pages/404_page.dart';
+import 'package:pve_flutter_frontend/pages/page_not_found.dart';
 import 'package:pve_flutter_frontend/pages/main_layout_slim.dart';
 import 'package:pve_flutter_frontend/states/pve_cluster_status_state.dart';
 import 'package:pve_flutter_frontend/states/pve_lxc_overview_state.dart';
