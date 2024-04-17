@@ -30,7 +30,7 @@ class PveNodePowerSettings extends StatelessWidget {
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       subtitle: const Text("Reboot Node"),
-                      onTap: () => action(context,
+                      onTap: () => confirmedAction(context,
                           PveClusterResourceAction.reboot, bloc, "reboot"),
                     ),
                     ListTile(
@@ -40,7 +40,7 @@ class PveNodePowerSettings extends StatelessWidget {
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       subtitle: const Text("Shutdown Node"),
-                      onTap: () => action(context,
+                      onTap: () => confirmedAction(context,
                           PveClusterResourceAction.shutdown, bloc, "shutdown"),
                     ),
                   ],
@@ -51,9 +51,9 @@ class PveNodePowerSettings extends StatelessWidget {
         });
   }
 
-  void action(BuildContext context, PveClusterResourceAction action,
+  void confirmedAction(BuildContext context, PveClusterResourceAction action,
       PveNodeOverviewBloc bloc, String actionText) async {
-    if (await showDialog(
+    bool confirmed = await showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
@@ -76,7 +76,8 @@ class PveNodePowerSettings extends StatelessWidget {
                   child: const Text("No"))
             ],
           );
-        })) {
+        });
+    if (confirmed) {
       bloc.events.add(PerformNodeAction(action));
       if (context.mounted) Navigator.of(context).pop();
     }
