@@ -270,7 +270,7 @@ class PveGuestBackupContent extends StatelessWidget {
                             'Do you really want to delete this backup?'))!;
                         if (guard) {
                           fBloc.events.add(DeleteFile(volid));
-                          Navigator.of(context).pop();
+                          if (context.mounted) Navigator.of(context).pop();
                         }
                       },
                       icon: const Icon(Icons.delete),
@@ -504,9 +504,11 @@ class _PveBackupFormState extends State<PveBackupForm> {
           node, storage, guestId,
           compressionType: compression, mode: mode, mailTo: mailTo))!;
 
-      await showTaskLogBottomSheet(context, apiClient, node, jobId,
-          icon: const Icon(Icons.save), jobTitle: Text('Backup $guestId'));
-      Navigator.of(context).pop();
+      if (mounted) {
+        await showTaskLogBottomSheet(context, apiClient, node, jobId,
+            icon: const Icon(Icons.save), jobTitle: Text('Backup $guestId'));
+        if (mounted) Navigator.of(context).pop();
+      }
     } on ProxmoxApiException catch (e) {
       _scaffoldKey.currentState!.showSnackBar(SnackBar(
         content: Text(

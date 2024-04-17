@@ -61,7 +61,7 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
 
   Future<void> skipDone() async {
     await _sharedPreferences.setBool('showWelcomeScreen', false);
-    Navigator.pushReplacementNamed(context, '/');
+    if (mounted) Navigator.pushReplacementNamed(context, '/');
   }
 
   Widget nextDoneButton() {

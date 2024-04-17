@@ -60,8 +60,10 @@ class PveConsoleMenu extends StatelessWidget {
                     final response = await apiClient.postRequest(apiPath);
                     final data = json.decode(response.body)['data'];
                     if (data == null) {
-                      showTextDialog(context, 'Empty reply from SPICE API',
-                          'Ensure you have "${type == 'node' ? 'Sys' : 'VM'}.Console" permissions.');
+                      if (context.mounted) {
+                        showTextDialog(context, 'Empty reply from SPICE API',
+                            'Ensure you have "${type == 'node' ? 'Sys' : 'VM'}.Console" permissions.');
+                      }
                       return;
                     }
                     var filePath = await writeSpiceFile(data, tempDir![0].path);
@@ -72,6 +74,7 @@ class PveConsoleMenu extends StatelessWidget {
                         'type': 'application/x-virt-viewer'
                       });
                     } on PlatformException catch (e, s) {
+                      if (!context.mounted) return;
                       if (e.code.contains('ActivityNotFoundException')) {
                         showTextDialog(context, 'SPICE client required',
                             'A Spice client-app is required.');
