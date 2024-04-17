@@ -232,7 +232,7 @@ class PVEWebConsoleState extends State<PVEWebConsole> {
 
     return FutureBuilder(
         future: CookieManager.instance().setCookie(
-          url: Uri.parse(consoleUrl),
+          url: WebUri(consoleUrl),
           name: 'PVEAuthCookie',
           value: ticket,
         ),
@@ -290,7 +290,7 @@ class PVEWebConsoleState extends State<PVEWebConsole> {
               onWebViewCreated: (controller) {
                 webViewController = controller;
                 controller.loadUrl(
-                    urlRequest: URLRequest(url: Uri.parse(consoleUrl)));
+                    urlRequest: URLRequest(url: WebUri(consoleUrl)));
               },
             ),
           );

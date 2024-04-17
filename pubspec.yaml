@@ -41,7 +41,7 @@ dependencies:
   collection: ^1.15.0-nullsafety.4
 
   shared_preferences: any
-  flutter_inappwebview: ^5.8.0
+  flutter_inappwebview: ^6.0.0
   crypto: ^3.0.3
 dev_dependencies:
   flutter_test:
