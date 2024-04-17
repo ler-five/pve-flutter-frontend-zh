@@ -127,7 +127,7 @@ class UpdateLxcConfigBool extends PveLxcOverviewEvent {
 }
 
 class RevertPendingLxcConfig extends PveLxcOverviewEvent {
-  final cField;
+  final String cField;
 
   RevertPendingLxcConfig(this.cField);
 }

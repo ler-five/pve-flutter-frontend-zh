@@ -132,7 +132,7 @@ class UpdateQemuConfigBool extends PveQemuOverviewEvent {
 }
 
 class RevertPendingQemuConfig extends PveQemuOverviewEvent {
-  final cField;
+  final String cField;
 
   RevertPendingQemuConfig(this.cField);
 }
