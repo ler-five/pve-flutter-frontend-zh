@@ -71,9 +71,9 @@ class DotIndicator extends AnimatedWidget {
   final ValueChanged<int?>? onPageSelected;
   final Color color;
 
-  static const double _dotSize = 8.0;
+  static const double _dotSize = 12.0;
   static const double _maxZoom = 1.2;
-  static const double _dotSpacing = 25.0;
+  static const double _dotSpacing = 28.0;
 
   Widget _buildDot(int index) {
     double selectedness = Curves.easeOut.transform(
