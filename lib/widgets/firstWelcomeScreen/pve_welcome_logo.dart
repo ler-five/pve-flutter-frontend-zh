@@ -8,7 +8,7 @@ class PveWelcomePageLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: LayoutBuilder(
+    return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints viewportConstraints) {
       return SingleChildScrollView(
           child: ConstrainedBox(
@@ -44,6 +44,6 @@ class PveWelcomePageLogo extends StatelessWidget {
                       ),
                     ]),
               ))));
-    }));
+    });
   }
 }

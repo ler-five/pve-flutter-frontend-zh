@@ -11,7 +11,7 @@ class PveWelcomePageLast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: LayoutBuilder(
+    return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints viewportConstraints) {
       return SingleChildScrollView(
         child: ConstrainedBox(
@@ -92,6 +92,6 @@ class PveWelcomePageLast extends StatelessWidget {
           ),
         ),
       );
-    }));
+    });
   }
 }

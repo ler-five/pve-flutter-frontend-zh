@@ -109,7 +109,7 @@ class _PveTaskLogState extends State<PveTaskLog> {
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-                            child: Container(child: Text(value)),
+                            child: Text(value),
                           );
                         }).toList(),
                       ),
