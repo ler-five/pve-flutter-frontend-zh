@@ -45,6 +45,7 @@ def keystoreSecret = System.getenv('PROXMOX_APP_KEYSTORE_SECRET')
 
 android {
     compileSdkVersion 34
+    namespace "com.proxmox.app.pve_flutter_frontend"
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -52,7 +53,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.proxmox.app.pve_flutter_frontend"
+        applicationId namespace
         minSdkVersion 23
         targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
@@ -74,8 +75,15 @@ android {
             signingConfig signingConfigs.release
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
     lint {
         disable 'InvalidPackage'
+    }
+    kotlinOptions{
+        jvmTarget = '17'
     }
 }
 
