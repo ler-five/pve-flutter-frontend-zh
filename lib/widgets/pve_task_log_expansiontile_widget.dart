@@ -119,24 +119,30 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
           dense: true,
           subtitle: const Text('Shortlog'),
         ),
-        ButtonBar(
-          children: <Widget>[
-            if (widget.showMorePage != null)
+        Padding(
+          padding: const EdgeInsets.only(right: 8, bottom: 8),
+          child: OverflowBar(
+            alignment: MainAxisAlignment.end,
+            spacing: 8,
+            overflowAlignment: OverflowBarAlignment.end,
+            children: <Widget>[
+              if (widget.showMorePage != null)
+                OutlinedButton.icon(
+                  onPressed: () => Navigator.of(context).push(
+                      _createTaskLogRoute(taskLogBloc, widget.showMorePage)),
+                  icon: const Icon(Icons.format_list_bulleted),
+                  label: const Text('More Tasks'),
+                ),
               OutlinedButton.icon(
-                onPressed: () => Navigator.of(context).push(
-                    _createTaskLogRoute(taskLogBloc, widget.showMorePage)),
-                icon: const Icon(Icons.format_list_bulleted),
-                label: const Text('More Tasks'),
-              ),
-            OutlinedButton.icon(
-              onPressed: () => showTaskLogBottomSheet(context,
-                  taskLogBloc.apiClient, widget.task.node, widget.task.upid),
-              icon: const Icon(Icons.article),
-              label: const Text(
-                'Full Log',
-              ),
-            )
-          ],
+                onPressed: () => showTaskLogBottomSheet(context,
+                    taskLogBloc.apiClient, widget.task.node, widget.task.upid),
+                icon: const Icon(Icons.article),
+                label: const Text(
+                  'Full Log',
+                ),
+              )
+            ],
+          ),
         )
       ],
     );
