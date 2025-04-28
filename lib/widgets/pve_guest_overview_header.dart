@@ -37,7 +37,7 @@ class PveGuestOverviewHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final haError = ha?.state == 'error';
-    final fgColor = Theme.of(context).colorScheme.onPrimary.withOpacity(0.75);
+    final fgColor = Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.75);
     return Container(
       height: 250,
       width: width,
@@ -175,7 +175,7 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
     }
     var rrdData = widget.rrdData! // safety: checked for null above...
         .where((e) => e.time != null);
-    final fgColor = Theme.of(context).colorScheme.onPrimary.withOpacity(0.75);
+    final fgColor = Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.75);
     return ScrollConfiguration(
       behavior: PVEScrollBehavior(),
       child: PageView.builder(

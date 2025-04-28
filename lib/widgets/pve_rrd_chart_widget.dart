@@ -55,7 +55,8 @@ class _PveRRDChartState extends State<PveRRDChart> {
     final timeWindow = DateTime.fromMillisecondsSinceEpoch(data.last.x as int)
         .difference(DateTime.fromMillisecondsSinceEpoch(data.first.x as int));
 
-    final fgColor = Theme.of(context).colorScheme.onPrimary.withOpacity(0.85);
+    final fgColor =
+        Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.85);
     return Column(
       crossAxisAlignment: widget.titleAlginment,
       children: <Widget>[

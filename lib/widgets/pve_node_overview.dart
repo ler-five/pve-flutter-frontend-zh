@@ -30,7 +30,7 @@ class PveNodeOverview extends StatelessWidget {
     } else if (s.unitState == 'masked' || s.unitState == 'not-found') {
       return Icon(
         Icons.play_disabled,
-        color: IconTheme.of(context).color!.withOpacity(0.75),
+        color: IconTheme.of(context).color!.withValues(alpha: 0.75),
       );
     } else {
       return Icon(Icons.stop, color: Theme.of(context).colorScheme.error);
@@ -49,7 +49,7 @@ class PveNodeOverview extends StatelessWidget {
         final status = state.status;
         final rrd = state.rrdData.where((e) => e.time != null);
         final fgColor =
-            Theme.of(context).colorScheme.onPrimary.withOpacity(0.75);
+            Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.75);
         return ColoredSafeArea(
           child: Scaffold(
             appBar: AppBar(

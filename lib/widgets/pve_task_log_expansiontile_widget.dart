@@ -86,7 +86,7 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
           ? Text(DateFormat.Md().add_Hms().format(widget.task.endTime!),
               style: TextStyle(color: headerColor))
           : LinearProgressIndicator(
-              backgroundColor: headerColor.withOpacity(0.5),
+              backgroundColor: headerColor.withValues(alpha: 0.5),
               valueColor: AlwaysStoppedAnimation<Color>(headerColor),
             ),
       trailing: Icon(

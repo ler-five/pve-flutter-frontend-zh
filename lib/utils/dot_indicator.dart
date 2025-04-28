@@ -36,7 +36,7 @@ class Dot extends StatelessWidget {
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                  color: Colors.white.withOpacity(0.72),
+                  color: Colors.white.withValues(alpha: 0.72),
                   blurRadius: shadowBlurRadius!,
                   spreadRadius: shadowSpreadRadius!,
                   offset: const Offset(0.0, 0.0))

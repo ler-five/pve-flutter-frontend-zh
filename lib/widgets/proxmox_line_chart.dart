@@ -87,7 +87,7 @@ class ProxmoxLineChart extends CustomPainter {
         text: TextSpan(
           style: TextStyle(
             color: textColor ?? Colors.white,
-            backgroundColor: shadeColorBottom.withOpacity(0.75),
+            backgroundColor: shadeColorBottom.withValues(alpha: 0.75),
           ),
           text: selectedLabel,
         ),

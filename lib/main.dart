@@ -130,7 +130,7 @@ class MyApp extends StatelessWidget {
             foregroundColor: Colors.white, // onPrimary
           ),
           textSelectionTheme: TextSelectionThemeData(
-            selectionColor: ProxmoxColors.orange.withOpacity(0.4),
+            selectionColor: ProxmoxColors.orange.withValues(alpha: 0.4),
             selectionHandleColor: ProxmoxColors.orange,
             cursorColor: ProxmoxColors.orange,
           ),
@@ -173,7 +173,7 @@ class MyApp extends StatelessWidget {
           ),
           scaffoldBackgroundColor: ProxmoxColors.grey,
           textSelectionTheme: TextSelectionThemeData(
-            selectionColor: ProxmoxColors.orange.withOpacity(0.4),
+            selectionColor: ProxmoxColors.orange.withValues(alpha: 0.4),
             selectionHandleColor: ProxmoxColors.orange,
             cursorColor: ProxmoxColors.orange,
           ),

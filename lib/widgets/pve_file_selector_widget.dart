@@ -279,7 +279,7 @@ class PveStorageCard extends StatelessWidget {
                           color: (isSelected
                                   ? Theme.of(context).colorScheme.onPrimary
                                   : Theme.of(context).colorScheme.onBackground)
-                              .withOpacity(0.75),
+                              .withValues(alpha: 0.75),
                           fontWeight: FontWeight.bold,
                         ),
                         maxLines: 1,
@@ -308,7 +308,7 @@ class PveStorageCard extends StatelessWidget {
                                 color: Theme.of(context)
                                     .colorScheme
                                     .onBackground
-                                    .withOpacity(0.75),
+                                    .withValues(alpha: 0.75),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

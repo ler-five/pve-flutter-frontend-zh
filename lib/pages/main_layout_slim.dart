@@ -897,7 +897,7 @@ class _MobileResourceFilterSheet extends StatelessWidget {
                             color: Theme.of(context)
                                 .colorScheme
                                 .onSurface
-                                .withOpacity(0.75)),
+                                .withValues(alpha: 0.75)),
                       ),
                       value: state.typeFilter.contains('node'),
                       onChanged: (v) => rBloc.events.add(FilterResources(
@@ -912,7 +912,7 @@ class _MobileResourceFilterSheet extends StatelessWidget {
                             color: Theme.of(context)
                                 .colorScheme
                                 .onSurface
-                                .withOpacity(0.75)),
+                                .withValues(alpha: 0.75)),
                       ),
                       value: state.typeFilter.contains('qemu'),
                       onChanged: (v) => rBloc.events.add(FilterResources(
@@ -927,7 +927,7 @@ class _MobileResourceFilterSheet extends StatelessWidget {
                             color: Theme.of(context)
                                 .colorScheme
                                 .onSurface
-                                .withOpacity(0.75)),
+                                .withValues(alpha: 0.75)),
                       ),
                       value: state.typeFilter.contains('lxc'),
                       onChanged: (v) => rBloc.events.add(FilterResources(
@@ -942,7 +942,7 @@ class _MobileResourceFilterSheet extends StatelessWidget {
                             color: Theme.of(context)
                                 .colorScheme
                                 .onSurface
-                                .withOpacity(0.75)),
+                                .withValues(alpha: 0.75)),
                       ),
                       value: state.typeFilter.contains('storage'),
                       onChanged: (v) => rBloc.events.add(FilterResources(
@@ -971,7 +971,7 @@ class _MobileResourceFilterSheet extends StatelessWidget {
                             color: Theme.of(context)
                                 .colorScheme
                                 .onSurface
-                                .withOpacity(0.75)),
+                                .withValues(alpha: 0.75)),
                       ),
                       value: state.statusFilter
                           .contains(PveResourceStatusType.running),
@@ -988,7 +988,7 @@ class _MobileResourceFilterSheet extends StatelessWidget {
                             color: Theme.of(context)
                                 .colorScheme
                                 .onSurface
-                                .withOpacity(0.75)),
+                                .withValues(alpha: 0.75)),
                       ),
                       value: state.statusFilter
                           .contains(PveResourceStatusType.stopped),

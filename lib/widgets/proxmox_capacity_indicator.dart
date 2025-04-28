@@ -45,7 +45,7 @@ class ProxmoxCapacityIndicator extends StatelessWidget {
                                 : Theme.of(context)
                                     .colorScheme
                                     .onBackground
-                                    .withOpacity(0.75))),
+                                    .withValues(alpha: 0.75))),
                   ),
                   Text(usedValue,
                       style: TextStyle(
@@ -55,7 +55,7 @@ class ProxmoxCapacityIndicator extends StatelessWidget {
                                       : Theme.of(context)
                                           .colorScheme
                                           .onBackground)
-                                  .withOpacity(0.66),
+                                  .withValues(alpha: 0.66),
                           fontWeight: FontWeight.bold)),
                 ],
               ),
@@ -65,7 +65,7 @@ class ProxmoxCapacityIndicator extends StatelessWidget {
                           (selected
                                   ? Theme.of(context).colorScheme.onPrimary
                                   : Theme.of(context).colorScheme.onBackground)
-                              .withOpacity(0.66),
+                              .withValues(alpha: 0.66),
                       fontWeight: FontWeight.bold))
             ],
           ),
