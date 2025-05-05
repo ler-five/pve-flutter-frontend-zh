@@ -76,7 +76,7 @@ class PveLxcOverview extends StatelessWidget {
                   elevation: 0,
                   title: Text(config?.hostname ?? 'CT $guestID'),
                 ),
-                backgroundColor: Theme.of(context).colorScheme.background,
+                backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
                 body: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[

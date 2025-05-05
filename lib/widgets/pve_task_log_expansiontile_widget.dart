@@ -64,7 +64,7 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
         });
       },
       backgroundColor: Theme.of(context).colorScheme.surface,
-      collapsedBackgroundColor: Theme.of(context).colorScheme.background,
+      collapsedBackgroundColor: Theme.of(context).colorScheme.surfaceContainer,
       key: PageStorageKey<PveClusterTasksModel>(widget.task),
       leading: Icon(
         hasError

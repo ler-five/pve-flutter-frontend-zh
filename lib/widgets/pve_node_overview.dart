@@ -63,8 +63,7 @@ class PveNodeOverview extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            //backgroundColor: Theme.of(context).colorScheme.primary,
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
             body: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
