@@ -8,8 +8,6 @@ import 'package:pve_flutter_frontend/states/pve_task_log_viewer_state.dart';
 import 'package:pve_flutter_frontend/widgets/pve_console_menu_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_task_log_widget.dart';
 
-void registerConsoleIframe(String nodeid) => throw UnimplementedError();
-
 Future<T?> showTaskLogBottomSheet<T>(BuildContext context,
     ProxmoxApiClient apiClient, String targetNode, String upid,
     {Widget icon = const Icon(Icons.work),
