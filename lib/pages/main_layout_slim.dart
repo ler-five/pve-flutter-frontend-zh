@@ -302,7 +302,7 @@ class MobileDashboard extends StatelessWidget {
                             size: 20,
                           ),
                           label: const Text(
-                            'Linux Containers',
+                            'Containers',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
@@ -483,7 +483,7 @@ class MobileDashboard extends StatelessWidget {
                             indent: 10,
                           ),
                           ListTile(
-                            title: const Text("LXC Container"),
+                            title: const Text("Containers"),
                             trailing: Text(totalCTs.toString()),
                             leading:
                                 Icon(Renderers.getDefaultResourceIcon('lxc')),
