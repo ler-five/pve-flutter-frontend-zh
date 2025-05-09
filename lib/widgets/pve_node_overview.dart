@@ -230,7 +230,7 @@ class PveNodeOverview extends StatelessWidget {
                     children: [
                       ListTile(
                         dense: true,
-                        title: Text(status?.kversion ?? 'unkown'),
+                        title: Text(status?.kversion ?? 'unknown'),
                         subtitle: const Text('Kernel'),
                       ),
                       if (status?.cpuinfo != null)

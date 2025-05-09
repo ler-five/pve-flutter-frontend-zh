@@ -15,7 +15,7 @@ class PveRRDChart extends StatefulWidget {
   final double? staticMaximum;
   final Color? shadeColorTop;
   final Color? shadeColorBottom;
-  final CrossAxisAlignment titleAlginment;
+  final CrossAxisAlignment titleAlignment;
   final bool showMaximum;
   final bool showDuration;
   final Widget? bottomRight;
@@ -31,7 +31,7 @@ class PveRRDChart extends StatefulWidget {
     this.staticMaximum,
     this.shadeColorTop,
     this.shadeColorBottom,
-    this.titleAlginment = CrossAxisAlignment.start,
+    this.titleAlignment = CrossAxisAlignment.start,
     this.titleWidth,
     this.titlePadding,
     this.showMaximum = true,
@@ -58,7 +58,7 @@ class _PveRRDChartState extends State<PveRRDChart> {
     final fgColor =
         Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.85);
     return Column(
-      crossAxisAlignment: widget.titleAlginment,
+      crossAxisAlignment: widget.titleAlignment,
       children: <Widget>[
         Container(
           width: widget.titleWidth,

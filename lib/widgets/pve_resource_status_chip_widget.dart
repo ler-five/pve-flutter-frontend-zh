@@ -46,7 +46,7 @@ class StatusChip extends StatelessWidget {
         break;
       default:
         statusColor = offlineColor;
-        statusText = 'unkown';
+        statusText = 'unknown';
     }
     return Container(
       decoration: BoxDecoration(

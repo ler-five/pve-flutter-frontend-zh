@@ -197,7 +197,7 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
                   child: PveRRDChart(
                     titlePadding: const EdgeInsets.only(bottom: 80),
                     titleWidth: 150,
-                    titleAlginment: CrossAxisAlignment.end,
+                    titleAlignment: CrossAxisAlignment.end,
                     title: 'CPU (${rrdData.last.maxcpu ?? '-'})',
                     subtitle: "${(rrdData.last.cpu ?? 0).toStringAsFixed(2)}%",
                     data: rrdData.where((e) => e.cpu != null).map(
@@ -212,7 +212,7 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
                   child: PveRRDChart(
                     titlePadding: const EdgeInsets.only(bottom: 80),
                     titleWidth: 200,
-                    titleAlginment: CrossAxisAlignment.end,
+                    titleAlignment: CrossAxisAlignment.end,
                     title: 'Memory',
                     subtitle: Renderers.formatSize(rrdData.last.mem ?? 0),
                     data: rrdData.where((e) => e.mem != null).map(

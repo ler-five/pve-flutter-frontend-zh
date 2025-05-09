@@ -308,7 +308,7 @@ class PVEWebConsoleState extends State<PVEWebConsole> {
             // prevent back button from canceling this callback
             canPop: false,
             child: AlertDialog(
-                title: const Text('An TLS error has occurred:'),
+                title: const Text('A TLS error has occurred:'),
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
