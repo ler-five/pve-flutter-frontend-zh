@@ -11,6 +11,7 @@ import 'package:pve_flutter_frontend/utils/renderers.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_capacity_indicator.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
+import 'package:pve_flutter_frontend/widgets/pve_app_bar.dart';
 
 class PveFileSelector extends StatefulWidget {
   final PveFileSelectorBloc? fBloc;
@@ -32,8 +33,7 @@ class _PveFileSelectorState extends State<PveFileSelector> {
   Widget build(BuildContext context) {
     return ProxmoxLayoutBuilder(
       builder: (context, layout) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
+        appBar: PveAppBar(
           title: const Text("Storage"),
         ),
         body: PveFileSelectorWidget(

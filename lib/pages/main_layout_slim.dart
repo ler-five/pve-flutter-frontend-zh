@@ -24,6 +24,7 @@ import 'package:pve_flutter_frontend/widgets/proxmox_custom_icon.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_gauge_chart.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_heartbeat_indicator.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
+import 'package:pve_flutter_frontend/widgets/pve_app_bar.dart';
 import 'package:pve_flutter_frontend/widgets/pve_file_selector_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_guest_icon_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_help_icon_button_widget.dart';
@@ -168,7 +169,7 @@ class MobileDashboard extends StatelessWidget {
     final cBloc = Provider.of<PveClusterStatusBloc>(context);
     final rBloc = Provider.of<PveResourceBloc>(context);
     return Scaffold(
-      appBar: AppBar(
+      appBar: PveAppBar(
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -186,7 +187,6 @@ class MobileDashboard extends StatelessWidget {
             )
           ],
         ),
-        elevation: 0.0,
         leading: const Icon(
           ProxmoxIcons.proxmox,
           size: 36,
@@ -608,9 +608,8 @@ class MobileResourceOverview extends StatelessWidget {
           child: ColoredSafeArea(
               child: Scaffold(
             endDrawer: PveMobileResourceFilterSheet(),
-            appBar: AppBar(
+            appBar: PveAppBar(
               automaticallyImplyLeading: false,
-              elevation: 0,
               title: AppbarSearchTextField(
                 onChanged: (filter) =>
                     rBloc.events.add(FilterResources(nameFilter: filter)),
@@ -880,7 +879,7 @@ class MobileAccessManagement extends StatelessWidget {
     return DefaultTabController(
       length: 5,
       child: Scaffold(
-        appBar: AppBar(
+        appBar: PveAppBar(
           title: const Text('Permissions'),
           //backgroundColor: Colors.transparent,
           elevation: 0.0,

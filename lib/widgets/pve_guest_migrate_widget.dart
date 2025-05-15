@@ -8,6 +8,7 @@ import 'package:pve_flutter_frontend/bloc/pve_resource_bloc.dart';
 import 'package:pve_flutter_frontend/states/pve_migrate_state.dart';
 import 'package:pve_flutter_frontend/states/pve_node_selector_state.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
+import 'package:pve_flutter_frontend/widgets/pve_app_bar.dart';
 import 'package:pve_flutter_frontend/widgets/pve_guest_migration_connector_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_help_icon_button_widget.dart';
 
@@ -23,7 +24,7 @@ class PveGuestMigrate extends StatelessWidget {
       bloc: migrateBloc,
       builder: (context, migrateState) {
         return Scaffold(
-          appBar: AppBar(
+          appBar: PveAppBar(
             title: const Text(
               "Migration",
               style: TextStyle(color: Colors.white, fontSize: 25),
@@ -34,7 +35,6 @@ class PveGuestMigrate extends StatelessWidget {
               icon: const Icon(Icons.close),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            elevation: 0.0,
             actions: <Widget>[
               PveHelpIconButton(
                   baseUrl: (Provider.of<PveResourceBloc>(context)

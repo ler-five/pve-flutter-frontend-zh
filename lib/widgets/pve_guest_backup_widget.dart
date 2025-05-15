@@ -12,6 +12,7 @@ import 'package:pve_flutter_frontend/utils/utils.dart';
 import 'package:pve_flutter_frontend/utils/validators.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
+import 'package:pve_flutter_frontend/widgets/pve_app_bar.dart';
 import 'package:pve_flutter_frontend/widgets/pve_file_selector_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_storage_selector_widget.dart';
 
@@ -25,8 +26,7 @@ class PveGuestBackupWidget extends StatelessWidget {
     final sBloc = Provider.of<PveStorageSelectorBloc>(context);
     final fBloc = Provider.of<PveFileSelectorBloc>(context);
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
+      appBar: PveAppBar(
         title: Text("Backup $guestID"),
       ),
       body: Column(
@@ -417,10 +417,9 @@ class _PveBackupFormState extends State<PveBackupForm> {
     return ScaffoldMessenger(
         key: _scaffoldKey,
         child: Scaffold(
-          appBar: AppBar(
+          appBar: PveAppBar(
             iconTheme: const IconThemeData(color: Colors.black),
             backgroundColor: Colors.transparent,
-            elevation: 0,
             title: const Text(
               "Schedule backup",
               style: TextStyle(color: Colors.black),

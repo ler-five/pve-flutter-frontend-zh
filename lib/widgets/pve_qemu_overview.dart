@@ -23,6 +23,7 @@ import 'package:pve_flutter_frontend/widgets/colored_safe_area.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
 import 'package:pve_flutter_frontend/widgets/pve_action_card_widget.dart';
+import 'package:pve_flutter_frontend/widgets/pve_app_bar.dart';
 import 'package:pve_flutter_frontend/widgets/pve_guest_backup_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_guest_overview_header.dart';
 import 'package:pve_flutter_frontend/widgets/pve_guest_migrate_widget.dart';
@@ -73,9 +74,7 @@ class PveQemuOverview extends StatelessWidget {
 
             return ColoredSafeArea(
               child: Scaffold(
-                  appBar: AppBar(
-                    //backgroundColor: Colors.transparent,
-                    elevation: 0,
+                  appBar: PveAppBar(
                     title: Text(config?.name ?? 'VM $guestID'),
                   ),
                   backgroundColor:
