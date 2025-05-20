@@ -4,7 +4,7 @@ import 'package:pve_flutter_frontend/utils/renderers.dart';
 
 class PveGuestIcon extends StatelessWidget {
   final String type;
-  final bool? template;
+  final bool template;
   final PveResourceStatusType? status;
   final Color color;
   final Color templateColor;
@@ -20,7 +20,7 @@ class PveGuestIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (template!) {
+    if (template) {
       return SizedBox(
         height: 24,
         width: 36,

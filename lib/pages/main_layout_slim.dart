@@ -694,7 +694,7 @@ class PveGuestListTile extends StatelessWidget {
     return ListTile(
       leading: PveGuestIcon(
         type: resource.type,
-        template: resource.template,
+        template: resource.template ?? false,
         status: status,
       ),
       title: Text(resource.displayName),
