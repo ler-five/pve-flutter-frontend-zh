@@ -63,7 +63,8 @@ class PveGuestMigrate extends StatelessWidget {
                           subtitle: Text(
                             migrateState.mode.name,
                             style: TextStyle(
-                                color: colorScheme.onPrimary.withValues(alpha: 0.66)),
+                                color: colorScheme.onPrimary
+                                    .withValues(alpha: 0.66)),
                           ),
                         ),
                         ListTile(
@@ -75,7 +76,8 @@ class PveGuestMigrate extends StatelessWidget {
                           subtitle: Text(
                             migrateState.nodeID,
                             style: TextStyle(
-                                color: colorScheme.onPrimary.withValues(alpha: 0.66)),
+                                color: colorScheme.onPrimary
+                                    .withValues(alpha: 0.66)),
                           ),
                         ),
                         Padding(
