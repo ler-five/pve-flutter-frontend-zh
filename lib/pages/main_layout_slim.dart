@@ -11,6 +11,7 @@ import 'package:pve_flutter_frontend/bloc/pve_cluster_status_bloc.dart';
 import 'package:pve_flutter_frontend/bloc/pve_file_selector_bloc.dart';
 import 'package:pve_flutter_frontend/bloc/pve_resource_bloc.dart';
 import 'package:pve_flutter_frontend/bloc/pve_storage_selector_bloc.dart';
+import 'package:pve_flutter_frontend/widgets/pve_mobile_resource_filter_sheet.dart';
 import 'package:pve_flutter_frontend/states/pve_access_management_state.dart';
 import 'package:pve_flutter_frontend/states/pve_cluster_status_state.dart';
 import 'package:pve_flutter_frontend/states/pve_file_selector_state.dart';
@@ -606,7 +607,7 @@ class MobileResourceOverview extends StatelessWidget {
           },
           child: ColoredSafeArea(
               child: Scaffold(
-            endDrawer: _MobileResourceFilterSheet(),
+            endDrawer: PveMobileResourceFilterSheet(),
             appBar: AppBar(
               automaticallyImplyLeading: false,
               elevation: 0,
@@ -841,178 +842,6 @@ class _AppbarSearchTextFieldState extends State<AppbarSearchTextField> {
       onChanged: (value) => widget.onChanged!(value),
       controller: _controller,
     );
-  }
-}
-
-class _MobileResourceFilterSheet extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final rBloc = Provider.of<PveResourceBloc>(context);
-
-    return ProxmoxStreamBuilder<PveResourceBloc, PveResourceState>(
-      bloc: rBloc,
-      builder: (context, state) => Drawer(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0),
-                child: ListTile(
-                  title: const Text(
-                    'Filter Results',
-                  ),
-                  trailing: rBloc.isFiltered
-                      ? TextButton(
-                          onPressed: () => rBloc.events.add(ResetFilter()),
-                          child: Text(
-                            'Reset',
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                          ),
-                        )
-                      : null,
-                ),
-              ),
-              const Divider(
-                indent: 0,
-                endIndent: 0,
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
-                child: Column(
-                  children: [
-                    const ListTile(
-                      title: Text(
-                        'Type',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    CheckboxListTile(
-                      dense: true,
-                      title: Text(
-                        'Nodes',
-                        style: TextStyle(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSurface
-                                .withValues(alpha: 0.75)),
-                      ),
-                      value: state.typeFilter.contains('node'),
-                      onChanged: (v) => rBloc.events.add(FilterResources(
-                        typeFilter: addOrRemove(v!, 'node', state.typeFilter),
-                      )),
-                    ),
-                    CheckboxListTile(
-                      dense: true,
-                      title: Text(
-                        'Qemu',
-                        style: TextStyle(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSurface
-                                .withValues(alpha: 0.75)),
-                      ),
-                      value: state.typeFilter.contains('qemu'),
-                      onChanged: (v) => rBloc.events.add(FilterResources(
-                        typeFilter: addOrRemove(v!, 'qemu', state.typeFilter),
-                      )),
-                    ),
-                    CheckboxListTile(
-                      dense: true,
-                      title: Text(
-                        'LXC',
-                        style: TextStyle(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSurface
-                                .withValues(alpha: 0.75)),
-                      ),
-                      value: state.typeFilter.contains('lxc'),
-                      onChanged: (v) => rBloc.events.add(FilterResources(
-                        typeFilter: addOrRemove(v!, 'lxc', state.typeFilter),
-                      )),
-                    ),
-                    CheckboxListTile(
-                      dense: true,
-                      title: Text(
-                        'Storage',
-                        style: TextStyle(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSurface
-                                .withValues(alpha: 0.75)),
-                      ),
-                      value: state.typeFilter.contains('storage'),
-                      onChanged: (v) => rBloc.events.add(FilterResources(
-                        typeFilter:
-                            addOrRemove(v!, 'storage', state.typeFilter),
-                      )),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
-                child: Column(
-                  children: [
-                    const ListTile(
-                      title: Text(
-                        'Status',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    CheckboxListTile(
-                      dense: true,
-                      title: Text(
-                        'Online',
-                        style: TextStyle(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSurface
-                                .withValues(alpha: 0.75)),
-                      ),
-                      value: state.statusFilter
-                          .contains(PveResourceStatusType.running),
-                      onChanged: (v) => rBloc.events.add(FilterResources(
-                        statusFilter: addOrRemove(v!,
-                            PveResourceStatusType.running, state.statusFilter),
-                      )),
-                    ),
-                    CheckboxListTile(
-                      dense: true,
-                      title: Text(
-                        'Offline',
-                        style: TextStyle(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSurface
-                                .withValues(alpha: 0.75)),
-                      ),
-                      value: state.statusFilter
-                          .contains(PveResourceStatusType.stopped),
-                      onChanged: (v) => rBloc.events.add(FilterResources(
-                        statusFilter: addOrRemove(v!,
-                            PveResourceStatusType.stopped, state.statusFilter),
-                      )),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  BuiltSet<S> addOrRemove<S>(bool value, S element, BuiltSet<S> filter) {
-    if (value) {
-      return filter.rebuild((b) => b..add(element));
-    } else {
-      return filter.rebuild((b) => b..remove(element));
-    }
   }
 }
 
