@@ -40,7 +40,8 @@ class PveQemuPowerSettings extends StatelessWidget {
                       ),
                     if ([
                           PveResourceStatusType.paused,
-                          PveResourceStatusType.suspended
+                          PveResourceStatusType.suspended,
+                          PveResourceStatusType.prelaunch,
                         ].contains(qemuStatus) &&
                         !(state.currentStatus!.template ?? false))
                       ListTile(

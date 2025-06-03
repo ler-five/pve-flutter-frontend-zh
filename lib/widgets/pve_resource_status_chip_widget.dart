@@ -44,6 +44,9 @@ class StatusChip extends StatelessWidget {
         statusColor = intermediateColor;
         statusText = 'suspending';
         break;
+      case PveResourceStatusType.prelaunch:
+        statusColor = offlineColor;
+        statusText = 'prelaunch';
       default:
         statusColor = offlineColor;
         statusText = 'unknown';
