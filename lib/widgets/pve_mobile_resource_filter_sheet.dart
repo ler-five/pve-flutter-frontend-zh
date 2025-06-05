@@ -84,34 +84,24 @@ class PveMobileResourceFilterSheet extends StatelessWidget {
               _PveFilterSheetSection(
                 sectionTitle: 'Status',
                 items: [
-                  _ProxmoxResourceFilterListTile(
-                    title: 'Online',
-                    value: state.statusFilter
-                        .contains(PveResourceStatusType.running),
-                    onChanged: (v) => rBloc.events.add(
-                      FilterResources(
-                        statusFilter: _addOrRemove(
-                          v!,
-                          PveResourceStatusType.running,
-                          state.statusFilter,
+                  for (var filterItem in [
+                    (title: 'Online', type: PveResourceStatusType.running),
+                    (title: 'Offline', type: PveResourceStatusType.stopped),
+                    (title: 'Paused', type: PveResourceStatusType.paused)
+                  ])
+                    _ProxmoxResourceFilterListTile(
+                      title: filterItem.title,
+                      value: state.statusFilter.contains(filterItem.type),
+                      onChanged: (v) => rBloc.events.add(
+                        FilterResources(
+                          statusFilter: _addOrRemove(
+                            v!,
+                            filterItem.type,
+                            state.statusFilter,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  _ProxmoxResourceFilterListTile(
-                    title: 'Offline',
-                    value: state.statusFilter
-                        .contains(PveResourceStatusType.stopped),
-                    onChanged: (v) => rBloc.events.add(
-                      FilterResources(
-                        statusFilter: _addOrRemove(
-                          v!,
-                          PveResourceStatusType.stopped,
-                          state.statusFilter,
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               )
             ],
