@@ -53,7 +53,7 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
     final warningColor = Colors.orange.shade200;
     final headerColor = isExpanded
         ? (widget.headerColorExpanded ?? colorScheme.onSurface)
-        : (widget.headerColor ?? colorScheme.onBackground);
+        : (widget.headerColor ?? colorScheme.onSurfaceVariant);
 
     final taskText = widget.showMorePage != null ? 'Last Task' : 'Task';
 

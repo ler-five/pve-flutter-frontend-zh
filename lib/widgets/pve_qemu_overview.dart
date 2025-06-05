@@ -110,8 +110,9 @@ class PveQemuOverview extends StatelessWidget {
                         builder: (context, taskState) {
                           if (taskState.tasks.isNotEmpty) {
                             return PveTaskExpansionTile(
-                              headerColor:
-                                  Theme.of(context).colorScheme.onBackground,
+                              headerColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
                               task: taskState.tasks.first,
                               showMorePage: Provider<PveTaskLogBloc>(
                                 create: (context) => PveTaskLogBloc(

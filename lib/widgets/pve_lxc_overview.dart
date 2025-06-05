@@ -91,7 +91,7 @@ class PveLxcOverview extends StatelessWidget {
                                   style: TextStyle(
                                     color: Theme.of(context)
                                         .colorScheme
-                                        .onBackground,
+                                        .onSurfaceVariant,
                                   ),
                                 ),
                               ),

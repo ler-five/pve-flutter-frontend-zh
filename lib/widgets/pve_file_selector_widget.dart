@@ -150,7 +150,7 @@ class PveFileSelectorWidget extends StatelessWidget {
                                   IconButton(
                                     color: Theme.of(context)
                                         .colorScheme
-                                        .onBackground,
+                                        .onSurfaceVariant,
                                     icon: const Icon(Icons.search),
                                     onPressed: () =>
                                         fBloc!.events.add(ToggleSearch()),
@@ -158,7 +158,7 @@ class PveFileSelectorWidget extends StatelessWidget {
                                   IconButton(
                                     color: Theme.of(context)
                                         .colorScheme
-                                        .onBackground,
+                                        .onSurfaceVariant,
                                     icon: Icon(
                                       state.gridView
                                           ? Icons.view_list
@@ -270,7 +270,9 @@ class PveStorageCard extends StatelessWidget {
                         style: TextStyle(
                             color: isSelected
                                 ? Theme.of(context).colorScheme.onPrimary
-                                : Theme.of(context).colorScheme.onBackground,
+                                : Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
@@ -278,7 +280,9 @@ class PveStorageCard extends StatelessWidget {
                         style: TextStyle(
                           color: (isSelected
                                   ? Theme.of(context).colorScheme.onPrimary
-                                  : Theme.of(context).colorScheme.onBackground)
+                                  : Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant)
                               .withValues(alpha: 0.75),
                           fontWeight: FontWeight.bold,
                         ),
@@ -307,7 +311,7 @@ class PveStorageCard extends StatelessWidget {
                               style: TextStyle(
                                 color: Theme.of(context)
                                     .colorScheme
-                                    .onBackground
+                                    .onSurfaceVariant
                                     .withValues(alpha: 0.75),
                                 fontWeight: FontWeight.bold,
                               ),

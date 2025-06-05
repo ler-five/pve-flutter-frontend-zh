@@ -109,7 +109,7 @@ class MyApp extends StatelessWidget {
             surface: ProxmoxColors.supportGreyTint50,
             onSurface: Colors.black,
             surfaceContainer: ProxmoxColors.supportGreyTint75,
-            onBackground: Colors.black,
+            onSurfaceVariant: Colors.black,
           ),
           indicatorColor: ProxmoxColors.orange,
           textButtonTheme: TextButtonThemeData(
@@ -148,7 +148,7 @@ class MyApp extends StatelessWidget {
             secondary: ProxmoxColors.orange,
             secondaryContainer: ProxmoxColors.supportLightOrange,
             surfaceContainer: ProxmoxColors.grey,
-            onBackground: ProxmoxColors.supportGreyTint75,
+            onSurfaceVariant: ProxmoxColors.supportGreyTint75,
           ),
           indicatorColor: ProxmoxColors.orange,
           // flutter has a weird logic where it pulls colors from different
