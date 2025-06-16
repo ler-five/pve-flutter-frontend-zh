@@ -32,8 +32,8 @@ class PveConfigSwitchListTile extends StatelessWidget {
 
   Widget? _getTitle() {
     if (pending != null) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           title!,
           Chip(
