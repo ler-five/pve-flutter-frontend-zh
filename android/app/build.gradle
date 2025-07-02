@@ -44,7 +44,7 @@ def keystoreSecret = System.getenv('PROXMOX_APP_KEYSTORE_SECRET')
      : keystoreProperties['keyPassword']
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 35
     namespace "com.proxmox.app.pve_flutter_frontend"
 
     sourceSets {
@@ -55,7 +55,7 @@ android {
     defaultConfig {
         applicationId namespace
         minSdkVersion 23
-        targetSdkVersion 34
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
