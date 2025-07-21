@@ -38,7 +38,7 @@ class PveConsoleMenu extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (Platform.isAndroid && (allowSpice ?? true))
+            if ((Platform.isAndroid || Platform.isIOS) && (allowSpice ?? true))
               ListTile(
                 title: const Text(
                   "SPICE",
@@ -47,59 +47,54 @@ class PveConsoleMenu extends StatelessWidget {
                 subtitle:
                     const Text("Open SPICE connection file with external App"),
                 onTap: () async {
-                  if (Platform.isAndroid) {
-                    final tempDir = await getExternalCacheDirectories();
+                  final tempDir = await getTemporaryDirectory();
 
-                    String apiPath;
-                    if (['qemu', 'lxc'].contains(type)) {
-                      apiPath = '/nodes/$node/$type/$guestID/spiceproxy';
-                    } else if (type == 'node') {
-                      apiPath = '/nodes/$node/spiceshell';
-                    } else {
-                      throw 'Unsupported console type "$type", must be one of "qemu", "lxc", "node"';
-                    }
-                    final response = await apiClient.postRequest(apiPath);
-                    final data = json.decode(response.body)['data'];
-                    if (data == null) {
-                      if (context.mounted) {
-                        showTextDialog(context, 'Empty reply from SPICE API',
-                            'Ensure you have "${type == 'node' ? 'Sys' : 'VM'}.Console" permissions.');
-                      }
-                      return;
-                    }
-                    var filePath = await writeSpiceFile(data, tempDir![0].path);
-
-                    try {
-                      await platform.invokeMethod('shareFile', {
-                        'path': filePath,
-                        'type': 'application/x-virt-viewer'
-                      });
-                    } on PlatformException catch (e, s) {
-                      if (!context.mounted) return;
-                      if (e.code.contains('ActivityNotFoundException')) {
-                        showTextDialog(context, 'SPICE client required',
-                            'A Spice client-app is required.');
-                      } else {
-                        debugPrint("$e $s");
-                        if (e.message != null) {
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: const Text('Got Exception'),
-                              content: Text(e.message!),
-                              actions: [
-                                TextButton(
-                                    onPressed: () =>
-                                        Navigator.of(context).pop(),
-                                    child: const Text('Close'))
-                              ],
-                            ),
-                          );
-                        }
-                      }
-                    }
+                  String apiPath;
+                  if (['qemu', 'lxc'].contains(type)) {
+                    apiPath = '/nodes/$node/$type/$guestID/spiceproxy';
+                  } else if (type == 'node') {
+                    apiPath = '/nodes/$node/spiceshell';
                   } else {
-                    print('not implemented for current platform');
+                    throw 'Unsupported console type "$type", must be one of "qemu", "lxc", "node"';
+                  }
+                  final response = await apiClient.postRequest(apiPath);
+                  final data = json.decode(response.body)['data'];
+                  if (data == null) {
+                    if (context.mounted) {
+                      showTextDialog(context, 'Empty reply from SPICE API',
+                          'Ensure you have "${type == 'node' ? 'Sys' : 'VM'}.Console" permissions.');
+                    }
+                    return;
+                  }
+                  var filePath = await writeSpiceFile(data, tempDir.path);
+
+                  try {
+                    await platform.invokeMethod('shareFile', {
+                      'path': filePath,
+                      'type': 'application/x-virt-viewer'
+                    });
+                  } on PlatformException catch (e, s) {
+                    if (!context.mounted) return;
+                    if (e.code.contains('ActivityNotFoundException')) {
+                      showTextDialog(context, 'SPICE client required',
+                          'A Spice client-app is required.');
+                    } else {
+                      debugPrint("$e $s");
+                      if (e.message != null) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text('Got Exception'),
+                            content: Text(e.message!),
+                            actions: [
+                              TextButton(
+                                  onPressed: () => Navigator.of(context).pop(),
+                                  child: const Text('Close'))
+                            ],
+                          ),
+                        );
+                      }
+                    }
                   }
                 },
               ),
