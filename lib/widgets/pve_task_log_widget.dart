@@ -4,7 +4,6 @@ import 'package:pve_flutter_frontend/bloc/pve_task_log_bloc.dart';
 import 'package:pve_flutter_frontend/bloc/pve_task_log_viewer_bloc.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_state.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_viewer_state.dart';
-import 'package:pve_flutter_frontend/widgets/colored_safe_area.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
 import 'package:pve_flutter_frontend/widgets/pve_task_log_expansiontile_widget.dart';
@@ -37,8 +36,7 @@ class _PveTaskLogState extends State<PveTaskLog> {
     return ProxmoxStreamBuilder<PveTaskLogBloc, PveTaskLogState>(
         bloc: bloc,
         builder: (context, state) {
-          return ColoredSafeArea(
-            child: Scaffold(
+          return Scaffold(
               key: _scaffoldKey,
               appBar: AppBar(
                 leading: IconButton(
@@ -53,7 +51,8 @@ class _PveTaskLogState extends State<PveTaskLog> {
                 ],
               ),
               endDrawer: Drawer(
-                child: Padding(
+                child: SafeArea(
+                  child: Padding(
                   padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +135,7 @@ class _PveTaskLogState extends State<PveTaskLog> {
                     ],
                   ),
                 ),
-              ),
+              )),
               body: NotificationListener<ScrollNotification>(
                 onNotification: (ScrollNotification scrollInfo) {
                   if (scrollInfo.metrics.pixels >=
@@ -158,7 +157,6 @@ class _PveTaskLogState extends State<PveTaskLog> {
                         child: Text("No tasks found"),
                       ),
               ),
-            ),
           );
         });
   }

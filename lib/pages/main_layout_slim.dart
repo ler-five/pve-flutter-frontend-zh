@@ -18,7 +18,6 @@ import 'package:pve_flutter_frontend/states/pve_file_selector_state.dart';
 import 'package:pve_flutter_frontend/states/pve_resource_state.dart';
 import 'package:pve_flutter_frontend/states/pve_storage_selector_state.dart';
 import 'package:pve_flutter_frontend/utils/renderers.dart';
-import 'package:pve_flutter_frontend/widgets/colored_safe_area.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_capacity_indicator.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_custom_icon.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_gauge_chart.dart';
@@ -605,9 +604,12 @@ class MobileResourceOverview extends StatelessWidget {
           onTap: () {
             FocusScope.of(context).unfocus();
           },
-          child: ColoredSafeArea(
-              child: Scaffold(
-            endDrawer: PveMobileResourceFilterSheet(),
+          child: Scaffold(
+            endDrawer: Drawer(
+              child: SafeArea(
+                child: PveMobileResourceFilterSheet(),
+              ),
+            ),
             appBar: PveAppBar(
               automaticallyImplyLeading: false,
               title: AppbarSearchTextField(
@@ -663,7 +665,7 @@ class MobileResourceOverview extends StatelessWidget {
                 }
               },
             ),
-          )),
+          ),
         );
       },
     );

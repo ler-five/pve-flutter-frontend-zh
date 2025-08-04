@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
 import 'package:proxmox_login_manager/proxmox_general_settings_model.dart';
-import 'package:pve_flutter_frontend/widgets/colored_safe_area.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:crypto/crypto.dart';
 
@@ -233,7 +232,7 @@ class PVEWebConsoleState extends State<PVEWebConsole> {
           value: ticket,
         ),
         builder: (context, snapshot) {
-          return ColoredSafeArea(
+          return SafeArea(
             child: InAppWebView(
               onReceivedServerTrustAuthRequest: (controller, challenge) async {
                 final cert = challenge.protectionSpace.sslCertificate;

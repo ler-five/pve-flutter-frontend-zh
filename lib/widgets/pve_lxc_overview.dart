@@ -19,7 +19,6 @@ import 'package:pve_flutter_frontend/states/pve_storage_selector_state.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_state.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_viewer_state.dart';
 import 'package:pve_flutter_frontend/utils/utils.dart';
-import 'package:pve_flutter_frontend/widgets/colored_safe_area.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
 import 'package:pve_flutter_frontend/widgets/pve_action_card_widget.dart';
@@ -71,8 +70,7 @@ class PveLxcOverview extends StatelessWidget {
           builder: (context, state) {
             final status = state.currentStatus;
             final config = state.config;
-            return ColoredSafeArea(
-              child: Scaffold(
+            return Scaffold(
                 appBar: PveAppBar(
                   title: Text(config?.hostname ?? 'CT $guestID'),
                 ),
@@ -261,7 +259,6 @@ class PveLxcOverview extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
             );
           }),
     );

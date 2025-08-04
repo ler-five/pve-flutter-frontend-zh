@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pve_flutter_frontend/bloc/pve_lxc_overview_bloc.dart';
 import 'package:pve_flutter_frontend/states/pve_lxc_overview_state.dart';
-import 'package:pve_flutter_frontend/widgets/colored_safe_area.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_config_switch_list_tile.dart';
 
@@ -16,8 +15,7 @@ class PveLxcOptions extends StatelessWidget {
         builder: (context, state) {
           final config = state.config;
           if (config != null) {
-            return ColoredSafeArea(
-              child: Scaffold(
+            return Scaffold(
                 appBar: AppBar(),
                 body: SingleChildScrollView(
                   child: Column(
@@ -88,7 +86,6 @@ class PveLxcOptions extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
             );
           }
           return const Center(
