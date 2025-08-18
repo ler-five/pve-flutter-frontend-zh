@@ -97,7 +97,7 @@ class PveConsoleMenu extends StatelessWidget {
                   }
                 },
               ),
-            if (Platform.isAndroid) // web_view is only available for mobile :(
+            if (Platform.isAndroid || Platform.isIOS) // web_view is only available for mobile :(
               ListTile(
                 title: const Text(
                   //type == "qemu" ? "noVNC Console" : "xterm.js Console",
@@ -106,7 +106,6 @@ class PveConsoleMenu extends StatelessWidget {
                 ),
                 subtitle: const Text("Open console view"),
                 onTap: () async {
-                  if (Platform.isAndroid) {
                     if (['qemu', 'lxc'].contains(type)) {
                       SystemChrome.setEnabledSystemUIMode(
                           SystemUiMode.immersive);
@@ -134,9 +133,6 @@ class PveConsoleMenu extends StatelessWidget {
                             ]);
                       });
                     }
-                  } else {
-                    print('not implemented for current platform');
-                  }
                 },
               ),
           ],
