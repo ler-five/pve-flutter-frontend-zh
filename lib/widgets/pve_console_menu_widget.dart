@@ -9,6 +9,7 @@ import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
 import 'package:proxmox_login_manager/proxmox_general_settings_model.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:crypto/crypto.dart';
+import 'package:pve_flutter_frontend/widgets/pve_app_bar.dart';
 
 class PveConsoleMenu extends StatelessWidget {
   static const platform =
@@ -213,8 +214,10 @@ class PVEWebConsoleState extends State<PVEWebConsole> {
           value: ticket,
         ),
         builder: (context, snapshot) {
-          return SafeArea(
-            child: InAppWebView(
+          return Scaffold(
+            resizeToAvoidBottomInset: false,
+            appBar: PveAppBar(),
+            body: InAppWebView(
               onReceivedServerTrustAuthRequest: (controller, challenge) async {
                 final cert = challenge.protectionSpace.sslCertificate;
                 final certBytes = cert?.x509Certificate?.encoded;
