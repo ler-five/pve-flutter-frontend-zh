@@ -105,39 +105,24 @@ class PveConsoleMenu extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 subtitle: const Text("Open console view"),
-                onTap: () async {
-                    if (['qemu', 'lxc'].contains(type)) {
-                      SystemChrome.setEnabledSystemUIMode(
-                          SystemUiMode.immersive);
-                      Navigator.of(context)
-                          .push(_createHTMLConsoleRoute())
-                          .then((completion) {
-                        SystemChrome.setEnabledSystemUIMode(
-                            SystemUiMode.edgeToEdge,
-                            overlays: [
-                              SystemUiOverlay.top,
-                              SystemUiOverlay.bottom
-                            ]);
-                      });
-                    } else if (type == 'node') {
-                      SystemChrome.setEnabledSystemUIMode(
-                          SystemUiMode.immersive);
-                      Navigator.of(context)
-                          .push(_createHTMLConsoleRoute())
-                          .then((completion) {
-                        SystemChrome.setEnabledSystemUIMode(
-                            SystemUiMode.edgeToEdge,
-                            overlays: [
-                              SystemUiOverlay.top,
-                              SystemUiOverlay.bottom
-                            ]);
-                      });
-                    }
-                },
+                onTap: () => _openNoVncConsole(context, type),
               ),
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _openNoVncConsole(BuildContext context, String type) async {
+    if(!['lxc', 'node', 'qemu'].contains(type)) return;
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+    await Navigator.push(context, _createHTMLConsoleRoute());
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.edgeToEdge,
+      overlays: [
+        SystemUiOverlay.top,
+        SystemUiOverlay.bottom,
+      ],
     );
   }
 
