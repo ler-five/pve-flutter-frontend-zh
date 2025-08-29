@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:pve_flutter_frontend/pages/pve_settings_page.dart';
 import 'package:pve_flutter_frontend/widgets/pve_first_welcome_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:proxmox_login_manager/proxmox_login_manager.dart';
@@ -224,6 +225,13 @@ class MyApp extends StatelessWidget {
           if (sharedPreferences.getBool('showWelcomeScreen') ?? true) {
             return MaterialPageRoute(
               builder: (context) => const PveWelcome(),
+            );
+          }
+
+          if (context.name == PveSettingsPage.routePath) {
+            return MaterialPageRoute(
+              settings: context,
+              builder: (context) => PveSettingsPage(),
             );
           }
 
