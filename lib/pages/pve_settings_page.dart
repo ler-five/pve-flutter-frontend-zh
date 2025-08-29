@@ -16,35 +16,108 @@ class PveSettingsPage extends StatelessWidget {
         child: Column(
           children: [
             ProxmoxGeneralSettingsForm(),
-            const ListTile(
-              title: Text(
-                'LEGAL',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+            _PveSettingsSection(
+              sectionTitle: 'LEGAL',
+              items: [
+                ListTile(
+                  leading: const Icon(Icons.privacy_tip_outlined),
+                  title: const Text('Privacy Policy'),
+                  trailing: const Icon(Icons.open_in_new),
+                  onTap: () => _launchUrl(
+                    url: Links.privacyPolicyUrl,
+                    onFailure: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Could not launch privacy policy',
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              ),
+              ],
             ),
-            ListTile(
-              leading: const Icon(Icons.privacy_tip_outlined),
-              title: const Text('Privacy Policy'),
-              trailing: const Icon(Icons.open_in_new),
-              onTap: () {
-                try {
-                  tryLaunchUrl(Links.privacyPolicyUrl);
-                } catch (_) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        'Could not launch privacy policy',
-                      ),
-                    ),
-                  );
-                }
-              },
-            ),
+            _PveSettingsSection(
+              sectionTitle: 'HELP',
+              items: [
+                ListTile(
+                  leading: Icon(Icons.web),
+                  trailing: const Icon(Icons.open_in_new),
+                  title: const Text('Proxmox Forum'),
+                  onTap: () => _launchUrl(
+                    url: Links.proxmoxForum,
+                    onFailure: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Could not open forum',
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(Icons.bug_report_outlined),
+                  trailing: const Icon(Icons.open_in_new),
+                  title: const Text('Report a bug'),
+                  onTap: () => _launchUrl(
+                    url: Links.bugzillaUri,
+                    onFailure: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Could not open bugzilla',
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
+            )
           ],
         ),
       ),
+    );
+  }
+
+  void _launchUrl({
+    required Uri url,
+    required VoidCallback onFailure,
+  }) {
+    try {
+      tryLaunchUrl(url);
+    } catch (_) {
+      onFailure();
+    }
+  }
+}
+
+class _PveSettingsSection extends StatelessWidget {
+  const _PveSettingsSection({
+    required this.sectionTitle,
+    required this.items,
+  });
+
+  final String sectionTitle;
+  final List<Widget> items;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ListTile(
+          title: Text(
+            sectionTitle,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        ...items,
+      ],
     );
   }
 }
