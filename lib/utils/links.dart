@@ -16,4 +16,6 @@ class Links {
       Uri.parse('https://lists.proxmox.com/cgi-bin/mailman/listinfo/pve-user');
   static final opaqueApp = Uri.parse(
       'https://play.google.com/store/apps/details?id=com.undatech.opaque');
+  static final privacyPolicyUrl = Uri.parse(
+      'https://pve.proxmox.com/wiki/Proxmox_VE_Mobile_Companion_Data_Protection');
 }
