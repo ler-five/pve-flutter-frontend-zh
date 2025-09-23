@@ -57,7 +57,7 @@ class PveConfigListTile<T> extends StatelessWidget {
                 Text(title),
                 Chip(
                   label: const Text('pending'),
-                  backgroundColor: Colors.red,
+                  backgroundColor: Colors.orange,
                   onDeleted: onCancelEdit,
                 ),
               ],
