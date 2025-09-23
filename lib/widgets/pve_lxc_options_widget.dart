@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pve_flutter_frontend/bloc/pve_lxc_overview_bloc.dart';
 import 'package:pve_flutter_frontend/states/pve_lxc_overview_state.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
-import 'package:pve_flutter_frontend/widgets/pve_config_switch_list_tile.dart';
+import 'package:pve_flutter_frontend/widgets/pve_config_forms/pve_config_switch_form.dart';
+import 'package:pve_flutter_frontend/widgets/pve_config_list_tile.dart';
 
 class PveLxcOptions extends StatelessWidget {
   final PveLxcOverviewBloc? lxcBloc;
@@ -24,15 +25,26 @@ class PveLxcOptions extends StatelessWidget {
                       title: const Text("Name"),
                       subtitle: Text(config.hostname ?? 'undefined'),
                     ),
-                    PveConfigSwitchListTile(
-                      title: const Text("Start on boot"),
-                      value: config.onboot,
-                      defaultValue: false,
+                    PveConfigListTile<bool>(
+                      title: "Start on boot",
+                      trailingText: config.onboot == true ? 'Yes' : 'No',
                       pending: config.getPending('onboot'),
-                      onChanged: (v) =>
-                          lxcBloc!.events.add(UpdateLxcConfigBool('onboot', v)),
-                      onDeleted: () =>
-                          lxcBloc!.events.add(RevertPendingLxcConfig('onboot')),
+                      onSubmit: (value) => lxcBloc!.events.add(
+                        UpdateLxcConfigBool(
+                          'onboot',
+                          value,
+                        ),
+                      ),
+                      editorBuilder: (_, controller) {
+                        return PveConfigSwitchForm(
+                          title: "Start on boot",
+                          value: config.onboot == true,
+                          controller: controller,
+                        );
+                      },
+                      onCancelEdit: () => lxcBloc!.events.add(
+                        RevertPendingLxcConfig('onboot'),
+                      ),
                     ),
                     ListTile(
                       title: const Text("Start/Shutdown order"),
@@ -46,15 +58,23 @@ class PveLxcOptions extends StatelessWidget {
                       title: const Text("Architecture"),
                       subtitle: Text("${config.arch}"),
                     ),
-                    PveConfigSwitchListTile(
-                      title: const Text("/dev/console"),
-                      value: config.console,
-                      defaultValue: true,
+                    PveConfigListTile<bool>(
+                      title: "/dev/console",
+                      trailingText: config.console == true ? 'Yes' : 'No',
                       pending: config.getPending('console'),
-                      onChanged: (v) => lxcBloc!.events
-                          .add(UpdateLxcConfigBool('console', v)),
-                      onDeleted: () => lxcBloc!.events
-                          .add(RevertPendingLxcConfig('console')),
+                      onSubmit: (v) => lxcBloc!.events.add(
+                        UpdateLxcConfigBool('console', v),
+                      ),
+                      editorBuilder: (_, controller) {
+                        return PveConfigSwitchForm(
+                          title: "/dev/console",
+                          value: config.console == true,
+                          controller: controller,
+                        );
+                      },
+                      onCancelEdit: () => lxcBloc!.events.add(
+                        RevertPendingLxcConfig('console'),
+                      ),
                     ),
                     ListTile(
                       title: const Text("TTY Count"),
@@ -64,15 +84,23 @@ class PveLxcOptions extends StatelessWidget {
                       title: const Text("Console Mode"),
                       subtitle: Text(config.cmode?.name ?? 'tty'),
                     ),
-                    PveConfigSwitchListTile(
-                      title: const Text("Protection"),
-                      value: config.protection,
-                      defaultValue: false,
+                    PveConfigListTile<bool>(
+                      title: "Protection",
+                      trailingText: config.protection == true ? 'Yes' : 'No',
                       pending: config.getPending('protection'),
-                      onChanged: (v) => lxcBloc!.events
-                          .add(UpdateLxcConfigBool('protection', v)),
-                      onDeleted: () => lxcBloc!.events
-                          .add(RevertPendingLxcConfig('protection')),
+                      onSubmit: (v) => lxcBloc!.events.add(
+                        UpdateLxcConfigBool('protection', v),
+                      ),
+                      editorBuilder: (_, controller) {
+                        return PveConfigSwitchForm(
+                          title: "Protection",
+                          value: config.protection == true,
+                          controller: controller,
+                        );
+                      },
+                      onCancelEdit: () => lxcBloc!.events.add(
+                        RevertPendingLxcConfig('protection'),
+                      ),
                     ),
                     ListTile(
                       title: const Text("Unprivileged"),

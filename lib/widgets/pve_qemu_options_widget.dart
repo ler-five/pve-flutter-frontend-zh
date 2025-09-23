@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:pve_flutter_frontend/bloc/pve_qemu_overview_bloc.dart';
 import 'package:pve_flutter_frontend/states/pve_qemu_overview_state.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
-import 'package:pve_flutter_frontend/widgets/pve_config_switch_list_tile.dart';
+import 'package:pve_flutter_frontend/widgets/pve_config_forms/pve_config_switch_form.dart';
+import 'package:pve_flutter_frontend/widgets/pve_config_list_tile.dart';
 
 class PveQemuOptions extends StatelessWidget {
   final String guestID;
@@ -35,15 +36,23 @@ class PveQemuOptions extends StatelessWidget {
                         title: const Text("Name"),
                         subtitle: Text(config.name ?? 'VM$guestID'),
                       ),
-                      PveConfigSwitchListTile(
-                        title: const Text("Start on boot"),
-                        value: config.onboot,
-                        defaultValue: false,
+                      PveConfigListTile<bool>(
+                        title: "Start on boot",
+                        trailingText: config.onboot == true ? 'Yes' : 'No',
                         pending: config.getPending('onboot'),
-                        onChanged: (v) =>
-                            bloc.events.add(UpdateQemuConfigBool('onboot', v)),
-                        onDeleted: () =>
-                            bloc.events.add(RevertPendingQemuConfig('onboot')),
+                        onSubmit: (v) => bloc.events.add(
+                          UpdateQemuConfigBool('onboot', v),
+                        ),
+                        editorBuilder: (_, controller) {
+                          return PveConfigSwitchForm(
+                            title: "Start on boot",
+                            value: config.onboot == true,
+                            controller: controller,
+                          );
+                        },
+                        onCancelEdit: () => bloc.events.add(
+                          RevertPendingQemuConfig('onboot'),
+                        ),
                       ),
                       ListTile(
                         title: const Text("Start/Shutdown order"),
@@ -60,59 +69,99 @@ class PveQemuOptions extends StatelessWidget {
                         title: const Text("Boot Device"),
                         subtitle: Text(config.boot ?? 'Disk, Network, USB'),
                       ),
-                      PveConfigSwitchListTile(
-                        title: const Text("Use tablet for pointer"),
-                        value: config.tablet,
-                        defaultValue: true,
+                      PveConfigListTile<bool>(
+                        title: "Use tablet for pointer",
+                        trailingText: config.tablet == true ? 'Yes' : 'No',
                         pending: config.getPending('tablet'),
-                        onChanged: (v) =>
-                            bloc.events.add(UpdateQemuConfigBool('tablet', v)),
-                        onDeleted: () =>
-                            bloc.events.add(RevertPendingQemuConfig('tablet')),
+                        onSubmit: (v) => bloc.events.add(
+                          UpdateQemuConfigBool('tablet', v),
+                        ),
+                        editorBuilder: (_, controller) {
+                          return PveConfigSwitchForm(
+                            title: "Use tablet for pointer",
+                            value: config.tablet == true,
+                            controller: controller,
+                          );
+                        },
+                        onCancelEdit: () => bloc.events.add(
+                          RevertPendingQemuConfig('tablet'),
+                        ),
                       ),
                       ListTile(
                         title: const Text("Hotplug"),
                         subtitle: Text(config.hotplug ?? 'disk,network,usb'),
                       ),
-                      PveConfigSwitchListTile(
-                        title: const Text("ACPI support"),
-                        value: config.acpi,
-                        defaultValue: true,
+                      PveConfigListTile<bool>(
+                        title: "ACPI support",
+                        trailingText: config.acpi == true ? 'Yes' : 'No',
                         pending: config.getPending('acpi'),
-                        onChanged: (v) =>
-                            bloc.events.add(UpdateQemuConfigBool('acpi', v)),
-                        onDeleted: () =>
-                            bloc.events.add(RevertPendingQemuConfig('acpi')),
+                        onSubmit: (v) => bloc.events.add(
+                          UpdateQemuConfigBool('acpi', v),
+                        ),
+                        editorBuilder: (_, controller) {
+                          return PveConfigSwitchForm(
+                            title: "ACPI support",
+                            value: config.acpi == true,
+                            controller: controller,
+                          );
+                        },
+                        onCancelEdit: () => bloc.events.add(
+                          RevertPendingQemuConfig('acpi'),
+                        ),
                       ),
-                      PveConfigSwitchListTile(
-                        title: const Text("KVM hardware virtualization"),
-                        value: config.kvm,
-                        defaultValue: true,
+                      PveConfigListTile<bool>(
+                        title: "KVM hardware virtualization",
+                        trailingText: config.kvm == true ? 'Yes' : 'No',
                         pending: config.getPending('kvm'),
-                        onChanged: (v) =>
-                            bloc.events.add(UpdateQemuConfigBool('kvm', v)),
-                        onDeleted: () =>
-                            bloc.events.add(RevertPendingQemuConfig('kvm')),
+                        onSubmit: (v) => bloc.events.add(
+                          UpdateQemuConfigBool('kvm', v),
+                        ),
+                        editorBuilder: (_, controller) {
+                          return PveConfigSwitchForm(
+                            title: "KVM hardware virtualization",
+                            value: config.kvm == true,
+                            controller: controller,
+                          );
+                        },
+                        onCancelEdit: () => bloc.events.add(
+                          RevertPendingQemuConfig('kvm'),
+                        ),
                       ),
-                      PveConfigSwitchListTile(
-                        title: const Text("Freeze CPU on startup"),
-                        value: config.freeze,
-                        defaultValue: false,
+                      PveConfigListTile<bool>(
+                        title: "Freeze CPU on startup",
+                        trailingText: config.freeze == true ? 'Yes' : 'No',
                         pending: config.getPending('freeze'),
-                        onChanged: (v) =>
-                            bloc.events.add(UpdateQemuConfigBool('freeze', v)),
-                        onDeleted: () =>
-                            bloc.events.add(RevertPendingQemuConfig('freeze')),
+                        onSubmit: (v) => bloc.events.add(
+                          UpdateQemuConfigBool('freeze', v),
+                        ),
+                        editorBuilder: (_, controller) {
+                          return PveConfigSwitchForm(
+                            title: "Freeze CPU on startup",
+                            value: config.freeze == true,
+                            controller: controller,
+                          );
+                        },
+                        onCancelEdit: () => bloc.events.add(
+                          RevertPendingQemuConfig('freeze'),
+                        ),
                       ),
-                      PveConfigSwitchListTile(
-                        title: const Text("Use local time for RTC"),
-                        value: config.localtime,
-                        defaultValue: false,
+                      PveConfigListTile<bool>(
+                        title: "Use local time for RTC",
+                        trailingText: config.localtime == true ? 'Yes' : 'No',
                         pending: config.getPending('localtime'),
-                        onChanged: (v) => bloc.events
-                            .add(UpdateQemuConfigBool('localtime', v)),
-                        onDeleted: () => bloc.events
-                            .add(RevertPendingQemuConfig('localtime')),
+                        onSubmit: (v) => bloc.events.add(
+                          UpdateQemuConfigBool('localtime', v),
+                        ),
+                        editorBuilder: (_, controller) {
+                          return PveConfigSwitchForm(
+                            title: "Use local time for RTC",
+                            value: config.localtime == true,
+                            controller: controller,
+                          );
+                        },
+                        onCancelEdit: () => bloc.events.add(
+                          RevertPendingQemuConfig('localtime'),
+                        ),
                       ),
                       ListTile(
                         title: const Text("RTC start date"),
@@ -127,15 +176,23 @@ class PveQemuOptions extends StatelessWidget {
                         title: const Text("QEMU Guest Agent"),
                         subtitle: Text(config.agent ?? 'Default (disabled)'),
                       ),
-                      PveConfigSwitchListTile(
-                        title: const Text("Protection"),
-                        value: config.protection,
-                        defaultValue: false,
+                      PveConfigListTile<bool>(
+                        title: "Protection",
+                        trailingText: config.protection == true ? 'Yes' : 'No',
                         pending: config.getPending('protection'),
-                        onChanged: (v) => bloc.events
-                            .add(UpdateQemuConfigBool('protection', v)),
-                        onDeleted: () => bloc.events
-                            .add(RevertPendingQemuConfig('protection')),
+                        onSubmit: (v) => bloc.events.add(
+                          UpdateQemuConfigBool('protection', v),
+                        ),
+                        editorBuilder: (_, controller) {
+                          return PveConfigSwitchForm(
+                            title: "Protection",
+                            value: config.protection == true,
+                            controller: controller,
+                          );
+                        },
+                        onCancelEdit: () => bloc.events.add(
+                          RevertPendingQemuConfig('protection'),
+                        ),
                       ),
                       ListTile(
                         title: const Text("Spice Enhancements"),
