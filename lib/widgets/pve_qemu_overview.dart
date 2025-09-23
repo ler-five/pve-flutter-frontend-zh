@@ -72,183 +72,176 @@ class PveQemuOverview extends StatelessWidget {
             final rrdData = state.rrdData;
 
             return Scaffold(
-                  appBar: PveAppBar(
-                    title: Text(config?.name ?? 'VM $guestID'),
-                  ),
-                  backgroundColor:
-                      Theme.of(context).colorScheme.surfaceContainer,
-                  body: SingleChildScrollView(
-                      child: Column(
-                    children: <Widget>[
-                      PveGuestOverviewHeader(
-                        background: !(status?.template ?? false)
-                            ? PveGuestHeaderRRDPageView(
-                                rrdData: rrdData,
-                              )
-                            : const Center(
-                                child: Text(
-                                  "TEMPLATE",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                        width: width,
-                        guestID: guestID,
-                        guestStatus: status?.getQemuStatus(),
-                        guestName: config?.name ?? 'VM $guestID',
-                        guestNodeID: state.nodeID,
-                        guestType: 'qemu',
-                        ha: status?.ha,
-                        template: status?.template ?? false,
-                      ),
-                      ProxmoxStreamBuilder<PveTaskLogBloc, PveTaskLogState>(
-                        bloc: taskBloc,
-                        builder: (context, taskState) {
-                          if (taskState.tasks.isNotEmpty) {
-                            return PveTaskExpansionTile(
-                              headerColor: Theme.of(context)
-                                  .colorScheme
-                                  .onSurfaceVariant,
-                              task: taskState.tasks.first,
-                              showMorePage: Provider<PveTaskLogBloc>(
-                                create: (context) => PveTaskLogBloc(
-                                  apiClient: taskBloc.apiClient,
-                                  init: PveTaskLogState.init(state.nodeID),
-                                )
-                                  ..events.add(
-                                    FilterTasksByGuestID(
-                                      guestID: guestID,
-                                    ),
-                                  )
-                                  ..events.add(LoadTasks()),
-                                dispose: (context, bloc) => bloc.dispose(),
-                                child: const PveTaskLog(),
-                              ),
-                            );
-                          }
-                          return Container();
-                        },
-                      ),
-                      SizedBox(
-                        height: 130,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              if (!(status?.template ?? false))
-                                createActionCard(
-                                    'Power Settings',
-                                    Icons.power_settings_new,
-                                    () => showPowerMenuBottomSheet(
-                                        context, bloc)),
-                              if (!(status?.template ?? false))
-                                createActionCard(
-                                    'Console',
-                                    Icons.queue_play_next,
-                                    () => showConsoleMenuBottomSheet(
-                                          context,
-                                          bloc.apiClient,
-                                          guestID,
-                                          state.nodeID,
-                                          'qemu',
-                                          allowSpice: status?.spice ?? false,
-                                        )),
-                              createActionCard(
-                                  'Options',
-                                  Icons.settings,
-                                  () => Navigator.of(context)
-                                      .push(_createOptionsRoute(bloc))),
-                              if (!rBloc.latestState.isStandalone)
-                                createActionCard(
-                                    'Migrate',
-                                    FontAwesomeIcons.paperPlane,
-                                    () => Navigator.of(context).push(
-                                        _createMigrationRoute(guestID,
-                                            state.nodeID, bloc.apiClient))),
-                              createActionCard(
-                                  'Backup',
-                                  FontAwesomeIcons.floppyDisk,
-                                  () => Navigator.of(context).push(
-                                      _createBackupRoute(guestID, state.nodeID,
-                                          bloc.apiClient))),
-                            ],
-                          ),
-                        ),
-                      ),
-                      if (config != null)
-                        PveResourceDataCardWidget(
-                            expandable: false,
-                            title: const Text(
-                              'Hardware',
+              appBar: PveAppBar(
+                title: Text(config?.name ?? 'VM $guestID'),
+              ),
+              backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+              body: SingleChildScrollView(
+                  child: Column(
+                children: <Widget>[
+                  PveGuestOverviewHeader(
+                    background: !(status?.template ?? false)
+                        ? PveGuestHeaderRRDPageView(
+                            rrdData: rrdData,
+                          )
+                        : const Center(
+                            child: Text(
+                              "TEMPLATE",
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
+                                color: Colors.white,
                               ),
                             ),
-                            children: [
-                              ListTile(
-                                leading: const Icon(FontAwesomeIcons.memory),
-                                title: Text('${config.memory}'),
-                                subtitle: const Text('Memory'),
-                                dense: true,
-                              ),
-                              ListTile(
-                                leading: const Icon(Icons.memory),
-                                title: Text(
-                                    '${config.cores} Cores ${config.sockets} Socket'),
-                                subtitle: const Text('Processor'),
-                                dense: true,
-                              ),
-                              ListTile(
-                                leading: const Icon(FontAwesomeIcons.microchip),
-                                title: Text(
-                                    config.bios?.name ?? 'Default (SeaBIOS)'),
-                                subtitle: const Text('BIOS'),
-                                dense: true,
-                              ),
-                              ListTile(
-                                leading: const Icon(FontAwesomeIcons.gears),
-                                dense: true,
-                                title:
-                                    Text(config.machine ?? 'Default (i440fx)'),
-                                subtitle: const Text('Machine Type'),
-                              ),
-                              ListTile(
-                                leading: const Icon(FontAwesomeIcons.database),
-                                title: Text(
-                                    config.scsihw?.name ?? 'Default (i440fx)'),
-                                subtitle: const Text('SCSI Controller'),
-                                dense: true,
-                              ),
-                              for (var ide in config.ide!)
-                                ListTile(
-                                  leading:
-                                      const Icon(FontAwesomeIcons.compactDisc),
-                                  title: Text(ide),
-                                  subtitle: const Text('CD/DVD Drive'),
-                                  dense: true,
+                          ),
+                    width: width,
+                    guestID: guestID,
+                    guestStatus: status?.getQemuStatus(),
+                    guestName: config?.name ?? 'VM $guestID',
+                    guestNodeID: state.nodeID,
+                    guestType: 'qemu',
+                    ha: status?.ha,
+                    template: status?.template ?? false,
+                  ),
+                  ProxmoxStreamBuilder<PveTaskLogBloc, PveTaskLogState>(
+                    bloc: taskBloc,
+                    builder: (context, taskState) {
+                      if (taskState.tasks.isNotEmpty) {
+                        return PveTaskExpansionTile(
+                          headerColor:
+                              Theme.of(context).colorScheme.onSurfaceVariant,
+                          task: taskState.tasks.first,
+                          showMorePage: Provider<PveTaskLogBloc>(
+                            create: (context) => PveTaskLogBloc(
+                              apiClient: taskBloc.apiClient,
+                              init: PveTaskLogState.init(state.nodeID),
+                            )
+                              ..events.add(
+                                FilterTasksByGuestID(
+                                  guestID: guestID,
                                 ),
-                              for (var scsi in config.scsi!)
-                                ListTile(
-                                  leading:
-                                      const Icon(FontAwesomeIcons.hardDrive),
-                                  title: Text(scsi),
-                                  subtitle: const Text('Hard Disk'),
-                                  dense: true,
-                                ),
-                              for (var net in config.net!)
-                                ListTile(
-                                  leading:
-                                      const Icon(FontAwesomeIcons.ethernet),
-                                  dense: true,
-                                  subtitle: const Text('Network Device'),
-                                  title: Text(net),
-                                )
-                            ]),
-                    ],
-                  )),
+                              )
+                              ..events.add(LoadTasks()),
+                            dispose: (context, bloc) => bloc.dispose(),
+                            child: const PveTaskLog(),
+                          ),
+                        );
+                      }
+                      return Container();
+                    },
+                  ),
+                  SizedBox(
+                    height: 130,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          if (!(status?.template ?? false))
+                            createActionCard(
+                                'Power Settings',
+                                Icons.power_settings_new,
+                                () => showPowerMenuBottomSheet(context, bloc)),
+                          if (!(status?.template ?? false))
+                            createActionCard(
+                                'Console',
+                                Icons.queue_play_next,
+                                () => showConsoleMenuBottomSheet(
+                                      context,
+                                      bloc.apiClient,
+                                      guestID,
+                                      state.nodeID,
+                                      'qemu',
+                                      allowSpice: status?.spice ?? false,
+                                    )),
+                          createActionCard(
+                              'Options',
+                              Icons.settings,
+                              () => Navigator.of(context)
+                                  .push(_createOptionsRoute(bloc))),
+                          if (!rBloc.latestState.isStandalone)
+                            createActionCard(
+                                'Migrate',
+                                FontAwesomeIcons.paperPlane,
+                                () => Navigator.of(context).push(
+                                    _createMigrationRoute(guestID, state.nodeID,
+                                        bloc.apiClient))),
+                          createActionCard(
+                              'Backup',
+                              FontAwesomeIcons.floppyDisk,
+                              () => Navigator.of(context).push(
+                                  _createBackupRoute(
+                                      guestID, state.nodeID, bloc.apiClient))),
+                        ],
+                      ),
+                    ),
+                  ),
+                  if (config != null)
+                    PveResourceDataCardWidget(
+                        expandable: false,
+                        title: const Text(
+                          'Hardware',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                        children: [
+                          ListTile(
+                            leading: const Icon(FontAwesomeIcons.memory),
+                            title: Text('${config.memory}'),
+                            subtitle: const Text('Memory'),
+                            dense: true,
+                          ),
+                          ListTile(
+                            leading: const Icon(Icons.memory),
+                            title: Text(
+                                '${config.cores} Cores ${config.sockets} Socket'),
+                            subtitle: const Text('Processor'),
+                            dense: true,
+                          ),
+                          ListTile(
+                            leading: const Icon(FontAwesomeIcons.microchip),
+                            title:
+                                Text(config.bios?.name ?? 'Default (SeaBIOS)'),
+                            subtitle: const Text('BIOS'),
+                            dense: true,
+                          ),
+                          ListTile(
+                            leading: const Icon(FontAwesomeIcons.gears),
+                            dense: true,
+                            title: Text(config.machine ?? 'Default (i440fx)'),
+                            subtitle: const Text('Machine Type'),
+                          ),
+                          ListTile(
+                            leading: const Icon(FontAwesomeIcons.database),
+                            title:
+                                Text(config.scsihw?.name ?? 'Default (i440fx)'),
+                            subtitle: const Text('SCSI Controller'),
+                            dense: true,
+                          ),
+                          for (var ide in config.ide!)
+                            ListTile(
+                              leading: const Icon(FontAwesomeIcons.compactDisc),
+                              title: Text(ide),
+                              subtitle: const Text('CD/DVD Drive'),
+                              dense: true,
+                            ),
+                          for (var scsi in config.scsi!)
+                            ListTile(
+                              leading: const Icon(FontAwesomeIcons.hardDrive),
+                              title: Text(scsi),
+                              subtitle: const Text('Hard Disk'),
+                              dense: true,
+                            ),
+                          for (var net in config.net!)
+                            ListTile(
+                              leading: const Icon(FontAwesomeIcons.ethernet),
+                              dense: true,
+                              subtitle: const Text('Network Device'),
+                              title: Text(net),
+                            )
+                        ]),
+                ],
+              )),
             );
           }),
     );

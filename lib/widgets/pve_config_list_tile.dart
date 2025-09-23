@@ -43,11 +43,7 @@ class PveConfigListTile<T> extends StatelessWidget {
     BuildContext context, {
     required Widget Function(BuildContext) builder,
   }) {
-    showModalBottomSheet(
-      context: context,
-      builder: builder,
-      useSafeArea: true,
-    );
+    showModalBottomSheet(context: context, builder: builder, useSafeArea: true);
   }
 
   @override
@@ -69,10 +65,7 @@ class PveConfigListTile<T> extends StatelessWidget {
           : Text(title),
       subtitle: subtitle == null ? null : Text(subtitle!),
       trailing: trailingText != null
-          ? Text(
-              trailingText!,
-              style: const TextStyle(fontSize: 14),
-            )
+          ? Text(trailingText!, style: const TextStyle(fontSize: 14))
           : null,
       onTap: pending != null
           ? null

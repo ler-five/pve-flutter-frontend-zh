@@ -98,7 +98,8 @@ class PveConsoleMenu extends StatelessWidget {
                   }
                 },
               ),
-            if (Platform.isAndroid || Platform.isIOS) // web_view is only available for mobile :(
+            if (Platform.isAndroid ||
+                Platform.isIOS) // web_view is only available for mobile :(
               ListTile(
                 title: const Text(
                   //type == "qemu" ? "noVNC Console" : "xterm.js Console",
@@ -115,7 +116,7 @@ class PveConsoleMenu extends StatelessWidget {
   }
 
   Future<void> _openNoVncConsole(BuildContext context, String type) async {
-    if(!['lxc', 'node', 'qemu'].contains(type)) return;
+    if (!['lxc', 'node', 'qemu'].contains(type)) return;
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     await Navigator.push(context, _createHTMLConsoleRoute());
     SystemChrome.setEnabledSystemUIMode(
