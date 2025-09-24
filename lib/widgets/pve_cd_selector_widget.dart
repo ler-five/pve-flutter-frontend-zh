@@ -22,12 +22,13 @@ class PveCdSelector extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final state = snapshot.data!;
-            return Column(children: [
+            return RadioGroup(
+              groupValue: state.value,
+              onChanged: (value) => cdBloc.events.add(ChangeValue(value)),
+              child: Column(children: [
               RadioListTile<CdType>(
                 title: const Text('Use CD/DVD disc image file (iso)'),
                 value: CdType.iso,
-                groupValue: state.value,
-                onChanged: (value) => cdBloc.events.add(ChangeValue(value)),
               ),
               if (state.value == CdType.iso)
                 OutlinedButton(
@@ -63,16 +64,12 @@ class PveCdSelector extends StatelessWidget {
               RadioListTile<CdType>(
                 title: const Text('Use physical CD/DVD Drive'),
                 value: CdType.cdrom,
-                groupValue: state.value,
-                onChanged: (value) => cdBloc.events.add(ChangeValue(value)),
               ),
               RadioListTile<CdType>(
                 title: const Text('Do not use any media'),
                 value: CdType.none,
-                groupValue: state.value,
-                onChanged: (value) => cdBloc.events.add(ChangeValue(value)),
               ),
-            ]);
+            ]));
           }
 
           return Container();
