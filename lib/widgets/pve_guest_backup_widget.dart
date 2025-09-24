@@ -545,7 +545,7 @@ class _PveBackupFormState extends State<PveBackupForm> {
       onChanged: (PveVZDumpModeType? selection) => setState(() {
         mode = selection;
       }),
-      value: mode,
+      initialValue: mode,
       autovalidateMode: AutovalidateMode.onUserInteraction,
     );
   }
@@ -566,7 +566,7 @@ class _PveBackupFormState extends State<PveBackupForm> {
       onChanged: (PveVZDumpCompressionType? selection) => setState(() {
         compression = selection;
       }),
-      value: compression,
+      initialValue: compression,
       autovalidateMode: AutovalidateMode.onUserInteraction,
     );
   }

@@ -31,7 +31,7 @@ class PveGuestOsSelector extends StatelessWidget {
             onChanged: (choice) {
               gBloc.events.add(ChangeOsType(choice));
             },
-            value: snapshot.data?.value,
+            initialValue: snapshot.data?.value,
             validator: (_) => snapshot.data?.errorText,
             autovalidateMode: AutovalidateMode.onUserInteraction,
           );

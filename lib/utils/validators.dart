@@ -12,19 +12,19 @@ class Validators {
   static final RegExp _ipv4RegExp =
       RegExp("^(?:(?:(?:$ipv4Octet\\.){3}$ipv4Octet))\$");
 
-  static isValidEmail(String email) {
+  static bool isValidEmail(String email) {
     return _emailRegExp.hasMatch(email);
   }
 
-  static isValidPassword(String password) {
+  static bool isValidPassword(String password) {
     return _passwordRegExp.hasMatch(password);
   }
 
-  static isValidDnsName(String name) {
+  static bool isValidDnsName(String name) {
     return _dnsExp.hasMatch(name);
   }
 
-  static isValidIPV4(String ip) {
+  static bool isValidIPV4(String ip) {
     return _ipv4RegExp.hasMatch(ip);
   }
 }

@@ -41,7 +41,7 @@ class PveBridgeSelector extends StatelessWidget {
             ],
             onChanged: (PveNodeNetworkModel? selection) =>
                 bBloc.events.add(BridgeSelectedEvent(selection)),
-            value: state.value,
+            initialValue: state.value,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (dynamic _) {
               return state.errorText;

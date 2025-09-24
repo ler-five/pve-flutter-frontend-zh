@@ -200,7 +200,7 @@ class _MigrateTargetSelector extends StatelessWidget {
                     migrateBloc.events
                         .add(MigrationTargetChanged(selectedNode));
                   },
-            value: state.selectedNode?.nodeName,
+            initialValue: state.selectedNode?.nodeName,
             isExpanded: true,
           ),
         );

@@ -66,7 +66,7 @@ class PveStorageSelectorDropdown extends StatelessWidget {
                   .add(StorageSelectedEvent(storage: selectedStorage)),
           selectedItemBuilder: (context) =>
               state.storages.map((item) => Text(item.id)).toList(),
-          value: state.selected,
+          initialValue: state.selected,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (dynamic value) {
             if (state.errorMessage.isNotEmpty) {

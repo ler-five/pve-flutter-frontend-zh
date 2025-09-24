@@ -46,7 +46,7 @@ class _PveNetworkInterfaceModelSelectorState
         });
         widget.onChange!(selection);
       },
-      value: selection ?? widget.initialSelection,
+      initialValue: selection ?? widget.initialSelection,
     );
   }
 }

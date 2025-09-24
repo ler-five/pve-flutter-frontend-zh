@@ -112,7 +112,6 @@ class MyApp extends StatelessWidget {
             surfaceContainer: ProxmoxColors.supportGreyTint75,
             onSurfaceVariant: Colors.black,
           ),
-          indicatorColor: ProxmoxColors.orange,
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(foregroundColor: ProxmoxColors.grey),
           ),
@@ -135,6 +134,7 @@ class MyApp extends StatelessWidget {
             selectionHandleColor: ProxmoxColors.orange,
             cursorColor: ProxmoxColors.orange,
           ),
+          tabBarTheme: TabBarThemeData(indicatorColor: ProxmoxColors.orange),
         ),
         darkTheme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
@@ -151,7 +151,6 @@ class MyApp extends StatelessWidget {
             surfaceContainer: ProxmoxColors.grey,
             onSurfaceVariant: ProxmoxColors.supportGreyTint75,
           ),
-          indicatorColor: ProxmoxColors.orange,
           // flutter has a weird logic where it pulls colors from different
           // scheme properties depending on light/dark mode, avoid that...
           appBarTheme: const AppBarTheme(
@@ -178,6 +177,7 @@ class MyApp extends StatelessWidget {
             selectionHandleColor: ProxmoxColors.orange,
             cursorColor: ProxmoxColors.orange,
           ),
+          tabBarTheme: TabBarThemeData(indicatorColor: ProxmoxColors.orange),
         ),
         builder: (context, child) {
           return StreamListener(
