@@ -103,7 +103,10 @@ class _MainLayoutSlimState extends State<MainLayoutSlim> {
   }
 }
 
-Widget getMainContent(snapshot, context) {
+Widget getMainContent(
+  AsyncSnapshot<int> snapshot,
+  BuildContext context,
+) {
   if (snapshot.hasData) {
     switch (snapshot.data) {
       case 0:
