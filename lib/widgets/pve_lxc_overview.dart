@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -75,7 +77,9 @@ class PveLxcOverview extends StatelessWidget {
                 title: Text(config?.hostname ?? 'CT $guestID'),
               ),
               backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-              body: SingleChildScrollView(
+              body: SafeArea(
+                bottom: !Platform.isIOS,
+                child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
                     PveGuestOverviewHeader(
@@ -258,7 +262,7 @@ class PveLxcOverview extends StatelessWidget {
                   ],
                 ),
               ),
-            );
+            ),);
           }),
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pve_flutter_frontend/bloc/pve_qemu_overview_bloc.dart';
@@ -26,7 +28,9 @@ class PveQemuOptions extends StatelessWidget {
                   onPressed: () => Navigator.of(context).pop(),
                 ),
               ),
-              body: SingleChildScrollView(
+              body: SafeArea(
+                bottom: !Platform.isIOS,
+                child: SingleChildScrollView(
                 child: Form(
                   key: _formKey,
                   onChanged: () {},
@@ -207,7 +211,7 @@ class PveQemuOptions extends StatelessWidget {
                   ),
                 ),
               ),
-            );
+            ),);
           }
           return const Center(
             child: CircularProgressIndicator(),

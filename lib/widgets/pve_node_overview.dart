@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -60,7 +62,9 @@ class PveNodeOverview extends StatelessWidget {
             ),
           ),
           backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-          body: SingleChildScrollView(
+          body: SafeArea(
+            bottom: !Platform.isIOS,
+            child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 if (rrd.isNotEmpty)
@@ -442,7 +446,7 @@ class PveNodeOverview extends StatelessWidget {
               ],
             ),
           ),
-        );
+        ),);
       },
     );
   }

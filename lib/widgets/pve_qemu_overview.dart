@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -76,8 +78,10 @@ class PveQemuOverview extends StatelessWidget {
                 title: Text(config?.name ?? 'VM $guestID'),
               ),
               backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-              body: SingleChildScrollView(
-                  child: Column(
+              body: SafeArea(
+                bottom: !Platform.isIOS,
+                child: SingleChildScrollView(
+                    child: Column(
                 children: <Widget>[
                   PveGuestOverviewHeader(
                     background: !(status?.template ?? false)
@@ -242,7 +246,7 @@ class PveQemuOverview extends StatelessWidget {
                         ]),
                 ],
               )),
-            );
+            ),);
           }),
     );
   }

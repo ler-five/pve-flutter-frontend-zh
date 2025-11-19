@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:pve_flutter_frontend/bloc/pve_lxc_overview_bloc.dart';
 import 'package:pve_flutter_frontend/states/pve_lxc_overview_state.dart';
@@ -18,7 +20,9 @@ class PveLxcOptions extends StatelessWidget {
           if (config != null) {
             return Scaffold(
               appBar: AppBar(),
-              body: SingleChildScrollView(
+              body: SafeArea(
+                bottom: !Platform.isIOS,
+                child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
                     ListTile(
@@ -114,7 +118,7 @@ class PveLxcOptions extends StatelessWidget {
                   ],
                 ),
               ),
-            );
+            ),);
           }
           return const Center(
             child: CircularProgressIndicator(),

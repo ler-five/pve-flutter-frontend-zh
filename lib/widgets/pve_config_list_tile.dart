@@ -130,7 +130,8 @@ class _PveConfigEditorFormState<T> extends State<_PveConfigEditorForm<T>> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SafeArea(
+        child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -164,6 +165,6 @@ class _PveConfigEditorFormState<T> extends State<_PveConfigEditorForm<T>> {
           const SizedBox(height: 8),
         ],
       ),
-    );
+    ),);
   }
 }
