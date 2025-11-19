@@ -20,4 +20,7 @@ class Links {
       'https://pve.proxmox.com/wiki/Proxmox_VE_Mobile_Companion_Data_Protection');
   static final bugzillaUri =
       Uri.parse('https://bugzilla.proxmox.com/enter_bug.cgi?product=pve');
+  static final aSpiceClient = Uri.parse(
+    "https://apps.apple.com/app/id1560593107",
+  );
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:pve_flutter_frontend/widgets/firstWelcomeScreen/pve_welcome_common.dart';
@@ -37,19 +39,22 @@ class PveWelcomePageFAQ extends StatelessWidget {
           ),
           const PveAnswer(
               text:
-                  "Spice is currently supported. We plan to integrate VNC in the future."),
+                  "Spice is currently supported, and we also support VNC through noVNC." ),
           const PveQuestion(text: "Which Spice client works?"),
           const PveAnswer(
               text:
                   'Currently only the following 3rd party Spice client works:'),
           Center(
             child: OutlinedButton(
-              onPressed: () => {launchUrl(Links.opaqueApp)},
+              onPressed: () {
+                final link = Platform.isIOS ? Links.aSpiceClient : Links.opaqueApp;
+                launchUrl(link);
+              },
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: ProxmoxColors.supportGrey),
                 foregroundColor: Colors.white,
               ),
-              child: const Text('Opaque'),
+              child: Text(Platform.isIOS ? "aSPICE Pro" : "Opaque"),
             ),
           ),
         ],
