@@ -131,40 +131,41 @@ class _PveConfigEditorFormState<T> extends State<_PveConfigEditorForm<T>> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        spacing: 8,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                widget.title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 8,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  widget.title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('Close'),
-              ),
-            ],
-          ),
-          widget.editorBuilder(context, _controller),
-          const SizedBox(height: 12),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: FilledButton(
-              onPressed: _isDirty ? _submit : null,
-              child: const Text('Update'),
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Close'),
+                ),
+              ],
             ),
-          ),
-          const SizedBox(height: 8),
-        ],
+            widget.editorBuilder(context, _controller),
+            const SizedBox(height: 12),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: FilledButton(
+                onPressed: _isDirty ? _submit : null,
+                child: const Text('Update'),
+              ),
+            ),
+            const SizedBox(height: 8),
+          ],
+        ),
       ),
-    ),);
+    );
   }
 }

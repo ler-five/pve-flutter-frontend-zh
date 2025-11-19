@@ -23,53 +23,57 @@ class PveCdSelector extends StatelessWidget {
           if (snapshot.hasData) {
             final state = snapshot.data!;
             return RadioGroup(
-              groupValue: state.value,
-              onChanged: (value) => cdBloc.events.add(ChangeValue(value)),
-              child: Column(children: [
-              RadioListTile<CdType>(
-                title: const Text('Use CD/DVD disc image file (iso)'),
-                value: CdType.iso,
-              ),
-              if (state.value == CdType.iso)
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    side: state.hasError
-                        ? const BorderSide(color: Colors.red)
-                        : null,
+                groupValue: state.value,
+                onChanged: (value) => cdBloc.events.add(ChangeValue(value)),
+                child: Column(children: [
+                  RadioListTile<CdType>(
+                    title: const Text('Use CD/DVD disc image file (iso)'),
+                    value: CdType.iso,
                   ),
-                  child: Text((state.file == null || state.file!.isEmpty)
-                      ? "Choose File"
-                      : state.file!),
-                  onPressed: () async {
-                    final PveNodesStorageContentModel? file = await showDialog(
-                        context: context,
-                        builder: (context) => PveFileSelector(
-                              fBloc: PveFileSelectorBloc(
-                                apiClient: client,
-                                init: PveFileSelectorState.init().rebuild((b) =>
-                                    b..fileType = PveStorageContentType.iso),
-                              ),
-                              sBloc: PveStorageSelectorBloc(
-                                apiClient: client,
-                                init: PveStorageSelectorState.init().rebuild(
-                                    (b) =>
-                                        b..content = PveStorageContentType.iso),
-                              )..events.add(LoadStoragesEvent()),
-                            ));
-                    if (file != null) {
-                      cdBloc.events.add(FileSelected(file.volid));
-                    }
-                  },
-                ),
-              RadioListTile<CdType>(
-                title: const Text('Use physical CD/DVD Drive'),
-                value: CdType.cdrom,
-              ),
-              RadioListTile<CdType>(
-                title: const Text('Do not use any media'),
-                value: CdType.none,
-              ),
-            ]));
+                  if (state.value == CdType.iso)
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        side: state.hasError
+                            ? const BorderSide(color: Colors.red)
+                            : null,
+                      ),
+                      child: Text((state.file == null || state.file!.isEmpty)
+                          ? "Choose File"
+                          : state.file!),
+                      onPressed: () async {
+                        final PveNodesStorageContentModel? file =
+                            await showDialog(
+                                context: context,
+                                builder: (context) => PveFileSelector(
+                                      fBloc: PveFileSelectorBloc(
+                                        apiClient: client,
+                                        init: PveFileSelectorState.init()
+                                            .rebuild((b) => b
+                                              ..fileType =
+                                                  PveStorageContentType.iso),
+                                      ),
+                                      sBloc: PveStorageSelectorBloc(
+                                        apiClient: client,
+                                        init: PveStorageSelectorState.init()
+                                            .rebuild((b) => b
+                                              ..content =
+                                                  PveStorageContentType.iso),
+                                      )..events.add(LoadStoragesEvent()),
+                                    ));
+                        if (file != null) {
+                          cdBloc.events.add(FileSelected(file.volid));
+                        }
+                      },
+                    ),
+                  RadioListTile<CdType>(
+                    title: const Text('Use physical CD/DVD Drive'),
+                    value: CdType.cdrom,
+                  ),
+                  RadioListTile<CdType>(
+                    title: const Text('Do not use any media'),
+                    value: CdType.none,
+                  ),
+                ]));
           }
 
           return Container();
