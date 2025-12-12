@@ -10,7 +10,7 @@ Future<bool> tryLaunchUrl(Uri url) async {
 
 class Links {
   static final pvePricing =
-      Uri.parse('https://www.proxmox.com/proxmox-ve/pricing');
+      Uri.parse('https://www.proxmox.com/en/products/proxmox-virtual-environment/pricing');
   static final proxmoxForum = Uri.parse('https://forum.proxmox.com');
   static final pveUserList =
       Uri.parse('https://lists.proxmox.com/cgi-bin/mailman/listinfo/pve-user');
