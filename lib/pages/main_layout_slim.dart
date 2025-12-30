@@ -940,8 +940,9 @@ class MobileAccessManagement extends StatelessWidget {
                     itemCount: aState.tokens.length,
                     itemBuilder: (context, index) {
                       final token = aState.tokens[index];
-                      var expireDate = 'infinite';
-                      if (token.expire != null) {
+                      var expireDate = 'never';
+                      if (token.expire != null &&
+                          token.expire?.millisecondsSinceEpoch != 0) {
                         expireDate = DateFormat.yMd().format(token.expire!);
                       }
 
