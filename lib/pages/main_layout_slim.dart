@@ -936,6 +936,14 @@ class MobileAccessManagement extends StatelessWidget {
                             : null,
                       );
                     }),
+                if (aState.tokens.isEmpty)
+                  Align(
+                    child: Text(
+                      "No Tokens",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  )
+                else
                 ListView.builder(
                     itemCount: aState.tokens.length,
                     itemBuilder: (context, index) {
@@ -951,6 +959,14 @@ class MobileAccessManagement extends StatelessWidget {
                         subtitle: Text('Expires: $expireDate'),
                       );
                     }),
+                if (aState.groups.isEmpty)
+                  Align(
+                    child: Text(
+                      "No Groups",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  )
+                else
                 ListView.builder(
                     itemCount: aState.groups.length,
                     itemBuilder: (context, index) {
