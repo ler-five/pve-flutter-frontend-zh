@@ -944,21 +944,21 @@ class MobileAccessManagement extends StatelessWidget {
                     ),
                   )
                 else
-                ListView.builder(
-                    itemCount: aState.tokens.length,
-                    itemBuilder: (context, index) {
-                      final token = aState.tokens[index];
-                      var expireDate = 'never';
-                      if (token.expire != null &&
-                          token.expire?.millisecondsSinceEpoch != 0) {
-                        expireDate = DateFormat.yMd().format(token.expire!);
-                      }
+                  ListView.builder(
+                      itemCount: aState.tokens.length,
+                      itemBuilder: (context, index) {
+                        final token = aState.tokens[index];
+                        var expireDate = 'never';
+                        if (token.expire != null &&
+                            token.expire?.millisecondsSinceEpoch != 0) {
+                          expireDate = DateFormat.yMd().format(token.expire!);
+                        }
 
-                      return ListTile(
-                        title: Text('${token.userid} ${token.tokenid}'),
-                        subtitle: Text('Expires: $expireDate'),
-                      );
-                    }),
+                        return ListTile(
+                          title: Text('${token.userid} ${token.tokenid}'),
+                          subtitle: Text('Expires: $expireDate'),
+                        );
+                      }),
                 if (aState.groups.isEmpty)
                   Align(
                     child: Text(
@@ -967,64 +967,65 @@ class MobileAccessManagement extends StatelessWidget {
                     ),
                   )
                 else
-                ListView.builder(
-                    itemCount: aState.groups.length,
-                    itemBuilder: (context, index) {
-                      final group = aState.groups[index];
-                      final users = (group.users?.isNotEmpty ?? false)
-                          ? group.users!.split(',')
-                          : [];
-                      return ListTile(
-                        title: Text(group.groupid),
-                        subtitle: Text(group.comment ?? ''),
-                        trailing: const Icon(Icons.arrow_right),
-                        onTap: () => showModalBottomSheet(
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(10))),
-                          context: context,
-                          builder: (context) {
-                            return SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.5,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                    child: Align(
-                                      alignment: Alignment.topCenter,
-                                      child: Container(
-                                        width: 40,
-                                        height: 3,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                  ListTile(
-                                    title:
-                                        Text('Group members (${users.length})'),
-                                  ),
-                                  const Divider(),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(14.0),
-                                      child: ListView.builder(
-                                        itemCount: users.length,
-                                        itemBuilder: (context, index) =>
-                                            ListTile(
-                                          title: Text(users[index]),
+                  ListView.builder(
+                      itemCount: aState.groups.length,
+                      itemBuilder: (context, index) {
+                        final group = aState.groups[index];
+                        final users = (group.users?.isNotEmpty ?? false)
+                            ? group.users!.split(',')
+                            : [];
+                        return ListTile(
+                          title: Text(group.groupid),
+                          subtitle: Text(group.comment ?? ''),
+                          trailing: const Icon(Icons.arrow_right),
+                          onTap: () => showModalBottomSheet(
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(10))),
+                            context: context,
+                            builder: (context) {
+                              return SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.5,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                      child: Align(
+                                        alignment: Alignment.topCenter,
+                                        child: Container(
+                                          width: 40,
+                                          height: 3,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    }),
+                                    ListTile(
+                                      title: Text(
+                                          'Group members (${users.length})'),
+                                    ),
+                                    const Divider(),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(14.0),
+                                        child: ListView.builder(
+                                          itemCount: users.length,
+                                          itemBuilder: (context, index) =>
+                                              ListTile(
+                                            title: Text(users[index]),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      }),
                 ListView.builder(
                     itemCount: aState.roles.length,
                     itemBuilder: (context, index) {
