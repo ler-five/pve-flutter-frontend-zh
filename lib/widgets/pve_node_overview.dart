@@ -115,7 +115,7 @@ class PveNodeOverview extends StatelessWidget {
                                       data: rrd.map((e) => Point(
                                           e.time!.millisecondsSinceEpoch,
                                           e.memused ?? 0)),
-                                      icon: Icon(FontAwesomeIcons.memory,
+                                      icon: FaIcon(FontAwesomeIcons.memory,
                                           color: fgColor),
                                       bottomRight: pageIndicator,
                                       dataRenderer: (data) =>
@@ -259,7 +259,7 @@ class PveNodeOverview extends StatelessWidget {
                           child: ListTile(
                             title: const Text('HD space (root)'),
                             subtitle: ProxmoxCapacityIndicator(
-                              icon: Icon(
+                              icon: FaIcon(
                                 FontAwesomeIcons.solidHardDrive,
                                 color: Colors.blueGrey[300],
                               ),
@@ -385,7 +385,7 @@ class PveNodeOverview extends StatelessWidget {
                         .map(
                           (d) => ListTile(
                             dense: true,
-                            leading: Icon(FontAwesomeIcons.solidHardDrive,
+                            leading: FaIcon(FontAwesomeIcons.solidHardDrive,
                                 color: state.isDiskHealthy(d)
                                     ? Colors.grey
                                     : Colors.red),

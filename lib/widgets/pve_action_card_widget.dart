@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ActionCard extends StatelessWidget {
   final Function? onTap;
@@ -13,6 +14,22 @@ class ActionCard extends StatelessWidget {
     this.icon,
     this.color,
   });
+
+  factory ActionCard.withIcon(String title, IconData icon, Function onTap) {
+    return ActionCard(
+      title: title,
+      icon: Icon(icon, size: 55, color: Colors.white24),
+      onTap: onTap,
+    );
+  }
+
+  factory ActionCard.withFaIcon(String title, FaIconData icon, Function onTap) {
+    return ActionCard(
+      title: title,
+      icon: FaIcon(icon, size: 55, color: Colors.white24),
+      onTap: onTap,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

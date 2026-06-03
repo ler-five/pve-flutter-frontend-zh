@@ -205,7 +205,7 @@ class PveGuestBackupContent extends StatelessWidget {
       itemCount: content!.length,
       itemBuilder: (context, index) => Card(
         child: ListTile(
-          leading: Icon(
+          leading: FaIcon(
             FontAwesomeIcons.floppyDisk,
             color: Theme.of(context).colorScheme.onSurface,
           ),

@@ -40,18 +40,6 @@ class PveQemuOverview extends StatelessWidget {
 
   const PveQemuOverview({super.key, required this.guestID});
 
-  ActionCard createActionCard(String title, IconData icon, Function onTap) {
-    return ActionCard(
-      icon: Icon(
-        icon,
-        size: 55,
-        color: Colors.white24,
-      ),
-      title: title,
-      onTap: onTap,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<PveQemuOverviewBloc>(context);
@@ -140,13 +128,13 @@ class PveQemuOverview extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             if (!(status?.template ?? false))
-                              createActionCard(
+                              ActionCard.withIcon(
                                   'Power Settings',
                                   Icons.power_settings_new,
                                   () =>
                                       showPowerMenuBottomSheet(context, bloc)),
                             if (!(status?.template ?? false))
-                              createActionCard(
+                              ActionCard.withIcon(
                                   'Console',
                                   Icons.queue_play_next,
                                   () => showConsoleMenuBottomSheet(
@@ -157,19 +145,19 @@ class PveQemuOverview extends StatelessWidget {
                                         'qemu',
                                         allowSpice: status?.spice ?? false,
                                       )),
-                            createActionCard(
+                            ActionCard.withIcon(
                                 'Options',
                                 Icons.settings,
                                 () => Navigator.of(context)
                                     .push(_createOptionsRoute(bloc))),
                             if (!rBloc.latestState.isStandalone)
-                              createActionCard(
+                              ActionCard.withFaIcon(
                                   'Migrate',
                                   FontAwesomeIcons.paperPlane,
                                   () => Navigator.of(context).push(
                                       _createMigrationRoute(guestID,
                                           state.nodeID, bloc.apiClient))),
-                            createActionCard(
+                            ActionCard.withFaIcon(
                                 'Backup',
                                 FontAwesomeIcons.floppyDisk,
                                 () => Navigator.of(context).push(
@@ -191,7 +179,7 @@ class PveQemuOverview extends StatelessWidget {
                           ),
                           children: [
                             ListTile(
-                              leading: const Icon(FontAwesomeIcons.memory),
+                              leading: const FaIcon(FontAwesomeIcons.memory),
                               title: Text('${config.memory}'),
                               subtitle: const Text('Memory'),
                               dense: true,
@@ -204,20 +192,20 @@ class PveQemuOverview extends StatelessWidget {
                               dense: true,
                             ),
                             ListTile(
-                              leading: const Icon(FontAwesomeIcons.microchip),
+                              leading: const FaIcon(FontAwesomeIcons.microchip),
                               title: Text(
                                   config.bios?.name ?? 'Default (SeaBIOS)'),
                               subtitle: const Text('BIOS'),
                               dense: true,
                             ),
                             ListTile(
-                              leading: const Icon(FontAwesomeIcons.gears),
+                              leading: const FaIcon(FontAwesomeIcons.gears),
                               dense: true,
                               title: Text(config.machine ?? 'Default (i440fx)'),
                               subtitle: const Text('Machine Type'),
                             ),
                             ListTile(
-                              leading: const Icon(FontAwesomeIcons.database),
+                              leading: const FaIcon(FontAwesomeIcons.database),
                               title: Text(
                                   config.scsihw?.name ?? 'Default (i440fx)'),
                               subtitle: const Text('SCSI Controller'),
@@ -226,21 +214,23 @@ class PveQemuOverview extends StatelessWidget {
                             for (var ide in config.ide!)
                               ListTile(
                                 leading:
-                                    const Icon(FontAwesomeIcons.compactDisc),
+                                    const FaIcon(FontAwesomeIcons.compactDisc),
                                 title: Text(ide),
                                 subtitle: const Text('CD/DVD Drive'),
                                 dense: true,
                               ),
                             for (var scsi in config.scsi!)
                               ListTile(
-                                leading: const Icon(FontAwesomeIcons.hardDrive),
+                                leading:
+                                    const FaIcon(FontAwesomeIcons.hardDrive),
                                 title: Text(scsi),
                                 subtitle: const Text('Hard Disk'),
                                 dense: true,
                               ),
                             for (var net in config.net!)
                               ListTile(
-                                leading: const Icon(FontAwesomeIcons.ethernet),
+                                leading:
+                                    const FaIcon(FontAwesomeIcons.ethernet),
                                 dense: true,
                                 subtitle: const Text('Network Device'),
                                 title: Text(net),

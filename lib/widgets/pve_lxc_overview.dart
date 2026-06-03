@@ -38,18 +38,6 @@ class PveLxcOverview extends StatelessWidget {
   static final routeName = RegExp(r"\/nodes\/(\S+)\/lxc\/(\d+)");
   final String guestID;
 
-  ActionCard createActionCard(String title, IconData icon, Function onTap) {
-    return ActionCard(
-      icon: Icon(
-        icon,
-        size: 55,
-        color: Colors.white24,
-      ),
-      title: title,
-      onTap: onTap,
-    );
-  }
-
   const PveLxcOverview({super.key, required this.guestID});
   @override
   Widget build(BuildContext context) {
@@ -139,13 +127,13 @@ class PveLxcOverview extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               if (!(status?.template ?? false))
-                                createActionCard(
+                                ActionCard.withIcon(
                                     'Power Settings',
                                     Icons.power_settings_new,
                                     () => showPowerMenuBottomSheet(
                                         context, lxcBloc)),
                               if (!(status?.template ?? false))
-                                createActionCard(
+                                ActionCard.withIcon(
                                     'Console',
                                     Icons.queue_play_next,
                                     () => showConsoleMenuBottomSheet(
@@ -154,7 +142,7 @@ class PveLxcOverview extends StatelessWidget {
                                         guestID,
                                         state.nodeID,
                                         'lxc')),
-                              createActionCard(
+                              ActionCard.withIcon(
                                   'Options',
                                   Icons.settings,
                                   () => Navigator.of(context)
@@ -164,7 +152,7 @@ class PveLxcOverview extends StatelessWidget {
                                               ),
                                           fullscreenDialog: true))),
                               if (!resourceBloc.latestState.isStandalone)
-                                createActionCard(
+                                ActionCard.withFaIcon(
                                     'Migrate',
                                     FontAwesomeIcons.paperPlane,
                                     () => Navigator.of(context).push(
@@ -172,7 +160,7 @@ class PveLxcOverview extends StatelessWidget {
                                             guestID,
                                             state.nodeID,
                                             resourceBloc.apiClient!))),
-                              createActionCard(
+                              ActionCard.withFaIcon(
                                   'Backup',
                                   FontAwesomeIcons.floppyDisk,
                                   () => Navigator.of(context).push(
@@ -193,7 +181,7 @@ class PveLxcOverview extends StatelessWidget {
                           ),
                           children: <Widget>[
                             ListTile(
-                              leading: const Icon(FontAwesomeIcons.memory),
+                              leading: const FaIcon(FontAwesomeIcons.memory),
                               title: Text('${config.memory}'),
                               subtitle: const Text('Memory'),
                               dense: true,
@@ -211,7 +199,7 @@ class PveLxcOverview extends StatelessWidget {
                               dense: true,
                             ),
                             ListTile(
-                              leading: const Icon(FontAwesomeIcons.hardDrive),
+                              leading: const FaIcon(FontAwesomeIcons.hardDrive),
                               dense: true,
                               title: Text('${config.rootfs}'),
                             ),
@@ -229,7 +217,7 @@ class PveLxcOverview extends StatelessWidget {
                               for (var net in config.net!)
                                 ListTile(
                                   leading:
-                                      const Icon(FontAwesomeIcons.ethernet),
+                                      const FaIcon(FontAwesomeIcons.ethernet),
                                   dense: true,
                                   title: Text(net),
                                 ),
@@ -244,14 +232,14 @@ class PveLxcOverview extends StatelessWidget {
                             ),
                             children: <Widget>[
                               ListTile(
-                                leading: const Icon(FontAwesomeIcons.globe),
+                                leading: const FaIcon(FontAwesomeIcons.globe),
                                 dense: true,
                                 title: Text(
                                     config.searchdomain ?? 'Use host settings'),
                                 subtitle: const Text('DNS Domain'),
                               ),
                               ListTile(
-                                leading: const Icon(
+                                leading: const FaIcon(
                                     FontAwesomeIcons.magnifyingGlass),
                                 dense: true,
                                 title: Text(

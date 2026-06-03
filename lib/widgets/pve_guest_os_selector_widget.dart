@@ -40,11 +40,11 @@ class PveGuestOsSelector extends StatelessWidget {
 
   Widget getIcon(String? osGroup) {
     if (osGroup == "Microsoft Windows") {
-      return const Icon(FontAwesomeIcons.windows);
+      return const FaIcon(FontAwesomeIcons.windows);
     }
 
     if (osGroup == "Linux") {
-      return const Icon(FontAwesomeIcons.linux);
+      return const FaIcon(FontAwesomeIcons.linux);
     }
 
     return Text(osGroup!);

@@ -861,11 +861,11 @@ class AppBarFilterIconButton extends StatelessWidget {
         builder: (context, state) {
           return IconButton(
             icon: rBloc.isFiltered
-                ? const Icon(
+                ? const FaIcon(
                     FontAwesomeIcons.filter,
                     color: Colors.black,
                   )
-                : const Icon(
+                : const FaIcon(
                     FontAwesomeIcons.filter,
                     color: Colors.grey,
                   ),

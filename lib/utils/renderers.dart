@@ -35,13 +35,12 @@ class Renderers {
         return Icons.storage;
       case "qemu":
         return Icons.desktop_windows;
-
       case "lxc":
-        return FontAwesomeIcons.cube;
+        return FontAwesomeIcons.cube.data;
       case "storage":
         return (shared ?? false)
             ? Icons.folder_shared
-            : FontAwesomeIcons.database;
+            : FontAwesomeIcons.database.data;
       case "pool":
         return Icons.label;
       default:

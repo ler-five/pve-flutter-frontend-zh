@@ -373,7 +373,7 @@ class FileSelectorContentView extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Icon(
+                    FaIcon(
                       getContentIcon(content![index].content),
                       color: Theme.of(context).colorScheme.secondary,
                     ),
@@ -401,7 +401,7 @@ class FileSelectorContentView extends StatelessWidget {
       itemCount: content!.length,
       itemBuilder: (context, index) => Card(
         child: ListTile(
-          leading: Icon(
+          leading: FaIcon(
             getContentIcon(content![index].content),
             color: Theme.of(context).colorScheme.secondary,
           ),
@@ -418,7 +418,7 @@ class FileSelectorContentView extends StatelessWidget {
     );
   }
 
-  IconData getContentIcon(PveStorageContentType? content) {
+  FaIconData getContentIcon(PveStorageContentType? content) {
     switch (content) {
       case PveStorageContentType.iso:
         return FontAwesomeIcons.compactDisc;

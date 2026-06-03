@@ -86,7 +86,7 @@ class PveQemuPowerSettings extends StatelessWidget {
                             context, PveClusterResourceAction.suspend, bloc),
                       ),
                       ListTile(
-                        leading: const Icon(FontAwesomeIcons.download),
+                        leading: const FaIcon(FontAwesomeIcons.download),
                         title: const Text(
                           "Hibernate",
                           style: TextStyle(fontWeight: FontWeight.bold),
@@ -106,7 +106,7 @@ class PveQemuPowerSettings extends StatelessWidget {
                             context, PveClusterResourceAction.stop, bloc),
                       ),
                       ListTile(
-                        leading: const Icon(FontAwesomeIcons.bolt),
+                        leading: const FaIcon(FontAwesomeIcons.bolt),
                         title: const Text(
                           "Reset",
                           style: TextStyle(fontWeight: FontWeight.bold),

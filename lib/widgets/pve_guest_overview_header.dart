@@ -122,7 +122,7 @@ class PveGuestOverviewHeader extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Row(
                       children: <Widget>[
-                        Icon(
+                        FaIcon(
                           FontAwesomeIcons.heartPulse,
                           color: haError ? Colors.red : Colors.green[400],
                         ),
@@ -219,7 +219,7 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
                     subtitle: Renderers.formatSize(rrdData.last.mem ?? 0),
                     data: rrdData.where((e) => e.mem != null).map(
                         (e) => Point(e.time!.millisecondsSinceEpoch, e.mem!)),
-                    icon: Icon(FontAwesomeIcons.memory, color: fgColor),
+                    icon: FaIcon(FontAwesomeIcons.memory, color: fgColor),
                     bottomRight: pageIndicator,
                     dataRenderer: (data) => Renderers.formatSize(data),
                   ),

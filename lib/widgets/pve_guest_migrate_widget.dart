@@ -55,7 +55,7 @@ class PveGuestMigrate extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ListTile(
-                          leading: const Icon(FontAwesomeIcons.globe),
+                          leading: const FaIcon(FontAwesomeIcons.globe),
                           title: Text(
                             'Mode',
                             style: TextStyle(color: colorScheme.onPrimary),
@@ -68,7 +68,7 @@ class PveGuestMigrate extends StatelessWidget {
                           ),
                         ),
                         ListTile(
-                          leading: const Icon(FontAwesomeIcons.mapPin),
+                          leading: const FaIcon(FontAwesomeIcons.mapPin),
                           title: Text(
                             'Source',
                             style: TextStyle(color: colorScheme.onPrimary),
