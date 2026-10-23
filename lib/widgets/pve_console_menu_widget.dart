@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
+import 'package:built_collection/built_collection.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -257,7 +258,9 @@ class PVEWebConsoleState extends State<PVEWebConsole> {
                 // save Fingerprint
                 if (trust && hash != null) {
                   await settings
-                      .rebuild((b) => b..trustedFingerprints.add(hash))
+                      .rebuild((b) => b
+                        ..trustedFingerprints = ListBuilder<String>(
+                            [...?settings.trustedFingerprints, hash]))
                       .toLocalStorage();
                   print(settings.toJson());
                 }

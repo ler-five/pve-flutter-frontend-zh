@@ -6,9 +6,24 @@ allprojects {
 }
 
 rootProject.buildDir = '../build'
-subprojects {
+
+// force outdated plugins (e.g. biometric_storage) to a recent compileSdk
+def forceRecentCompileSdk = { p ->
+    if (p.hasProperty('android')) {
+        def m = (p.android.compileSdkVersion.toString() =~ /(\d+)/)
+        if (m.find() && m.group(1).toInteger() < 36) {
+            p.android.compileSdkVersion 36
+        }
+    }
+}
+subprojects { project ->
     project.buildDir = "${rootProject.buildDir}/${project.name}"
     project.evaluationDependsOn(':app')
+    if (project.state.executed) {
+        forceRecentCompileSdk(project)
+    } else {
+        project.afterEvaluate { forceRecentCompileSdk(it) }
+    }
 }
 
 tasks.register("clean", Delete) {

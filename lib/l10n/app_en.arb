@@ -1,0 +1,11 @@
+{
+  "@@locale": "en",
+  "appTitle": "Proxmox",
+  "@appTitle": {
+    "description": "Application title"
+  },
+  "errorTitle": "Error",
+  "@errorTitle": {
+    "description": "Title of the global error dialog"
+  }
+}
