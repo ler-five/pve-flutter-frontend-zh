@@ -32,6 +32,7 @@ import 'package:pve_flutter_frontend/widgets/pve_node_overview.dart';
 import 'package:pve_flutter_frontend/widgets/pve_qemu_overview.dart';
 import 'package:pve_flutter_frontend/widgets/pve_splash_screen.dart';
 import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
+import 'package:proxmox_login_manager/l10n/login_localizations.dart';
 import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
 
 void main() async {
@@ -97,7 +98,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: navigatorKey,
         onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        localizationsDelegates: const [
+          ...AppLocalizations.localizationsDelegates,
+          LoginLocalizations.delegate,
+        ],
         supportedLocales: AppLocalizations.supportedLocales,
         title: 'Proxmox',
         //themeMode: ThemeMode.dark, // comment in/out to test
@@ -200,10 +204,10 @@ class MyApp extends StatelessWidget {
                           return AlertDialog(
                             contentPadding: const EdgeInsets.fromLTRB(
                                 24.0, 12.0, 24.0, 16.0),
-                            title: const Row(
+                            title: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Text('Error'),
+                                Text(AppLocalizations.of(context).error),
                                 Icon(Icons.warning),
                               ],
                             ),

@@ -6,6 +6,7 @@ import 'package:pve_flutter_frontend/states/pve_lxc_overview_state.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_config_forms/pve_config_switch_form.dart';
 import 'package:pve_flutter_frontend/widgets/pve_config_list_tile.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveLxcOptions extends StatelessWidget {
   final PveLxcOverviewBloc? lxcBloc;
@@ -26,7 +27,7 @@ class PveLxcOptions extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       ListTile(
-                        title: const Text("Name"),
+                        title: Text(AppLocalizations.of(context).name),
                         subtitle: Text(config.hostname ?? 'undefined'),
                       ),
                       PveConfigListTile<bool>(
@@ -51,15 +52,15 @@ class PveLxcOptions extends StatelessWidget {
                         ),
                       ),
                       ListTile(
-                        title: const Text("Start/Shutdown order"),
+                        title: Text(AppLocalizations.of(context).startShutdownOrder),
                         subtitle: Text(config.startup ?? "Default (any)"),
                       ),
                       ListTile(
-                        title: const Text("OS Type"),
+                        title: Text(AppLocalizations.of(context).osType),
                         subtitle: Text("${config.ostype}"),
                       ),
                       ListTile(
-                        title: const Text("Architecture"),
+                        title: Text(AppLocalizations.of(context).architecture),
                         subtitle: Text("${config.arch}"),
                       ),
                       PveConfigListTile<bool>(
@@ -81,11 +82,11 @@ class PveLxcOptions extends StatelessWidget {
                         ),
                       ),
                       ListTile(
-                        title: const Text("TTY Count"),
+                        title: Text(AppLocalizations.of(context).ttyCount),
                         subtitle: Text("${config.tty ?? 2}"),
                       ),
                       ListTile(
-                        title: const Text("Console Mode"),
+                        title: Text(AppLocalizations.of(context).consoleMode),
                         subtitle: Text(config.cmode?.name ?? 'tty'),
                       ),
                       PveConfigListTile<bool>(
@@ -107,12 +108,12 @@ class PveLxcOptions extends StatelessWidget {
                         ),
                       ),
                       ListTile(
-                        title: const Text("Unprivileged"),
+                        title: Text(AppLocalizations.of(context).unprivileged),
                         subtitle:
                             Text(config.unprivileged ?? false ? 'Yes' : 'No'),
                       ),
                       ListTile(
-                        title: const Text("Features"),
+                        title: Text(AppLocalizations.of(context).features),
                         subtitle: Text(config.features?.toString() ?? 'none'),
                       ),
                     ],

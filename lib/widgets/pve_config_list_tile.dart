@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 typedef PveConfigEditorBuilder<T> = Widget Function(
   BuildContext context,
@@ -56,7 +57,7 @@ class PveConfigListTile<T> extends StatelessWidget {
               children: [
                 Text(title),
                 Chip(
-                  label: const Text('pending'),
+                  label: Text(AppLocalizations.of(context).pending),
                   backgroundColor: Colors.orange,
                   onDeleted: onCancelEdit,
                 ),
@@ -74,7 +75,7 @@ class PveConfigListTile<T> extends StatelessWidget {
                 context,
                 builder: (_) {
                   return _PveConfigEditorForm(
-                    title: 'Edit: $title',
+                    title: AppLocalizations.of(context).editTitle(title),
                     editorBuilder: editorBuilder,
                     onSubmit: onSubmit,
                   );
@@ -149,7 +150,7 @@ class _PveConfigEditorFormState<T> extends State<_PveConfigEditorForm<T>> {
                 ),
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: const Text('Close'),
+                  child: Text(AppLocalizations.of(context).close),
                 ),
               ],
             ),
@@ -159,7 +160,7 @@ class _PveConfigEditorFormState<T> extends State<_PveConfigEditorForm<T>> {
               alignment: Alignment.bottomRight,
               child: FilledButton(
                 onPressed: _isDirty ? _submit : null,
-                child: const Text('Update'),
+                child: Text(AppLocalizations.of(context).update),
               ),
             ),
             const SizedBox(height: 8),

@@ -7,6 +7,7 @@ import 'package:pve_flutter_frontend/states/pve_file_selector_state.dart';
 import 'package:pve_flutter_frontend/states/pve_storage_selector_state.dart';
 import 'package:pve_flutter_frontend/widgets/pve_file_selector_widget.dart';
 import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveCdSelector extends StatelessWidget {
   const PveCdSelector({super.key});
@@ -27,7 +28,7 @@ class PveCdSelector extends StatelessWidget {
                 onChanged: (value) => cdBloc.events.add(ChangeValue(value)),
                 child: Column(children: [
                   RadioListTile<CdType>(
-                    title: const Text('Use CD/DVD disc image file (iso)'),
+                    title: Text(AppLocalizations.of(context).useCdDvdDiscImageFileIso),
                     value: CdType.iso,
                   ),
                   if (state.value == CdType.iso)
@@ -66,11 +67,11 @@ class PveCdSelector extends StatelessWidget {
                       },
                     ),
                   RadioListTile<CdType>(
-                    title: const Text('Use physical CD/DVD Drive'),
+                    title: Text(AppLocalizations.of(context).usePhysicalCdDvdDrive),
                     value: CdType.cdrom,
                   ),
                   RadioListTile<CdType>(
-                    title: const Text('Do not use any media'),
+                    title: Text(AppLocalizations.of(context).doNotUseAnyMedia),
                     value: CdType.none,
                   ),
                 ]));

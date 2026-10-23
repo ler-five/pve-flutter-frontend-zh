@@ -5,6 +5,7 @@ import 'package:pve_flutter_frontend/bloc/pve_migrate_bloc.dart';
 import 'package:pve_flutter_frontend/bloc/pve_node_selector_bloc.dart';
 import 'package:pve_flutter_frontend/bloc/pve_resource_bloc.dart';
 import 'package:pve_flutter_frontend/bloc/pve_task_log_viewer_bloc.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 import 'package:pve_flutter_frontend/states/pve_migrate_state.dart';
 import 'package:pve_flutter_frontend/states/pve_resource_state.dart';
 import 'package:pve_flutter_frontend/states/pve_task_log_viewer_state.dart';
@@ -53,7 +54,8 @@ class PveMigrateStreamConnector extends StatelessWidget {
               showTaskLogBottomSheet(
                   context, mBloc.apiClient, state.nodeID, state.taskUPID!,
                   icon: const Icon(Icons.save),
-                  jobTitle: Text('Migration ${mBloc.guestID}'));
+                  jobTitle: Text(AppLocalizations.of(context)
+                      .migrationTaskTitle(mBloc.guestID)));
             }
 
             if (state.qemuPreconditions != null &&

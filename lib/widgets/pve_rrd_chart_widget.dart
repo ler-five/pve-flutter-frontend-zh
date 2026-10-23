@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 import 'package:pve_flutter_frontend/utils/renderers.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_line_chart.dart';
 
@@ -121,7 +122,9 @@ class _PveRRDChartState extends State<PveRRDChart> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('past ${Renderers.renderDuration(timeWindow)}',
+            Text(
+                AppLocalizations.of(context)
+                    .pastDuration(Renderers.renderDuration(timeWindow)),
                 style: TextStyle(color: fgColor, fontSize: 11)),
             if (widget.bottomRight != null) widget.bottomRight!,
           ],

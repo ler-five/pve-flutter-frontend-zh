@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proxmox_login_manager/proxmox_general_settings_form.dart';
 import 'package:pve_flutter_frontend/utils/links.dart';
 import 'package:pve_flutter_frontend/widgets/pve_app_bar.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveSettingsPage extends StatelessWidget {
   static final routePath = '/settings';
@@ -21,15 +22,14 @@ class PveSettingsPage extends StatelessWidget {
               items: [
                 ListTile(
                   leading: const Icon(Icons.privacy_tip_outlined),
-                  title: const Text('Privacy Policy'),
+                  title: Text(AppLocalizations.of(context).privacyPolicy),
                   trailing: const Icon(Icons.open_in_new),
                   onTap: () => _launchUrl(
                     url: Links.privacyPolicyUrl,
                     onFailure: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Could not launch privacy policy',
+                        SnackBar(
+                          content: Text(AppLocalizations.of(context).couldNotLaunchPrivacyPolicy,
                           ),
                         ),
                       );
@@ -44,14 +44,13 @@ class PveSettingsPage extends StatelessWidget {
                 ListTile(
                   leading: Icon(Icons.web),
                   trailing: const Icon(Icons.open_in_new),
-                  title: const Text('Proxmox Forum'),
+                  title: Text(AppLocalizations.of(context).proxmoxForum),
                   onTap: () => _launchUrl(
                     url: Links.proxmoxForum,
                     onFailure: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Could not open forum',
+                        SnackBar(
+                          content: Text(AppLocalizations.of(context).couldNotOpenForum,
                           ),
                         ),
                       );
@@ -61,14 +60,13 @@ class PveSettingsPage extends StatelessWidget {
                 ListTile(
                   leading: Icon(Icons.bug_report_outlined),
                   trailing: const Icon(Icons.open_in_new),
-                  title: const Text('Report a bug'),
+                  title: Text(AppLocalizations.of(context).reportABug),
                   onTap: () => _launchUrl(
                     url: Links.bugzillaUri,
                     onFailure: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Could not open bugzilla',
+                        SnackBar(
+                          content: Text(AppLocalizations.of(context).couldNotOpenBugzilla,
                           ),
                         ),
                       );

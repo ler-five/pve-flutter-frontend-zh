@@ -33,6 +33,7 @@ import 'package:pve_flutter_frontend/widgets/pve_qemu_power_settings_widget.dart
 import 'package:pve_flutter_frontend/widgets/pve_resource_data_card_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_task_log_expansiontile_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_task_log_widget.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveQemuOverview extends StatelessWidget {
   static final routeName = RegExp(r"\/nodes\/(\S+)\/qemu\/(\d+)");
@@ -76,9 +77,8 @@ class PveQemuOverview extends StatelessWidget {
                           ? PveGuestHeaderRRDPageView(
                               rrdData: rrdData,
                             )
-                          : const Center(
-                              child: Text(
-                                "TEMPLATE",
+                          : Center(
+                              child: Text(AppLocalizations.of(context).template,
                                 style: TextStyle(
                                   color: Colors.white,
                                 ),
@@ -170,8 +170,7 @@ class PveQemuOverview extends StatelessWidget {
                     if (config != null)
                       PveResourceDataCardWidget(
                           expandable: false,
-                          title: const Text(
-                            'Hardware',
+                          title: Text(AppLocalizations.of(context).hardware,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
@@ -181,34 +180,34 @@ class PveQemuOverview extends StatelessWidget {
                             ListTile(
                               leading: const FaIcon(FontAwesomeIcons.memory),
                               title: Text('${config.memory}'),
-                              subtitle: const Text('Memory'),
+                              subtitle: Text(AppLocalizations.of(context).memory),
                               dense: true,
                             ),
                             ListTile(
                               leading: const Icon(Icons.memory),
                               title: Text(
                                   '${config.cores} Cores ${config.sockets} Socket'),
-                              subtitle: const Text('Processor'),
+                              subtitle: Text(AppLocalizations.of(context).processor),
                               dense: true,
                             ),
                             ListTile(
                               leading: const FaIcon(FontAwesomeIcons.microchip),
                               title: Text(
                                   config.bios?.name ?? 'Default (SeaBIOS)'),
-                              subtitle: const Text('BIOS'),
+                              subtitle: Text(AppLocalizations.of(context).bios),
                               dense: true,
                             ),
                             ListTile(
                               leading: const FaIcon(FontAwesomeIcons.gears),
                               dense: true,
                               title: Text(config.machine ?? 'Default (i440fx)'),
-                              subtitle: const Text('Machine Type'),
+                              subtitle: Text(AppLocalizations.of(context).machineType),
                             ),
                             ListTile(
                               leading: const FaIcon(FontAwesomeIcons.database),
                               title: Text(
                                   config.scsihw?.name ?? 'Default (i440fx)'),
-                              subtitle: const Text('SCSI Controller'),
+                              subtitle: Text(AppLocalizations.of(context).scsiController),
                               dense: true,
                             ),
                             for (var ide in config.ide!)
@@ -216,7 +215,7 @@ class PveQemuOverview extends StatelessWidget {
                                 leading:
                                     const FaIcon(FontAwesomeIcons.compactDisc),
                                 title: Text(ide),
-                                subtitle: const Text('CD/DVD Drive'),
+                                subtitle: Text(AppLocalizations.of(context).cdDvdDrive),
                                 dense: true,
                               ),
                             for (var scsi in config.scsi!)
@@ -224,7 +223,7 @@ class PveQemuOverview extends StatelessWidget {
                                 leading:
                                     const FaIcon(FontAwesomeIcons.hardDrive),
                                 title: Text(scsi),
-                                subtitle: const Text('Hard Disk'),
+                                subtitle: Text(AppLocalizations.of(context).hardDisk),
                                 dense: true,
                               ),
                             for (var net in config.net!)
@@ -232,7 +231,7 @@ class PveQemuOverview extends StatelessWidget {
                                 leading:
                                     const FaIcon(FontAwesomeIcons.ethernet),
                                 dense: true,
-                                subtitle: const Text('Network Device'),
+                                subtitle: Text(AppLocalizations.of(context).networkDevice),
                                 title: Text(net),
                               )
                           ]),

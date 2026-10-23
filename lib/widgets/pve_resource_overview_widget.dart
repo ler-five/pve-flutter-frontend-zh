@@ -4,6 +4,7 @@ import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
 import 'package:pve_flutter_frontend/bloc/pve_resource_bloc.dart';
 import 'package:pve_flutter_frontend/states/pve_resource_state.dart';
 import 'package:pve_flutter_frontend/utils/renderers.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveResourceOverview extends StatelessWidget {
   const PveResourceOverview({super.key});
@@ -16,18 +17,18 @@ class PveResourceOverview extends StatelessWidget {
         initialData: rbloc.state.value,
         builder: (context, snapshot) => SingleChildScrollView(
               child: DataTable(
-                columns: const [
+                columns: [
                   DataColumn(
-                    label: Text("Type"),
+                    label: Text(AppLocalizations.of(context).type),
                   ),
                   DataColumn(
-                    label: Text("Description"),
+                    label: Text(AppLocalizations.of(context).description),
                   ),
                   DataColumn(
-                    label: Text("Node"),
+                    label: Text(AppLocalizations.of(context).node),
                   ),
                   DataColumn(
-                    label: Text("Action"),
+                    label: Text(AppLocalizations.of(context).action),
                   ),
                 ],
                 rows: snapshot.data!.resources

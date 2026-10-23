@@ -11,6 +11,7 @@ import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart'
 import 'package:pve_flutter_frontend/widgets/pve_app_bar.dart';
 import 'package:pve_flutter_frontend/widgets/pve_guest_migration_connector_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_help_icon_button_widget.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveGuestMigrate extends StatelessWidget {
   const PveGuestMigrate({super.key});
@@ -25,8 +26,7 @@ class PveGuestMigrate extends StatelessWidget {
       builder: (context, migrateState) {
         return Scaffold(
           appBar: PveAppBar(
-            title: const Text(
-              "Migration",
+            title: Text(AppLocalizations.of(context).migration,
               style: TextStyle(color: Colors.white, fontSize: 25),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -56,8 +56,7 @@ class PveGuestMigrate extends StatelessWidget {
                       children: [
                         ListTile(
                           leading: const FaIcon(FontAwesomeIcons.globe),
-                          title: Text(
-                            'Mode',
+                          title: Text(AppLocalizations.of(context).mode,
                             style: TextStyle(color: colorScheme.onPrimary),
                           ),
                           subtitle: Text(
@@ -69,8 +68,7 @@ class PveGuestMigrate extends StatelessWidget {
                         ),
                         ListTile(
                           leading: const FaIcon(FontAwesomeIcons.mapPin),
-                          title: Text(
-                            'Source',
+                          title: Text(AppLocalizations.of(context).source,
                             style: TextStyle(color: colorScheme.onPrimary),
                           ),
                           subtitle: Text(
@@ -125,7 +123,7 @@ class PveGuestMigrate extends StatelessWidget {
                   },
                   label: migrateState.inProgress
                       ? const Text('')
-                      : const Text('Start'),
+                      : Text(AppLocalizations.of(context).start),
                   icon: migrateState.inProgress
                       ? const Icon(Icons.more_horiz)
                       : const Icon(Icons.send)),
@@ -164,8 +162,7 @@ class _MigrateTargetSelector extends StatelessWidget {
       builder: (context, state) {
         return ListTile(
           leading: const Icon(Icons.fiber_new),
-          title: Text(
-            'Target',
+          title: Text(AppLocalizations.of(context).target,
             style: TextStyle(color: titleColor),
           ),
           subtitle: DropdownButtonFormField(
@@ -184,8 +181,9 @@ class _MigrateTargetSelector extends StatelessWidget {
                         trailing:
                             Icon(Icons.offline_bolt, color: Colors.green[500]),
                         title: Text(item.nodeName),
-                        subtitle: Text(
-                            'CPU: ${item.renderCpuUsage()}\nMemory: ${item.renderMemoryUsagePercent()}'),
+                        subtitle: Text(AppLocalizations.of(context).cpuMemoryUsage(
+                            item.renderCpuUsage(),
+                            item.renderMemoryUsagePercent())),
                       ),
                     ))
                 .toList(),

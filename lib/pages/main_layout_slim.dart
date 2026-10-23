@@ -32,6 +32,7 @@ import 'package:pve_flutter_frontend/widgets/pve_resource_status_chip_widget.dar
 import 'package:pve_flutter_frontend/widgets/pve_subscription_alert_dialog.dart';
 import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class MainLayoutSlim extends StatefulWidget {
   const MainLayoutSlim({super.key});
@@ -172,17 +173,15 @@ class MobileDashboard extends StatelessWidget {
     final rBloc = Provider.of<PveResourceBloc>(context);
     return Scaffold(
       appBar: PveAppBar(
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Proxmox',
+            Text(AppLocalizations.of(context).proxmox,
               style: TextStyle(
                 fontSize: 14,
               ),
             ),
-            Text(
-              'Virtual Environment',
+            Text(AppLocalizations.of(context).virtualEnvironment,
               style: TextStyle(
                 fontSize: 14,
               ),
@@ -215,8 +214,7 @@ class MobileDashboard extends StatelessWidget {
               return ListView(children: <Widget>[
                 if (cState.cluster != null) ...[
                   ListTile(
-                    title: const Text(
-                      "Status",
+                    title: Text(AppLocalizations.of(context).status,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -251,8 +249,7 @@ class MobileDashboard extends StatelessWidget {
                           backgroundColor:
                               Theme.of(context).colorScheme.primaryContainer,
                           avatar: const Icon(Icons.report, color: Colors.red),
-                          label: const Text(
-                            'Subscription',
+                          label: Text(AppLocalizations.of(context).subscription,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
@@ -274,8 +271,7 @@ class MobileDashboard extends StatelessWidget {
                             color: Theme.of(context).colorScheme.onPrimary,
                             size: 20,
                           ),
-                          label: const Text(
-                            'Virtual Machines',
+                          label: Text(AppLocalizations.of(context).virtualMachines,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
@@ -304,8 +300,7 @@ class MobileDashboard extends StatelessWidget {
                             color: Theme.of(context).colorScheme.onPrimary,
                             size: 20,
                           ),
-                          label: const Text(
-                            'Containers',
+                          label: Text(AppLocalizations.of(context).containers,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
@@ -345,22 +340,21 @@ class MobileDashboard extends StatelessWidget {
                       final memUsagePercent =
                           ((aggrMemUsage / aggrMem) * 100).toStringAsFixed(2);
                       return PveResourceDataCardWidget(
-                        title: const Text(
-                          'Analytics',
+                        title: Text(AppLocalizations.of(context).analytics,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                           ),
                         ),
-                        subtitle: const Text('Usage across all online nodes'),
+                        subtitle: Text(AppLocalizations.of(context).usageAcrossAllOnlineNodes),
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 16.0),
                             child: ProxmoxGaugeChartListTile(
-                              title: const Text('CPU'),
-                              subtitle:
-                                  Text('$aggrCpus Cores ${nodes.length} Nodes'),
-                              legend: Text('$cpuUsagePercent %'),
+                              title: Text(AppLocalizations.of(context).cpu),
+                              subtitle: Text(AppLocalizations.of(context)
+                                  .coresNodesSummary('$aggrCpus', '${nodes.length}')),
+                              legend: Text(AppLocalizations.of(context).cpuusagepercent(cpuUsagePercent)),
                               value: aggrCpuUsage,
                               maxValue: aggrCpus,
                             ),
@@ -368,10 +362,12 @@ class MobileDashboard extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 16.0),
                             child: ProxmoxGaugeChartListTile(
-                              title: const Text('Memory'),
+                              title: Text(AppLocalizations.of(context).memory),
                               subtitle: Text(
-                                  '${Renderers.formatSize(aggrMemUsage)} of ${Renderers.formatSize(aggrMem)}'),
-                              legend: Text('$memUsagePercent %'),
+                                  AppLocalizations.of(context).memoryUsageOf(
+                                      Renderers.formatSize(aggrMemUsage),
+                                      Renderers.formatSize(aggrMem))),
+                              legend: Text(AppLocalizations.of(context).memusagepercent(memUsagePercent)),
                               value: aggrMemUsage,
                               maxValue: aggrMem,
                             ),
@@ -380,8 +376,7 @@ class MobileDashboard extends StatelessWidget {
                       );
                     }),
                 PveResourceDataCardWidget(
-                  title: const Text(
-                    'Nodes',
+                  title: Text(AppLocalizations.of(context).nodes,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -411,8 +406,7 @@ class MobileDashboard extends StatelessWidget {
                       final totalCTs = rState.container.length;
                       final offCTs = totalCTs - onlineCTs.length;
                       return PveResourceDataCardWidget(
-                        title: const Text(
-                          'Guests',
+                        title: Text(AppLocalizations.of(context).guests,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -420,7 +414,7 @@ class MobileDashboard extends StatelessWidget {
                         ),
                         children: <Widget>[
                           ListTile(
-                            title: const Text("Virtual Machines"),
+                            title: Text(AppLocalizations.of(context).virtualMachines),
                             trailing: Text(totalVMs.toString()),
                             leading:
                                 Icon(Renderers.getDefaultResourceIcon('qemu')),
@@ -438,8 +432,7 @@ class MobileDashboard extends StatelessWidget {
                           ),
                           ListTile(
                               dense: true,
-                              title: const Text(
-                                "Online",
+                              title: Text(AppLocalizations.of(context).online,
                                 style: TextStyle(fontSize: 14),
                               ),
                               leading: const Icon(Icons.play_circle_outline,
@@ -460,8 +453,7 @@ class MobileDashboard extends StatelessWidget {
                               }),
                           ListTile(
                             dense: true,
-                            title: const Text(
-                              "Offline",
+                            title: Text(AppLocalizations.of(context).offline,
                               style: TextStyle(
                                 fontSize: 14,
                               ),
@@ -486,7 +478,7 @@ class MobileDashboard extends StatelessWidget {
                             indent: 10,
                           ),
                           ListTile(
-                            title: const Text("Containers"),
+                            title: Text(AppLocalizations.of(context).containers),
                             trailing: Text(totalCTs.toString()),
                             leading:
                                 Icon(Renderers.getDefaultResourceIcon('lxc')),
@@ -504,8 +496,7 @@ class MobileDashboard extends StatelessWidget {
                           ),
                           ListTile(
                             dense: true,
-                            title: const Text(
-                              "Online",
+                            title: Text(AppLocalizations.of(context).online,
                               style: TextStyle(fontSize: 14),
                             ),
                             leading: const Icon(Icons.play_circle_outline,
@@ -527,8 +518,7 @@ class MobileDashboard extends StatelessWidget {
                           ),
                           ListTile(
                             dense: true,
-                            title: const Text(
-                              "Offline",
+                            title: Text(AppLocalizations.of(context).offline,
                               style: TextStyle(
                                 fontSize: 14,
                               ),
@@ -626,8 +616,8 @@ class MobileResourceOverview extends StatelessWidget {
               separatorBuilder: (context, index) => const Divider(),
               itemBuilder: (context, index) {
                 final resource = fResources[index];
-                StatelessWidget listWidget = const ListTile(
-                  title: Text('Unknown resource type'),
+                StatelessWidget listWidget = ListTile(
+                  title: Text(AppLocalizations.of(context).unknownResourceType),
                 );
                 if (const ['lxc', 'qemu'].contains(resource.type)) {
                   listWidget = PveGuestListTile(resource: resource);
@@ -885,7 +875,7 @@ class MobileAccessManagement extends StatelessWidget {
       length: 5,
       child: Scaffold(
         appBar: PveAppBar(
-          title: const Text('Permissions'),
+          title: Text(AppLocalizations.of(context).permissions),
           //backgroundColor: Colors.transparent,
           elevation: 0.0,
           automaticallyImplyLeading: false,
@@ -938,8 +928,7 @@ class MobileAccessManagement extends StatelessWidget {
                     }),
                 if (aState.tokens.isEmpty)
                   Align(
-                    child: Text(
-                      "No Tokens",
+                    child: Text(AppLocalizations.of(context).noTokens,
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   )
@@ -956,13 +945,12 @@ class MobileAccessManagement extends StatelessWidget {
 
                         return ListTile(
                           title: Text('${token.userid} ${token.tokenid}'),
-                          subtitle: Text('Expires: $expireDate'),
+                          subtitle: Text(AppLocalizations.of(context).expiresExpiredate(expireDate)),
                         );
                       }),
                 if (aState.groups.isEmpty)
                   Align(
-                    child: Text(
-                      "No Groups",
+                    child: Text(AppLocalizations.of(context).noGroups,
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   )
@@ -1003,8 +991,8 @@ class MobileAccessManagement extends StatelessWidget {
                                       ),
                                     ),
                                     ListTile(
-                                      title: Text(
-                                          'Group members (${users.length})'),
+                                      title: Text(AppLocalizations.of(context)
+                                          .groupMembersCount('${users.length}')),
                                     ),
                                     const Divider(),
                                     Expanded(
@@ -1061,7 +1049,8 @@ class MobileAccessManagement extends StatelessWidget {
                                     ),
                                   ),
                                   ListTile(
-                                    title: Text('Privileges (${perms.length})'),
+                                    title: Text(AppLocalizations.of(context)
+                                        .privilegesCount('${perms.length}')),
                                   ),
                                   const Divider(),
                                   Expanded(

@@ -7,6 +7,7 @@ import 'package:pve_flutter_frontend/states/pve_task_log_viewer_state.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
 import 'package:pve_flutter_frontend/widgets/pve_task_log_expansiontile_widget.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveTaskLog extends StatefulWidget {
   const PveTaskLog({super.key});
@@ -57,18 +58,17 @@ class _PveTaskLogState extends State<PveTaskLog> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      'Filters',
+                    Text(AppLocalizations.of(context).filters,
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
-                      decoration: const InputDecoration(
-                          labelText: 'by user',
+                      decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context).byUser,
                           filled: true,
-                          prefixIcon: Icon(Icons.person)),
+                          prefixIcon: const Icon(Icons.person)),
                       onChanged: (newValue) {
                         bloc.events.add(FilterTasksByUser(newValue));
                         bloc.events.add(LoadTasks());
@@ -79,10 +79,10 @@ class _PveTaskLogState extends State<PveTaskLog> {
                       height: 20,
                     ),
                     TextFormField(
-                      decoration: const InputDecoration(
-                          labelText: 'by type',
+                      decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context).byType,
                           filled: true,
-                          prefixIcon: Icon(Icons.description)),
+                          prefixIcon: const Icon(Icons.description)),
                       onChanged: (newValue) {
                         bloc.events.add(FilterTasksByType(newValue));
                         bloc.events.add(LoadTasks());
@@ -93,7 +93,7 @@ class _PveTaskLogState extends State<PveTaskLog> {
                       height: 20,
                     ),
                     DropdownButtonFormField<String>(
-                      decoration: const InputDecoration(labelText: 'Source'),
+                      decoration: InputDecoration(labelText: AppLocalizations.of(context).source),
                       initialValue: state.source,
                       icon: const Icon(Icons.arrow_downward),
                       iconSize: 24,
@@ -120,7 +120,7 @@ class _PveTaskLogState extends State<PveTaskLog> {
                       builder: (FormFieldState<bool> formFieldState) => Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          const Text("Only errors"),
+                          Text(AppLocalizations.of(context).onlyErrors),
                           Checkbox(
                             value: state.onlyErrors,
                             onChanged: (value) {
@@ -153,8 +153,8 @@ class _PveTaskLogState extends State<PveTaskLog> {
                         task: state.tasks[index],
                       ),
                     )
-                  : const Center(
-                      child: Text("No tasks found"),
+                  : Center(
+                      child: Text(AppLocalizations.of(context).noTasksFound),
                     ),
             ),
           );
@@ -213,11 +213,11 @@ class _PveTaskLogScrollViewState extends State<PveTaskLogScrollView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   if (state.isBlank)
-                    const Align(
+                    Align(
                       alignment: Alignment.center,
                       child: Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
-                        child: Text("Loading log data.."),
+                        child: Text(AppLocalizations.of(context).loadingLogData),
                       ),
                     ),
                   if (!state.isBlank) ...[

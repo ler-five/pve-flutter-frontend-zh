@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 // Big Logo
 class PveWelcomePageLogo extends StatelessWidget {
@@ -33,11 +34,10 @@ class PveWelcomePageLogo extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const FittedBox(
+                      FittedBox(
                         child: Padding(
                           padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Proxmox Virtual Environment',
+                          child: Text(AppLocalizations.of(context).proxmoxVirtualEnvironment,
                             style: TextStyle(fontSize: 26),
                           ),
                         ),

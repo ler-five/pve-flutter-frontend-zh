@@ -7,6 +7,7 @@ import 'package:pve_flutter_frontend/states/pve_qemu_overview_state.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_config_forms/pve_config_switch_form.dart';
 import 'package:pve_flutter_frontend/widgets/pve_config_list_tile.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveQemuOptions extends StatelessWidget {
   final String guestID;
@@ -37,7 +38,7 @@ class PveQemuOptions extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         ListTile(
-                          title: const Text("Name"),
+                          title: Text(AppLocalizations.of(context).name),
                           subtitle: Text(config.name ?? 'VM$guestID'),
                         ),
                         PveConfigListTile<bool>(
@@ -59,18 +60,18 @@ class PveQemuOptions extends StatelessWidget {
                           ),
                         ),
                         ListTile(
-                          title: const Text("Start/Shutdown order"),
+                          title: Text(AppLocalizations.of(context).startShutdownOrder),
                           subtitle: Text(config.startup ?? "Default (any)"),
                         ),
                         ListTile(
-                          title: const Text("OS Type"),
+                          title: Text(AppLocalizations.of(context).osType),
                           subtitle: Text(config.ostype != null
                               ? "${config.ostype!.type} ${config.ostype!.description}"
                               : "Other"),
                         ),
                         //TODO add better ui component e.g. collapseable
                         ListTile(
-                          title: const Text("Boot Device"),
+                          title: Text(AppLocalizations.of(context).bootDevice),
                           subtitle: Text(config.boot ?? 'Disk, Network, USB'),
                         ),
                         PveConfigListTile<bool>(
@@ -92,7 +93,7 @@ class PveQemuOptions extends StatelessWidget {
                           ),
                         ),
                         ListTile(
-                          title: const Text("Hotplug"),
+                          title: Text(AppLocalizations.of(context).hotplug),
                           subtitle: Text(config.hotplug ?? 'disk,network,usb'),
                         ),
                         PveConfigListTile<bool>(
@@ -168,16 +169,16 @@ class PveQemuOptions extends StatelessWidget {
                           ),
                         ),
                         ListTile(
-                          title: const Text("RTC start date"),
+                          title: Text(AppLocalizations.of(context).rtcStartDate),
                           subtitle: Text(config.startdate ?? 'now'),
                         ),
                         ListTile(
-                          title: const Text("SMBIOS settings (type1)"),
+                          title: Text(AppLocalizations.of(context).smbiosSettingsType1),
                           subtitle: Text(config.smbios1 ?? ''),
                         ),
                         //Todo enhance UI
                         ListTile(
-                          title: const Text("QEMU Guest Agent"),
+                          title: Text(AppLocalizations.of(context).qemuGuestAgent),
                           subtitle: Text(config.agent ?? 'Default (disabled)'),
                         ),
                         PveConfigListTile<bool>(
@@ -200,12 +201,12 @@ class PveQemuOptions extends StatelessWidget {
                           ),
                         ),
                         ListTile(
-                          title: const Text("Spice Enhancements"),
+                          title: Text(AppLocalizations.of(context).spiceEnhancements),
                           subtitle: Text(
                               config.spiceEnhancements ?? 'No enhancements'),
                         ),
                         ListTile(
-                          title: const Text("VM State Storage"),
+                          title: Text(AppLocalizations.of(context).vmStateStorage),
                           subtitle: Text(config.vmstatestorage ?? 'Automatic'),
                         ),
                       ],

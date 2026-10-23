@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
 import 'package:pve_flutter_frontend/utils/links.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 // goodbye
 class PveWelcomePageLast extends StatelessWidget {
@@ -26,7 +27,7 @@ class PveWelcomePageLast extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Enjoy the app"),
+                      Text(AppLocalizations.of(context).enjoyTheApp),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Icon(
@@ -43,7 +44,7 @@ class PveWelcomePageLast extends StatelessWidget {
                             backgroundColor: ProxmoxColors.orange,
                             foregroundColor: Colors.white,
                           ),
-                          child: const Text("Start"),
+                          child: Text(AppLocalizations.of(context).start),
                         ),
                       ),
                     ],
@@ -53,8 +54,7 @@ class PveWelcomePageLast extends StatelessWidget {
                     constraints: const BoxConstraints(maxWidth: 500),
                     child: Column(
                       children: [
-                        const Text(
-                          'If you have suggestions or experience any problems, please contact us via',
+                        Text(AppLocalizations.of(context).ifYouHaveSuggestionsOrExperienceAnyProblemsPlease,
                           textAlign: TextAlign.center,
                         ),
                         Row(
@@ -67,7 +67,7 @@ class PveWelcomePageLast extends StatelessWidget {
                                     color: ProxmoxColors.supportGrey),
                                 foregroundColor: Colors.white,
                               ),
-                              child: const Text('Forum'),
+                              child: Text(AppLocalizations.of(context).forum),
                             ),
                             OutlinedButton(
                               onPressed: () => {launchUrl(Links.pveUserList)},
@@ -76,7 +76,7 @@ class PveWelcomePageLast extends StatelessWidget {
                                     color: ProxmoxColors.supportGrey),
                                 foregroundColor: Colors.white,
                               ),
-                              child: const Text('User Mailing List'),
+                              child: Text(AppLocalizations.of(context).userMailingList),
                             ),
                           ],
                         ),

@@ -10,6 +10,7 @@ import 'package:pve_flutter_frontend/widgets/pve_guest_icon_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_resource_status_chip_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_rrd_chart_widget.dart';
 import 'package:pve_flutter_frontend/utils/utils.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveGuestOverviewHeader extends StatelessWidget {
   const PveGuestOverviewHeader({
@@ -128,8 +129,7 @@ class PveGuestOverviewHeader extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(
-                            "HA State",
+                          child: Text(AppLocalizations.of(context).haState,
                             style: TextStyle(
                               color: fgColor,
                               fontWeight: FontWeight.w500,
@@ -167,10 +167,10 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
   @override
   Widget build(BuildContext context) {
     if (widget.rrdData == null || widget.rrdData!.isEmpty) {
-      return const SizedBox(
+      return SizedBox(
         height: 200,
         child: Center(
-          child: Text('no rrd data'),
+          child: Text(AppLocalizations.of(context).noRrdData),
         ),
       );
     }
@@ -185,8 +185,7 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
         itemCount: 2,
         itemBuilder: (context, item) {
           final page = item + 1;
-          final pageIndicator = Text(
-            '$page of 2',
+          final pageIndicator = Text(AppLocalizations.of(context).pageOf2('$page'),
             style: TextStyle(
               color: fgColor,
               fontWeight: FontWeight.w500,
@@ -200,7 +199,8 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
                     titlePadding: const EdgeInsets.only(bottom: 80),
                     titleWidth: 150,
                     titleAlignment: CrossAxisAlignment.end,
-                    title: 'CPU (${rrdData.last.maxcpu ?? '-'})',
+                    title: AppLocalizations.of(context)
+                        .cpuMax('${rrdData.last.maxcpu ?? '-'}'),
                     subtitle: "${(rrdData.last.cpu ?? 0).toStringAsFixed(2)}%",
                     data: rrdData.where((e) => e.cpu != null).map(
                         (e) => Point(e.time!.millisecondsSinceEpoch, e.cpu!)),
@@ -215,7 +215,7 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
                     titlePadding: const EdgeInsets.only(bottom: 80),
                     titleWidth: 200,
                     titleAlignment: CrossAxisAlignment.end,
-                    title: 'Memory',
+                    title: AppLocalizations.of(context).memory,
                     subtitle: Renderers.formatSize(rrdData.last.mem ?? 0),
                     data: rrdData.where((e) => e.mem != null).map(
                         (e) => Point(e.time!.millisecondsSinceEpoch, e.mem!)),

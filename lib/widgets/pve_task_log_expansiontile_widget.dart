@@ -5,6 +5,7 @@ import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
 import 'package:pve_flutter_frontend/bloc/pve_task_log_bloc.dart';
 import 'package:pve_flutter_frontend/utils/renderers.dart';
 import 'package:pve_flutter_frontend/utils/utils.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveTaskExpansionTile extends StatefulWidget {
   final Color? errorColor;
@@ -55,8 +56,6 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
         ? (widget.headerColorExpanded ?? colorScheme.onSurface)
         : (widget.headerColor ?? colorScheme.onSurfaceVariant);
 
-    final taskText = widget.showMorePage != null ? 'Last Task' : 'Task';
-
     return ExpansionTile(
       onExpansionChanged: (value) {
         setState(() {
@@ -79,7 +78,9 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
                 : headerColor,
       ),
       title: Text(
-        '$taskText: ${widget.task.type}',
+        widget.showMorePage != null
+            ? AppLocalizations.of(context).lastTaskType(widget.task.type)
+            : AppLocalizations.of(context).taskType(widget.task.type),
         style: TextStyle(color: headerColor),
       ),
       subtitle: isFinished
@@ -97,27 +98,27 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
         ListTile(
           leading: const Icon(Icons.person),
           title: Text(widget.task.user),
-          subtitle: const Text('User'),
+          subtitle: Text(AppLocalizations.of(context).user),
         ),
         ListTile(
           leading: const Icon(Icons.timer),
           title: Text(
             DateFormat.Md().add_Hms().format(widget.task.startTime),
           ),
-          subtitle: const Text('Start time'),
+          subtitle: Text(AppLocalizations.of(context).startTime),
         ),
         ListTile(
           leading: const Icon(Icons.timelapse),
           title: Text(
             Renderers.renderDuration(duration),
           ),
-          subtitle: const Text('Duration'),
+          subtitle: Text(AppLocalizations.of(context).duration),
         ),
         ListTile(
           leading: const Icon(Icons.description),
           title: Text(widget.task.status),
           dense: true,
-          subtitle: const Text('Shortlog'),
+          subtitle: Text(AppLocalizations.of(context).shortlog),
         ),
         Padding(
           padding: const EdgeInsets.only(right: 8, bottom: 8),
@@ -131,14 +132,13 @@ class _PveTaskExpansionTileState extends State<PveTaskExpansionTile> {
                   onPressed: () => Navigator.of(context).push(
                       _createTaskLogRoute(taskLogBloc, widget.showMorePage)),
                   icon: const Icon(Icons.format_list_bulleted),
-                  label: const Text('More Tasks'),
+                  label: Text(AppLocalizations.of(context).moreTasks),
                 ),
               OutlinedButton.icon(
                 onPressed: () => showTaskLogBottomSheet(context,
                     taskLogBloc.apiClient, widget.task.node, widget.task.upid),
                 icon: const Icon(Icons.article),
-                label: const Text(
-                  'Full Log',
+                label: Text(AppLocalizations.of(context).fullLog,
                 ),
               )
             ],

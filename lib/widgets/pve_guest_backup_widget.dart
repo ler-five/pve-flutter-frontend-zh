@@ -15,6 +15,7 @@ import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
 import 'package:pve_flutter_frontend/widgets/pve_app_bar.dart';
 import 'package:pve_flutter_frontend/widgets/pve_file_selector_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_storage_selector_widget.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveGuestBackupWidget extends StatelessWidget {
   final String guestID;
@@ -27,7 +28,7 @@ class PveGuestBackupWidget extends StatelessWidget {
     final fBloc = Provider.of<PveFileSelectorBloc>(context);
     return Scaffold(
       appBar: PveAppBar(
-        title: Text("Backup $guestID"),
+        title: Text(AppLocalizations.of(context).backupGuestid(guestID)),
       ),
       body: Column(
         children: [
@@ -83,8 +84,8 @@ class PveGuestBackupWidget extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.9,
                       );
                     }
-                    return const Center(
-                      child: Text('No storage available'),
+                    return Center(
+                      child: Text(AppLocalizations.of(context).noStorageAvailable),
                     );
                   }),
             ),
@@ -102,8 +103,7 @@ class PveGuestBackupWidget extends StatelessWidget {
                           children: <Widget>[
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Recent backups",
+                              child: Text(AppLocalizations.of(context).recentBackups,
                                 style: TextStyle(
                                     color:
                                         Theme.of(context).colorScheme.onSurface,
@@ -125,9 +125,9 @@ class PveGuestBackupWidget extends StatelessWidget {
                         ),
                         if (state.search)
                           TextField(
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Search',
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(),
+                              labelText: AppLocalizations.of(context).search,
                             ),
                             autofocus: true,
                             onChanged: (searchTerm) => fBloc.events
@@ -156,7 +156,7 @@ class PveGuestBackupWidget extends StatelessWidget {
               .push(_createBackupNowRoute(sBloc, guestID));
           fBloc.events.add(LoadStorageContent());
         },
-        label: const Text("Backup now"),
+        label: Text(AppLocalizations.of(context).backupNow),
       ),
     );
   }
@@ -190,14 +190,14 @@ class PveGuestBackupContent extends StatelessWidget {
     }
 
     if (content!.isEmpty && storageSelected!) {
-      return const Center(
-        child: Text("No existing backup file for guest found"),
+      return Center(
+        child: Text(AppLocalizations.of(context).noExistingBackupFileForGuestFound),
       );
     }
 
     if (content!.isEmpty && !storageSelected!) {
-      return const Center(
-        child: Text("Please select a target storage"),
+      return Center(
+        child: Text(AppLocalizations.of(context).pleaseSelectATargetStorage),
       );
     }
 
@@ -249,7 +249,7 @@ class PveGuestBackupContent extends StatelessWidget {
                 ),
               ),
               ListTile(
-                title: const Text("Selection:"),
+                title: Text(AppLocalizations.of(context).selection),
                 subtitle: Text(volid!),
                 trailing: Text(Renderers.formatSize(filesize)),
               ),
@@ -260,7 +260,7 @@ class PveGuestBackupContent extends StatelessWidget {
                     OutlinedButton.icon(
                       onPressed: null,
                       icon: const Icon(Icons.restore),
-                      label: const Text("Restore"),
+                      label: Text(AppLocalizations.of(context).restore),
                     ),
                     OutlinedButton.icon(
                       onPressed: () async {
@@ -274,13 +274,13 @@ class PveGuestBackupContent extends StatelessWidget {
                         }
                       },
                       icon: const Icon(Icons.delete),
-                      label: const Text("Remove"),
+                      label: Text(AppLocalizations.of(context).remove),
                     ),
                     OutlinedButton.icon(
                       onPressed: () =>
                           _showConfigurationDialog(context, fBloc, volid),
                       icon: const Icon(Icons.featured_play_list),
-                      label: const Text("Show Configuration"),
+                      label: Text(AppLocalizations.of(context).showConfiguration),
                     ),
                   ]),
                 ),
@@ -302,15 +302,13 @@ class PveGuestBackupContent extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text(
-              'Cancel',
+            child: Text(AppLocalizations.of(context).cancel,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text(
-              'Confirm',
+            child: Text(AppLocalizations.of(context).confirm,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           )
@@ -362,7 +360,7 @@ class _PveConfigurationDialogState extends State<PveConfigurationDialog> {
       future: configuration,
       builder: (context, snapshot) => AlertDialog(
         insetPadding: const EdgeInsets.all(4),
-        title: const Text("Configuration"),
+        title: Text(AppLocalizations.of(context).configuration),
         content: snapshot.hasData
             ? SingleChildScrollView(child: Text(snapshot.data as String))
             : const Center(
@@ -371,8 +369,7 @@ class _PveConfigurationDialogState extends State<PveConfigurationDialog> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text(
-              'Close',
+            child: Text(AppLocalizations.of(context).close,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           )
@@ -420,8 +417,7 @@ class _PveBackupFormState extends State<PveBackupForm> {
           appBar: PveAppBar(
             iconTheme: const IconThemeData(color: Colors.black),
             backgroundColor: Colors.transparent,
-            title: const Text(
-              "Schedule backup",
+            title: Text(AppLocalizations.of(context).scheduleBackup,
               style: TextStyle(color: Colors.black),
             ),
           ),
@@ -438,15 +434,15 @@ class _PveBackupFormState extends State<PveBackupForm> {
                 child: Column(
                   children: [
                     PveStorageSelectorDropdown(
-                      labelText: 'Storage',
+                      labelText: AppLocalizations.of(context).storage,
                       sBloc: widget.sBloc,
                       allowBlank: false,
                     ),
                     _createModeDropdown(),
                     _createCompressionDropdown(),
                     TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Email to',
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context).emailTo,
                         helperText: ' ',
                       ),
                       controller: emailToController,
@@ -454,7 +450,7 @@ class _PveBackupFormState extends State<PveBackupForm> {
                       validator: (value) {
                         if (value!.isNotEmpty &&
                             !Validators.isValidEmail(value)) {
-                          return 'Please enter valid email address';
+                          return AppLocalizations.of(context).pleaseEnterValidEmail;
                         }
                         return null;
                       },
@@ -482,7 +478,7 @@ class _PveBackupFormState extends State<PveBackupForm> {
                               }
                             : null,
                         icon: const Icon(Icons.save),
-                        label: const Text('Start backup now'))
+                        label: Text(AppLocalizations.of(context).startBackupNow))
                   ],
                 ),
               )),
@@ -505,7 +501,7 @@ class _PveBackupFormState extends State<PveBackupForm> {
 
       if (mounted) {
         await showTaskLogBottomSheet(context, apiClient, node, jobId,
-            icon: const Icon(Icons.save), jobTitle: Text('Backup $guestId'));
+            icon: const Icon(Icons.save), jobTitle: Text(AppLocalizations.of(context).backupGuestid2(guestId)));
         if (mounted) Navigator.of(context).pop();
       }
     } on ProxmoxApiException catch (e) {
@@ -517,10 +513,10 @@ class _PveBackupFormState extends State<PveBackupForm> {
         backgroundColor: ThemeData.dark().colorScheme.error,
       ));
     } catch (e) {
+      if (!mounted) return;
       _scaffoldKey.currentState!.showSnackBar(
         SnackBar(
-          content: Text(
-            "Error: Could not start backup",
+          content: Text(AppLocalizations.of(context).errorCouldNotStartBackup,
             style: ThemeData.dark().textTheme.labelLarge,
           ),
           backgroundColor: ThemeData.dark().colorScheme.error,
@@ -531,8 +527,8 @@ class _PveBackupFormState extends State<PveBackupForm> {
 
   Widget _createModeDropdown() {
     return DropdownButtonFormField(
-      decoration: const InputDecoration(
-        labelText: 'Mode',
+      decoration: InputDecoration(
+        labelText: AppLocalizations.of(context).mode,
         helperText: ' ',
       ),
       items: <DropdownMenuItem<PveVZDumpModeType>>[
@@ -552,8 +548,8 @@ class _PveBackupFormState extends State<PveBackupForm> {
 
   Widget _createCompressionDropdown() {
     return DropdownButtonFormField(
-      decoration: const InputDecoration(
-        labelText: 'Compression',
+      decoration: InputDecoration(
+        labelText: AppLocalizations.of(context).compression,
         helperText: ' ',
       ),
       items: <DropdownMenuItem<PveVZDumpCompressionType>>[

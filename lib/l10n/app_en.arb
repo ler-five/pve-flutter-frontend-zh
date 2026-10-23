@@ -1,11 +1,367 @@
 {
   "@@locale": "en",
   "appTitle": "Proxmox",
-  "@appTitle": {
-    "description": "Application title"
-  },
   "errorTitle": "Error",
-  "@errorTitle": {
-    "description": "Title of the global error dialog"
+  "coresNodesSummary": "{cpus} Cores {nodes} Nodes",
+  "@coresNodesSummary": {
+    "placeholders": {
+      "cpus": {"type": "String"},
+      "nodes": {"type": "String"}
+    }
+  },
+  "groupMembersCount": "Group members ({count})",
+  "@groupMembersCount": {
+    "placeholders": {"count": {"type": "String"}}
+  },
+  "privilegesCount": "Privileges ({count})",
+  "@privilegesCount": {
+    "placeholders": {"count": {"type": "String"}}
+  },
+  "migrationTaskTitle": "Migration {guestId}",
+  "@migrationTaskTitle": {
+    "placeholders": {"guestId": {"type": "String"}}
+  },
+  "lastTaskType": "Last Task: {type}",
+  "@lastTaskType": {
+    "placeholders": {"type": {"type": "String"}}
+  },
+  "taskType": "Task: {type}",
+  "@taskType": {
+    "placeholders": {"type": {"type": "String"}}
+  },
+  "cpuInfoSocket": "CPU Information (Socket: {sockets})",
+  "@cpuInfoSocket": {
+    "placeholders": {"sockets": {"type": "String"}}
+  },
+  "packagesReadyToUpdate": "{count} packages are ready to update",
+  "@packagesReadyToUpdate": {
+    "placeholders": {"count": {"type": "String"}}
+  },
+  "diskUsage": "Usage: {used} {size}",
+  "@diskUsage": {
+    "placeholders": {
+      "used": {"type": "String"},
+      "size": {"type": "String"}
+    }
+  },
+  "cpuMemoryUsage": "CPU: {cpu}\nMemory: {mem}",
+  "@cpuMemoryUsage": {
+    "placeholders": {
+      "cpu": {"type": "String"},
+      "mem": {"type": "String"}
+    }
+  },
+  "nodePowerWarning": "A {action} of '{node}' might render the node and all its virtual guests unavailable for a prolonged period.",
+  "@nodePowerWarning": {
+    "placeholders": {
+      "action": {"type": "String"},
+      "node": {"type": "String"}
+    }
+  },
+  "pastDuration": "past {duration}",
+  "@pastDuration": {
+    "placeholders": {"duration": {"type": "String"}}
+  },
+  "memoryUsageOf": "{used} of {total}",
+  "@memoryUsageOf": {
+    "placeholders": {
+      "used": {"type": "String"},
+      "total": {"type": "String"}
+    }
+  },
+  "subscriptionAlertBody": "One or more nodes do not have a valid subscription. The Proxmox team works very hard to make sure you are running the best software and getting stable updates and security enhancements, as well as quick enterprise support.\n\nPlease consider to buy a subscription.",
+  "error": "Error",
+  "proxmox": "Proxmox",
+  "virtualEnvironment": "Virtual Environment",
+  "status": "Status",
+  "subscription": "Subscription",
+  "virtualMachines": "Virtual Machines",
+  "containers": "Containers",
+  "analytics": "Analytics",
+  "usageAcrossAllOnlineNodes": "Usage across all online nodes",
+  "cpu": "CPU",
+  "cpuusagepercent": "{cpuUsagePercent} %",
+  "@cpuusagepercent": {
+    "placeholders": {
+      "cpuUsagePercent": {
+        "type": "String"
+      }
+    }
+  },
+  "memory": "Memory",
+  "memusagepercent": "{memUsagePercent} %",
+  "@memusagepercent": {
+    "placeholders": {
+      "memUsagePercent": {
+        "type": "String"
+      }
+    }
+  },
+  "nodes": "Nodes",
+  "guests": "Guests",
+  "online": "Online",
+  "offline": "Offline",
+  "unknownResourceType": "Unknown resource type",
+  "permissions": "Permissions",
+  "noTokens": "No Tokens",
+  "expiresExpiredate": "Expires: {expireDate}",
+  "@expiresExpiredate": {
+    "placeholders": {
+      "expireDate": {
+        "type": "String"
+      }
+    }
+  },
+  "noGroups": "No Groups",
+  "pageNotFound": "Page not found!",
+  "privacyPolicy": "Privacy Policy",
+  "couldNotLaunchPrivacyPolicy": "Could not launch privacy policy",
+  "proxmoxForum": "Proxmox Forum",
+  "couldNotOpenForum": "Could not open forum",
+  "reportABug": "Report a bug",
+  "couldNotOpenBugzilla": "Could not open bugzilla",
+  "job": "Job",
+  "enjoyTheApp": "Enjoy the app",
+  "start": "Start",
+  "ifYouHaveSuggestionsOrExperienceAnyProblemsPlease": "If you have suggestions or experience any problems, please contact us via",
+  "forum": "Forum",
+  "userMailingList": "User Mailing List",
+  "proxmoxVirtualEnvironment": "Proxmox Virtual Environment",
+  "totalTotalvalue": "Total: {totalValue}",
+  "@totalTotalvalue": {
+    "placeholders": {
+      "totalValue": {
+        "type": "String"
+      }
+    }
+  },
+  "useCdDvdDiscImageFileIso": "Use CD/DVD disc image file (iso)",
+  "usePhysicalCdDvdDrive": "Use physical CD/DVD Drive",
+  "doNotUseAnyMedia": "Do not use any media",
+  "pending": "pending",
+  "close": "Close",
+  "update": "Update",
+  "spice": "SPICE",
+  "openSpiceConnectionFileWithExternalApp": "Open SPICE connection file with external App",
+  "gotException": "Got Exception",
+  "openConsoleView": "Open console view",
+  "aTlsErrorHasOccurred": "A TLS error has occurred:",
+  "errorMessage": "Error Message:",
+  "certificateInformation": "Certificate Information:",
+  "issuedTo": "Issued to:",
+  "fingerprint": "Fingerprint:",
+  "doYouWantToContinue": "Do you want to continue?",
+  "no": "No",
+  "yes": "Yes",
+  "storage": "Storage",
+  "noStorageAvailable": "No storage available",
+  "content": "Content",
+  "storageOffline": "Storage offline",
+  "nothingFound": "Nothing found",
+  "pleaseSelectAStorage": "Please select a storage",
+  "done": "Done",
+  "next": "Next",
+  "skip": "Skip",
+  "prev": "Prev",
+  "backupGuestid": "Backup {guestID}",
+  "@backupGuestid": {
+    "placeholders": {
+      "guestID": {
+        "type": "String"
+      }
+    }
+  },
+  "recentBackups": "Recent backups",
+  "backupNow": "Backup now",
+  "noExistingBackupFileForGuestFound": "No existing backup file for guest found",
+  "pleaseSelectATargetStorage": "Please select a target storage",
+  "selection": "Selection:",
+  "restore": "Restore",
+  "remove": "Remove",
+  "showConfiguration": "Show Configuration",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "configuration": "Configuration",
+  "scheduleBackup": "Schedule backup",
+  "startBackupNow": "Start backup now",
+  "backupGuestid2": "Backup {guestId}",
+  "@backupGuestid2": {
+    "placeholders": {
+      "guestId": {
+        "type": "String"
+      }
+    }
+  },
+  "errorCouldNotStartBackup": "Error: Could not start backup",
+  "migration": "Migration",
+  "mode": "Mode",
+  "source": "Source",
+  "target": "Target",
+  "haState": "HA State",
+  "noRrdData": "no rrd data",
+  "pageOf2": "{page} of 2",
+  "@pageOf2": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotOpenDocs": "Could not open Docs",
+  "name": "Name",
+  "startShutdownOrder": "Start/Shutdown order",
+  "osType": "OS Type",
+  "architecture": "Architecture",
+  "ttyCount": "TTY Count",
+  "consoleMode": "Console Mode",
+  "unprivileged": "Unprivileged",
+  "features": "Features",
+  "template": "TEMPLATE",
+  "resources": "Resources",
+  "swap": "Swap",
+  "cores": "Cores",
+  "network": "Network",
+  "dns": "DNS",
+  "dnsDomain": "DNS Domain",
+  "dnsServer": "DNS Server",
+  "turnOnLxcContainer": "Turn on LXC container",
+  "shutdown": "Shutdown",
+  "turnOffLxcContainer": "Turn off LXC container",
+  "reboot": "Reboot",
+  "rebootLxcContainer": "Reboot LXC container",
+  "stop": "Stop",
+  "stopLxcContainer": "Stop LXC container",
+  "tree": "Tree",
+  "actions": "Actions",
+  "datacenter": "Datacenter",
+  "settings": "Settings",
+  "userPermissions": "User/Permissions",
+  "newVm": "new VM",
+  "newCt": "new CT",
+  "overview": "Overview",
+  "performance": "Performance",
+  "ceph": "Ceph",
+  "replication": "Replication",
+  "backup": "Backup",
+  "firewall": "Firewall",
+  "support": "Support",
+  "filterResults": "Filter Results",
+  "reset": "Reset",
+  "nodeNodeid": "Node {nodeID}",
+  "@nodeNodeid": {
+    "placeholders": {
+      "nodeID": {
+        "type": "String"
+      }
+    }
+  },
+  "pageOf4": "{page} of 4",
+  "@pageOf4": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "summary": "Summary",
+  "kernel": "Kernel",
+  "kernelSamePageMergingKsm": "Kernel same-page merging (KSM)",
+  "hdSpaceRoot": "HD space (root)",
+  "services": "Services",
+  "allRunning": "All running",
+  "oneOrMoreNotRunning": "One or more not running",
+  "updates": "Updates",
+  "lackingPermissionToQueryUpdates": "Lacking permission to query updates",
+  "noUpdatesAvailable": "No updates available",
+  "description": "Description",
+  "disks": "Disks",
+  "noHealthIssues": "No health issues",
+  "checkDisksHealthErrorIndicated": "Check disks, health error indicated!",
+  "details": "Details",
+  "device": "Device",
+  "type": "Type",
+  "usage": "Usage",
+  "gpt": "GPT",
+  "model": "Model",
+  "serial": "Serial",
+  "sMART": "S.M.A.R.T",
+  "wearout": "Wearout",
+  "rebootNode": "Reboot Node",
+  "shutdownNode": "Shutdown Node",
+  "capitalizedactiontextNode": "{capitalizedActionText} node?",
+  "@capitalizedactiontextNode": {
+    "placeholders": {
+      "capitalizedActionText": {
+        "type": "String"
+      }
+    }
+  },
+  "bootDevice": "Boot Device",
+  "hotplug": "Hotplug",
+  "rtcStartDate": "RTC start date",
+  "smbiosSettingsType1": "SMBIOS settings (type1)",
+  "qemuGuestAgent": "QEMU Guest Agent",
+  "spiceEnhancements": "Spice Enhancements",
+  "vmStateStorage": "VM State Storage",
+  "hardware": "Hardware",
+  "processor": "Processor",
+  "bios": "BIOS",
+  "machineType": "Machine Type",
+  "scsiController": "SCSI Controller",
+  "cdDvdDrive": "CD/DVD Drive",
+  "hardDisk": "Hard Disk",
+  "networkDevice": "Network Device",
+  "turnOnQemuVirtualMachine": "Turn on QEMU virtual machine",
+  "resume": "Resume",
+  "resumeQemuVirtualMachine": "Resume QEMU virtual machine",
+  "shutdownQemuVirtualMachine": "Shutdown QEMU virtual machine",
+  "rebootQemuVirtualMachine": "Reboot QEMU virtual machine",
+  "pause": "Pause",
+  "pauseQemuVirtualMachine": "Pause QEMU virtual machine",
+  "hibernate": "Hibernate",
+  "hibernateQemuVirtualMachine": "Hibernate QEMU virtual machine",
+  "stopQemuVirtualMachine": "Stop QEMU virtual machine",
+  "resetQemuVirtualMachine": "Reset QEMU virtual machine",
+  "node": "Node",
+  "action": "Action",
+  "getSubscription": "Get subscription",
+  "user": "User",
+  "startTime": "Start time",
+  "duration": "Duration",
+  "shortlog": "Shortlog",
+  "moreTasks": "More Tasks",
+  "fullLog": "Full Log",
+  "filters": "Filters",
+  "onlyErrors": "Only errors",
+  "noTasksFound": "No tasks found",
+  "loadingLogData": "Loading log data..",
+  "ioWait": "I/O wait",
+  "spiceEmptyReplyTitle": "Empty reply from SPICE API",
+  "spiceEmptyReplyBody": "Ensure you have \"{perm}.Console\" permissions.",
+  "@spiceEmptyReplyBody": {
+    "placeholders": {"perm": {"type": "String"}}
+  },
+  "spiceClientRequiredTitle": "SPICE client required",
+  "spiceClientRequiredBody": "A Spice client-app is required.",
+  "pleaseEnterValidEmail": "Please enter valid email address",
+  "load": "Load",
+  "powerSettings": "Power Settings",
+  "console": "Console",
+  "search": "Search",
+  "guestOs": "Guest OS",
+  "emailTo": "Email to",
+  "compression": "Compression",
+  "byUser": "by user",
+  "byType": "by type",
+  "qemu": "Qemu",
+  "lxc": "LXC",
+  "paused": "Paused",
+  "cpuMax": "CPU ({max})",
+  "@cpuMax": {
+    "placeholders": {"max": {"type": "String"}}
+  },
+  "editTitle": "Edit: {title}",
+  "@editTitle": {
+    "placeholders": {"title": {"type": "String"}}
   }
 }

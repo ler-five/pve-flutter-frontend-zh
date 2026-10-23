@@ -21,6 +21,7 @@ import 'package:pve_flutter_frontend/widgets/pve_task_log_expansiontile_widget.d
 import 'dart:math';
 
 import 'package:pve_flutter_frontend/widgets/pve_task_log_widget.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveNodeOverview extends StatelessWidget {
   static final routeName = RegExp(r'\/nodes\/(\S+)$');
@@ -54,8 +55,7 @@ class PveNodeOverview extends StatelessWidget {
             Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.75);
         return Scaffold(
           appBar: PveAppBar(
-            title: Text(
-              "Node $nodeID",
+            title: Text(AppLocalizations.of(context).nodeNodeid(nodeID),
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -77,8 +77,7 @@ class PveNodeOverview extends StatelessWidget {
                           itemCount: 4,
                           itemBuilder: (context, item) {
                             final page = item + 1;
-                            final pageIndicator = Text(
-                              '$page of 4',
+                            final pageIndicator = Text(AppLocalizations.of(context).pageOf4('$page'),
                               style: const TextStyle(
                                 color: Colors.white54,
                                 fontWeight: FontWeight.w500,
@@ -109,7 +108,7 @@ class PveNodeOverview extends StatelessWidget {
                                 if (item == 1)
                                   Expanded(
                                     child: PveRRDChart(
-                                      title: 'Memory',
+                                      title: AppLocalizations.of(context).memory,
                                       subtitle: Renderers.formatSize(
                                           rrd.last.memused ?? 0),
                                       data: rrd.map((e) => Point(
@@ -125,7 +124,7 @@ class PveNodeOverview extends StatelessWidget {
                                 if (item == 2)
                                   Expanded(
                                     child: PveRRDChart(
-                                      title: 'I/O wait',
+                                      title: AppLocalizations.of(context).ioWait,
                                       subtitle:
                                           rrd.last.iowait?.toStringAsFixed(2) ??
                                               '0',
@@ -141,7 +140,7 @@ class PveNodeOverview extends StatelessWidget {
                                 if (item == 3)
                                   Expanded(
                                     child: PveRRDChart(
-                                      title: 'Load',
+                                      title: AppLocalizations.of(context).load,
                                       subtitle: rrd.last.loadavg
                                               ?.toStringAsFixed(2) ??
                                           '0',
@@ -196,7 +195,7 @@ class PveNodeOverview extends StatelessWidget {
                               size: 55,
                               color: Colors.white24,
                             ),
-                            title: 'Power Settings',
+                            title: AppLocalizations.of(context).powerSettings,
                             onTap: () =>
                                 showPowerMenuBottomSheet(context, nBloc),
                           ),
@@ -206,7 +205,7 @@ class PveNodeOverview extends StatelessWidget {
                               size: 55,
                               color: Colors.white24,
                             ),
-                            title: 'Console',
+                            title: AppLocalizations.of(context).console,
                             onTap: () => showConsoleMenuBottomSheet(
                                 context, nBloc.apiClient, null, nodeID, 'node'),
                           ),
@@ -217,8 +216,7 @@ class PveNodeOverview extends StatelessWidget {
                   PveResourceDataCardWidget(
                     expandable: false,
                     showTitleTrailing: true,
-                    title: const Text(
-                      'Summary',
+                    title: Text(AppLocalizations.of(context).summary,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -231,21 +229,21 @@ class PveNodeOverview extends StatelessWidget {
                       ListTile(
                         dense: true,
                         title: Text(status?.kversion ?? 'unknown'),
-                        subtitle: const Text('Kernel'),
+                        subtitle: Text(AppLocalizations.of(context).kernel),
                       ),
                       if (status?.cpuinfo != null)
                         ListTile(
                           dense: true,
                           title: Text(
                               '${status!.cpuinfo.cpus} x ${status.cpuinfo.model}'),
-                          subtitle: Text(
-                              'CPU Information (Socket: ${status.cpuinfo.sockets})'),
+                          subtitle: Text(AppLocalizations.of(context)
+                              .cpuInfoSocket('${status.cpuinfo.sockets}')),
                         ),
                       if (status?.ksm.shared ?? false)
                         CheckboxListTile(
                           dense: true,
                           value: status?.ksm.shared ?? false,
-                          title: const Text('Kernel same-page merging (KSM)',
+                          title: Text(AppLocalizations.of(context).kernelSamePageMergingKsm,
                               style: TextStyle(color: Colors.black)),
                           onChanged: null,
                         ),
@@ -257,7 +255,7 @@ class PveNodeOverview extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: ListTile(
-                            title: const Text('HD space (root)'),
+                            title: Text(AppLocalizations.of(context).hdSpaceRoot),
                             subtitle: ProxmoxCapacityIndicator(
                               icon: FaIcon(
                                 FontAwesomeIcons.solidHardDrive,
@@ -279,8 +277,7 @@ class PveNodeOverview extends StatelessWidget {
                     expandable: true,
                     showTitleTrailing: !state.allServicesRunning,
                     titleTrailing: const Icon(Icons.warning),
-                    title: const Text(
-                      'Services',
+                    title: Text(AppLocalizations.of(context).services,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -289,9 +286,9 @@ class PveNodeOverview extends StatelessWidget {
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        if (state.allServicesRunning) const Text('All running'),
+                        if (state.allServicesRunning) Text(AppLocalizations.of(context).allRunning),
                         if (!state.allServicesRunning)
-                          const Text('One or more not running'),
+                          Text(AppLocalizations.of(context).oneOrMoreNotRunning),
                         const Divider(),
                       ],
                     ),
@@ -313,8 +310,7 @@ class PveNodeOverview extends StatelessWidget {
                     expandable: !state.updatesQueryPermissionFailure,
                     showTitleTrailing: state.updates.isNotEmpty,
                     titleTrailing: const Icon(Icons.info_outline),
-                    title: const Text(
-                      'Updates',
+                    title: Text(AppLocalizations.of(context).updates,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -324,13 +320,13 @@ class PveNodeOverview extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         if (state.updatesQueryPermissionFailure)
-                          const Text('Lacking permission to query updates'),
+                          Text(AppLocalizations.of(context).lackingPermissionToQueryUpdates),
                         if (state.updates.isEmpty &&
                             !state.updatesQueryPermissionFailure)
-                          const Text('No updates available'),
+                          Text(AppLocalizations.of(context).noUpdatesAvailable),
                         if (state.updates.isNotEmpty)
-                          Text(
-                              '${state.updates.length} packages are ready to update'),
+                          Text(AppLocalizations.of(context)
+                              .packagesReadyToUpdate('${state.updates.length}')),
                         if (!state.updatesQueryPermissionFailure)
                           const Divider(),
                       ],
@@ -349,7 +345,7 @@ class PveNodeOverview extends StatelessWidget {
                               onPressed: () => showDialog(
                                 context: context,
                                 builder: (context) => SimpleDialog(
-                                  title: const Text('Description'),
+                                  title: Text(AppLocalizations.of(context).description),
                                   contentPadding: const EdgeInsets.all(24),
                                   children: <Widget>[
                                     Text(
@@ -369,8 +365,7 @@ class PveNodeOverview extends StatelessWidget {
                   ),
                   PveResourceDataCardWidget(
                     expandable: false,
-                    title: const Text(
-                      'Disks',
+                    title: Text(AppLocalizations.of(context).disks,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -379,8 +374,8 @@ class PveNodeOverview extends StatelessWidget {
                     showTitleTrailing: !state.allDisksHealthy,
                     titleTrailing: const Icon(Icons.warning),
                     subtitle: state.allDisksHealthy
-                        ? const Text('No health issues')
-                        : const Text('Check disks, health error indicated!'),
+                        ? Text(AppLocalizations.of(context).noHealthIssues)
+                        : Text(AppLocalizations.of(context).checkDisksHealthErrorIndicated),
                     children: state.disks
                         .map(
                           (d) => ListTile(
@@ -391,8 +386,8 @@ class PveNodeOverview extends StatelessWidget {
                                     : Colors.red),
                             title:
                                 Text('${d.type!.toUpperCase()}: ${d.devPath}'),
-                            subtitle: Text(
-                                'Usage: ${d.used} ${Renderers.formatSize(d.size ?? 0)}'),
+                            subtitle: Text(AppLocalizations.of(context).diskUsage(
+                                '${d.used}', Renderers.formatSize(d.size ?? 0))),
                             trailing: IconButton(
                               icon: const Icon(
                                 Icons.info,
@@ -400,39 +395,39 @@ class PveNodeOverview extends StatelessWidget {
                               onPressed: () => showDialog(
                                 context: context,
                                 builder: (context) => SimpleDialog(
-                                  title: const Text('Details'),
+                                  title: Text(AppLocalizations.of(context).details),
                                   contentPadding: const EdgeInsets.all(24),
                                   children: <Widget>[
                                     ListTile(
-                                      title: const Text("Device"),
+                                      title: Text(AppLocalizations.of(context).device),
                                       subtitle: Text(d.devPath!),
                                     ),
                                     ListTile(
-                                      title: const Text("Type"),
+                                      title: Text(AppLocalizations.of(context).type),
                                       subtitle: Text(d.type!),
                                     ),
                                     ListTile(
-                                      title: const Text("Usage"),
+                                      title: Text(AppLocalizations.of(context).usage),
                                       subtitle: Text(d.used!),
                                     ),
                                     ListTile(
-                                      title: const Text("GPT"),
+                                      title: Text(AppLocalizations.of(context).gpt),
                                       subtitle: Text(d.gpt.toString()),
                                     ),
                                     ListTile(
-                                      title: const Text("Model"),
+                                      title: Text(AppLocalizations.of(context).model),
                                       subtitle: Text(d.model!),
                                     ),
                                     ListTile(
-                                      title: const Text("Serial"),
+                                      title: Text(AppLocalizations.of(context).serial),
                                       subtitle: Text(d.serial!),
                                     ),
                                     ListTile(
-                                      title: const Text("S.M.A.R.T"),
+                                      title: Text(AppLocalizations.of(context).sMART),
                                       subtitle: Text(d.health!),
                                     ),
                                     ListTile(
-                                      title: const Text("Wearout"),
+                                      title: Text(AppLocalizations.of(context).wearout),
                                       subtitle: Text(d.wearoutPercentage),
                                     )
                                   ],

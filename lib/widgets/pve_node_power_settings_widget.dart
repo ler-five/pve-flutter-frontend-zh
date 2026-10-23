@@ -4,6 +4,7 @@ import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
 import 'package:pve_flutter_frontend/bloc/pve_node_overview_bloc.dart';
 import 'package:pve_flutter_frontend/states/pve_node_overview_state.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveNodePowerSettings extends StatelessWidget {
   const PveNodePowerSettings({
@@ -25,21 +26,19 @@ class PveNodePowerSettings extends StatelessWidget {
                   children: <Widget>[
                     ListTile(
                       leading: const Icon(Icons.autorenew),
-                      title: const Text(
-                        "Reboot",
+                      title: Text(AppLocalizations.of(context).reboot,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      subtitle: const Text("Reboot Node"),
+                      subtitle: Text(AppLocalizations.of(context).rebootNode),
                       onTap: () => confirmedAction(context,
                           PveClusterResourceAction.reboot, bloc, "reboot"),
                     ),
                     ListTile(
                       leading: const Icon(Icons.power_settings_new),
-                      title: const Text(
-                        "Shutdown",
+                      title: Text(AppLocalizations.of(context).shutdown,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      subtitle: const Text("Shutdown Node"),
+                      subtitle: Text(AppLocalizations.of(context).shutdownNode),
                       onTap: () => confirmedAction(context,
                           PveClusterResourceAction.shutdown, bloc, "shutdown"),
                     ),
@@ -63,16 +62,16 @@ class PveNodePowerSettings extends StatelessWidget {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('$capitalizedActionText node?'),
+                Text(AppLocalizations.of(context).capitalizedactiontextNode(capitalizedActionText)),
                 const Icon(Icons.warning),
               ],
             ),
-            content: Text(
-                "A $actionText of '${bloc.nodeID}' might render the node and all its virtual guests unavailable for a prolonged period."),
+            content: Text(AppLocalizations.of(context)
+                .nodePowerWarning(actionText, bloc.nodeID)),
             actions: [
               TextButton(
                   onPressed: () => Navigator.of(context).pop(false),
-                  child: const Text("Cancel")),
+                  child: Text(AppLocalizations.of(context).cancel)),
               TextButton(
                   onPressed: () => Navigator.of(context).pop(true),
                   child: Text(capitalizedActionText))

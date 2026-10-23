@@ -6,6 +6,7 @@ import 'package:pve_flutter_frontend/widgets/firstWelcomeScreen/pve_welcome_logo
 import 'package:pve_flutter_frontend/widgets/firstWelcomeScreen/pve_welcome_faq.dart';
 import 'package:pve_flutter_frontend/widgets/firstWelcomeScreen/pve_welcome_ssl_hint.dart';
 import 'package:pve_flutter_frontend/widgets/firstWelcomeScreen/pve_welcome_last.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveWelcome extends StatefulWidget {
   const PveWelcome({super.key});
@@ -71,8 +72,7 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
           foregroundColor: _buttonTextColor,
           disabledForegroundColor: _buttonDisabledTextColor,
         ),
-        child: const Text(
-          "Done",
+        child: Text(AppLocalizations.of(context).done,
         ),
         onPressed: () {
           skipDone();
@@ -88,7 +88,7 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
           _controller!
               .nextPage(duration: _pageChangeDuration, curve: _pageChangeCurve);
         },
-        child: const Text("Next"),
+        child: Text(AppLocalizations.of(context).next),
       );
     }
   }
@@ -103,8 +103,7 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
         onPressed: () {
           skipDone();
         },
-        child: const Text(
-          'Skip',
+        child: Text(AppLocalizations.of(context).skip,
         ),
       );
     } else {
@@ -113,8 +112,7 @@ class _PveWelcomeState extends State<PveWelcome> with TickerProviderStateMixin {
           foregroundColor: _buttonTextColor,
           disabledForegroundColor: _buttonDisabledTextColor,
         ),
-        child: const Text(
-          "Prev",
+        child: Text(AppLocalizations.of(context).prev,
         ),
         onPressed: () {
           _controller!.previousPage(

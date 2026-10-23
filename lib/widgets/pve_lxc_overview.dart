@@ -33,6 +33,7 @@ import 'package:pve_flutter_frontend/widgets/pve_lxc_power_settings_widget.dart'
 import 'package:pve_flutter_frontend/widgets/pve_resource_data_card_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_task_log_expansiontile_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_task_log_widget.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveLxcOverview extends StatelessWidget {
   static final routeName = RegExp(r"\/nodes\/(\S+)\/lxc\/(\d+)");
@@ -76,8 +77,7 @@ class PveLxcOverview extends StatelessWidget {
                                 rrdData: state.rrdData,
                               )
                             : Center(
-                                child: Text(
-                                  "TEMPLATE",
+                                child: Text(AppLocalizations.of(context).template,
                                   style: TextStyle(
                                     color: Theme.of(context)
                                         .colorScheme
@@ -172,8 +172,7 @@ class PveLxcOverview extends StatelessWidget {
                       ),
                       if (config != null) ...[
                         PveResourceDataCardWidget(
-                          title: const Text(
-                            'Resources',
+                          title: Text(AppLocalizations.of(context).resources,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
@@ -183,19 +182,19 @@ class PveLxcOverview extends StatelessWidget {
                             ListTile(
                               leading: const FaIcon(FontAwesomeIcons.memory),
                               title: Text('${config.memory}'),
-                              subtitle: const Text('Memory'),
+                              subtitle: Text(AppLocalizations.of(context).memory),
                               dense: true,
                             ),
                             ListTile(
                               leading: const Icon(Icons.cached),
                               title: Text('${config.swap}'),
-                              subtitle: const Text('Swap'),
+                              subtitle: Text(AppLocalizations.of(context).swap),
                               dense: true,
                             ),
                             ListTile(
                               leading: const Icon(Icons.memory),
                               title: Text('${config.cores ?? 'unlimited'}'),
-                              subtitle: const Text('Cores'),
+                              subtitle: Text(AppLocalizations.of(context).cores),
                               dense: true,
                             ),
                             ListTile(
@@ -206,8 +205,7 @@ class PveLxcOverview extends StatelessWidget {
                           ],
                         ),
                         PveResourceDataCardWidget(
-                            title: const Text(
-                              'Network',
+                            title: Text(AppLocalizations.of(context).network,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
@@ -223,8 +221,7 @@ class PveLxcOverview extends StatelessWidget {
                                 ),
                             ]),
                         PveResourceDataCardWidget(
-                            title: const Text(
-                              'DNS',
+                            title: Text(AppLocalizations.of(context).dns,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
@@ -236,7 +233,7 @@ class PveLxcOverview extends StatelessWidget {
                                 dense: true,
                                 title: Text(
                                     config.searchdomain ?? 'Use host settings'),
-                                subtitle: const Text('DNS Domain'),
+                                subtitle: Text(AppLocalizations.of(context).dnsDomain),
                               ),
                               ListTile(
                                 leading: const FaIcon(
@@ -244,7 +241,7 @@ class PveLxcOverview extends StatelessWidget {
                                 dense: true,
                                 title: Text(
                                     config.nameserver ?? 'Use host settings'),
-                                subtitle: const Text('DNS Server'),
+                                subtitle: Text(AppLocalizations.of(context).dnsServer),
                               ),
                             ]),
                       ]

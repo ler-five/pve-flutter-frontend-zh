@@ -12,6 +12,7 @@ import 'package:pve_flutter_frontend/widgets/proxmox_capacity_indicator.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
 import 'package:pve_flutter_frontend/widgets/pve_app_bar.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveFileSelector extends StatefulWidget {
   final PveFileSelectorBloc? fBloc;
@@ -34,7 +35,7 @@ class _PveFileSelectorState extends State<PveFileSelector> {
     return ProxmoxLayoutBuilder(
       builder: (context, layout) => Scaffold(
         appBar: PveAppBar(
-          title: const Text("Storage"),
+          title: Text(AppLocalizations.of(context).storage),
         ),
         body: PveFileSelectorWidget(
           isSelector: widget.isSelector,
@@ -122,8 +123,8 @@ class PveFileSelectorWidget extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.9,
                       );
                     }
-                    return const Center(
-                      child: Text('No storage available'),
+                    return Center(
+                      child: Text(AppLocalizations.of(context).noStorageAvailable),
                     );
                   }),
             ),
@@ -138,8 +139,7 @@ class PveFileSelectorWidget extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Text(
-                                "Content",
+                              Text(AppLocalizations.of(context).content,
                                 style: TextStyle(
                                     color:
                                         Theme.of(context).colorScheme.onSurface,
@@ -173,9 +173,9 @@ class PveFileSelectorWidget extends StatelessWidget {
                           ),
                           if (state.search)
                             TextField(
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Search',
+                              decoration: InputDecoration(
+                                border: const OutlineInputBorder(),
+                                labelText: AppLocalizations.of(context).search,
                               ),
                               autofocus: true,
                               onChanged: (searchTerm) => fBloc!.events
@@ -306,8 +306,7 @@ class PveStorageCard extends StatelessWidget {
                         Expanded(
                           child: Align(
                             alignment: FractionalOffset.bottomCenter,
-                            child: Text(
-                              "Storage offline",
+                            child: Text(AppLocalizations.of(context).storageOffline,
                               style: TextStyle(
                                 color: Theme.of(context)
                                     .colorScheme
@@ -348,14 +347,14 @@ class FileSelectorContentView extends StatelessWidget {
     }
 
     if (content!.isEmpty && storageSelected) {
-      return const Center(
-        child: Text("Nothing found"),
+      return Center(
+        child: Text(AppLocalizations.of(context).nothingFound),
       );
     }
 
     if (content!.isEmpty && !storageSelected) {
-      return const Center(
-        child: Text("Please select a storage"),
+      return Center(
+        child: Text(AppLocalizations.of(context).pleaseSelectAStorage),
       );
     }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class ProxmoxCapacityIndicator extends StatelessWidget {
   final Icon? icon;
@@ -59,7 +60,7 @@ class ProxmoxCapacityIndicator extends StatelessWidget {
                           fontWeight: FontWeight.bold)),
                 ],
               ),
-              Text("Total: $totalValue",
+              Text(AppLocalizations.of(context).totalTotalvalue(totalValue),
                   style: TextStyle(
                       color: textColor ??
                           (selected

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:pve_flutter_frontend/bloc/pve_guest_os_selector_bloc.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
 
 class PveGuestOsSelector extends StatelessWidget {
@@ -15,7 +16,7 @@ class PveGuestOsSelector extends StatelessWidget {
         initialData: gBloc.state.value,
         builder: (context, snapshot) {
           return DropdownButtonFormField<OSType>(
-            decoration: const InputDecoration(labelText: 'Guest OS'),
+            decoration: InputDecoration(labelText: AppLocalizations.of(context).guestOs),
             items: gBloc.osChoices.keys
                 .map((choice) => DropdownMenuItem(
                       value: choice,

@@ -7,6 +7,7 @@ import 'package:pve_flutter_frontend/states/pve_resource_state.dart';
 import 'package:pve_flutter_frontend/utils/renderers.dart';
 import 'package:pve_flutter_frontend/widgets/cluster_status_widget.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_tree_widget.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveMainNavigationDrawer extends StatelessWidget {
   const PveMainNavigationDrawer({
@@ -21,17 +22,15 @@ class PveMainNavigationDrawer extends StatelessWidget {
         length: 2,
         child: Column(
           children: <Widget>[
-            const TabBar(
+            TabBar(
               tabs: <Widget>[
                 Tab(
-                  child: Text(
-                    "Tree",
+                  child: Text(AppLocalizations.of(context).tree,
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
                 Tab(
-                  child: Text(
-                    "Actions",
+                  child: Text(AppLocalizations.of(context).actions,
                     style: TextStyle(color: Colors.black),
                   ),
                 )
@@ -83,7 +82,7 @@ class PveMainNavigationDrawer extends StatelessWidget {
                       DrawerHeader(
                         child: ListTile(
                           leading: const Icon(Icons.cloud),
-                          title: const Text("Datacenter"),
+                          title: Text(AppLocalizations.of(context).datacenter),
                           trailing: PopupMenuButton(
                             icon: const Icon(Icons.settings),
                             itemBuilder: (BuildContext context) =>
@@ -91,15 +90,15 @@ class PveMainNavigationDrawer extends StatelessWidget {
                               PopupMenuItem(
                                 value: 1,
                                 child: ListTile(
-                                  title: const Text('Settings'),
+                                  title: Text(AppLocalizations.of(context).settings),
                                   onTap: () {
                                     Navigator.pushNamed(context, '/settings');
                                   },
                                 ),
                               ),
-                              const PopupMenuItem(
+                              PopupMenuItem(
                                 value: 2,
-                                child: Text('User/Permissions'),
+                                child: Text(AppLocalizations.of(context).userPermissions),
                               ),
                             ],
                           ),
@@ -130,55 +129,55 @@ class PveMainNavigationDrawer extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           OutlinedButton(
-                            child: const Text("new VM"),
+                            child: Text(AppLocalizations.of(context).newVm),
                             onPressed: () {
                               Navigator.pushNamed(context, '/qemu/create');
                             },
                           ),
                           // TODO General new button or distinct ones??
-                          const OutlinedButton(
+                          OutlinedButton(
                             onPressed: null,
-                            child: Text("new CT"),
+                            child: Text(AppLocalizations.of(context).newCt),
                           )
                         ],
                       ),
-                      const ListTile(
+                      ListTile(
                         leading: Icon(Icons.home),
-                        title: Text("Overview"),
+                        title: Text(AppLocalizations.of(context).overview),
                       ),
-                      const ListTile(
+                      ListTile(
                         leading: Icon(Icons.timeline),
-                        title: Text("Performance"),
+                        title: Text(AppLocalizations.of(context).performance),
                       ),
-                      const ListTile(
+                      ListTile(
                         leading: Icon(Icons.storage),
-                        title: Text("Storage"),
+                        title: Text(AppLocalizations.of(context).storage),
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(left: 8.0),
                         child: ListTile(
                           leading: Icon(Icons.line_style),
-                          title: Text("Ceph"),
+                          title: Text(AppLocalizations.of(context).ceph),
                         ),
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(left: 8.0),
                         child: ListTile(
                           leading: Icon(Icons.content_copy),
-                          title: Text("Replication"),
+                          title: Text(AppLocalizations.of(context).replication),
                         ),
                       ),
-                      const ListTile(
+                      ListTile(
                         leading: Icon(Icons.save),
-                        title: Text("Backup"),
+                        title: Text(AppLocalizations.of(context).backup),
                       ),
-                      const ListTile(
+                      ListTile(
                         leading: Icon(Icons.security),
-                        title: Text("Firewall"),
+                        title: Text(AppLocalizations.of(context).firewall),
                       ),
-                      const ListTile(
+                      ListTile(
                         leading: Icon(Icons.help),
-                        title: Text("Support"),
+                        title: Text(AppLocalizations.of(context).support),
                       )
                     ],
                   ),

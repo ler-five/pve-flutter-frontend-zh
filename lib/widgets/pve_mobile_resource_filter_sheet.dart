@@ -5,6 +5,7 @@ import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
 import 'package:pve_flutter_frontend/bloc/pve_resource_bloc.dart';
 import 'package:pve_flutter_frontend/states/pve_resource_state.dart';
 import 'package:pve_flutter_frontend/widgets/proxmox_stream_builder_widget.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveMobileResourceFilterSheet extends StatelessWidget {
   const PveMobileResourceFilterSheet({super.key});
@@ -22,14 +23,12 @@ class PveMobileResourceFilterSheet extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 0),
                 child: ListTile(
-                  title: const Text(
-                    'Filter Results',
+                  title: Text(AppLocalizations.of(context).filterResults,
                   ),
                   trailing: rBloc.isFiltered
                       ? TextButton(
                           onPressed: () => rBloc.events.add(ResetFilter()),
-                          child: Text(
-                            'Reset',
+                          child: Text(AppLocalizations.of(context).reset,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.secondary,
                             ),
@@ -40,10 +39,10 @@ class PveMobileResourceFilterSheet extends StatelessWidget {
               ),
               const Divider(indent: 0, endIndent: 0),
               _PveFilterSheetSection(
-                sectionTitle: 'Type',
+                sectionTitle: AppLocalizations.of(context).type,
                 items: [
                   _ProxmoxResourceFilterListTile(
-                    title: 'Nodes',
+                    title: AppLocalizations.of(context).nodes,
                     value: state.typeFilter.contains('node'),
                     onChanged: (v) => rBloc.events.add(
                       FilterResources(
@@ -52,7 +51,7 @@ class PveMobileResourceFilterSheet extends StatelessWidget {
                     ),
                   ),
                   _ProxmoxResourceFilterListTile(
-                    title: 'Qemu',
+                    title: AppLocalizations.of(context).qemu,
                     value: state.typeFilter.contains('qemu'),
                     onChanged: (v) => rBloc.events.add(
                       FilterResources(
@@ -61,7 +60,7 @@ class PveMobileResourceFilterSheet extends StatelessWidget {
                     ),
                   ),
                   _ProxmoxResourceFilterListTile(
-                    title: 'LXC',
+                    title: AppLocalizations.of(context).lxc,
                     value: state.typeFilter.contains('lxc'),
                     onChanged: (v) => rBloc.events.add(
                       FilterResources(
@@ -70,7 +69,7 @@ class PveMobileResourceFilterSheet extends StatelessWidget {
                     ),
                   ),
                   _ProxmoxResourceFilterListTile(
-                    title: 'Storage',
+                    title: AppLocalizations.of(context).storage,
                     value: state.typeFilter.contains('storage'),
                     onChanged: (v) => rBloc.events.add(
                       FilterResources(
@@ -82,12 +81,12 @@ class PveMobileResourceFilterSheet extends StatelessWidget {
                 ],
               ),
               _PveFilterSheetSection(
-                sectionTitle: 'Status',
+                sectionTitle: AppLocalizations.of(context).status,
                 items: [
                   for (var filterItem in [
-                    (title: 'Online', type: PveResourceStatusType.running),
-                    (title: 'Offline', type: PveResourceStatusType.stopped),
-                    (title: 'Paused', type: PveResourceStatusType.paused)
+                    (title: AppLocalizations.of(context).online, type: PveResourceStatusType.running),
+                    (title: AppLocalizations.of(context).offline, type: PveResourceStatusType.stopped),
+                    (title: AppLocalizations.of(context).paused, type: PveResourceStatusType.paused)
                   ])
                     _ProxmoxResourceFilterListTile(
                       title: filterItem.title,

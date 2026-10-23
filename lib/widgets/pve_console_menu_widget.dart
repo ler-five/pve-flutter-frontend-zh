@@ -11,6 +11,7 @@ import 'package:proxmox_login_manager/proxmox_general_settings_model.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:crypto/crypto.dart';
 import 'package:pve_flutter_frontend/widgets/pve_app_bar.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
 
 class PveConsoleMenu extends StatelessWidget {
   static const platform =
@@ -41,12 +42,11 @@ class PveConsoleMenu extends StatelessWidget {
           children: [
             if ((Platform.isAndroid || Platform.isIOS) && (allowSpice ?? true))
               ListTile(
-                title: const Text(
-                  "SPICE",
+                title: Text(AppLocalizations.of(context).spice,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 subtitle:
-                    const Text("Open SPICE connection file with external App"),
+                    Text(AppLocalizations.of(context).openSpiceConnectionFileWithExternalApp),
                 onTap: () async {
                   final tempDir = await getTemporaryDirectory();
 
@@ -62,8 +62,11 @@ class PveConsoleMenu extends StatelessWidget {
                   final data = json.decode(response.body)['data'];
                   if (data == null) {
                     if (context.mounted) {
-                      showTextDialog(context, 'Empty reply from SPICE API',
-                          'Ensure you have "${type == 'node' ? 'Sys' : 'VM'}.Console" permissions.');
+                      showTextDialog(
+                          context,
+                          AppLocalizations.of(context).spiceEmptyReplyTitle,
+                          AppLocalizations.of(context).spiceEmptyReplyBody(
+                              type == 'node' ? 'Sys' : 'VM'));
                     }
                     return;
                   }
@@ -77,20 +80,22 @@ class PveConsoleMenu extends StatelessWidget {
                   } on PlatformException catch (e, s) {
                     if (!context.mounted) return;
                     if (e.code.contains('ActivityNotFoundException')) {
-                      showTextDialog(context, 'SPICE client required',
-                          'A Spice client-app is required.');
+                      showTextDialog(
+                          context,
+                          AppLocalizations.of(context).spiceClientRequiredTitle,
+                          AppLocalizations.of(context).spiceClientRequiredBody);
                     } else {
                       debugPrint("$e $s");
                       if (e.message != null) {
                         showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
-                            title: const Text('Got Exception'),
+                            title: Text(AppLocalizations.of(context).gotException),
                             content: Text(e.message!),
                             actions: [
                               TextButton(
                                   onPressed: () => Navigator.of(context).pop(),
-                                  child: const Text('Close'))
+                                  child: Text(AppLocalizations.of(context).close))
                             ],
                           ),
                         );
@@ -107,7 +112,7 @@ class PveConsoleMenu extends StatelessWidget {
                   "noVNC Console", // xterm.js doesn't work that well on mobile
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                subtitle: const Text("Open console view"),
+                subtitle: Text(AppLocalizations.of(context).openConsoleView),
                 onTap: () => _openNoVncConsole(context, type),
               ),
           ],
@@ -138,7 +143,7 @@ class PveConsoleMenu extends StatelessWidget {
         actions: [
           TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Close'))
+              child: Text(AppLocalizations.of(context).close))
         ],
       ),
     );
@@ -290,28 +295,28 @@ class PVEWebConsoleState extends State<PVEWebConsole> {
             // prevent back button from canceling this callback
             canPop: false,
             child: AlertDialog(
-                title: const Text('A TLS error has occurred:'),
+                title: Text(AppLocalizations.of(context).aTlsErrorHasOccurred),
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ListTile(
-                      title: const Text('Error Message:'),
+                      title: Text(AppLocalizations.of(context).errorMessage),
                       subtitle: Text(sslError),
                     ),
-                    const ListTile(
-                      title: Text('Certificate Information:'),
+                    ListTile(
+                      title: Text(AppLocalizations.of(context).certificateInformation),
                     ),
                     ListTile(
-                      title: const Text('Issued to:'),
+                      title: Text(AppLocalizations.of(context).issuedTo),
                       subtitle: Text(issuedTo),
                     ),
                     ListTile(
-                      title: const Text('Fingerprint:'),
+                      title: Text(AppLocalizations.of(context).fingerprint),
                       subtitle: Text(hash),
                     ),
                     const Text(''), // spacer
-                    const Text('Do you want to continue?'),
+                    Text(AppLocalizations.of(context).doYouWantToContinue),
                   ],
                 ),
                 actions: <Widget>[
@@ -320,12 +325,12 @@ class PVEWebConsoleState extends State<PVEWebConsole> {
                         Navigator.of(context).pop(false);
                         Navigator.of(context).pop();
                       },
-                      child: const Text('No')),
+                      child: Text(AppLocalizations.of(context).no)),
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).pop(true);
                       },
-                      child: const Text('Yes'))
+                      child: Text(AppLocalizations.of(context).yes))
                 ]),
           );
         });
