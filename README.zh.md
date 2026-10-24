@@ -3,6 +3,8 @@
 基于官方 [Proxmox PVE Companion App](https://git.proxmox.com/git/flutter/pve_flutter_frontend.git) 的中文版分支，保留官方全部原有功能与品牌（应用名、图标、包名不变），在此之上新增中文化、多语言与移动端增强功能。
 
 英文原版说明见 [README.md](README.md)；本分支与官方版的完整差异清单见 [CHANGELOG-vs-upstream.md](CHANGELOG-vs-upstream.md)。
+<img width="540" height="1200" alt="Screenshot_2026-10-24-21-15-31-394_com proxmox app pve_flutter_frontend" src="https://github.com/user-attachments/assets/f2352193-b0ec-44e9-9fcc-afd20d1b5b86" />
+<img width="540" height="1200" alt="Screenshot_2026-10-24-21-16-30-608_com proxmox app pve_flutter_frontend" src="https://github.com/user-attachments/assets/60fd4a34-de51-4284-9046-d61f67433c3f" />
 
 ## 配套仓库
 
