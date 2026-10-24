@@ -32,6 +32,7 @@ import 'package:pve_flutter_frontend/widgets/pve_node_overview.dart';
 import 'package:pve_flutter_frontend/widgets/pve_qemu_overview.dart';
 import 'package:pve_flutter_frontend/widgets/pve_splash_screen.dart';
 import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
+import 'package:pve_flutter_frontend/models/pve_app_settings.dart';
 import 'package:proxmox_login_manager/l10n/login_localizations.dart';
 import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
 
@@ -60,6 +61,9 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider<PveAppSettings>.value(
+          value: PveAppSettings(sharedPreferences),
+        ),
         Provider.value(value: authBloc),
         Provider<PveResourceBloc>(
           create: (context) => PveResourceBloc(init: PveResourceState.init()),
@@ -95,7 +99,8 @@ class MyApp extends StatelessWidget {
           Provider.of<PveResourceBloc>(context, listen: false).apiClient = null;
         }
       },
-      child: MaterialApp(
+      child: Consumer<PveAppSettings>(
+        builder: (context, appSettings, _) => MaterialApp(
         navigatorKey: navigatorKey,
         onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
         localizationsDelegates: const [
@@ -104,8 +109,8 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales: AppLocalizations.supportedLocales,
         title: 'Proxmox',
-        // the redesign targets a modern dark UI; light theme kept as fallback
-        themeMode: ThemeMode.dark,
+        locale: appSettings.locale,
+        themeMode: appSettings.themeMode,
         theme: buildAppTheme(Brightness.light),
         darkTheme: buildAppTheme(Brightness.dark),
         builder: (context, child) {
@@ -334,6 +339,7 @@ class MyApp extends StatelessWidget {
           );
         },
         initialRoute: '/',
+      ),
       ),
     );
   }
