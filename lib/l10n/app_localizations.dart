@@ -788,6 +788,72 @@ abstract class AppLocalizations {
   /// **'Resources'**
   String get resources;
 
+  /// No description provided for @dashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard'**
+  String get dashboard;
+
+  /// No description provided for @access.
+  ///
+  /// In en, this message translates to:
+  /// **'Access'**
+  String get access;
+
+  /// No description provided for @sites.
+  ///
+  /// In en, this message translates to:
+  /// **'Sites'**
+  String get sites;
+
+  /// No description provided for @users.
+  ///
+  /// In en, this message translates to:
+  /// **'Users'**
+  String get users;
+
+  /// No description provided for @apiTokens.
+  ///
+  /// In en, this message translates to:
+  /// **'API Tokens'**
+  String get apiTokens;
+
+  /// No description provided for @groups.
+  ///
+  /// In en, this message translates to:
+  /// **'Groups'**
+  String get groups;
+
+  /// No description provided for @roles.
+  ///
+  /// In en, this message translates to:
+  /// **'Roles'**
+  String get roles;
+
+  /// No description provided for @domains.
+  ///
+  /// In en, this message translates to:
+  /// **'Domains'**
+  String get domains;
+
+  /// No description provided for @never.
+  ///
+  /// In en, this message translates to:
+  /// **'never'**
+  String get never;
+
+  /// No description provided for @builtInRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Built in Role'**
+  String get builtInRole;
+
+  /// No description provided for @custom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get custom;
+
   /// No description provided for @swap.
   ///
   /// In en, this message translates to:
@@ -1472,6 +1538,30 @@ abstract class AppLocalizations {
   /// **'Paused'**
   String get paused;
 
+  /// No description provided for @suspended.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspended'**
+  String get suspended;
+
+  /// No description provided for @suspending.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspending'**
+  String get suspending;
+
+  /// No description provided for @prelaunch.
+  ///
+  /// In en, this message translates to:
+  /// **'Prelaunch'**
+  String get prelaunch;
+
+  /// No description provided for @unknownStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get unknownStatus;
+
   /// No description provided for @cpuMax.
   ///
   /// In en, this message translates to:
@@ -1699,6 +1789,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Action failed'**
   String get actionFailed;
+
+  /// No description provided for @startOnBoot.
+  ///
+  /// In en, this message translates to:
+  /// **'Start on boot'**
+  String get startOnBoot;
+
+  /// No description provided for @protection.
+  ///
+  /// In en, this message translates to:
+  /// **'Protection'**
+  String get protection;
+
+  /// No description provided for @useTabletForPointer.
+  ///
+  /// In en, this message translates to:
+  /// **'Use tablet for pointer'**
+  String get useTabletForPointer;
+
+  /// No description provided for @acpiSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI support'**
+  String get acpiSupport;
+
+  /// No description provided for @kvmHardwareVirtualization.
+  ///
+  /// In en, this message translates to:
+  /// **'KVM hardware virtualization'**
+  String get kvmHardwareVirtualization;
+
+  /// No description provided for @freezeCpuOnStartup.
+  ///
+  /// In en, this message translates to:
+  /// **'Freeze CPU on startup'**
+  String get freezeCpuOnStartup;
+
+  /// No description provided for @useLocalTimeForRtc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use local time for RTC'**
+  String get useLocalTimeForRtc;
+
+  /// No description provided for @turnOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off'**
+  String get turnOff;
+
+  /// No description provided for @enterValidName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter valid name'**
+  String get enterValidName;
+
+  /// No description provided for @chooseFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose file'**
+  String get chooseFile;
+
+  /// No description provided for @noBridgesAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No bridges available'**
+  String get noBridgesAvailable;
+
+  /// No description provided for @inputRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Input required'**
+  String get inputRequired;
+
+  /// No description provided for @targetIsMandatory.
+  ///
+  /// In en, this message translates to:
+  /// **'Target is mandatory'**
+  String get targetIsMandatory;
+
+  /// No description provided for @defaultAny.
+  ///
+  /// In en, this message translates to:
+  /// **'Default (any)'**
+  String get defaultAny;
+
+  /// No description provided for @other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get other;
+
+  /// No description provided for @diskNetworkUsb.
+  ///
+  /// In en, this message translates to:
+  /// **'Disk, Network, USB'**
+  String get diskNetworkUsb;
+
+  /// No description provided for @defaultDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Default (disabled)'**
+  String get defaultDisabled;
+
+  /// No description provided for @noEnhancements.
+  ///
+  /// In en, this message translates to:
+  /// **'No enhancements'**
+  String get noEnhancements;
+
+  /// No description provided for @automatic.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic'**
+  String get automatic;
+
+  /// No description provided for @now.
+  ///
+  /// In en, this message translates to:
+  /// **'now'**
+  String get now;
+
+  /// No description provided for @none.
+  ///
+  /// In en, this message translates to:
+  /// **'none'**
+  String get none;
+
+  /// No description provided for @undefined.
+  ///
+  /// In en, this message translates to:
+  /// **'undefined'**
+  String get undefined;
+
+  /// No description provided for @unplug.
+  ///
+  /// In en, this message translates to:
+  /// **'Unplug'**
+  String get unplug;
 }
 
 class _AppLocalizationsDelegate

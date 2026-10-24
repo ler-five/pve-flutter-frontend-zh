@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
+import 'package:pve_flutter_frontend/l10n/app_localizations.dart';
+import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
 
+/// Compact status pill: a colored dot followed by the localized status text.
 class StatusChip extends StatelessWidget {
   final PveResourceStatusType? status;
   final double fontzsize;
@@ -13,55 +16,75 @@ class StatusChip extends StatelessWidget {
     super.key,
     this.status,
     this.fontzsize = 12,
-    this.fontWeight = FontWeight.normal,
-    this.offlineColor = Colors.grey,
-    this.onlineColor = const Color(0xFF21bf4b),
-    this.intermediateColor = Colors.orange,
+    this.fontWeight = FontWeight.w600,
+    this.offlineColor = ProxmoxColors.textMuted,
+    this.onlineColor = ProxmoxColors.accentGreen,
+    this.intermediateColor = ProxmoxColors.accentAmber,
   });
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     Color statusColor;
     String statusText;
     switch (status) {
       case PveResourceStatusType.running:
         statusColor = onlineColor;
-        statusText = 'online';
+        statusText = l10n.online;
         break;
       case PveResourceStatusType.stopped:
         statusColor = offlineColor;
-        statusText = 'offline';
+        statusText = l10n.offline;
         break;
       case PveResourceStatusType.suspended:
         statusColor = offlineColor;
-        statusText = 'suspended';
+        statusText = l10n.suspended;
         break;
       case PveResourceStatusType.paused:
         statusColor = intermediateColor;
-        statusText = 'paused';
+        statusText = l10n.paused;
         break;
       case PveResourceStatusType.suspending:
         statusColor = intermediateColor;
-        statusText = 'suspending';
+        statusText = l10n.suspending;
         break;
       case PveResourceStatusType.prelaunch:
         statusColor = offlineColor;
-        statusText = 'prelaunch';
+        statusText = l10n.prelaunch;
+        break;
       default:
         statusColor = offlineColor;
-        statusText = 'unknown';
+        statusText = l10n.unknownStatus;
     }
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-          border: Border.all(color: statusColor, width: 1.8),
-          borderRadius: BorderRadius.circular(3.0)),
-      child: Padding(
-        padding: const EdgeInsets.all(2.5),
-        child: Text(
-          statusText,
-          style: TextStyle(
-              color: statusColor, fontSize: fontzsize, fontWeight: fontWeight),
-        ),
+        color: statusColor.withValues(alpha: 0.14),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: statusColor.withValues(alpha: 0.35)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Container(
+            width: 6,
+            height: 6,
+            decoration: BoxDecoration(
+              color: statusColor,
+              shape: BoxShape.circle,
+            ),
+          ),
+          const SizedBox(width: 5),
+          Text(
+            statusText,
+            style: TextStyle(
+              color: statusColor,
+              fontSize: fontzsize,
+              fontWeight: fontWeight,
+              height: 1.1,
+            ),
+          ),
+        ],
       ),
     );
   }

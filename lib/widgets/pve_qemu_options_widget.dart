@@ -42,15 +42,15 @@ class PveQemuOptions extends StatelessWidget {
                           subtitle: Text(config.name ?? 'VM$guestID'),
                         ),
                         PveConfigListTile<bool>(
-                          title: "Start on boot",
-                          trailingText: config.onboot == true ? 'Yes' : 'No',
+                          title: AppLocalizations.of(context).startOnBoot,
+                          trailingText: config.onboot == true ? AppLocalizations.of(context).yes : AppLocalizations.of(context).no,
                           pending: config.getPending('onboot'),
                           onSubmit: (v) => bloc.events.add(
                             UpdateQemuConfigBool('onboot', v),
                           ),
                           editorBuilder: (_, controller) {
                             return PveConfigSwitchForm(
-                              title: "Start on boot",
+                              title: AppLocalizations.of(context).startOnBoot,
                               value: config.onboot == true,
                               controller: controller,
                             );
@@ -61,29 +61,29 @@ class PveQemuOptions extends StatelessWidget {
                         ),
                         ListTile(
                           title: Text(AppLocalizations.of(context).startShutdownOrder),
-                          subtitle: Text(config.startup ?? "Default (any)"),
+                          subtitle: Text(config.startup ?? AppLocalizations.of(context).defaultAny),
                         ),
                         ListTile(
                           title: Text(AppLocalizations.of(context).osType),
                           subtitle: Text(config.ostype != null
                               ? "${config.ostype!.type} ${config.ostype!.description}"
-                              : "Other"),
+                              : AppLocalizations.of(context).other),
                         ),
                         //TODO add better ui component e.g. collapseable
                         ListTile(
                           title: Text(AppLocalizations.of(context).bootDevice),
-                          subtitle: Text(config.boot ?? 'Disk, Network, USB'),
+                          subtitle: Text(config.boot ?? AppLocalizations.of(context).diskNetworkUsb),
                         ),
                         PveConfigListTile<bool>(
-                          title: "Use tablet for pointer",
-                          trailingText: config.tablet == true ? 'Yes' : 'No',
+                          title: AppLocalizations.of(context).useTabletForPointer,
+                          trailingText: config.tablet == true ? AppLocalizations.of(context).yes : AppLocalizations.of(context).no,
                           pending: config.getPending('tablet'),
                           onSubmit: (v) => bloc.events.add(
                             UpdateQemuConfigBool('tablet', v),
                           ),
                           editorBuilder: (_, controller) {
                             return PveConfigSwitchForm(
-                              title: "Use tablet for pointer",
+                              title: AppLocalizations.of(context).useTabletForPointer,
                               value: config.tablet == true,
                               controller: controller,
                             );
@@ -97,15 +97,15 @@ class PveQemuOptions extends StatelessWidget {
                           subtitle: Text(config.hotplug ?? 'disk,network,usb'),
                         ),
                         PveConfigListTile<bool>(
-                          title: "ACPI support",
-                          trailingText: config.acpi == true ? 'Yes' : 'No',
+                          title: AppLocalizations.of(context).acpiSupport,
+                          trailingText: config.acpi == true ? AppLocalizations.of(context).yes : AppLocalizations.of(context).no,
                           pending: config.getPending('acpi'),
                           onSubmit: (v) => bloc.events.add(
                             UpdateQemuConfigBool('acpi', v),
                           ),
                           editorBuilder: (_, controller) {
                             return PveConfigSwitchForm(
-                              title: "ACPI support",
+                              title: AppLocalizations.of(context).acpiSupport,
                               value: config.acpi == true,
                               controller: controller,
                             );
@@ -115,15 +115,15 @@ class PveQemuOptions extends StatelessWidget {
                           ),
                         ),
                         PveConfigListTile<bool>(
-                          title: "KVM hardware virtualization",
-                          trailingText: config.kvm == true ? 'Yes' : 'No',
+                          title: AppLocalizations.of(context).kvmHardwareVirtualization,
+                          trailingText: config.kvm == true ? AppLocalizations.of(context).yes : AppLocalizations.of(context).no,
                           pending: config.getPending('kvm'),
                           onSubmit: (v) => bloc.events.add(
                             UpdateQemuConfigBool('kvm', v),
                           ),
                           editorBuilder: (_, controller) {
                             return PveConfigSwitchForm(
-                              title: "KVM hardware virtualization",
+                              title: AppLocalizations.of(context).kvmHardwareVirtualization,
                               value: config.kvm == true,
                               controller: controller,
                             );
@@ -133,15 +133,15 @@ class PveQemuOptions extends StatelessWidget {
                           ),
                         ),
                         PveConfigListTile<bool>(
-                          title: "Freeze CPU on startup",
-                          trailingText: config.freeze == true ? 'Yes' : 'No',
+                          title: AppLocalizations.of(context).freezeCpuOnStartup,
+                          trailingText: config.freeze == true ? AppLocalizations.of(context).yes : AppLocalizations.of(context).no,
                           pending: config.getPending('freeze'),
                           onSubmit: (v) => bloc.events.add(
                             UpdateQemuConfigBool('freeze', v),
                           ),
                           editorBuilder: (_, controller) {
                             return PveConfigSwitchForm(
-                              title: "Freeze CPU on startup",
+                              title: AppLocalizations.of(context).freezeCpuOnStartup,
                               value: config.freeze == true,
                               controller: controller,
                             );
@@ -151,15 +151,15 @@ class PveQemuOptions extends StatelessWidget {
                           ),
                         ),
                         PveConfigListTile<bool>(
-                          title: "Use local time for RTC",
-                          trailingText: config.localtime == true ? 'Yes' : 'No',
+                          title: AppLocalizations.of(context).useLocalTimeForRtc,
+                          trailingText: config.localtime == true ? AppLocalizations.of(context).yes : AppLocalizations.of(context).no,
                           pending: config.getPending('localtime'),
                           onSubmit: (v) => bloc.events.add(
                             UpdateQemuConfigBool('localtime', v),
                           ),
                           editorBuilder: (_, controller) {
                             return PveConfigSwitchForm(
-                              title: "Use local time for RTC",
+                              title: AppLocalizations.of(context).useLocalTimeForRtc,
                               value: config.localtime == true,
                               controller: controller,
                             );
@@ -170,7 +170,7 @@ class PveQemuOptions extends StatelessWidget {
                         ),
                         ListTile(
                           title: Text(AppLocalizations.of(context).rtcStartDate),
-                          subtitle: Text(config.startdate ?? 'now'),
+                          subtitle: Text(config.startdate ?? AppLocalizations.of(context).now),
                         ),
                         ListTile(
                           title: Text(AppLocalizations.of(context).smbiosSettingsType1),
@@ -179,19 +179,19 @@ class PveQemuOptions extends StatelessWidget {
                         //Todo enhance UI
                         ListTile(
                           title: Text(AppLocalizations.of(context).qemuGuestAgent),
-                          subtitle: Text(config.agent ?? 'Default (disabled)'),
+                          subtitle: Text(config.agent ?? AppLocalizations.of(context).defaultDisabled),
                         ),
                         PveConfigListTile<bool>(
-                          title: "Protection",
+                          title: AppLocalizations.of(context).protection,
                           trailingText:
-                              config.protection == true ? 'Yes' : 'No',
+                              config.protection == true ? AppLocalizations.of(context).yes : AppLocalizations.of(context).no,
                           pending: config.getPending('protection'),
                           onSubmit: (v) => bloc.events.add(
                             UpdateQemuConfigBool('protection', v),
                           ),
                           editorBuilder: (_, controller) {
                             return PveConfigSwitchForm(
-                              title: "Protection",
+                              title: AppLocalizations.of(context).protection,
                               value: config.protection == true,
                               controller: controller,
                             );
@@ -203,11 +203,11 @@ class PveQemuOptions extends StatelessWidget {
                         ListTile(
                           title: Text(AppLocalizations.of(context).spiceEnhancements),
                           subtitle: Text(
-                              config.spiceEnhancements ?? 'No enhancements'),
+                              config.spiceEnhancements ?? AppLocalizations.of(context).noEnhancements),
                         ),
                         ListTile(
                           title: Text(AppLocalizations.of(context).vmStateStorage),
-                          subtitle: Text(config.vmstatestorage ?? 'Automatic'),
+                          subtitle: Text(config.vmstatestorage ?? AppLocalizations.of(context).automatic),
                         ),
                       ],
                     ),

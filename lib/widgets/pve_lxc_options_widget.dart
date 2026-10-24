@@ -31,8 +31,8 @@ class PveLxcOptions extends StatelessWidget {
                         subtitle: Text(config.hostname ?? 'undefined'),
                       ),
                       PveConfigListTile<bool>(
-                        title: "Start on boot",
-                        trailingText: config.onboot == true ? 'Yes' : 'No',
+                        title: AppLocalizations.of(context).startOnBoot,
+                        trailingText: config.onboot == true ? AppLocalizations.of(context).yes : AppLocalizations.of(context).no,
                         pending: config.getPending('onboot'),
                         onSubmit: (value) => lxcBloc!.events.add(
                           UpdateLxcConfigBool(
@@ -42,7 +42,7 @@ class PveLxcOptions extends StatelessWidget {
                         ),
                         editorBuilder: (_, controller) {
                           return PveConfigSwitchForm(
-                            title: "Start on boot",
+                            title: AppLocalizations.of(context).startOnBoot,
                             value: config.onboot == true,
                             controller: controller,
                           );
@@ -53,7 +53,7 @@ class PveLxcOptions extends StatelessWidget {
                       ),
                       ListTile(
                         title: Text(AppLocalizations.of(context).startShutdownOrder),
-                        subtitle: Text(config.startup ?? "Default (any)"),
+                        subtitle: Text(config.startup ?? AppLocalizations.of(context).defaultAny),
                       ),
                       ListTile(
                         title: Text(AppLocalizations.of(context).osType),
@@ -65,7 +65,7 @@ class PveLxcOptions extends StatelessWidget {
                       ),
                       PveConfigListTile<bool>(
                         title: "/dev/console",
-                        trailingText: config.console == true ? 'Yes' : 'No',
+                        trailingText: config.console == true ? AppLocalizations.of(context).yes : AppLocalizations.of(context).no,
                         pending: config.getPending('console'),
                         onSubmit: (v) => lxcBloc!.events.add(
                           UpdateLxcConfigBool('console', v),
@@ -90,15 +90,15 @@ class PveLxcOptions extends StatelessWidget {
                         subtitle: Text(config.cmode?.name ?? 'tty'),
                       ),
                       PveConfigListTile<bool>(
-                        title: "Protection",
-                        trailingText: config.protection == true ? 'Yes' : 'No',
+                        title: AppLocalizations.of(context).protection,
+                        trailingText: config.protection == true ? AppLocalizations.of(context).yes : AppLocalizations.of(context).no,
                         pending: config.getPending('protection'),
                         onSubmit: (v) => lxcBloc!.events.add(
                           UpdateLxcConfigBool('protection', v),
                         ),
                         editorBuilder: (_, controller) {
                           return PveConfigSwitchForm(
-                            title: "Protection",
+                            title: AppLocalizations.of(context).protection,
                             value: config.protection == true,
                             controller: controller,
                           );
@@ -110,11 +110,11 @@ class PveLxcOptions extends StatelessWidget {
                       ListTile(
                         title: Text(AppLocalizations.of(context).unprivileged),
                         subtitle:
-                            Text(config.unprivileged ?? false ? 'Yes' : 'No'),
+                            Text(config.unprivileged ?? false ? AppLocalizations.of(context).yes : AppLocalizations.of(context).no),
                       ),
                       ListTile(
                         title: Text(AppLocalizations.of(context).features),
-                        subtitle: Text(config.features?.toString() ?? 'none'),
+                        subtitle: Text(config.features?.toString() ?? AppLocalizations.of(context).none),
                       ),
                     ],
                   ),

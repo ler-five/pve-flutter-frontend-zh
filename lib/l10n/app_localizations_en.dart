@@ -398,6 +398,39 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resources => 'Resources';
 
   @override
+  String get dashboard => 'Dashboard';
+
+  @override
+  String get access => 'Access';
+
+  @override
+  String get sites => 'Sites';
+
+  @override
+  String get users => 'Users';
+
+  @override
+  String get apiTokens => 'API Tokens';
+
+  @override
+  String get groups => 'Groups';
+
+  @override
+  String get roles => 'Roles';
+
+  @override
+  String get domains => 'Domains';
+
+  @override
+  String get never => 'never';
+
+  @override
+  String get builtInRole => 'Built in Role';
+
+  @override
+  String get custom => 'Custom';
+
+  @override
   String get swap => 'Swap';
 
   @override
@@ -750,6 +783,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paused => 'Paused';
 
   @override
+  String get suspended => 'Suspended';
+
+  @override
+  String get suspending => 'Suspending';
+
+  @override
+  String get prelaunch => 'Prelaunch';
+
+  @override
+  String get unknownStatus => 'Unknown';
+
+  @override
   String cpuMax(String max) {
     return 'CPU ($max)';
   }
@@ -877,4 +922,73 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get actionFailed => 'Action failed';
+
+  @override
+  String get startOnBoot => 'Start on boot';
+
+  @override
+  String get protection => 'Protection';
+
+  @override
+  String get useTabletForPointer => 'Use tablet for pointer';
+
+  @override
+  String get acpiSupport => 'ACPI support';
+
+  @override
+  String get kvmHardwareVirtualization => 'KVM hardware virtualization';
+
+  @override
+  String get freezeCpuOnStartup => 'Freeze CPU on startup';
+
+  @override
+  String get useLocalTimeForRtc => 'Use local time for RTC';
+
+  @override
+  String get turnOff => 'Turn off';
+
+  @override
+  String get enterValidName => 'Enter valid name';
+
+  @override
+  String get chooseFile => 'Choose file';
+
+  @override
+  String get noBridgesAvailable => 'No bridges available';
+
+  @override
+  String get inputRequired => 'Input required';
+
+  @override
+  String get targetIsMandatory => 'Target is mandatory';
+
+  @override
+  String get defaultAny => 'Default (any)';
+
+  @override
+  String get other => 'Other';
+
+  @override
+  String get diskNetworkUsb => 'Disk, Network, USB';
+
+  @override
+  String get defaultDisabled => 'Default (disabled)';
+
+  @override
+  String get noEnhancements => 'No enhancements';
+
+  @override
+  String get automatic => 'Automatic';
+
+  @override
+  String get now => 'now';
+
+  @override
+  String get none => 'none';
+
+  @override
+  String get undefined => 'undefined';
+
+  @override
+  String get unplug => 'Unplug';
 }

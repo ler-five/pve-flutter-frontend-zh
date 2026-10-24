@@ -396,6 +396,39 @@ class AppLocalizationsZh extends AppLocalizations {
   String get resources => '资源';
 
   @override
+  String get dashboard => '仪表盘';
+
+  @override
+  String get access => '权限';
+
+  @override
+  String get sites => '站点';
+
+  @override
+  String get users => '用户';
+
+  @override
+  String get apiTokens => 'API 令牌';
+
+  @override
+  String get groups => '用户组';
+
+  @override
+  String get roles => '角色';
+
+  @override
+  String get domains => '域';
+
+  @override
+  String get never => '永不';
+
+  @override
+  String get builtInRole => '内置角色';
+
+  @override
+  String get custom => '自定义';
+
+  @override
   String get swap => '交换空间';
 
   @override
@@ -746,6 +779,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get paused => '已暂停';
 
   @override
+  String get suspended => '已挂起';
+
+  @override
+  String get suspending => '挂起中';
+
+  @override
+  String get prelaunch => '预启动';
+
+  @override
+  String get unknownStatus => '未知';
+
+  @override
   String cpuMax(String max) {
     return 'CPU ($max)';
   }
@@ -872,4 +917,73 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get actionFailed => '操作失败';
+
+  @override
+  String get startOnBoot => '开机自启';
+
+  @override
+  String get protection => '保护';
+
+  @override
+  String get useTabletForPointer => '指针使用平板模式';
+
+  @override
+  String get acpiSupport => 'ACPI 支持';
+
+  @override
+  String get kvmHardwareVirtualization => 'KVM 硬件虚拟化';
+
+  @override
+  String get freezeCpuOnStartup => '启动时冻结 CPU';
+
+  @override
+  String get useLocalTimeForRtc => 'RTC 使用本地时间';
+
+  @override
+  String get turnOff => '关机';
+
+  @override
+  String get enterValidName => '请输入有效名称';
+
+  @override
+  String get chooseFile => '选择文件';
+
+  @override
+  String get noBridgesAvailable => '无可用网桥';
+
+  @override
+  String get inputRequired => '必填项';
+
+  @override
+  String get targetIsMandatory => '目标为必填项';
+
+  @override
+  String get defaultAny => '默认（任意）';
+
+  @override
+  String get other => '其他';
+
+  @override
+  String get diskNetworkUsb => '磁盘、网络、USB';
+
+  @override
+  String get defaultDisabled => '默认（禁用）';
+
+  @override
+  String get noEnhancements => '无增强';
+
+  @override
+  String get automatic => '自动';
+
+  @override
+  String get now => '现在';
+
+  @override
+  String get none => '无';
+
+  @override
+  String get undefined => '未定义';
+
+  @override
+  String get unplug => '强制断电';
 }
