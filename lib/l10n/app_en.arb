@@ -460,5 +460,17 @@
   "now": "now",
   "none": "none",
   "undefined": "undefined",
-  "unplug": "Unplug"
+  "unplug": "Unplug",
+  "appearance": "Appearance",
+  "themeMode": "Theme",
+  "themeSystem": "Follow system",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "language": "Language",
+  "languageSystem": "Follow system",
+  "languageEnglish": "English",
+  "languageSimplifiedChinese": "简体中文",
+  "languageTraditionalChinese": "繁體中文",
+  "legal": "Legal",
+  "help": "Help"
 }

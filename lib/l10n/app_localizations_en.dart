@@ -991,4 +991,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unplug => 'Unplug';
+
+  @override
+  String get appearance => 'Appearance';
+
+  @override
+  String get themeMode => 'Theme';
+
+  @override
+  String get themeSystem => 'Follow system';
+
+  @override
+  String get themeLight => 'Light';
+
+  @override
+  String get themeDark => 'Dark';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get languageSystem => 'Follow system';
+
+  @override
+  String get languageEnglish => 'English';
+
+  @override
+  String get languageSimplifiedChinese => '简体中文';
+
+  @override
+  String get languageTraditionalChinese => '繁體中文';
+
+  @override
+  String get legal => 'Legal';
+
+  @override
+  String get help => 'Help';
 }
