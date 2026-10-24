@@ -8,7 +8,7 @@ class StatusChip extends StatelessWidget {
   final PveResourceStatusType? status;
   final double fontzsize;
   final FontWeight fontWeight;
-  final Color offlineColor;
+  final Color? offlineColor;
   final Color intermediateColor;
 
   final Color onlineColor;
@@ -17,7 +17,7 @@ class StatusChip extends StatelessWidget {
     this.status,
     this.fontzsize = 12,
     this.fontWeight = FontWeight.w600,
-    this.offlineColor = ProxmoxColors.textMuted,
+    this.offlineColor,
     this.onlineColor = ProxmoxColors.accentGreen,
     this.intermediateColor = ProxmoxColors.accentAmber,
   });
@@ -25,35 +25,39 @@ class StatusChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final offline = offlineColor ?? ProxmoxColors.textMutedOf(context);
+    final online = ProxmoxColors.accentForText(context, onlineColor);
+    final intermediate =
+        ProxmoxColors.accentForText(context, intermediateColor);
     Color statusColor;
     String statusText;
     switch (status) {
       case PveResourceStatusType.running:
-        statusColor = onlineColor;
+        statusColor = online;
         statusText = l10n.online;
         break;
       case PveResourceStatusType.stopped:
-        statusColor = offlineColor;
+        statusColor = offline;
         statusText = l10n.offline;
         break;
       case PveResourceStatusType.suspended:
-        statusColor = offlineColor;
+        statusColor = offline;
         statusText = l10n.suspended;
         break;
       case PveResourceStatusType.paused:
-        statusColor = intermediateColor;
+        statusColor = intermediate;
         statusText = l10n.paused;
         break;
       case PveResourceStatusType.suspending:
-        statusColor = intermediateColor;
+        statusColor = intermediate;
         statusText = l10n.suspending;
         break;
       case PveResourceStatusType.prelaunch:
-        statusColor = offlineColor;
+        statusColor = offline;
         statusText = l10n.prelaunch;
         break;
       default:
-        statusColor = offlineColor;
+        statusColor = offline;
         statusText = l10n.unknownStatus;
     }
     return Container(

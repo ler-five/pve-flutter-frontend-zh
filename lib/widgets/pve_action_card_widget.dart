@@ -39,7 +39,8 @@ class ActionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    final base = color ?? scheme.primary;
+    final base =
+        ProxmoxColors.accentForText(context, color ?? scheme.primary);
     return SizedBox(
       width: 68,
       height: 68,
@@ -77,7 +78,7 @@ class ActionCard extends StatelessWidget {
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: ProxmoxColors.textPrimary,
+                      color: scheme.onSurface,
                       fontSize: 10,
                       height: 1.15,
                       fontWeight: FontWeight.w600,

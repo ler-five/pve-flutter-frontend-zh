@@ -378,10 +378,11 @@ ThemeData buildAppTheme(Brightness brightness) {
           primary: ProxmoxColors.supportBlue,
           onPrimary: Colors.white,
           secondary: ProxmoxColors.orange,
-          surface: ProxmoxColors.supportGreyTint50,
-          onSurface: Colors.black,
+          surface: Colors.white,
+          onSurface: Color(0xFF15191C),
           surfaceContainer: ProxmoxColors.supportGreyTint75,
           onSurfaceVariant: ProxmoxColors.supportDarkGrey,
+          outline: ProxmoxColors.supportGreyTint25,
         );
 
   final bg = isDark ? ProxmoxColors.darkBg : ProxmoxColors.supportGreyTint75;
@@ -410,7 +411,7 @@ ThemeData buildAppTheme(Brightness brightness) {
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: bg,
-      foregroundColor: isDark ? ProxmoxColors.textPrimary : Colors.white,
+      foregroundColor: scheme.onSurface,
       elevation: 0,
       scrolledUnderElevation: 0,
       centerTitle: false,
@@ -419,7 +420,7 @@ ThemeData buildAppTheme(Brightness brightness) {
         fontFamily: fontFamily,
         fontSize: 18,
         fontWeight: FontWeight.w700,
-        color: isDark ? ProxmoxColors.textPrimary : Colors.white,
+        color: scheme.onSurface,
       ),
     ),
     listTileTheme: ListTileThemeData(

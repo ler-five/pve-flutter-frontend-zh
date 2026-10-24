@@ -514,14 +514,16 @@ class _DashboardChip extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Icon(icon, size: 15, color: color),
+                  Icon(icon,
+                      size: 15,
+                      color: ProxmoxColors.accentForText(context, color)),
                   const SizedBox(width: 6),
                   Text(
                     label,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: ProxmoxColors.textPrimary,
+                      color: ProxmoxColors.textPrimaryOf(context),
                     ),
                   ),
                 ],
@@ -566,7 +568,8 @@ class _GuestSummaryTile extends StatelessWidget {
           color: color.withValues(alpha: 0.14),
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Icon(icon, size: 17, color: color),
+        child: Icon(icon,
+            size: 17, color: ProxmoxColors.accentForText(context, color)),
       ),
       title: Text(
         label,
@@ -574,14 +577,15 @@ class _GuestSummaryTile extends StatelessWidget {
       ),
       subtitle: Text(
         '${l10n.online} $online · ${l10n.offline} $offline',
-        style: const TextStyle(fontSize: 11, color: ProxmoxColors.textMuted),
+        style: TextStyle(
+            fontSize: 11, color: ProxmoxColors.textMutedOf(context)),
       ),
       trailing: Text(
         '$total',
         style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w700,
-          color: color,
+          color: ProxmoxColors.accentForText(context, color),
         ),
       ),
       onTap: onTap,
@@ -615,19 +619,21 @@ class PveNodeListTile extends StatelessWidget {
         child: Icon(
           Renderers.getDefaultResourceIcon(type),
           size: 17,
-          color: ProxmoxColors.accentBlue,
+          color: ProxmoxColors.accentForText(context, ProxmoxColors.accentBlue),
         ),
       ),
       title: Text(name,
           style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
       subtitle: Text(
         getNodeTileSubtitle(context, online, level, ip),
-        style: const TextStyle(fontSize: 11, color: ProxmoxColors.textMuted),
+        style: TextStyle(fontSize: 11, color: ProxmoxColors.textMutedOf(context)),
       ),
       trailing: Icon(
         Icons.chevron_right,
         size: 18,
-        color: online ? ProxmoxColors.accentGreen : ProxmoxColors.textMuted,
+        color: online
+            ? ProxmoxColors.accentForText(context, ProxmoxColors.accentGreen)
+            : ProxmoxColors.textMutedOf(context),
       ),
       onTap: () => Navigator.pushNamed(context, '/nodes/$name'),
     );
@@ -708,11 +714,11 @@ class MobileResourceOverview extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(18, 12, 18, 3),
                         child: Text(
                           resource.type.toUpperCase(),
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 11,
                             letterSpacing: 1.2,
                             fontWeight: FontWeight.w700,
-                            color: ProxmoxColors.textMuted,
+                            color: ProxmoxColors.textMutedOf(context),
                           ),
                         ),
                       ),
@@ -751,9 +757,12 @@ class PveGuestListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final status = resource.getStatus();
-    final accent = resource.type == 'lxc'
-        ? ProxmoxColors.accentViolet
-        : ProxmoxColors.accentCyan;
+    final accent = ProxmoxColors.accentForText(
+      context,
+      resource.type == 'lxc'
+          ? ProxmoxColors.accentViolet
+          : ProxmoxColors.accentCyan,
+    );
 
     return ListTile(
       leading: Container(
@@ -782,21 +791,21 @@ class PveGuestListTile extends StatelessWidget {
         padding: const EdgeInsets.only(top: 3),
         child: Row(
           children: <Widget>[
-            const Icon(Icons.dns_outlined,
-                size: 11, color: ProxmoxColors.textMuted),
+            Icon(Icons.dns_outlined,
+                size: 11, color: ProxmoxColors.textMutedOf(context)),
             const SizedBox(width: 3),
             Text(
               resource.node ?? '',
-              style: const TextStyle(
-                  fontSize: 11, color: ProxmoxColors.textMuted),
+              style: TextStyle(
+                  fontSize: 11, color: ProxmoxColors.textMutedOf(context)),
             ),
             const Spacer(),
             StatusChip(status: status, fontzsize: 10),
           ],
         ),
       ),
-      trailing: const Icon(Icons.chevron_right,
-          size: 18, color: ProxmoxColors.textMuted),
+      trailing: Icon(Icons.chevron_right,
+          size: 18, color: ProxmoxColors.textMutedOf(context)),
       onTap: () {
         if (['qemu', 'lxc'].contains(resource.type)) {
           Navigator.pushNamed(
@@ -831,13 +840,13 @@ class PveStorageListeTile extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              const Icon(Icons.dns_outlined,
-                  size: 11, color: ProxmoxColors.textMuted),
+              Icon(Icons.dns_outlined,
+                  size: 11, color: ProxmoxColors.textMutedOf(context)),
               const SizedBox(width: 3),
               Text(
                 resource.node ?? '',
-                style: const TextStyle(
-                    fontSize: 11, color: ProxmoxColors.textMuted),
+                style: TextStyle(
+                    fontSize: 11, color: ProxmoxColors.textMutedOf(context)),
               ),
               const Spacer(),
               StatusChip(
@@ -935,12 +944,12 @@ class _AppbarSearchTextFieldState extends State<AppbarSearchTextField> {
             const BoxConstraints(minHeight: 32, minWidth: 32),
         suffixIconConstraints:
             const BoxConstraints(maxHeight: 32, maxWidth: 32),
-        fillColor: Theme.of(context).colorScheme.surfaceContainer,
+        fillColor: Theme.of(context).colorScheme.surface,
         filled: true,
         isDense: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: ProxmoxColors.darkBorder),
+          borderSide: BorderSide(color: ProxmoxColors.borderOf(context)),
         ),
       ),
       style: const TextStyle(fontSize: 15),
@@ -962,13 +971,14 @@ class AppBarFilterIconButton extends StatelessWidget {
         builder: (context, state) {
           return IconButton(
             icon: rBloc.isFiltered
-                ? const FaIcon(
+                ? FaIcon(
                     FontAwesomeIcons.filter,
-                    color: ProxmoxColors.accentCyan,
+                    color: ProxmoxColors.accentForText(
+                        context, ProxmoxColors.accentCyan),
                   )
-                : const FaIcon(
+                : FaIcon(
                     FontAwesomeIcons.filter,
-                    color: ProxmoxColors.textMuted,
+                    color: ProxmoxColors.textMutedOf(context),
                   ),
             onPressed: () => Scaffold.of(context).openEndDrawer(),
           );
@@ -992,8 +1002,8 @@ class MobileAccessManagement extends StatelessWidget {
           automaticallyImplyLeading: false,
           bottom: TabBar(
               isScrollable: true,
-              unselectedLabelStyle:
-                  TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              unselectedLabelStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant),
               labelStyle:
                   TextStyle(color: Theme.of(context).colorScheme.secondary),
               indicatorColor: Theme.of(context).colorScheme.secondary,
@@ -1097,7 +1107,7 @@ class MobileAccessManagement extends StatelessWidget {
                                         child: Container(
                                           width: 40,
                                           height: 3,
-                                          color: ProxmoxColors.textMuted,
+                                          color: ProxmoxColors.borderOf(context),
                                         ),
                                       ),
                                     ),
@@ -1155,7 +1165,7 @@ class MobileAccessManagement extends StatelessWidget {
                                       child: Container(
                                         width: 40,
                                         height: 3,
-                                        color: ProxmoxColors.textMuted,
+                                        color: ProxmoxColors.borderOf(context),
                                       ),
                                     ),
                                   ),

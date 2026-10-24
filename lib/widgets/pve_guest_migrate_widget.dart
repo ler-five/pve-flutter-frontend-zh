@@ -27,7 +27,7 @@ class PveGuestMigrate extends StatelessWidget {
         return Scaffold(
           appBar: PveAppBar(
             title: Text(AppLocalizations.of(context).migration,
-              style: TextStyle(color: Colors.white, fontSize: 25),
+              style: const TextStyle(fontSize: 25),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

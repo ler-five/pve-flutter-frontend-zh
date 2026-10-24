@@ -74,7 +74,7 @@ class ProxmoxCapacityIndicator extends StatelessWidget {
           ),
           LinearProgressIndicator(
             backgroundColor: indicatorBackgroundColor ??
-                Theme.of(context).colorScheme.onPrimary,
+                Theme.of(context).colorScheme.surfaceContainerHighest,
             valueColor: valueColor ?? getUsageAwareColor(usedPercent),
             value: usedPercent,
           )

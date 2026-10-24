@@ -220,11 +220,11 @@ class _PveSettingsSection extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(18, 14, 18, 4),
           child: Text(
             sectionTitle.toUpperCase(),
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 11,
               letterSpacing: 1.2,
               fontWeight: FontWeight.w700,
-              color: ProxmoxColors.textMuted,
+              color: ProxmoxColors.textMutedOf(context),
             ),
           ),
         ),

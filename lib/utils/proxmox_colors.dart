@@ -64,5 +64,31 @@ class ProxmoxColors {
   static const Color textPrimary = Color(0xFFF1F5F9);
   static const Color textSecondary = Color(0xFF94A3B8);
   static const Color textMuted = Color(0xFF64748B);
+
+  /// Primary text color resolved for the active theme, so text stays readable
+  /// on both the dark and the light surface.
+  static Color textPrimaryOf(BuildContext context) =>
+      Theme.of(context).colorScheme.onSurface;
+
+  /// Secondary text color resolved for the active theme.
+  static Color textSecondaryOf(BuildContext context) =>
+      Theme.of(context).colorScheme.onSurfaceVariant;
+
+  /// Muted text color resolved for the active theme.
+  static Color textMutedOf(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? textMuted
+          : supportGreyShade50;
+
+  /// Hairline border color resolved for the active theme.
+  static Color borderOf(BuildContext context) =>
+      Theme.of(context).colorScheme.outline;
+
+  /// Accent color darkened for light backgrounds so labels and icons keep
+  /// enough contrast.
+  static Color accentForText(BuildContext context, Color accent) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? accent
+          : Color.lerp(accent, Colors.black, 0.42)!;
 }
 
