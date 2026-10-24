@@ -2,9 +2,9 @@
 
 > 用途：作为 GitHub 分支（建议命名 `feature/zh-multilang-ui`）的维护说明。
 > 上游仓库：
-> - `https://git.proxmox.com/git/pve-flutter-frontend.git`
-> - `https://git.proxmox.com/git/proxmox-dart-api-client.git`
-> - `https://git.proxmox.com/git/proxmox-login-manager.git`
+> - `https://git.proxmox.com/git/flutter/pve_flutter_frontend.git`
+> - `https://git.proxmox.com/git/flutter/proxmox_dart_api_client.git`
+> - `https://git.proxmox.com/git/flutter/proxmox_login_manager.git`
 >
 > 原则：**品牌、包名、图标、关于页、原有业务逻辑保持不变**，所有改动均为增量。
 
@@ -179,7 +179,7 @@
 
 ```bash
 # 首次建立分支
-git remote add upstream https://git.proxmox.com/git/pve-flutter-frontend.git
+git remote add upstream https://git.proxmox.com/git/flutter/pve_flutter_frontend.git
 git checkout -b feature/zh-multilang-ui
 git push origin feature/zh-multilang-ui
 
