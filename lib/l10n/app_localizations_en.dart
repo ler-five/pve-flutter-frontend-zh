@@ -758,4 +758,123 @@ class AppLocalizationsEn extends AppLocalizations {
   String editTitle(String title) {
     return 'Edit: $title';
   }
+
+  @override
+  String get snapshots => 'Snapshots';
+
+  @override
+  String snapshotGuestid(String guestId) {
+    return 'Snapshots $guestId';
+  }
+
+  @override
+  String get takeSnapshot => 'Take snapshot';
+
+  @override
+  String get snapshotName => 'Snapshot name';
+
+  @override
+  String get snapshotNameRequired => 'Please enter a snapshot name';
+
+  @override
+  String get snapshotNameInvalid =>
+      'Only letters, numbers, \'_\' and \'-\' allowed';
+
+  @override
+  String get includeRamState => 'Include RAM (VM state)';
+
+  @override
+  String get withRamState => 'RAM state';
+
+  @override
+  String get rollback => 'Rollback';
+
+  @override
+  String rollbackSnapshotConfirm(String name) {
+    return 'Rollback to snapshot \'$name\'? The current state will be lost.';
+  }
+
+  @override
+  String deleteSnapshotConfirm(String name) {
+    return 'Delete snapshot \'$name\'?';
+  }
+
+  @override
+  String get noSnapshots => 'No snapshots yet';
+
+  @override
+  String get options => 'Options';
+
+  @override
+  String get editHardware => 'Edit hardware';
+
+  @override
+  String get cpuCores => 'CPU cores';
+
+  @override
+  String get sockets => 'Sockets';
+
+  @override
+  String get memoryMib => 'Memory (MiB)';
+
+  @override
+  String get swapMib => 'Swap (MiB)';
+
+  @override
+  String get resizeDisk => 'Resize disk';
+
+  @override
+  String get resizeDiskHint => 'Size increment, e.g. +10G';
+
+  @override
+  String get invalidSizeIncrement => 'Use format like +10G or +512M';
+
+  @override
+  String get invalidNumber => 'Please enter a valid number';
+
+  @override
+  String get bridge => 'Bridge';
+
+  @override
+  String get disk => 'Disk';
+
+  @override
+  String get apply => 'Apply';
+
+  @override
+  String get configUpdated => 'Configuration updated';
+
+  @override
+  String coresSocketsValue(String cores, String sockets) {
+    return '$cores Cores $sockets Socket';
+  }
+
+  @override
+  String get unlimited => 'unlimited';
+
+  @override
+  String get useHostSettings => 'Use host settings';
+
+  @override
+  String get attention => 'Attention';
+
+  @override
+  String get deleteBackupConfirm => 'Do you really want to delete this backup?';
+
+  @override
+  String get restoreBackupTitle => 'Restore backup';
+
+  @override
+  String restoreBackupConfirm(String volid, String guestId) {
+    return 'Restore \'$volid\' to guest $guestId? Existing data will be overwritten.';
+  }
+
+  @override
+  String get startAfterRestore => 'Start after restore';
+
+  @override
+  String get restoreBackupError => 'Could not start restore';
+
+  @override
+  String get actionFailed => 'Action failed';
 }

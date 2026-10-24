@@ -26,6 +26,8 @@ import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
 import 'package:pve_flutter_frontend/widgets/pve_action_card_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_app_bar.dart';
 import 'package:pve_flutter_frontend/widgets/pve_guest_backup_widget.dart';
+import 'package:pve_flutter_frontend/widgets/pve_guest_hardware_edit_widget.dart';
+import 'package:pve_flutter_frontend/widgets/pve_guest_snapshot_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_guest_overview_header.dart';
 import 'package:pve_flutter_frontend/widgets/pve_guest_migrate_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_qemu_options_widget.dart';
@@ -129,13 +131,13 @@ class PveQemuOverview extends StatelessWidget {
                           children: <Widget>[
                             if (!(status?.template ?? false))
                               ActionCard.withIcon(
-                                  'Power Settings',
+                                  AppLocalizations.of(context).powerSettings,
                                   Icons.power_settings_new,
                                   () =>
                                       showPowerMenuBottomSheet(context, bloc)),
                             if (!(status?.template ?? false))
                               ActionCard.withIcon(
-                                  'Console',
+                                  AppLocalizations.of(context).console,
                                   Icons.queue_play_next,
                                   () => showConsoleMenuBottomSheet(
                                         context,
@@ -146,23 +148,35 @@ class PveQemuOverview extends StatelessWidget {
                                         allowSpice: status?.spice ?? false,
                                       )),
                             ActionCard.withIcon(
-                                'Options',
+                                AppLocalizations.of(context).options,
                                 Icons.settings,
                                 () => Navigator.of(context)
                                     .push(_createOptionsRoute(bloc))),
                             if (!rBloc.latestState.isStandalone)
                               ActionCard.withFaIcon(
-                                  'Migrate',
+                                  AppLocalizations.of(context).migration,
                                   FontAwesomeIcons.paperPlane,
                                   () => Navigator.of(context).push(
                                       _createMigrationRoute(guestID,
                                           state.nodeID, bloc.apiClient))),
                             ActionCard.withFaIcon(
-                                'Backup',
+                                AppLocalizations.of(context).backup,
                                 FontAwesomeIcons.floppyDisk,
                                 () => Navigator.of(context).push(
                                     _createBackupRoute(guestID, state.nodeID,
                                         bloc.apiClient))),
+                            ActionCard.withIcon(
+                                AppLocalizations.of(context).snapshots,
+                                Icons.camera_alt,
+                                () => Navigator.of(context).push(
+                                    _createSnapshotRoute(
+                                        state.nodeID, bloc.apiClient))),
+                            ActionCard.withIcon(
+                                AppLocalizations.of(context).editHardware,
+                                Icons.tune,
+                                () => Navigator.of(context).push(
+                                    _createHardwareEditRoute(
+                                        state.nodeID, bloc.apiClient))),
                           ],
                         ),
                       ),
@@ -186,7 +200,7 @@ class PveQemuOverview extends StatelessWidget {
                             ListTile(
                               leading: const Icon(Icons.memory),
                               title: Text(
-                                  '${config.cores} Cores ${config.sockets} Socket'),
+                                  AppLocalizations.of(context).coresSocketsValue('${config.cores}', '${config.sockets}')),
                               subtitle: Text(AppLocalizations.of(context).processor),
                               dense: true,
                             ),
@@ -350,6 +364,28 @@ class PveQemuOverview extends StatelessWidget {
           child: PveGuestBackupWidget(
             guestID: guestID,
           )),
+    );
+  }
+
+  Route _createSnapshotRoute(String nodeID, ProxmoxApiClient client) {
+    return MaterialPageRoute(
+      builder: (context) => PveGuestSnapshotWidget(
+        apiClient: client,
+        nodeID: nodeID,
+        guestID: guestID,
+        guestType: 'qemu',
+      ),
+    );
+  }
+
+  Route _createHardwareEditRoute(String nodeID, ProxmoxApiClient client) {
+    return MaterialPageRoute(
+      builder: (context) => PveGuestHardwareEditWidget(
+        apiClient: client,
+        nodeID: nodeID,
+        guestID: guestID,
+        guestType: 'qemu',
+      ),
     );
   }
 

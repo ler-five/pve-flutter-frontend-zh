@@ -26,6 +26,8 @@ import 'package:pve_flutter_frontend/widgets/proxmox_stream_listener.dart';
 import 'package:pve_flutter_frontend/widgets/pve_action_card_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_app_bar.dart';
 import 'package:pve_flutter_frontend/widgets/pve_guest_backup_widget.dart';
+import 'package:pve_flutter_frontend/widgets/pve_guest_hardware_edit_widget.dart';
+import 'package:pve_flutter_frontend/widgets/pve_guest_snapshot_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_guest_migrate_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_guest_overview_header.dart';
 import 'package:pve_flutter_frontend/widgets/pve_lxc_options_widget.dart';
@@ -128,13 +130,13 @@ class PveLxcOverview extends StatelessWidget {
                             children: <Widget>[
                               if (!(status?.template ?? false))
                                 ActionCard.withIcon(
-                                    'Power Settings',
+                                    AppLocalizations.of(context).powerSettings,
                                     Icons.power_settings_new,
                                     () => showPowerMenuBottomSheet(
                                         context, lxcBloc)),
                               if (!(status?.template ?? false))
                                 ActionCard.withIcon(
-                                    'Console',
+                                    AppLocalizations.of(context).console,
                                     Icons.queue_play_next,
                                     () => showConsoleMenuBottomSheet(
                                         context,
@@ -143,7 +145,7 @@ class PveLxcOverview extends StatelessWidget {
                                         state.nodeID,
                                         'lxc')),
                               ActionCard.withIcon(
-                                  'Options',
+                                  AppLocalizations.of(context).options,
                                   Icons.settings,
                                   () => Navigator.of(context)
                                       .push(MaterialPageRoute(
@@ -153,7 +155,7 @@ class PveLxcOverview extends StatelessWidget {
                                           fullscreenDialog: true))),
                               if (!resourceBloc.latestState.isStandalone)
                                 ActionCard.withFaIcon(
-                                    'Migrate',
+                                    AppLocalizations.of(context).migration,
                                     FontAwesomeIcons.paperPlane,
                                     () => Navigator.of(context).push(
                                         _createMigrationRoute(
@@ -161,10 +163,22 @@ class PveLxcOverview extends StatelessWidget {
                                             state.nodeID,
                                             resourceBloc.apiClient!))),
                               ActionCard.withFaIcon(
-                                  'Backup',
+                                  AppLocalizations.of(context).backup,
                                   FontAwesomeIcons.floppyDisk,
                                   () => Navigator.of(context).push(
                                       _createBackupRoute(guestID, state.nodeID,
+                                          resourceBloc.apiClient!))),
+                              ActionCard.withIcon(
+                                  AppLocalizations.of(context).snapshots,
+                                  Icons.camera_alt,
+                                  () => Navigator.of(context).push(
+                                      _createSnapshotRoute(state.nodeID,
+                                          resourceBloc.apiClient!))),
+                              ActionCard.withIcon(
+                                  AppLocalizations.of(context).editHardware,
+                                  Icons.tune,
+                                  () => Navigator.of(context).push(
+                                      _createHardwareEditRoute(state.nodeID,
                                           resourceBloc.apiClient!))),
                             ],
                           ),
@@ -193,7 +207,7 @@ class PveLxcOverview extends StatelessWidget {
                             ),
                             ListTile(
                               leading: const Icon(Icons.memory),
-                              title: Text('${config.cores ?? 'unlimited'}'),
+                              title: Text('${config.cores ?? AppLocalizations.of(context).unlimited}'),
                               subtitle: Text(AppLocalizations.of(context).cores),
                               dense: true,
                             ),
@@ -232,7 +246,7 @@ class PveLxcOverview extends StatelessWidget {
                                 leading: const FaIcon(FontAwesomeIcons.globe),
                                 dense: true,
                                 title: Text(
-                                    config.searchdomain ?? 'Use host settings'),
+                                    config.searchdomain ?? AppLocalizations.of(context).useHostSettings),
                                 subtitle: Text(AppLocalizations.of(context).dnsDomain),
                               ),
                               ListTile(
@@ -240,7 +254,7 @@ class PveLxcOverview extends StatelessWidget {
                                     FontAwesomeIcons.magnifyingGlass),
                                 dense: true,
                                 title: Text(
-                                    config.nameserver ?? 'Use host settings'),
+                                    config.nameserver ?? AppLocalizations.of(context).useHostSettings),
                                 subtitle: Text(AppLocalizations.of(context).dnsServer),
                               ),
                             ]),
@@ -319,6 +333,28 @@ class PveLxcOverview extends StatelessWidget {
           child: PveGuestBackupWidget(
             guestID: guestID,
           )),
+    );
+  }
+
+  Route _createSnapshotRoute(String nodeID, ProxmoxApiClient client) {
+    return MaterialPageRoute(
+      builder: (context) => PveGuestSnapshotWidget(
+        apiClient: client,
+        nodeID: nodeID,
+        guestID: guestID,
+        guestType: 'lxc',
+      ),
+    );
+  }
+
+  Route _createHardwareEditRoute(String nodeID, ProxmoxApiClient client) {
+    return MaterialPageRoute(
+      builder: (context) => PveGuestHardwareEditWidget(
+        apiClient: client,
+        nodeID: nodeID,
+        guestID: guestID,
+        guestType: 'lxc',
+      ),
     );
   }
 

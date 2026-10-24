@@ -1483,6 +1483,222 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Edit: {title}'**
   String editTitle(String title);
+
+  /// No description provided for @snapshots.
+  ///
+  /// In en, this message translates to:
+  /// **'Snapshots'**
+  String get snapshots;
+
+  /// No description provided for @snapshotGuestid.
+  ///
+  /// In en, this message translates to:
+  /// **'Snapshots {guestId}'**
+  String snapshotGuestid(String guestId);
+
+  /// No description provided for @takeSnapshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Take snapshot'**
+  String get takeSnapshot;
+
+  /// No description provided for @snapshotName.
+  ///
+  /// In en, this message translates to:
+  /// **'Snapshot name'**
+  String get snapshotName;
+
+  /// No description provided for @snapshotNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a snapshot name'**
+  String get snapshotNameRequired;
+
+  /// No description provided for @snapshotNameInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Only letters, numbers, \'_\' and \'-\' allowed'**
+  String get snapshotNameInvalid;
+
+  /// No description provided for @includeRamState.
+  ///
+  /// In en, this message translates to:
+  /// **'Include RAM (VM state)'**
+  String get includeRamState;
+
+  /// No description provided for @withRamState.
+  ///
+  /// In en, this message translates to:
+  /// **'RAM state'**
+  String get withRamState;
+
+  /// No description provided for @rollback.
+  ///
+  /// In en, this message translates to:
+  /// **'Rollback'**
+  String get rollback;
+
+  /// No description provided for @rollbackSnapshotConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Rollback to snapshot \'{name}\'? The current state will be lost.'**
+  String rollbackSnapshotConfirm(String name);
+
+  /// No description provided for @deleteSnapshotConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete snapshot \'{name}\'?'**
+  String deleteSnapshotConfirm(String name);
+
+  /// No description provided for @noSnapshots.
+  ///
+  /// In en, this message translates to:
+  /// **'No snapshots yet'**
+  String get noSnapshots;
+
+  /// No description provided for @options.
+  ///
+  /// In en, this message translates to:
+  /// **'Options'**
+  String get options;
+
+  /// No description provided for @editHardware.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit hardware'**
+  String get editHardware;
+
+  /// No description provided for @cpuCores.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU cores'**
+  String get cpuCores;
+
+  /// No description provided for @sockets.
+  ///
+  /// In en, this message translates to:
+  /// **'Sockets'**
+  String get sockets;
+
+  /// No description provided for @memoryMib.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory (MiB)'**
+  String get memoryMib;
+
+  /// No description provided for @swapMib.
+  ///
+  /// In en, this message translates to:
+  /// **'Swap (MiB)'**
+  String get swapMib;
+
+  /// No description provided for @resizeDisk.
+  ///
+  /// In en, this message translates to:
+  /// **'Resize disk'**
+  String get resizeDisk;
+
+  /// No description provided for @resizeDiskHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Size increment, e.g. +10G'**
+  String get resizeDiskHint;
+
+  /// No description provided for @invalidSizeIncrement.
+  ///
+  /// In en, this message translates to:
+  /// **'Use format like +10G or +512M'**
+  String get invalidSizeIncrement;
+
+  /// No description provided for @invalidNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid number'**
+  String get invalidNumber;
+
+  /// No description provided for @bridge.
+  ///
+  /// In en, this message translates to:
+  /// **'Bridge'**
+  String get bridge;
+
+  /// No description provided for @disk.
+  ///
+  /// In en, this message translates to:
+  /// **'Disk'**
+  String get disk;
+
+  /// No description provided for @apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get apply;
+
+  /// No description provided for @configUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Configuration updated'**
+  String get configUpdated;
+
+  /// No description provided for @coresSocketsValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{cores} Cores {sockets} Socket'**
+  String coresSocketsValue(String cores, String sockets);
+
+  /// No description provided for @unlimited.
+  ///
+  /// In en, this message translates to:
+  /// **'unlimited'**
+  String get unlimited;
+
+  /// No description provided for @useHostSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Use host settings'**
+  String get useHostSettings;
+
+  /// No description provided for @attention.
+  ///
+  /// In en, this message translates to:
+  /// **'Attention'**
+  String get attention;
+
+  /// No description provided for @deleteBackupConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you really want to delete this backup?'**
+  String get deleteBackupConfirm;
+
+  /// No description provided for @restoreBackupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore backup'**
+  String get restoreBackupTitle;
+
+  /// No description provided for @restoreBackupConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore \'{volid}\' to guest {guestId}? Existing data will be overwritten.'**
+  String restoreBackupConfirm(String volid, String guestId);
+
+  /// No description provided for @startAfterRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Start after restore'**
+  String get startAfterRestore;
+
+  /// No description provided for @restoreBackupError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not start restore'**
+  String get restoreBackupError;
+
+  /// No description provided for @actionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Action failed'**
+  String get actionFailed;
 }
 
 class _AppLocalizationsDelegate

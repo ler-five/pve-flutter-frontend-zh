@@ -258,16 +258,18 @@ class PveGuestBackupContent extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: ListView(children: [
                     OutlinedButton.icon(
-                      onPressed: null,
+                      onPressed: () =>
+                          _showRestoreDialog(context, fBloc, volid),
                       icon: const Icon(Icons.restore),
                       label: Text(AppLocalizations.of(context).restore),
                     ),
                     OutlinedButton.icon(
                       onPressed: () async {
+                        final loc = AppLocalizations.of(context);
                         final guard = (await _showConfirmDialog(
                             context,
-                            'Attention',
-                            'Do you really want to delete this backup?'))!;
+                            loc.attention,
+                            loc.deleteBackupConfirm))!;
                         if (guard) {
                           fBloc.events.add(DeleteFile(volid));
                           if (context.mounted) Navigator.of(context).pop();
@@ -315,6 +317,80 @@ class PveGuestBackupContent extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _showRestoreDialog(BuildContext parentContext,
+      PveFileSelectorBloc fBloc, String volid) async {
+    final loc = AppLocalizations.of(parentContext);
+    var startAfterRestore = false;
+    final guestId = fBloc.latestState.guestID?.toString() ?? '';
+    final guestType = volid.contains('vzdump-lxc-') ? 'lxc' : 'qemu';
+    final confirmed = await showDialog<bool>(
+      context: parentContext,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setDialogState) => AlertDialog(
+          title: Text(loc.restoreBackupTitle),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(loc.restoreBackupConfirm(volid, guestId)),
+              CheckboxListTile(
+                value: startAfterRestore,
+                contentPadding: EdgeInsets.zero,
+                title: Text(loc.startAfterRestore),
+                onChanged: (v) =>
+                    setDialogState(() => startAfterRestore = v ?? false),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: Text(loc.cancel),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: Text(loc.confirm),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (confirmed != true || guestId.isEmpty) return;
+    try {
+      final upid = await fBloc.apiClient.restoreGuest(
+        fBloc.latestState.nodeID,
+        guestType,
+        guestId,
+        volid,
+        start: startAfterRestore,
+      );
+      if (!parentContext.mounted) return;
+      Navigator.of(parentContext).pop();
+      if (upid != null) {
+        await showTaskLogBottomSheet(
+          parentContext,
+          fBloc.apiClient,
+          fBloc.latestState.nodeID,
+          upid,
+          icon: const Icon(Icons.restore),
+          jobTitle: Text(loc.restoreBackupTitle),
+        );
+      }
+      fBloc.events.add(LoadStorageContent());
+    } on ProxmoxApiException catch (e) {
+      if (!parentContext.mounted) return;
+      ScaffoldMessenger.of(parentContext).showSnackBar(SnackBar(
+        content: Text(e.message),
+        backgroundColor: Theme.of(parentContext).colorScheme.error,
+      ));
+    } catch (e) {
+      if (!parentContext.mounted) return;
+      ScaffoldMessenger.of(parentContext).showSnackBar(SnackBar(
+        content: Text(loc.restoreBackupError),
+        backgroundColor: Theme.of(parentContext).colorScheme.error,
+      ));
+    }
   }
 
   Future<void> _showConfigurationDialog(

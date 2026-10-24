@@ -754,4 +754,122 @@ class AppLocalizationsZh extends AppLocalizations {
   String editTitle(String title) {
     return '编辑：$title';
   }
+
+  @override
+  String get snapshots => '快照';
+
+  @override
+  String snapshotGuestid(String guestId) {
+    return '快照 $guestId';
+  }
+
+  @override
+  String get takeSnapshot => '创建快照';
+
+  @override
+  String get snapshotName => '快照名称';
+
+  @override
+  String get snapshotNameRequired => '请输入快照名称';
+
+  @override
+  String get snapshotNameInvalid => '只能包含字母、数字、下划线和连字符';
+
+  @override
+  String get includeRamState => '包含内存（虚拟机状态）';
+
+  @override
+  String get withRamState => '含内存状态';
+
+  @override
+  String get rollback => '回滚';
+
+  @override
+  String rollbackSnapshotConfirm(String name) {
+    return '确定回滚到快照“$name”？当前状态将丢失。';
+  }
+
+  @override
+  String deleteSnapshotConfirm(String name) {
+    return '确定删除快照“$name”？';
+  }
+
+  @override
+  String get noSnapshots => '暂无快照';
+
+  @override
+  String get options => '选项';
+
+  @override
+  String get editHardware => '编辑硬件';
+
+  @override
+  String get cpuCores => 'CPU 核数';
+
+  @override
+  String get sockets => '插槽数';
+
+  @override
+  String get memoryMib => '内存 (MiB)';
+
+  @override
+  String get swapMib => '交换空间 (MiB)';
+
+  @override
+  String get resizeDisk => '磁盘扩容';
+
+  @override
+  String get resizeDiskHint => '容量增量，例如 +10G';
+
+  @override
+  String get invalidSizeIncrement => '请使用如 +10G 或 +512M 的格式';
+
+  @override
+  String get invalidNumber => '请输入有效数字';
+
+  @override
+  String get bridge => '网桥';
+
+  @override
+  String get disk => '磁盘';
+
+  @override
+  String get apply => '应用';
+
+  @override
+  String get configUpdated => '配置已更新';
+
+  @override
+  String coresSocketsValue(String cores, String sockets) {
+    return '$cores 核 $sockets 插槽';
+  }
+
+  @override
+  String get unlimited => '无限制';
+
+  @override
+  String get useHostSettings => '使用主机设置';
+
+  @override
+  String get attention => '注意';
+
+  @override
+  String get deleteBackupConfirm => '确定要删除该备份吗？';
+
+  @override
+  String get restoreBackupTitle => '恢复备份';
+
+  @override
+  String restoreBackupConfirm(String volid, String guestId) {
+    return '将备份“$volid”恢复到客户机 $guestId？现有数据将被覆盖。';
+  }
+
+  @override
+  String get startAfterRestore => '恢复完成后启动';
+
+  @override
+  String get restoreBackupError => '无法启动恢复';
+
+  @override
+  String get actionFailed => '操作失败';
 }

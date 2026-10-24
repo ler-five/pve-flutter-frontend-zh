@@ -363,5 +363,62 @@
   "editTitle": "Edit: {title}",
   "@editTitle": {
     "placeholders": {"title": {"type": "String"}}
-  }
+  },
+  "snapshots": "Snapshots",
+  "snapshotGuestid": "Snapshots {guestId}",
+  "@snapshotGuestid": {
+    "placeholders": {"guestId": {"type": "String"}}
+  },
+  "takeSnapshot": "Take snapshot",
+  "snapshotName": "Snapshot name",
+  "snapshotNameRequired": "Please enter a snapshot name",
+  "snapshotNameInvalid": "Only letters, numbers, '_' and '-' allowed",
+  "includeRamState": "Include RAM (VM state)",
+  "withRamState": "RAM state",
+  "rollback": "Rollback",
+  "rollbackSnapshotConfirm": "Rollback to snapshot '{name}'? The current state will be lost.",
+  "@rollbackSnapshotConfirm": {
+    "placeholders": {"name": {"type": "String"}}
+  },
+  "deleteSnapshotConfirm": "Delete snapshot '{name}'?",
+  "@deleteSnapshotConfirm": {
+    "placeholders": {"name": {"type": "String"}}
+  },
+  "noSnapshots": "No snapshots yet",
+  "options": "Options",
+  "editHardware": "Edit hardware",
+  "cpuCores": "CPU cores",
+  "sockets": "Sockets",
+  "memoryMib": "Memory (MiB)",
+  "swapMib": "Swap (MiB)",
+  "resizeDisk": "Resize disk",
+  "resizeDiskHint": "Size increment, e.g. +10G",
+  "invalidSizeIncrement": "Use format like +10G or +512M",
+  "invalidNumber": "Please enter a valid number",
+  "bridge": "Bridge",
+  "disk": "Disk",
+  "apply": "Apply",
+  "configUpdated": "Configuration updated",
+  "coresSocketsValue": "{cores} Cores {sockets} Socket",
+  "@coresSocketsValue": {
+    "placeholders": {
+      "cores": {"type": "String"},
+      "sockets": {"type": "String"}
+    }
+  },
+  "unlimited": "unlimited",
+  "useHostSettings": "Use host settings",
+  "attention": "Attention",
+  "deleteBackupConfirm": "Do you really want to delete this backup?",
+  "restoreBackupTitle": "Restore backup",
+  "restoreBackupConfirm": "Restore '{volid}' to guest {guestId}? Existing data will be overwritten.",
+  "@restoreBackupConfirm": {
+    "placeholders": {
+      "volid": {"type": "String"},
+      "guestId": {"type": "String"}
+    }
+  },
+  "startAfterRestore": "Start after restore",
+  "restoreBackupError": "Could not start restore",
+  "actionFailed": "Action failed"
 }
