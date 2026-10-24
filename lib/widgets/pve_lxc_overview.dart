@@ -122,7 +122,7 @@ class PveLxcOverview extends StatelessWidget {
                         },
                       ),
                       SizedBox(
-                        height: 130,
+                        height: 96,
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
@@ -222,7 +222,7 @@ class PveLxcOverview extends StatelessWidget {
                             title: Text(AppLocalizations.of(context).network,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20,
+                                fontSize: 15,
                               ),
                             ),
                             children: <Widget>[
@@ -238,7 +238,7 @@ class PveLxcOverview extends StatelessWidget {
                             title: Text(AppLocalizations.of(context).dns,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20,
+                                fontSize: 15,
                               ),
                             ),
                             children: <Widget>[

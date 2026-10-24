@@ -38,4 +38,31 @@ class ProxmoxColors {
   static const Color supportGreyShade25 = Color(0xFF808c8c);
   static const Color supportGreyShade50 = Color(0xFF565d5d);
   static const Color supportGreyShade75 = Color(0xFF2b2f2f);
+
+  // ---- modern dark theme palette (vibrant accents on deep charcoal) ----
+  /// App background, darkest layer.
+  static const Color darkBg = Color(0xFF0B0E14);
+
+  /// Cards / elevated surfaces.
+  static const Color darkSurface = Color(0xFF141821);
+
+  /// Secondary surface (chips, nested tiles, input fields).
+  static const Color darkSurfaceAlt = Color(0xFF1C2230);
+
+  /// Hairline borders between surfaces.
+  static const Color darkBorder = Color(0xFF2A3242);
+
+  /// Primary vibrant accent used for selection and highlights.
+  static const Color accentCyan = Color(0xFF22D3EE);
+  static const Color accentBlue = Color(0xFF3B82F6);
+  static const Color accentViolet = Color(0xFF8B5CF6);
+  static const Color accentGreen = Color(0xFF34D399);
+  static const Color accentAmber = Color(0xFFFFB020);
+  static const Color accentRed = Color(0xFFF8555C);
+
+  /// Text colors on dark backgrounds.
+  static const Color textPrimary = Color(0xFFF1F5F9);
+  static const Color textSecondary = Color(0xFF94A3B8);
+  static const Color textMuted = Color(0xFF64748B);
 }
+

@@ -34,6 +34,7 @@ class PveResourceDataCardWidget extends StatelessWidget {
         child: Card(
           color: Theme.of(context).colorScheme.surface,
           clipBehavior: Clip.antiAlias,
+          margin: EdgeInsets.zero,
           child: Builder(
             builder: (context) {
               if (expandable) {

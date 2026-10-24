@@ -123,7 +123,7 @@ class PveQemuOverview extends StatelessWidget {
                       },
                     ),
                     SizedBox(
-                      height: 130,
+                      height: 96,
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
@@ -187,7 +187,7 @@ class PveQemuOverview extends StatelessWidget {
                           title: Text(AppLocalizations.of(context).hardware,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 15,
                             ),
                           ),
                           children: [

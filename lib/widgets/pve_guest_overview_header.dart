@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:proxmox_dart_api_client/proxmox_dart_api_client.dart';
 import 'package:pve_flutter_frontend/utils/renderers.dart';
-import 'package:pve_flutter_frontend/widgets/pve_guest_icon_widget.dart';
+import 'package:pve_flutter_frontend/utils/proxmox_colors.dart';
 
 import 'package:pve_flutter_frontend/widgets/pve_resource_status_chip_widget.dart';
 import 'package:pve_flutter_frontend/widgets/pve_rrd_chart_widget.dart';
@@ -38,110 +38,99 @@ class PveGuestOverviewHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final haError = ha?.state == 'error';
-    final fgColor =
-        Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.75);
+    final hasChart = background != null;
+    final height = hasChart ? 196.0 : 84.0;
     return Container(
-      height: 250,
+      height: height,
       width: width,
-      decoration: BoxDecoration(
-        //color: ProxmoxColors.supportBlue,
-        //color: Theme.of(context).colorScheme.background,
-        color: Theme.of(context).colorScheme.primary,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: <Color>[Color(0xFF111A2B), Color(0xFF0B0E14)],
+        ),
       ),
       child: Stack(
-          fit: StackFit.expand,
-          alignment: Alignment.center,
-          children: <Widget>[
-            if (background != null) background!,
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+        fit: StackFit.expand,
+        children: <Widget>[
+          if (hasChart) background!,
+          if (hasChart)
+            // dark scrim so the overlapping labels stay readable on top of
+            // the chart
+            const DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[Color(0xD90B0E14), Color(0x000B0E14)],
+                ),
+              ),
+            ),
+          Positioned(
+            left: 14,
+            right: 14,
+            top: 10,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20.0),
-                        child: StatusChip(
-                          status: guestStatus,
-                          fontzsize: 15.0,
-                          fontWeight: FontWeight.w500,
-                          offlineColor: fgColor,
+                Row(
+                  children: <Widget>[
+                    StatusChip(status: guestStatus, fontzsize: 11),
+                    const SizedBox(width: 8),
+                    Icon(
+                      Renderers.getDefaultResourceIcon(guestType),
+                      size: 14,
+                      color: ProxmoxColors.textMuted,
+                    ),
+                    const SizedBox(width: 4),
+                    Flexible(
+                      child: Text(
+                        guestID,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: ProxmoxColors.textPrimary,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Row(
-                    children: <Widget>[
-                      PveGuestIcon(
-                        type: guestType,
-                        template: template,
-                        status: guestStatus,
-                        color: fgColor,
-                        templateColor: fgColor,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text(
-                          guestID,
-                          style: TextStyle(
-                            color: fgColor,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+                    ),
+                    if (ha?.managed ?? false) ...<Widget>[
+                      const SizedBox(width: 8),
+                      FaIcon(
+                        FontAwesomeIcons.heartPulse,
+                        size: 12,
+                        color: haError
+                            ? ProxmoxColors.accentRed
+                            : ProxmoxColors.accentGreen,
                       ),
                     ],
-                  ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.storage,
-                        color: fgColor,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text(
-                          guestNodeID,
-                          style: TextStyle(
-                            color: fgColor,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                if (ha?.managed ?? false)
+                if (hasChart) const SizedBox(height: 6),
+                if (!hasChart)
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: const EdgeInsets.only(top: 2),
                     child: Row(
                       children: <Widget>[
-                        FaIcon(
-                          FontAwesomeIcons.heartPulse,
-                          color: haError ? Colors.red : Colors.green[400],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(AppLocalizations.of(context).haState,
-                            style: TextStyle(
-                              color: fgColor,
-                              fontWeight: FontWeight.w500,
-                            ),
+                        const Icon(Icons.dns_outlined,
+                            size: 13, color: ProxmoxColors.textMuted),
+                        const SizedBox(width: 4),
+                        Text(
+                          guestNodeID,
+                          style: const TextStyle(
+                            color: ProxmoxColors.textSecondary,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
                     ),
                   ),
               ],
-            )
-          ]),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -176,8 +165,7 @@ class _PveGuestHeaderRRDPageViewState extends State<PveGuestHeaderRRDPageView> {
     }
     var rrdData = widget.rrdData! // safety: checked for null above...
         .where((e) => e.time != null);
-    final fgColor =
-        Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.75);
+    const fgColor = ProxmoxColors.textSecondary;
     return ScrollConfiguration(
       behavior: PVEScrollBehavior(),
       child: PageView.builder(

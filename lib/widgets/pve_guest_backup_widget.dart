@@ -491,11 +491,10 @@ class _PveBackupFormState extends State<PveBackupForm> {
         key: _scaffoldKey,
         child: Scaffold(
           appBar: PveAppBar(
-            iconTheme: const IconThemeData(color: Colors.black),
+            iconTheme: IconThemeData(
+                color: Theme.of(context).colorScheme.onSurface),
             backgroundColor: Colors.transparent,
-            title: Text(AppLocalizations.of(context).scheduleBackup,
-              style: TextStyle(color: Colors.black),
-            ),
+            title: Text(AppLocalizations.of(context).scheduleBackup),
           ),
           body: SingleChildScrollView(
               padding: const EdgeInsets.all(8),

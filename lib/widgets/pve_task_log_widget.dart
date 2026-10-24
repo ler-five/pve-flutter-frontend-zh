@@ -228,7 +228,7 @@ class _PveTaskLogScrollViewState extends State<PveTaskLogScrollView> {
                         child: Container(
                           width: 40,
                           height: 3,
-                          color: Colors.black,
+                          color: Theme.of(context).colorScheme.outlineVariant,
                         ),
                       ),
                     ),

@@ -25,14 +25,10 @@ class PveMainNavigationDrawer extends StatelessWidget {
             TabBar(
               tabs: <Widget>[
                 Tab(
-                  child: Text(AppLocalizations.of(context).tree,
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  child: Text(AppLocalizations.of(context).tree),
                 ),
                 Tab(
-                  child: Text(AppLocalizations.of(context).actions,
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  child: Text(AppLocalizations.of(context).actions),
                 )
               ],
             ),

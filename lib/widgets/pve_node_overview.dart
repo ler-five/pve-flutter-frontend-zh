@@ -183,7 +183,7 @@ class PveNodeOverview extends StatelessWidget {
                     },
                   ),
                   SizedBox(
-                    height: 130,
+                    height: 96,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -219,7 +219,7 @@ class PveNodeOverview extends StatelessWidget {
                     title: Text(AppLocalizations.of(context).summary,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 15,
                       ),
                     ),
                     titleTrailing: Text(Renderers.renderDuration(
@@ -243,8 +243,7 @@ class PveNodeOverview extends StatelessWidget {
                         CheckboxListTile(
                           dense: true,
                           value: status?.ksm.shared ?? false,
-                          title: Text(AppLocalizations.of(context).kernelSamePageMergingKsm,
-                              style: TextStyle(color: Colors.black)),
+                          title: Text(AppLocalizations.of(context).kernelSamePageMergingKsm),
                           onChanged: null,
                         ),
                       if (status?.rootfs != null) ...[
@@ -280,7 +279,7 @@ class PveNodeOverview extends StatelessWidget {
                     title: Text(AppLocalizations.of(context).services,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 15,
                       ),
                     ),
                     subtitle: Column(
@@ -313,7 +312,7 @@ class PveNodeOverview extends StatelessWidget {
                     title: Text(AppLocalizations.of(context).updates,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 15,
                       ),
                     ),
                     subtitle: Column(
@@ -368,7 +367,7 @@ class PveNodeOverview extends StatelessWidget {
                     title: Text(AppLocalizations.of(context).disks,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 15,
                       ),
                     ),
                     showTitleTrailing: !state.allDisksHealthy,

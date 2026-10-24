@@ -129,25 +129,27 @@ class PveMobileBottomNavigationbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pageSelector = Provider.of<BehaviorSubject<int>>(context);
-    final light = Theme.of(context).colorScheme.brightness == Brightness.light;
+    final l10n = AppLocalizations.of(context);
     return NavigationBar(
-        backgroundColor: light ? Colors.white : ProxmoxColors.greyShade40,
-        destinations: const <Widget>[
+        destinations: <Widget>[
           NavigationDestination(
-            icon: Icon(Icons.dashboard),
-            label: "Dashboard",
+            icon: const Icon(Icons.space_dashboard_outlined),
+            selectedIcon: const Icon(Icons.space_dashboard),
+            label: l10n.dashboard,
           ),
           NavigationDestination(
-            icon: Icon(Icons.developer_board),
-            label: "Resources",
+            icon: const Icon(Icons.developer_board_outlined),
+            selectedIcon: const Icon(Icons.developer_board),
+            label: l10n.resources,
           ),
           NavigationDestination(
-            icon: Icon(Icons.supervised_user_circle),
-            label: "Access",
+            icon: const Icon(Icons.supervised_user_circle_outlined),
+            selectedIcon: const Icon(Icons.supervised_user_circle),
+            label: l10n.access,
           ),
           NavigationDestination(
-            icon: Icon(Icons.logout),
-            label: "Sites",
+            icon: const Icon(Icons.logout),
+            label: l10n.sites,
           ),
         ],
         selectedIndex: pageSelector.value,
@@ -203,80 +205,36 @@ class MobileDashboard extends StatelessWidget {
               docPath: 'index.html'),
         ],
       ),
-      body: Stack(children: [
-        Container(
-          height: 350,
-          color: Theme.of(context).colorScheme.primary,
-        ),
-        ProxmoxStreamBuilder<PveClusterStatusBloc, PveClusterStatusState>(
-            bloc: cBloc,
-            builder: (context, cState) {
-              return ListView(children: <Widget>[
-                if (cState.cluster != null) ...[
-                  ListTile(
-                    title: Text(AppLocalizations.of(context).status,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    subtitle: Text(
-                      cState.cluster?.name ?? "Datacenter",
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                    trailing: SizedBox(
-                      width: 96,
-                      height: 48,
-                      child: ProxmoxHeartbeatIndicator(
-                        isHealthy: cState.healthy,
-                        healthyColor: Colors.greenAccent,
-                        warningColor: Colors.orangeAccent,
-                      ),
-                    ),
-                  ),
-                ],
-                SizedBox(
-                  height: 80,
-                  child: ListView(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      if (cState.missingSubscription)
-                        ActionChip(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primaryContainer,
-                          avatar: const Icon(Icons.report, color: Colors.red),
-                          label: Text(AppLocalizations.of(context).subscription,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
+      body: ProxmoxStreamBuilder<PveClusterStatusBloc, PveClusterStatusState>(
+          bloc: cBloc,
+          builder: (context, cState) {
+            return ListView(
+                padding: const EdgeInsets.only(bottom: 18),
+                children: <Widget>[
+                  _ClusterHeroCard(cState: cState),
+                  SizedBox(
+                    height: 46,
+                    child: ListView(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 4),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      children: <Widget>[
+                        if (cState.missingSubscription)
+                          _DashboardChip(
+                            icon: Icons.report_gmailerrorred,
+                            label: AppLocalizations.of(context).subscription,
+                            color: ProxmoxColors.accentRed,
+                            onTap: () => showDialog(
+                              context: context,
+                              builder: (c) => const PveSubscriptionAlertDialog(),
+                            ),
                           ),
-                          onPressed: () => showDialog(
-                            context: context,
-                            builder: (c) => const PveSubscriptionAlertDialog(),
-                          ),
-                        ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: ActionChip(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 4.0, horizontal: 8.0),
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primaryContainer,
-                          avatar: Icon(
-                            Renderers.getDefaultResourceIcon('qemu'),
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            size: 20,
-                          ),
-                          label: Text(AppLocalizations.of(context).virtualMachines,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                          onPressed: () {
+                        _DashboardChip(
+                          icon: Renderers.getDefaultResourceIcon('qemu'),
+                          label: AppLocalizations.of(context).virtualMachines,
+                          color: ProxmoxColors.accentCyan,
+                          onTap: () {
                             Provider.of<BehaviorSubject<int>>(context,
                                     listen: false)
                                 .add(1);
@@ -287,25 +245,11 @@ class MobileDashboard extends StatelessWidget {
                                 ));
                           },
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: ActionChip(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 4.0, horizontal: 8.0),
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primaryContainer,
-                          avatar: Icon(
-                            Renderers.getDefaultResourceIcon('lxc'),
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            size: 20,
-                          ),
-                          label: Text(AppLocalizations.of(context).containers,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                          onPressed: () {
+                        _DashboardChip(
+                          icon: Renderers.getDefaultResourceIcon('lxc'),
+                          label: AppLocalizations.of(context).containers,
+                          color: ProxmoxColors.accentViolet,
+                          onTap: () {
                             Provider.of<BehaviorSubject<int>>(context,
                                     listen: false)
                                 .add(1);
@@ -316,10 +260,9 @@ class MobileDashboard extends StatelessWidget {
                                 ));
                           },
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
                 ProxmoxStreamBuilder<PveResourceBloc, PveResourceState>(
                     bloc: rBloc,
                     builder: (context, rState) {
@@ -341,15 +284,16 @@ class MobileDashboard extends StatelessWidget {
                           ((aggrMemUsage / aggrMem) * 100).toStringAsFixed(2);
                       return PveResourceDataCardWidget(
                         title: Text(AppLocalizations.of(context).analytics,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 15,
                           ),
                         ),
                         subtitle: Text(AppLocalizations.of(context).usageAcrossAllOnlineNodes),
+                        padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            padding: const EdgeInsets.symmetric(vertical: 6.0),
                             child: ProxmoxGaugeChartListTile(
                               title: Text(AppLocalizations.of(context).cpu),
                               subtitle: Text(AppLocalizations.of(context)
@@ -360,7 +304,7 @@ class MobileDashboard extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            padding: const EdgeInsets.symmetric(vertical: 6.0),
                             child: ProxmoxGaugeChartListTile(
                               title: Text(AppLocalizations.of(context).memory),
                               subtitle: Text(
@@ -377,11 +321,12 @@ class MobileDashboard extends StatelessWidget {
                     }),
                 PveResourceDataCardWidget(
                   title: Text(AppLocalizations.of(context).nodes,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 15,
                     ),
                   ),
+                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
                   children: [
                     ...cState.nodes.map((node) {
                       return PveNodeListTile(
@@ -407,144 +352,239 @@ class MobileDashboard extends StatelessWidget {
                       final offCTs = totalCTs - onlineCTs.length;
                       return PveResourceDataCardWidget(
                         title: Text(AppLocalizations.of(context).guests,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 15,
                           ),
                         ),
+                        padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
                         children: <Widget>[
-                          ListTile(
-                            title: Text(AppLocalizations.of(context).virtualMachines),
-                            trailing: Text(totalVMs.toString()),
-                            leading:
-                                Icon(Renderers.getDefaultResourceIcon('qemu')),
-                            onTap: () {
-                              Provider.of<BehaviorSubject<int>>(context,
-                                      listen: false)
-                                  .add(1);
-                              Provider.of<PveResourceBloc>(context,
-                                      listen: false)
-                                  .events
-                                  .add(FilterResources(
-                                    typeFilter: BuiltSet.from(['qemu']),
-                                  ));
-                            },
+                          _GuestSummaryTile(
+                            icon: Renderers.getDefaultResourceIcon('qemu'),
+                            label: AppLocalizations.of(context).virtualMachines,
+                            total: totalVMs,
+                            online: onlineVMs.length,
+                            offline: offVMs,
+                            color: ProxmoxColors.accentCyan,
+                            onTap: () =>
+                                openResourceList(context, 'qemu'),
                           ),
-                          ListTile(
-                              dense: true,
-                              title: Text(AppLocalizations.of(context).online,
-                                style: TextStyle(fontSize: 14),
-                              ),
-                              leading: const Icon(Icons.play_circle_outline,
-                                  color: Colors.green),
-                              trailing: Text(onlineVMs.length.toString()),
-                              onTap: () {
-                                Provider.of<BehaviorSubject<int>>(context,
-                                        listen: false)
-                                    .add(1);
-                                Provider.of<PveResourceBloc>(context,
-                                        listen: false)
-                                    .events
-                                    .add(FilterResources(
-                                      typeFilter: BuiltSet.from(['qemu']),
-                                      statusFilter: BuiltSet.from(
-                                          [PveResourceStatusType.running]),
-                                    ));
-                              }),
-                          ListTile(
-                            dense: true,
-                            title: Text(AppLocalizations.of(context).offline,
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                            leading: const Icon(Icons.stop),
-                            trailing: Text(offVMs.toString()),
-                            onTap: () {
-                              Provider.of<BehaviorSubject<int>>(context,
-                                      listen: false)
-                                  .add(1);
-                              Provider.of<PveResourceBloc>(context,
-                                      listen: false)
-                                  .events
-                                  .add(FilterResources(
-                                    typeFilter: BuiltSet.from(['qemu']),
-                                    statusFilter: BuiltSet.from(
-                                        [PveResourceStatusType.stopped]),
-                                  ));
-                            },
-                          ),
-                          const Divider(
-                            indent: 10,
-                          ),
-                          ListTile(
-                            title: Text(AppLocalizations.of(context).containers),
-                            trailing: Text(totalCTs.toString()),
-                            leading:
-                                Icon(Renderers.getDefaultResourceIcon('lxc')),
-                            onTap: () {
-                              Provider.of<BehaviorSubject<int>>(context,
-                                      listen: false)
-                                  .add(1);
-                              Provider.of<PveResourceBloc>(context,
-                                      listen: false)
-                                  .events
-                                  .add(FilterResources(
-                                    typeFilter: BuiltSet.from(['lxc']),
-                                  ));
-                            },
-                          ),
-                          ListTile(
-                            dense: true,
-                            title: Text(AppLocalizations.of(context).online,
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            leading: const Icon(Icons.play_circle_outline,
-                                color: Colors.green),
-                            trailing: Text(onlineCTs.length.toString()),
-                            onTap: () {
-                              Provider.of<BehaviorSubject<int>>(context,
-                                      listen: false)
-                                  .add(1);
-                              Provider.of<PveResourceBloc>(context,
-                                      listen: false)
-                                  .events
-                                  .add(FilterResources(
-                                    typeFilter: BuiltSet.from(['lxc']),
-                                    statusFilter: BuiltSet.from(
-                                        [PveResourceStatusType.running]),
-                                  ));
-                            },
-                          ),
-                          ListTile(
-                            dense: true,
-                            title: Text(AppLocalizations.of(context).offline,
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                            leading: const Icon(Icons.stop),
-                            trailing: Text(offCTs.toString()),
-                            onTap: () {
-                              Provider.of<BehaviorSubject<int>>(context,
-                                      listen: false)
-                                  .add(1);
-                              Provider.of<PveResourceBloc>(context,
-                                      listen: false)
-                                  .events
-                                  .add(FilterResources(
-                                    typeFilter: BuiltSet.from(['lxc']),
-                                    statusFilter: BuiltSet.from(
-                                        [PveResourceStatusType.stopped]),
-                                  ));
-                            },
+                          _GuestSummaryTile(
+                            icon: Renderers.getDefaultResourceIcon('lxc'),
+                            label: AppLocalizations.of(context).containers,
+                            total: totalCTs,
+                            online: onlineCTs.length,
+                            offline: offCTs,
+                            color: ProxmoxColors.accentViolet,
+                            onTap: () =>
+                                openResourceList(context, 'lxc'),
                           ),
                         ],
                       );
                     }),
-              ]);
-            }),
-      ]),
+            ]);
+          }),
+    );
+  }
+}
+
+/// Switches to the resources tab and applies a type filter.
+void openResourceList(BuildContext context, String type) {
+  Provider.of<BehaviorSubject<int>>(context, listen: false).add(1);
+  Provider.of<PveResourceBloc>(context, listen: false)
+      .events
+      .add(FilterResources(typeFilter: BuiltSet.from([type])));
+}
+
+/// Compact cluster header shown at the top of the dashboard.
+class _ClusterHeroCard extends StatelessWidget {
+  final PveClusterStatusState cState;
+
+  const _ClusterHeroCard({required this.cState});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final healthy = cState.healthy;
+    return Container(
+      margin: const EdgeInsets.fromLTRB(12, 6, 12, 4),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: <Color>[Color(0xFF12324A), Color(0xFF101826)],
+        ),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: ProxmoxColors.accentCyan.withValues(alpha: 0.28),
+        ),
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  cState.cluster?.name ?? l10n.datacenter,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: ProxmoxColors.textPrimary,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      width: 7,
+                      height: 7,
+                      decoration: BoxDecoration(
+                        color: healthy
+                            ? ProxmoxColors.accentGreen
+                            : ProxmoxColors.accentAmber,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      healthy ? l10n.allRunning : l10n.oneOrMoreNotRunning,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: healthy
+                            ? ProxmoxColors.accentGreen
+                            : ProxmoxColors.accentAmber,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            width: 88,
+            height: 40,
+            child: ProxmoxHeartbeatIndicator(
+              isHealthy: healthy,
+              healthyColor: ProxmoxColors.accentGreen,
+              warningColor: ProxmoxColors.accentAmber,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Small pill shaped shortcut used in the dashboard quick action row.
+class _DashboardChip extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _DashboardChip({
+    required this.icon,
+    required this.label,
+    required this.color,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: Material(
+        color: Colors.transparent,
+        child: Ink(
+          decoration: BoxDecoration(
+            color: color.withValues(alpha: 0.12),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: color.withValues(alpha: 0.35)),
+          ),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(20),
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(icon, size: 15, color: color),
+                  const SizedBox(width: 6),
+                  Text(
+                    label,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: ProxmoxColors.textPrimary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// One-line guest summary: icon, name, online/offline split and total.
+class _GuestSummaryTile extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final int total;
+  final int online;
+  final int offline;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _GuestSummaryTile({
+    required this.icon,
+    required this.label,
+    required this.total,
+    required this.online,
+    required this.offline,
+    required this.color,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+      leading: Container(
+        width: 34,
+        height: 34,
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.14),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Icon(icon, size: 17, color: color),
+      ),
+      title: Text(
+        label,
+        style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+      ),
+      subtitle: Text(
+        '${l10n.online} $online · ${l10n.offline} $offline',
+        style: const TextStyle(fontSize: 11, color: ProxmoxColors.textMuted),
+      ),
+      trailing: Text(
+        '$total',
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+          color: color,
+        ),
+      ),
+      onTap: onTap,
     );
   }
 }
@@ -565,21 +605,40 @@ class PveNodeListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(
-        Renderers.getDefaultResourceIcon(type),
+      leading: Container(
+        width: 34,
+        height: 34,
+        decoration: BoxDecoration(
+          color: ProxmoxColors.accentBlue.withValues(alpha: 0.14),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Icon(
+          Renderers.getDefaultResourceIcon(type),
+          size: 17,
+          color: ProxmoxColors.accentBlue,
+        ),
       ),
-      title: Text(name),
-      subtitle: Text(getNodeTileSubtitle(online, level, ip)),
-      trailing: Icon(Icons.power, color: online ? Colors.green : Colors.grey),
+      title: Text(name,
+          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+      subtitle: Text(
+        getNodeTileSubtitle(context, online, level, ip),
+        style: const TextStyle(fontSize: 11, color: ProxmoxColors.textMuted),
+      ),
+      trailing: Icon(
+        Icons.chevron_right,
+        size: 18,
+        color: online ? ProxmoxColors.accentGreen : ProxmoxColors.textMuted,
+      ),
       onTap: () => Navigator.pushNamed(context, '/nodes/$name'),
     );
   }
 
-  String getNodeTileSubtitle(bool online, String? level, String? ip) {
+  String getNodeTileSubtitle(
+      BuildContext context, bool online, String? level, String? ip) {
     if (online) {
       return '$ip - ${Renderers.renderSupportLevel(level)}';
     }
-    return 'offline';
+    return AppLocalizations.of(context).offline;
   }
 }
 
@@ -611,9 +670,9 @@ class MobileResourceOverview extends StatelessWidget {
               ),
               actions: const <Widget>[AppBarFilterIconButton()],
             ),
-            body: ListView.separated(
+            body: ListView.builder(
+              padding: const EdgeInsets.only(top: 2, bottom: 16),
               itemCount: fResources.length,
-              separatorBuilder: (context, index) => const Divider(),
               itemBuilder: (context, index) {
                 final resource = fResources[index];
                 StatelessWidget listWidget = ListTile(
@@ -636,25 +695,32 @@ class MobileResourceOverview extends StatelessWidget {
                     resource: resource,
                   );
                 }
+                final card = Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                  clipBehavior: Clip.antiAlias,
+                  child: listWidget,
+                );
                 if (otherCategory(fResources, index)) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.all(12.0),
+                        padding: const EdgeInsets.fromLTRB(18, 12, 18, 3),
                         child: Text(
                           resource.type.toUpperCase(),
                           style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 11,
+                            letterSpacing: 1.2,
+                            fontWeight: FontWeight.w700,
+                            color: ProxmoxColors.textMuted,
                           ),
                         ),
                       ),
-                      listWidget,
+                      card,
                     ],
                   );
                 } else {
-                  return listWidget;
+                  return card;
                 }
               },
             ),
@@ -685,24 +751,52 @@ class PveGuestListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final status = resource.getStatus();
+    final accent = resource.type == 'lxc'
+        ? ProxmoxColors.accentViolet
+        : ProxmoxColors.accentCyan;
 
     return ListTile(
-      leading: PveGuestIcon(
-        type: resource.type,
-        template: resource.template ?? false,
-        status: status,
+      leading: Container(
+        width: 34,
+        height: 34,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: accent.withValues(alpha: 0.14),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: PveGuestIcon(
+          type: resource.type,
+          template: resource.template ?? false,
+          status: status,
+          color: accent,
+          templateColor: accent,
+        ),
       ),
-      title: Text(resource.displayName),
-      subtitle: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(resource.node!),
-          StatusChip(
-            status: status,
-            fontzsize: 12,
-          ),
-        ],
+      title: Text(
+        resource.displayName,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
       ),
+      subtitle: Padding(
+        padding: const EdgeInsets.only(top: 3),
+        child: Row(
+          children: <Widget>[
+            const Icon(Icons.dns_outlined,
+                size: 11, color: ProxmoxColors.textMuted),
+            const SizedBox(width: 3),
+            Text(
+              resource.node ?? '',
+              style: const TextStyle(
+                  fontSize: 11, color: ProxmoxColors.textMuted),
+            ),
+            const Spacer(),
+            StatusChip(status: status, fontzsize: 10),
+          ],
+        ),
+      ),
+      trailing: const Icon(Icons.chevron_right,
+          size: 18, color: ProxmoxColors.textMuted),
       onTap: () {
         if (['qemu', 'lxc'].contains(resource.type)) {
           Navigator.pushNamed(
@@ -726,30 +820,46 @@ class PveStorageListeTile extends StatelessWidget {
     final apiClient = Provider.of<ProxmoxApiClient>(context);
     final usedPercent = (resource.disk ?? 0.0) / (resource.maxdisk ?? 100.0);
     return ListTile(
-      title: Text(resource.displayName),
+      title: Text(
+        resource.displayName,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+      ),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(resource.node!),
+            children: <Widget>[
+              const Icon(Icons.dns_outlined,
+                  size: 11, color: ProxmoxColors.textMuted),
+              const SizedBox(width: 3),
+              Text(
+                resource.node ?? '',
+                style: const TextStyle(
+                    fontSize: 11, color: ProxmoxColors.textMuted),
+              ),
+              const Spacer(),
               StatusChip(
                 status: resource.getStatus(),
-                fontzsize: 12,
+                fontzsize: 10,
               ),
             ],
           ),
           if (resource.getStatus() == PveResourceStatusType.running &&
               !(usedPercent.isNaN || usedPercent.isInfinite))
-            ProxmoxCapacityIndicator(
-              usedValue: Renderers.formatSize(resource.disk ?? 0),
-              totalValue: Renderers.formatSize(resource.maxdisk ?? 0),
-              usedPercent:
-                  usedPercent.isNaN || usedPercent.isInfinite ? 0 : usedPercent,
-              icon: Icon(
-                Renderers.getDefaultResourceIcon(resource.type,
-                    shared: resource.shared),
+            Padding(
+              padding: const EdgeInsets.only(top: 2),
+              child: ProxmoxCapacityIndicator(
+                usedValue: Renderers.formatSize(resource.disk ?? 0),
+                totalValue: Renderers.formatSize(resource.maxdisk ?? 0),
+                usedPercent: usedPercent.isNaN || usedPercent.isInfinite
+                    ? 0
+                    : usedPercent,
+                icon: Icon(
+                  Renderers.getDefaultResourceIcon(resource.type,
+                      shared: resource.shared),
+                ),
               ),
             ),
         ],
@@ -825,14 +935,15 @@ class _AppbarSearchTextFieldState extends State<AppbarSearchTextField> {
             const BoxConstraints(minHeight: 32, minWidth: 32),
         suffixIconConstraints:
             const BoxConstraints(maxHeight: 32, maxWidth: 32),
-        //fillColor: Color(0xFFF1F2F4),
-        fillColor: Theme.of(context).colorScheme.surface,
+        fillColor: Theme.of(context).colorScheme.surfaceContainer,
         filled: true,
         isDense: true,
-        enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white)),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: ProxmoxColors.darkBorder),
+        ),
       ),
-      style: const TextStyle(fontSize: 20),
+      style: const TextStyle(fontSize: 15),
       onChanged: (value) => widget.onChanged!(value),
       controller: _controller,
     );
@@ -853,11 +964,11 @@ class AppBarFilterIconButton extends StatelessWidget {
             icon: rBloc.isFiltered
                 ? const FaIcon(
                     FontAwesomeIcons.filter,
-                    color: Colors.black,
+                    color: ProxmoxColors.accentCyan,
                   )
                 : const FaIcon(
                     FontAwesomeIcons.filter,
-                    color: Colors.grey,
+                    color: ProxmoxColors.textMuted,
                   ),
             onPressed: () => Scaffold.of(context).openEndDrawer(),
           );
@@ -886,26 +997,26 @@ class MobileAccessManagement extends StatelessWidget {
               labelStyle:
                   TextStyle(color: Theme.of(context).colorScheme.secondary),
               indicatorColor: Theme.of(context).colorScheme.secondary,
-              tabs: const [
+              tabs: [
                 Tab(
-                  text: 'Users',
-                  icon: Icon(Icons.person),
+                  text: AppLocalizations.of(context).users,
+                  icon: const Icon(Icons.person),
                 ),
                 Tab(
-                  text: 'API Tokens',
-                  icon: Icon(Icons.person_outline),
+                  text: AppLocalizations.of(context).apiTokens,
+                  icon: const Icon(Icons.person_outline),
                 ),
                 Tab(
-                  text: 'Groups',
-                  icon: Icon(Icons.group),
+                  text: AppLocalizations.of(context).groups,
+                  icon: const Icon(Icons.group),
                 ),
                 Tab(
-                  text: 'Roles',
-                  icon: Icon(Icons.lock_open),
+                  text: AppLocalizations.of(context).roles,
+                  icon: const Icon(Icons.lock_open),
                 ),
                 Tab(
-                  text: 'Domains',
-                  icon: Icon(Icons.domain),
+                  text: AppLocalizations.of(context).domains,
+                  icon: const Icon(Icons.domain),
                 )
               ]),
         ),
@@ -937,7 +1048,7 @@ class MobileAccessManagement extends StatelessWidget {
                       itemCount: aState.tokens.length,
                       itemBuilder: (context, index) {
                         final token = aState.tokens[index];
-                        var expireDate = 'never';
+                        var expireDate = AppLocalizations.of(context).never;
                         if (token.expire != null &&
                             token.expire?.millisecondsSinceEpoch != 0) {
                           expireDate = DateFormat.yMd().format(token.expire!);
@@ -986,7 +1097,7 @@ class MobileAccessManagement extends StatelessWidget {
                                         child: Container(
                                           width: 40,
                                           height: 3,
-                                          color: Colors.black,
+                                          color: ProxmoxColors.textMuted,
                                         ),
                                       ),
                                     ),
@@ -1022,8 +1133,8 @@ class MobileAccessManagement extends StatelessWidget {
                       return ListTile(
                         title: Text(role.roleid),
                         subtitle: Text((role.special ?? false)
-                            ? 'Built in Role'
-                            : 'Custom'),
+                            ? AppLocalizations.of(context).builtInRole
+                            : AppLocalizations.of(context).custom),
                         trailing: const Icon(Icons.arrow_right),
                         onTap: () => showModalBottomSheet(
                           shape: const RoundedRectangleBorder(
@@ -1044,7 +1155,7 @@ class MobileAccessManagement extends StatelessWidget {
                                       child: Container(
                                         width: 40,
                                         height: 3,
-                                        color: Colors.black,
+                                        color: ProxmoxColors.textMuted,
                                       ),
                                     ),
                                   ),

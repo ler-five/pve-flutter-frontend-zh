@@ -104,89 +104,10 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales: AppLocalizations.supportedLocales,
         title: 'Proxmox',
-        //themeMode: ThemeMode.dark, // comment in/out to test
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: ProxmoxColors.supportBlue,
-            brightness: Brightness.light,
-            primary: ProxmoxColors.supportBlue,
-            onPrimary: Colors.white,
-            primaryContainer: ProxmoxColors.blue900,
-            onPrimaryContainer: ProxmoxColors.blue50,
-            secondary: ProxmoxColors.orange,
-            secondaryContainer: ProxmoxColors.supportLightOrange,
-            surface: ProxmoxColors.supportGreyTint50,
-            onSurface: Colors.black,
-            surfaceContainer: ProxmoxColors.supportGreyTint75,
-            onSurfaceVariant: Colors.black,
-          ),
-          textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(foregroundColor: ProxmoxColors.grey),
-          ),
-          outlinedButtonTheme: OutlinedButtonThemeData(
-            style: OutlinedButton.styleFrom(
-              foregroundColor: Colors.black,
-            ),
-          ),
-          fontFamily: "Open Sans",
-          primaryTextTheme: const TextTheme(
-            titleLarge:
-                TextStyle(fontFamily: "Open Sans", fontWeight: FontWeight.w700),
-          ),
-          appBarTheme: const AppBarTheme(
-            backgroundColor: ProxmoxColors.supportBlue, // primary
-            foregroundColor: Colors.white, // onPrimary
-          ),
-          textSelectionTheme: TextSelectionThemeData(
-            selectionColor: ProxmoxColors.orange.withValues(alpha: 0.4),
-            selectionHandleColor: ProxmoxColors.orange,
-            cursorColor: ProxmoxColors.orange,
-          ),
-          tabBarTheme: TabBarThemeData(indicatorColor: ProxmoxColors.orange),
-        ),
-        darkTheme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: ProxmoxColors.supportBlue,
-            brightness: Brightness.dark,
-            primary: ProxmoxColors.supportBlue,
-            onPrimary: Colors.white,
-            primaryContainer: ProxmoxColors.blue800,
-            onPrimaryContainer: ProxmoxColors.blue50,
-            surface: ProxmoxColors.greyTint20,
-            onSurface: Colors.white,
-            secondary: ProxmoxColors.orange,
-            secondaryContainer: ProxmoxColors.supportLightOrange,
-            surfaceContainer: ProxmoxColors.grey,
-            onSurfaceVariant: ProxmoxColors.supportGreyTint75,
-          ),
-          // flutter has a weird logic where it pulls colors from different
-          // scheme properties depending on light/dark mode, avoid that...
-          appBarTheme: const AppBarTheme(
-            backgroundColor: ProxmoxColors.supportBlue, // primary
-            foregroundColor: Colors.white, // onPrimary
-          ),
-          textButtonTheme: TextButtonThemeData(
-            style:
-                TextButton.styleFrom(foregroundColor: ProxmoxColors.greyTint80),
-          ),
-          outlinedButtonTheme: OutlinedButtonThemeData(
-            style: OutlinedButton.styleFrom(
-              foregroundColor: Colors.white,
-            ),
-          ),
-          fontFamily: "Open Sans",
-          primaryTextTheme: const TextTheme(
-            titleLarge:
-                TextStyle(fontFamily: "Open Sans", fontWeight: FontWeight.w700),
-          ),
-          scaffoldBackgroundColor: ProxmoxColors.grey,
-          textSelectionTheme: TextSelectionThemeData(
-            selectionColor: ProxmoxColors.orange.withValues(alpha: 0.4),
-            selectionHandleColor: ProxmoxColors.orange,
-            cursorColor: ProxmoxColors.orange,
-          ),
-          tabBarTheme: TabBarThemeData(indicatorColor: ProxmoxColors.orange),
-        ),
+        // the redesign targets a modern dark UI; light theme kept as fallback
+        themeMode: ThemeMode.dark,
+        theme: buildAppTheme(Brightness.light),
+        darkTheme: buildAppTheme(Brightness.dark),
         builder: (context, child) {
           return StreamListener(
             stream: ProxmoxGlobalErrorBloc().onError.distinct(),
@@ -416,4 +337,202 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Modern, compact theme shared by both brightness modes.
+///
+/// Dark mode uses a deep charcoal background with vibrant cyan/amber accents,
+/// zero-elevation bordered cards and tighter paddings so more content fits on
+/// a phone screen.
+ThemeData buildAppTheme(Brightness brightness) {
+  final isDark = brightness == Brightness.dark;
+
+  final scheme = isDark
+      ? const ColorScheme.dark(
+          primary: ProxmoxColors.accentCyan,
+          onPrimary: Color(0xFF06222B),
+          primaryContainer: ProxmoxColors.darkSurfaceAlt,
+          onPrimaryContainer: ProxmoxColors.accentCyan,
+          secondary: ProxmoxColors.accentAmber,
+          onSecondary: Color(0xFF241703),
+          secondaryContainer: Color(0xFF33260D),
+          onSecondaryContainer: ProxmoxColors.accentAmber,
+          surface: ProxmoxColors.darkSurface,
+          onSurface: ProxmoxColors.textPrimary,
+          surfaceContainer: ProxmoxColors.darkSurfaceAlt,
+          onSurfaceVariant: ProxmoxColors.textSecondary,
+          outline: ProxmoxColors.darkBorder,
+          outlineVariant: ProxmoxColors.darkBorder,
+          error: ProxmoxColors.accentRed,
+          onError: Colors.white,
+        )
+      : ColorScheme.fromSeed(
+          seedColor: ProxmoxColors.supportBlue,
+          brightness: Brightness.light,
+          primary: ProxmoxColors.supportBlue,
+          onPrimary: Colors.white,
+          secondary: ProxmoxColors.orange,
+          surface: ProxmoxColors.supportGreyTint50,
+          onSurface: Colors.black,
+          surfaceContainer: ProxmoxColors.supportGreyTint75,
+          onSurfaceVariant: ProxmoxColors.supportDarkGrey,
+        );
+
+  final bg = isDark ? ProxmoxColors.darkBg : ProxmoxColors.supportGreyTint75;
+  final cardColor = isDark ? ProxmoxColors.darkSurface : Colors.white;
+  final borderColor =
+      isDark ? ProxmoxColors.darkBorder : ProxmoxColors.supportGreyTint50;
+
+  const fontFamily = "Open Sans";
+  const radius = BorderRadius.all(Radius.circular(14));
+
+  return ThemeData(
+    colorScheme: scheme,
+    fontFamily: fontFamily,
+    scaffoldBackgroundColor: bg,
+    visualDensity: VisualDensity.compact,
+    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    splashFactory: InkSparkle.splashFactory,
+    cardTheme: CardThemeData(
+      color: cardColor,
+      elevation: 0,
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+      shape: RoundedRectangleBorder(
+        borderRadius: radius,
+        side: BorderSide(color: borderColor),
+      ),
+    ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: bg,
+      foregroundColor: isDark ? ProxmoxColors.textPrimary : Colors.white,
+      elevation: 0,
+      scrolledUnderElevation: 0,
+      centerTitle: false,
+      toolbarHeight: 52,
+      titleTextStyle: TextStyle(
+        fontFamily: fontFamily,
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        color: isDark ? ProxmoxColors.textPrimary : Colors.white,
+      ),
+    ),
+    listTileTheme: ListTileThemeData(
+      dense: true,
+      minVerticalPadding: 4,
+      visualDensity: VisualDensity.compact,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 0),
+      iconColor: isDark ? ProxmoxColors.textSecondary : ProxmoxColors.grey,
+      textColor: isDark ? ProxmoxColors.textPrimary : Colors.black,
+    ),
+    dividerTheme: DividerThemeData(
+      color: borderColor,
+      thickness: 1,
+      space: 1,
+    ),
+    navigationBarTheme: NavigationBarThemeData(
+      height: 60,
+      backgroundColor: isDark ? ProxmoxColors.darkSurface : Colors.white,
+      indicatorColor: scheme.primary.withValues(alpha: isDark ? 0.16 : 0.14),
+      elevation: 0,
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+      labelTextStyle: WidgetStatePropertyAll(
+        TextStyle(
+          fontFamily: fontFamily,
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          color: isDark ? ProxmoxColors.textSecondary : ProxmoxColors.grey,
+        ),
+      ),
+      iconTheme: WidgetStateProperty.resolveWith((states) {
+        final selected = states.contains(WidgetState.selected);
+        return IconThemeData(
+          size: 22,
+          color: selected
+              ? scheme.primary
+              : (isDark ? ProxmoxColors.textMuted : ProxmoxColors.greyTint40),
+        );
+      }),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      isDense: true,
+      filled: true,
+      fillColor: isDark ? ProxmoxColors.darkSurfaceAlt : Colors.white,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: borderColor),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: borderColor),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: scheme.primary, width: 1.4),
+      ),
+    ),
+    chipTheme: ChipThemeData(
+      backgroundColor: isDark ? ProxmoxColors.darkSurfaceAlt : null,
+      side: isDark ? const BorderSide(color: ProxmoxColors.darkBorder) : null,
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+      labelStyle: TextStyle(
+        fontFamily: fontFamily,
+        fontSize: 12,
+        color: isDark ? ProxmoxColors.textPrimary : Colors.black,
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(foregroundColor: scheme.primary),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: isDark ? ProxmoxColors.textPrimary : Colors.black,
+        side: BorderSide(color: borderColor),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      ),
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      selectionColor: scheme.primary.withValues(alpha: 0.35),
+      selectionHandleColor: scheme.primary,
+      cursorColor: scheme.primary,
+    ),
+    tabBarTheme: TabBarThemeData(
+      indicatorColor: scheme.primary,
+      indicatorSize: TabBarIndicatorSize.label,
+      labelColor: scheme.primary,
+      unselectedLabelColor:
+          isDark ? ProxmoxColors.textSecondary : ProxmoxColors.grey,
+      dividerColor: Colors.transparent,
+      labelStyle: const TextStyle(
+          fontFamily: fontFamily, fontWeight: FontWeight.w600, fontSize: 13),
+      unselectedLabelStyle:
+          const TextStyle(fontFamily: fontFamily, fontSize: 13),
+    ),
+    dialogTheme: DialogThemeData(
+      backgroundColor: cardColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+    ),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: cardColor,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+      ),
+      showDragHandle: true,
+    ),
+    snackBarTheme: SnackBarThemeData(
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    ),
+    primaryTextTheme: const TextTheme(
+      titleLarge:
+          TextStyle(fontFamily: fontFamily, fontWeight: FontWeight.w700),
+    ),
+  );
 }
