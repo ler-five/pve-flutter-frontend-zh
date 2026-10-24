@@ -73,7 +73,11 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            // CI builds have no key.properties, so fall back to the debug key
+            // to keep the produced APK installable.
+            signingConfig keystorePropertiesFile.exists()
+                ? signingConfigs.release
+                : signingConfigs.debug
         }
     }
     compileOptions {
